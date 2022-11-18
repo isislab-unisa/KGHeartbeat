@@ -1,0 +1,1 @@
+[["open-bantu-isixhosa-lexicon", "wordnet-rdf"]]

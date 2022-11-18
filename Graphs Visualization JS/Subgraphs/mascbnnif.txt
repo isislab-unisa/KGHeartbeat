@@ -1,0 +1,1 @@
+[["masc-bn-nif", "babelnet"]]

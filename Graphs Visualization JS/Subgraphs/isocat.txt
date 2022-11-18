@@ -1,0 +1,1 @@
+[["isocat", "fiesta"], ["isocat", "gold"], ["isocat", "isocat-metadata"], ["isocat", "lemonuby"], ["isocat", "lexinfo"], ["isocat", "mexico"], ["isocat", "olia"], ["isocat", "saldo-rdf"], ["isocat", "saldom-rdf"], ["isocat", "swefn-rdf"]]

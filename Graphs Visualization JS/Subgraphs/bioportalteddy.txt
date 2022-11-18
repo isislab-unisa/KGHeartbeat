@@ -1,0 +1,1 @@
+[["bioportal-teddy", "bioportal-ncit"], ["bioportal-teddy", "bioportal-snomedct"], ["bioportal-teddy", "bioportal-gaz"]]

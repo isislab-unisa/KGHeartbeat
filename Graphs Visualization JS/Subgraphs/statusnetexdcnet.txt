@@ -1,0 +1,1 @@
+[["statusnet-exdc-net", "statusnet-datenfahrt-org"], ["statusnet-exdc-net", "statusnet-skilledtests-com"], ["statusnet-exdc-net", "statusnet-status-net"], ["statusnet-exdc-net", "geonames-semantic-web"], ["statusnet-exdc-net", "statusnet-quitter-se"], ["statusnet-exdc-net", "statusnet-postblue-info"]]

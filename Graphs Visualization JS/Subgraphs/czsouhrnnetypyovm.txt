@@ -1,0 +1,1 @@
+[["cz-souhrnne-typy-ovm", "cz-ovm"]]

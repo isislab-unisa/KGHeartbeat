@@ -1,0 +1,1 @@
+[["gold", "clld-glottolog"], ["gold", "clld-phoible"], ["gold", "isocat"], ["gold", "multext-east"], ["gold", "olia"], ["gold", "phoible"]]

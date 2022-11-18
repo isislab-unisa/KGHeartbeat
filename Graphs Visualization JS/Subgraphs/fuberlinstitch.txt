@@ -1,0 +1,1 @@
+[["fu-berlin-stitch", "fu-berlin-sider"], ["fu-berlin-stitch", "bio2rdf-pubchem"], ["fu-berlin-stitch", "dbpedia"], ["fu-berlin-stitch", "bio2rdf-chebi"]]

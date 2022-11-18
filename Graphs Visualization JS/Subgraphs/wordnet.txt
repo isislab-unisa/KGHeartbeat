@@ -1,0 +1,1 @@
+[["wordnet", "dbpedia-nl"], ["wordnet", "ssf"]]

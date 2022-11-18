@@ -1,0 +1,1 @@
+[["sztaki-lod", "hungarian-national-library-catalog"], ["sztaki-lod", "viaf"], ["sztaki-lod", "lexvo"], ["sztaki-lod", "dbpedia"]]

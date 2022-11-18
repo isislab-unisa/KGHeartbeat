@@ -1,0 +1,1 @@
+[["eagle-i-cdrewu", "bioportal-obi"], ["eagle-i-cdrewu", "bioportal-go_x2 "], ["eagle-i-cdrewu", "bioportal-ncbitaxon"], ["eagle-i-cdrewu", "bioportal-vivo"], ["eagle-i-cdrewu", "bioportal-msh"], ["eagle-i-cdrewu", "bioportal-ero"], ["eagle-i-cdrewu", "bioportal-ocre"]]

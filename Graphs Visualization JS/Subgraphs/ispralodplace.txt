@@ -1,0 +1,1 @@
+[["ispra-lod-place", "musicbrainz"], ["ispra-lod-place", "dbpedia-it"], ["ispra-lod-place", "freebase"], ["ispra-lod-place", "geonames"], ["ispra-lod-place", "gadm.geovocab"], ["ispra-lod-place", "linkedgeodata"], ["ispra-lod-place", "dbpedia"], ["ispra-lod-place", "istat"]]

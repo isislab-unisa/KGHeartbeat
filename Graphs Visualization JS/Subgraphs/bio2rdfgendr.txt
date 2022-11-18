@@ -1,0 +1,1 @@
+[["bio2rdf-gendr", "bio2rdf-gendr"], ["bio2rdf-gendr", "bio2rdf-pubmed"], ["bio2rdf-gendr", "bio2rdf-ncbigene"], ["bio2rdf-gendr", "bio2rdf-taxonomy"], ["bio2rdf-gendr", "bio2rdf-wormbase"]]

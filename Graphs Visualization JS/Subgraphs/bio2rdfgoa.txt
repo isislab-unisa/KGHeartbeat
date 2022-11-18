@@ -1,0 +1,1 @@
+[["bio2rdf-goa", "bio2rdf-goa"], ["bio2rdf-goa", "bio2rdf-pubmed"], ["bio2rdf-goa", "bio2rdf-pdb"], ["bio2rdf-goa", "bio2rdf-go"], ["bio2rdf-goa", "bio2rdf-eco"], ["bio2rdf-goa", "bio2rdf-taxonomy"], ["bio2rdf-goa", "bio2rdf-uniprot"], ["bio2rdf-goa", "bio2rdf-sgd"]]

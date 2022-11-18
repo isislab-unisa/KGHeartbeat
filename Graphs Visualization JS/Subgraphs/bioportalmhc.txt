@@ -1,0 +1,1 @@
+[["bioportal-mhc", "bioportal-canco"], ["bioportal-mhc", "bioportal-csp"], ["bioportal-mhc", "bioportal-nif"], ["bioportal-mhc", "bioportal-ncit"], ["bioportal-mhc", "bioportal-snomedct"]]

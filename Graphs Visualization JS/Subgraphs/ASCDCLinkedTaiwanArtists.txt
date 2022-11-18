@@ -1,0 +1,1 @@
+[["ASCDC-Linked-Taiwan-Artists", "getty-aat"], ["ASCDC-Linked-Taiwan-Artists", "getty-tgn"], ["ASCDC-Linked-Taiwan-Artists", "dbpedia"], ["ASCDC-Linked-Taiwan-Artists", "viaf"]]

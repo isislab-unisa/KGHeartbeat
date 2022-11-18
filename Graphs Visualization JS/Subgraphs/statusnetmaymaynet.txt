@@ -1,0 +1,1 @@
+[["statusnet-maymay-net", "statusnet-fragdev-com"], ["statusnet-maymay-net", "statusnet-macno-org"], ["statusnet-maymay-net", "statusnet-postblue-info"], ["statusnet-maymay-net", "statusnet-skilledtests-com"], ["statusnet-maymay-net", "geonames-semantic-web"], ["statusnet-maymay-net", "statusnet-quitter-se"], ["statusnet-maymay-net", "statusnet-status-net"]]

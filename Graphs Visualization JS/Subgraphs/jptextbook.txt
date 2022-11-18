@@ -1,0 +1,1 @@
+[["jp-textbook", "national-diet-library-authorities"], ["jp-textbook", "dbpedia-ja"]]

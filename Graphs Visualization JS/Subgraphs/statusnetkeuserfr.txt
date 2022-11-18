@@ -1,0 +1,1 @@
+[["statusnet-keuser-fr", "statusnet-belfalas-org"], ["statusnet-keuser-fr", "statusnet-shnoulle-net"], ["statusnet-keuser-fr", "statusnet-scoffoni-net"], ["statusnet-keuser-fr", "statusnet-postblue-info"], ["statusnet-keuser-fr", "geonames-semantic-web"], ["statusnet-keuser-fr", "statusnet-status-net"], ["statusnet-keuser-fr", "statusnet-recit-org"]]

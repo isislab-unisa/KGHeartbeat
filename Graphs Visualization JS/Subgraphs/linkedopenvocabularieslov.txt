@@ -1,0 +1,1 @@
+[["linked-open-vocabularies-lov", "Earthquake"], ["linked-open-vocabularies-lov", "schemapedia"], ["linked-open-vocabularies-lov", "semantic-web-dog-food"], ["linked-open-vocabularies-lov", "semanlink"]]

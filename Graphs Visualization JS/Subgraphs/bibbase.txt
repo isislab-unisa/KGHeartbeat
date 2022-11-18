@@ -1,0 +1,1 @@
+[["bibbase", "semantic-web-dog-food"], ["bibbase", "l3s-dblp"], ["bibbase", "fu-berlin-dblp"], ["bibbase", "dbpedia"], ["bibbase", "rkb-explorer-ieee"], ["bibbase", "ckan"]]

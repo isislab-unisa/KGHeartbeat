@@ -1,0 +1,1 @@
+[["naics-2012", "http://productontology.org"], ["naics-2012", "wikidata"]]

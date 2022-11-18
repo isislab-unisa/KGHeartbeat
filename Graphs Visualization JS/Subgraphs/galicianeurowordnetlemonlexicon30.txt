@@ -1,0 +1,1 @@
+[["galician-eurowordnet-lemon-lexicon-3-0", "sumo"], ["galician-eurowordnet-lemon-lexicon-3-0", "lexinfo"]]

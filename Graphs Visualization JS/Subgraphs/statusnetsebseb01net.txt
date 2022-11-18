@@ -1,0 +1,1 @@
+[["statusnet-sebseb01-net", "statusnet-postblue-info"], ["statusnet-sebseb01-net", "statusnet-scoffoni-net"], ["statusnet-sebseb01-net", "geonames-semantic-web"], ["statusnet-sebseb01-net", "statusnet-status-net"]]

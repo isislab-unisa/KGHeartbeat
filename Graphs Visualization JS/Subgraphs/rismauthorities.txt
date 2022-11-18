@@ -1,0 +1,1 @@
+[["rism-authorities", "dnb-gemeinsame-normdatei"], ["rism-authorities", "viaf"]]

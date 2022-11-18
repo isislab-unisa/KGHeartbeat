@@ -1,0 +1,1 @@
+[["mlsa", "glottolog-langdoc"], ["mlsa", "wiktionary-dbpedia-org"], ["mlsa", "lexvo"], ["mlsa", "wals"]]

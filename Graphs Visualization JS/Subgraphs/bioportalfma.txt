@@ -1,0 +1,1 @@
+[["bioportal-fma", "bioportal-ncit"], ["bioportal-fma", "bioportal-zfa"], ["bioportal-fma", "bioportal-ma"]]

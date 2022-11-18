@@ -1,0 +1,1 @@
+[["gesis-thesoz", "ckan"], ["gesis-thesoz", "german-labor-law-thesaurus"], ["gesis-thesoz", "agrovoc-skos"], ["gesis-thesoz", "dbpedia"], ["gesis-thesoz", "stw-thesaurus-for-economics"]]

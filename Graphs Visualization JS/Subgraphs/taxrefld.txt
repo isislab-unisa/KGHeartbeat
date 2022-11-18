@@ -1,0 +1,1 @@
+[["taxref-ld", "geonames"], ["taxref-ld", "agrovoc-skos"], ["taxref-ld", "bioportal-ncbitaxon"], ["taxref-ld", "geospecies"], ["taxref-ld", "taxonconcept"], ["taxref-ld", "bioportal-envo"], ["taxref-ld", "agrovoc"]]

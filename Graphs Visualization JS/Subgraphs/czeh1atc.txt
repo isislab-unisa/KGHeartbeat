@@ -1,0 +1,1 @@
+[["cz-eh-1-atc", "dbpedia"], ["cz-eh-1-atc", "cz-sidc-drugs"]]

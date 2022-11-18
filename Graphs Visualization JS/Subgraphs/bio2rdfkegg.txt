@@ -1,0 +1,1 @@
+[["bio2rdf-kegg", "bio2rdf-bioportal"], ["bio2rdf-kegg", "bio2rdf-drugbank"], ["bio2rdf-kegg", "bio2rdf-interpro"]]

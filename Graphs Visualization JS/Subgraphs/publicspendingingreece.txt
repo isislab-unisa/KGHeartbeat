@@ -1,0 +1,1 @@
+[["public-spending-in-greece", "dbpedia-el"], ["public-spending-in-greece", "geonames"], ["public-spending-in-greece", "dbpedia"], ["public-spending-in-greece", "weso"]]

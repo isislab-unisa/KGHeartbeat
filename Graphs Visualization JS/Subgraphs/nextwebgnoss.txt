@@ -1,0 +1,1 @@
+[["nextweb-gnoss", "nytimes-linked-open-data"], ["nextweb-gnoss", "gnoss"], ["nextweb-gnoss", "freebase"], ["nextweb-gnoss", "geonames-semantic-web"], ["nextweb-gnoss", "dblp-deusto-gnoss"], ["nextweb-gnoss", "dbpedia"]]

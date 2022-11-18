@@ -1,0 +1,1 @@
+[["biblioteca-escolar-digital-cita", "nytimes-linked-open-data"], ["biblioteca-escolar-digital-cita", "freebase"], ["biblioteca-escolar-digital-cita", "geonames-semantic-web"], ["biblioteca-escolar-digital-cita", "didactalia"], ["biblioteca-escolar-digital-cita", "dbpedia"]]

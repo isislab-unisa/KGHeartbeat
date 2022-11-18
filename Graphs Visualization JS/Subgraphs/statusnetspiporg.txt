@@ -1,0 +1,1 @@
+[["statusnet-spip-org", "statusnet-scoffoni-net"], ["statusnet-spip-org", "statusnet-shnoulle-net"], ["statusnet-spip-org", "geonames-semantic-web"], ["statusnet-spip-org", "statusnet-status-net"]]

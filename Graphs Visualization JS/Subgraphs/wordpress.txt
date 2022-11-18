@@ -1,0 +1,1 @@
+[["wordpress", "berlios"], ["wordpress", "myopenlink-dataspaces"], ["wordpress", "personal-homepages"], ["wordpress", "semanlink"], ["wordpress", "statusnet-dtdns-net"], ["wordpress", "statusnet-quitter-se"], ["wordpress", "statusnet-somsants-net"], ["wordpress", "statusnet-ssweeny-net"], ["wordpress", "statusnet-status-net"], ["wordpress", "lexvo"], ["wordpress", "w3c"]]

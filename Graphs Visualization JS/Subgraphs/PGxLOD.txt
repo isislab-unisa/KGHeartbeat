@@ -1,0 +1,1 @@
+[["PGxLOD", "bio2rdf-pharmgkb"], ["PGxLOD", "bio2rdf-ncbigene"]]

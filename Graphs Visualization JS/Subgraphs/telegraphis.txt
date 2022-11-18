@@ -1,0 +1,1 @@
+[["telegraphis", "ckan"], ["telegraphis", "eionet-rdf"], ["telegraphis", "eprtr"], ["telegraphis", "eurostat-rdf"], ["telegraphis", "rkb-explorer-unlocode"], ["telegraphis", "world-factbook-fu-berlin"], ["telegraphis", "geonames-semantic-web"], ["telegraphis", "dbpedia"], ["telegraphis", "yahoo_geoplanet"]]

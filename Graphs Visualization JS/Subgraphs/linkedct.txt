@@ -1,0 +1,1 @@
+[["linkedct", "fu-berlin-dailymed"], ["linkedct", "fu-berlin-diseasome"], ["linkedct", "fu-berlin-drugbank"], ["linkedct", "tcmgenedit_dataset"], ["linkedct", "bio2rdf-pubmed"], ["linkedct", "dbpedia"], ["linkedct", "personal-homepages"], ["linkedct", "tcga-roadmap"]]

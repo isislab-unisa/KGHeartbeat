@@ -1,0 +1,1 @@
+[["cz-czso-job-applicants-and-unemployment-rate", "cz-ruian"], ["cz-czso-job-applicants-and-unemployment-rate", "data-gov-uk-time-intervals"]]

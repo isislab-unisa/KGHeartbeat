@@ -1,0 +1,1 @@
+[["bioportal-mmo", "bioportal-csp"], ["bioportal-mmo", "bioportal-ero"], ["bioportal-mmo", "bioportal-mdr"], ["bioportal-mmo", "bioportal-mesh-owl"], ["bioportal-mmo", "bioportal-ncit"], ["bioportal-mmo", "bioportal-msh"], ["bioportal-mmo", "bioportal-snomedct"], ["bioportal-mmo", "bioportal-rcd"]]

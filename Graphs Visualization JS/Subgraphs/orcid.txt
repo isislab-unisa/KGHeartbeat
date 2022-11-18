@@ -1,0 +1,1 @@
+[["orcid", "data-persee-fr"], ["orcid", "dnb-gemeinsame-normdatei"]]

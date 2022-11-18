@@ -1,0 +1,1 @@
+[["slod", "wikidata"], ["slod", "dnb-gemeinsame-normdatei"]]

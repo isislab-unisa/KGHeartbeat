@@ -1,0 +1,1 @@
+[["statusnet-orangeseeds-org", "statusnet-deuxpi-ca"], ["statusnet-orangeseeds-org", "statusnet-soucy-cc"], ["statusnet-orangeseeds-org", "statusnet-status-net"], ["statusnet-orangeseeds-org", "statusnet-quitter-se"], ["statusnet-orangeseeds-org", "statusnet-skilledtests-com"]]

@@ -1,0 +1,1 @@
+[["bioportal-ato", "bioportal-ncit"], ["bioportal-ato", "bioportal-birnlex"], ["bioportal-ato", "bioportal-lnc"], ["bioportal-ato", "bioportal-ncbitaxon"], ["bioportal-ato", "bioportal-taxrank"]]

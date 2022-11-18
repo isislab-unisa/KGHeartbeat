@@ -1,0 +1,1 @@
+[["nuts-geovocab", "cz-ruian"], ["nuts-geovocab", "eumida-linked-data"], ["nuts-geovocab", "FADN [2019]"], ["nuts-geovocab", "hellenic-fire-brigade"], ["nuts-geovocab", "hellenic-police"], ["nuts-geovocab", "linked-eurostat"], ["nuts-geovocab", "dbpedia"], ["nuts-geovocab", "personal-homepages"], ["nuts-geovocab", "the-eurostat-linked-data"]]

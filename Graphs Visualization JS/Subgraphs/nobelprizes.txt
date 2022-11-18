@@ -1,0 +1,1 @@
+[["nobelprizes", "yago"], ["nobelprizes", "viaf"], ["nobelprizes", "freebase"], ["nobelprizes", "bio2rdf"], ["nobelprizes", "linked-life-data"], ["nobelprizes", "dbpedia"]]

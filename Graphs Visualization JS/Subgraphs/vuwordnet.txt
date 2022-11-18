@@ -1,0 +1,1 @@
+[["vu-wordnet", "ckan"], ["vu-wordnet", "cornetto"], ["vu-wordnet", "geowordnet"], ["vu-wordnet", "greek-wordnet"], ["vu-wordnet", "lemonuby"], ["vu-wordnet", "rkb-explorer-webconf"], ["vu-wordnet", "tags2con-delicious"], ["vu-wordnet", "w3c-wordnet"], ["vu-wordnet", "lexvo"]]

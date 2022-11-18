@@ -1,0 +1,1 @@
+[["doi", "CoDa"], ["doi", "deutsche-nationalbibliografie-dnb"], ["doi", "linked-periodicals"], ["doi", "medline"], ["doi", "periodo"], ["doi", "rubenverborgh"], ["doi", "springernaturescigraph"], ["doi", "vivo2doi"], ["doi", "warsampo"], ["doi", "wikidata"]]

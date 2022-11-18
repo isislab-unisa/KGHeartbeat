@@ -1,0 +1,1 @@
+[["linklion", "rkb-explorer-oai"], ["linklion", "dnb-gemeinsame-normdatei"], ["linklion", "rkb-explorer-dotac"], ["linklion", "eprints-harvest-rkbexplorer"], ["linklion", "viaf"], ["linklion", "rkb-explorer-dblp"], ["linklion", "l3s-dblp"], ["linklion", "bio2rdf-drugbank"], ["linklion", "rkb-explorer-acm"], ["linklion", "dbpedia"]]

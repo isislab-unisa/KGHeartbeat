@@ -1,0 +1,1 @@
+[["data-incubator-pokedex", "ckan"], ["data-incubator-pokedex", "freebase"], ["data-incubator-pokedex", "dbpedia"], ["data-incubator-pokedex", "pokepedia-fr"]]

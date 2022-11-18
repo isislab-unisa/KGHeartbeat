@@ -1,0 +1,1 @@
+[["farmbio-chembl", "bio2rdf-pubmed"], ["farmbio-chembl", "bio2rdf-kegg-enzyme"], ["farmbio-chembl", "bio2rdf-chebi"], ["farmbio-chembl", "bio2rdf-uniprot"]]

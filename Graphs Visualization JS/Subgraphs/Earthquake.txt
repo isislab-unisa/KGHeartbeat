@@ -1,0 +1,1 @@
+[["Earthquake", "Terrorist Attack 1"], ["Earthquake", "linked-open-vocabularies-lov"], ["Earthquake", "SocialLink"], ["Earthquake", "Face Link"], ["Earthquake", "bioportal-bfo"]]

@@ -1,0 +1,1 @@
+[["geolinkeddata", "aemet"], ["geolinkeddata", "elviajero"], ["geolinkeddata", "dbpedia"], ["geolinkeddata", "geonames-semantic-web"], ["geolinkeddata", "nomenclator-asturias"]]

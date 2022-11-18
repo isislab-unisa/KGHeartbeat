@@ -1,0 +1,1 @@
+[["green-competitiveness-gnoss", "nytimes-linked-open-data"], ["green-competitiveness-gnoss", "gnoss"], ["green-competitiveness-gnoss", "freebase"], ["green-competitiveness-gnoss", "geonames-semantic-web"], ["green-competitiveness-gnoss", "dbpedia"]]

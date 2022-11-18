@@ -1,0 +1,1 @@
+[["austrian_ski_racers", "freebase"], ["austrian_ski_racers", "dbpedia"], ["austrian_ski_racers", "ckan"]]

@@ -1,0 +1,1 @@
+[["zbw-pressemappe20", "ckan"], ["zbw-pressemappe20", "chronicling-america"], ["zbw-pressemappe20", "dnb-gemeinsame-normdatei"], ["zbw-pressemappe20", "geonames-semantic-web"], ["zbw-pressemappe20", "dbpedia"]]

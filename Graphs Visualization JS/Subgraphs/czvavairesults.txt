@@ -1,0 +1,1 @@
+[["cz-vavai-results", "cz-vavai-evaluation-2013"], ["cz-vavai-results", "cz-vavai-projects"], ["cz-vavai-results", "cz-vavai-organizations"], ["cz-vavai-results", "cz-vavai-research-plans"]]

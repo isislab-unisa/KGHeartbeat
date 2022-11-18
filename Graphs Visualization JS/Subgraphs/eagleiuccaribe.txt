@@ -1,0 +1,1 @@
+[["eagle-i-uccaribe", "bioportal-obi"], ["eagle-i-uccaribe", "bioportal-ncbitaxon"], ["eagle-i-uccaribe", "bioportal-vivo"], ["eagle-i-uccaribe", "bioportal-msh"], ["eagle-i-uccaribe", "bioportal-uberon"], ["eagle-i-uccaribe", "bioportal-ero"]]

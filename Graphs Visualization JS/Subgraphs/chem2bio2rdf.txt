@@ -1,0 +1,1 @@
+[["chem2bio2rdf", "bio2rdf-taxon"], ["chem2bio2rdf", "bio2rdf-pubmed"], ["chem2bio2rdf", "bio2rdf-omim"], ["chem2bio2rdf", "bio2rdf-geneid"], ["chem2bio2rdf", "bio2rdf-mesh"], ["chem2bio2rdf", "bio2rdf-cas"]]

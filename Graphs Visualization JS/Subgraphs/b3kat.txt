@@ -1,0 +1,1 @@
+[["b3kat", "dewey_decimal_classification"], ["b3kat", "dnb-gemeinsame-normdatei"], ["b3kat", "lobid-resources"], ["b3kat", "personal-homepages"], ["b3kat", "the-european-library-open-dataset"]]

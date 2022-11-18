@@ -1,0 +1,1 @@
+[["bioportal-nonrctontology", "bioportal-canco"], ["bioportal-nonrctontology", "bioportal-diagnosticont"], ["bioportal-nonrctontology", "bioportal-lnc"], ["bioportal-nonrctontology", "bioportal-ncit"], ["bioportal-nonrctontology", "bioportal-snomedct"], ["bioportal-nonrctontology", "bioportal-galen"], ["bioportal-nonrctontology", "bioportal-rctontology"]]

@@ -1,0 +1,1 @@
+[["eea-vocabularies", "fao-geopolitical-ontology"], ["eea-vocabularies", "eea-rod"], ["eea-vocabularies", "geonames"], ["eea-vocabularies", "eurostat-rdf"], ["eea-vocabularies", "dbpedia"]]

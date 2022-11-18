@@ -1,0 +1,1 @@
+[["ub-mannheim-linked-data", "dnb-gemeinsame-normdatei"], ["ub-mannheim-linked-data", "rdf-book-mashup"]]

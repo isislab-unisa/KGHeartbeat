@@ -1,0 +1,1 @@
+[["swefn-rdf", "isocat"]]

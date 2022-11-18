@@ -1,0 +1,1 @@
+[["tharawat-magazine-com", "dbpedia"], ["tharawat-magazine-com", "freebase"], ["tharawat-magazine-com", "geonames-semantic-web"], ["tharawat-magazine-com", "yago"], ["tharawat-magazine-com", "wikidata"]]

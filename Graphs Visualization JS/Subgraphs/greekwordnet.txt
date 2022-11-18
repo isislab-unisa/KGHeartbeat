@@ -1,0 +1,1 @@
+[["greek-wordnet", "vu-wordnet"], ["greek-wordnet", "w3c-wordnet"]]

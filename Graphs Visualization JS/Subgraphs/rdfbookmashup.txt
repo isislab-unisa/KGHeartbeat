@@ -1,0 +1,1 @@
+[["rdf-book-mashup", "dbpedia"], ["rdf-book-mashup", "dbpedia-el"], ["rdf-book-mashup", "linkedmdb"], ["rdf-book-mashup", "revyu"], ["rdf-book-mashup", "fu-berlin-dblp"], ["rdf-book-mashup", "ub-mannheim-linked-data"]]

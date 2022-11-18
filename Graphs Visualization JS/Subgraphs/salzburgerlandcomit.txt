@@ -1,0 +1,1 @@
+[["salzburgerland-com-it", "dbpedia"], ["salzburgerland-com-it", "freebase"], ["salzburgerland-com-it", "geonames-semantic-web"], ["salzburgerland-com-it", "yago"], ["salzburgerland-com-it", "wikidata"]]

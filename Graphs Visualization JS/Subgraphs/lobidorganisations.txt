@@ -1,0 +1,1 @@
+[["lobid-organisations", "aliada-scanbit-net"], ["lobid-organisations", "data-szepmuveszeti-hu"], ["lobid-organisations", "datos-artium-org"], ["lobid-organisations", "dbpedia-de"], ["lobid-organisations", "geonames-semantic-web"], ["lobid-organisations", "dbpedia"], ["lobid-organisations", "lobid-resources"]]

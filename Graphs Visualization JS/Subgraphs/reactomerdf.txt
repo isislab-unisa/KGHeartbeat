@@ -1,0 +1,1 @@
+[["reactome-rdf", "uniprotkb"], ["reactome-rdf", "identifiers.org"]]

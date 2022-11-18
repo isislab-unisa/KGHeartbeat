@@ -1,0 +1,1 @@
+[["german-labor-law-thesaurus", "gesis-thesoz"], ["german-labor-law-thesaurus", "eurovoc"], ["german-labor-law-thesaurus", "dbpedia"], ["german-labor-law-thesaurus", "zbw.eu/stw"], ["german-labor-law-thesaurus", "stw-thesaurus-for-economics"]]

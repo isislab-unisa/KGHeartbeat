@@ -1,0 +1,1 @@
+[["athelia-rfid", "nytimes-linked-open-data"], ["athelia-rfid", "gnoss"], ["athelia-rfid", "freebase"], ["athelia-rfid", "dblp-deusto-gnoss"], ["athelia-rfid", "dbpedia"]]

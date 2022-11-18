@@ -1,0 +1,1 @@
+[["basque-eurowordnet-lemon-lexicon-3-0", "sumo"], ["basque-eurowordnet-lemon-lexicon-3-0", "lexinfo"]]

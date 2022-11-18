@@ -1,0 +1,1 @@
+[["eionet-rdf", "fao-geopolitical-ontology"], ["eionet-rdf", "eurostat-linked-data"], ["eionet-rdf", "iso-639-oasis"], ["eionet-rdf", "eunis"], ["eionet-rdf", "eurostat-rdf"], ["eionet-rdf", "geonames-semantic-web"], ["eionet-rdf", "lexvo"], ["eionet-rdf", "dbpedia"], ["eionet-rdf", "telegraphis"], ["eionet-rdf", "eea-rod"], ["eionet-rdf", "eprtr"], ["eionet-rdf", "nvs"]]

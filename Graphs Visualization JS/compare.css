@@ -1,0 +1,357 @@
+#title{
+    color: #0090eacc
+}
+
+#wrapBeliev{
+    display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+#wrapT{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#reselect{
+    padding: 10px 10px;
+    font-size: 16px;
+    border-radius: 18px;
+    font-weight: bold;
+    color: white;
+    border: 0px;
+    float: left; 
+    margin-left: 20px; 
+    margin-top: 15px;
+    background-color: #00ea89cc;
+}
+
+#wrapLic{
+    display: flex;
+    justify-content: space-between;
+}
+
+#reselect:hover{
+    background-color: #607D8B;
+}
+#tableTitle{
+    margin-left: 20px;
+}
+
+#container-btn{
+    text-align: center;
+}
+
+#compare-btn{
+    background-color: #00ea89cc;
+    padding: 10px 10px;
+    font-size: 16px;
+    border-radius: 18px;
+    font-weight: bold;
+    color: white;
+    border: 0px;
+}
+
+#compare-btn:hover{
+    background-color: #607D8B;
+}
+
+#back{
+    padding: 0;
+    padding: 10px 10px;
+    font-size: 16px;
+    border-radius: 18px;
+    font-weight: bold;
+}
+
+#back2{
+    float: left;
+    padding: 0;
+    padding: 10px 10px;
+    font-size: 16px;
+    border-radius: 18px;
+    font-weight: bold;
+}
+
+
+#backLink{
+    background-color: white;
+}
+
+#backLink2{
+    background-color: white;
+}
+
+#wrapSec{
+
+    margin-top: 45px;
+}
+
+#cont-back2{
+    margin-top: 3px;
+    float: left;
+    display: none;
+}
+
+#tableLic{
+    border-top: 500px;
+}
+
+#exportLic-btn{
+    margin: 0 auto;
+    margin-top: 20px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+  mix-blend-mode: multiply;
+}
+
+#exportInt-btn{
+    margin: 0 auto;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+  mix-blend-mode: multiply;
+}
+
+#exportSec-btn{
+    margin: 0 auto;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+  mix-blend-mode: multiply;
+}
+
+.export-btn{
+    margin: 0 auto;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+  mix-blend-mode: multiply;
+}
+
+#exportCons-btn{
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+#tableVer{
+    border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+#currTb{
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+#tabVol{
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+#exportCurr-btn{
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+#exportVol-btn{
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+#exportConc-btn{
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+#compTab{
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+#exportComp-btn{
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+#tabRepCons{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+  }
+
+#exportRepCons-btn{
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+#tabSec{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+#tab-cons{
+    margin-top: 35px;
+    margin-bottom: 50px;
+  }
+
+  #wrapSwitchUnd{
+    margin-left: 30px;
+    margin-bottom: 15px;
+  }
+
+  #exportUnd1{
+    margin-top: 10px;
+    margin-bottom: 40px;
+  }
+
+  #exportUnd2{
+    margin-top: 10px;
+    margin-bottom: 40px;
+  }
+
+  #wrapSwitchInterp{
+    margin-left: 30px;
+    margin-bottom: 15px;
+  }
+
+  #exportInterp{
+    margin-top: 10px;
+    margin-bottom: 40px;
+  }
+
+  #exportVers{
+    margin-top: 10px;
+    margin-bottom: 40px;
+  }
+  
+fieldset.group  { 
+  margin: 0; 
+  padding: 0; 
+  margin-bottom: 1.25em; 
+  padding: .125em; 
+} 
+
+fieldset.group legend { 
+  margin: 0; 
+  padding: 0; 
+  font-weight: bold; 
+  margin-left: 20px; 
+  font-size: 100%; 
+  color: black; 
+} 
+
+
+ul.checkbox  { 
+  margin: 0; 
+  padding: 0; 
+  margin-left: 20px; 
+  list-style: none; 
+} 
+
+ul.checkbox li input { 
+  margin-right: .25em; 
+} 
+
+ul.checkbox li { 
+  border: 1px transparent solid; 
+  display:inline-block;
+  width:36em; /*space beettween*/
+} 
+
+li{
+  font-family: sans-serif, Helvetica,Arial;
+  font-size: 20px;
+}
+
+
+#legendKG{
+  margin-top: 45px;
+  margin-bottom: 20px;
+  color: #0090eacc;
+  font-family: sans-serif, Helvetica,Arial;
+  font-size: 35px;
+}
+
+html,body{
+  height: 100%
+}
+
+#b1S{
+  background-color: #00ea89cc;
+  padding: 5px 5px;
+  font-size: 16px;
+  border-radius: 18px;
+  font-weight: bold;
+  color: white;
+  border: solid 2px;
+  margin-left: 10px;
+}
+
+#b1S:hover{
+  background-color: #00ea89cc;
+  padding: 5px 5px;
+  font-size: 16px;
+  border-radius: 18px;
+  font-weight: bold;
+  color: #607D8B;;
+  border: solid 2px;
+  margin-left: 10px;
+  border-color: #607D8B;
+}
+
+#b2S{
+  background-color: #00ea89cc;
+  padding: 5px 5px;
+  font-size: 16px;
+  border-radius: 18px;
+  font-weight: bold;
+  color: white;
+  border: solid 2px;
+  margin-left: 10px;
+}
+
+#b2S:hover{
+  background-color: #00ea89cc;
+  padding: 5px 5px;
+  font-size: 16px;
+  border-radius: 18px;
+  font-weight: bold;
+  color: #607D8B;;
+  border: solid 2px;
+  margin-left: 10px;
+  border-color: #607D8B;
+}
+
+#downloadWrap{
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+}
+
+#textDown{
+  margin-top: 35px;
+  margin-bottom: 30px;
+  font-family: sans-serif, Helvetica,Arial;
+  font-weight: 700;
+  font-size: 25px;
+  color: #607D8B;
+}

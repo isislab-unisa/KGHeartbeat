@@ -1,0 +1,1 @@
+[["statusnet-tschlotfeldt-de", "statusnet-quitter-se"], ["statusnet-tschlotfeldt-de", "statusnet-skilledtests-com"], ["statusnet-tschlotfeldt-de", "statusnet-doomicile-de"], ["statusnet-tschlotfeldt-de", "geonames-semantic-web"], ["statusnet-tschlotfeldt-de", "statusnet-status-net"]]

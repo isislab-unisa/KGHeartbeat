@@ -1,0 +1,1 @@
+[["vivo2doi", "vivo-university-of-florida"], ["vivo2doi", "vivo-weill-cornell-medical-college"], ["vivo2doi", "doi"], ["vivo2doi", "vivo-scripps-research-institute"], ["vivo2doi", "vivo-wustl"]]

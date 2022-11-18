@@ -1,0 +1,1 @@
+[["radatana", "ntnusc"], ["radatana", "dnb-gemeinsame-normdatei"], ["radatana", "viaf"], ["radatana", "dbpedia"]]

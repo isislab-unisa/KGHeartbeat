@@ -1,0 +1,1 @@
+[["statusnet-johndrinkwater-name", "geonames-semantic-web"], ["statusnet-johndrinkwater-name", "statusnet-status-net"]]

@@ -1,0 +1,1 @@
+[["clld-afbo", "lexvo"], ["clld-afbo", "clld-glottolog"], ["clld-afbo", "dbpedia"]]

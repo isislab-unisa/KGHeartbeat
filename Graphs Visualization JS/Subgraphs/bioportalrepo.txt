@@ -1,0 +1,1 @@
+[["bioportal-repo", "bioportal-mesh-owl"], ["bioportal-repo", "bioportal-mp"], ["bioportal-repo", "bioportal-msh"], ["bioportal-repo", "bioportal-sopharm"], ["bioportal-repo", "bioportal-snomedct"]]

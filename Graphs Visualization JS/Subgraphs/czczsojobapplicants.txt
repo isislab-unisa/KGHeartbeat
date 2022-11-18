@@ -1,0 +1,1 @@
+[["cz-czso-job-applicants", "cz-ruian"], ["cz-czso-job-applicants", "data-gov-uk-time-intervals"]]

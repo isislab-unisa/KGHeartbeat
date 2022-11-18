@@ -1,0 +1,1 @@
+[["scholarometer", "opencyc"], ["scholarometer", "freebase"], ["scholarometer", "l3s-dblp"], ["scholarometer", "fu-berlin-dblp"], ["scholarometer", "dbpedia"]]

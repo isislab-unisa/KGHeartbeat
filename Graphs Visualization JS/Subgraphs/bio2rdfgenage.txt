@@ -1,0 +1,1 @@
+[["bio2rdf-genage", "bio2rdf-hagr"], ["bio2rdf-genage", "bio2rdf-pubmed"], ["bio2rdf-genage", "bio2rdf-genage"], ["bio2rdf-genage", "bio2rdf-taxonomy"], ["bio2rdf-genage", "bio2rdf-uniprot"], ["bio2rdf-genage", "bio2rdf-ncbigene"], ["bio2rdf-genage", "bio2rdf-unigene"]]

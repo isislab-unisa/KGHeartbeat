@@ -1,0 +1,1 @@
+[["bfs-linked-data", "abs-linked-data"], ["bfs-linked-data", "world-bank-linked-data"], ["bfs-linked-data", "imf-linked-data"], ["bfs-linked-data", "ecb-linked-data"], ["bfs-linked-data", "dbpedia"], ["bfs-linked-data", "bis-linked-data"], ["bfs-linked-data", "oecd-linked-data"], ["bfs-linked-data", "uis-linked-data"]]

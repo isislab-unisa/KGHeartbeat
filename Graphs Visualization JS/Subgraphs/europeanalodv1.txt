@@ -1,0 +1,1 @@
+[["europeana-lod-v1", "aliada-scanbit-net"], ["europeana-lod-v1", "data-szepmuveszeti-hu"], ["europeana-lod-v1", "datos-artium-org"], ["europeana-lod-v1", "gemet"], ["europeana-lod-v1", "swedish-open-cultural-heritage"], ["europeana-lod-v1", "geonames-semantic-web"], ["europeana-lod-v1", "dbpedia"]]

@@ -1,0 +1,1 @@
+[["dbpedia-fr", "dbpedia-es"], ["dbpedia-fr", "dbpedia-ja"], ["dbpedia-fr", "dbpedia-it"], ["dbpedia-fr", "dbpedia-nl"], ["dbpedia-fr", "dbpedia"], ["dbpedia-fr", "semanlink"]]

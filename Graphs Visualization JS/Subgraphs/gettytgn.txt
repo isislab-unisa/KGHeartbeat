@@ -1,0 +1,1 @@
+[["getty-tgn", "ASCDC - CCP Archive"], ["getty-tgn", "ASCDC-CRB"], ["getty-tgn", "ASCDC-IHP-WCD"], ["getty-tgn", "ASCDC-Linked-Taiwan-Artists"], ["getty-tgn", "schema-org"], ["getty-tgn", "wikidata"]]

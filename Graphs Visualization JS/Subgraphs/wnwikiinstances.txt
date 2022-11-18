@@ -1,0 +1,1 @@
+[["wn-wiki-instances", "dbpedia"], ["wn-wiki-instances", "gwa-ili"]]

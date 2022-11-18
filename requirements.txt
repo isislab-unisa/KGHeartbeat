@@ -1,0 +1,14 @@
+bitarray==2.4.0
+jsonschema==4.4.0
+matplotlib==3.5.1
+mechanize==0.4.7
+mmh3==3.0.0
+networkx==2.6.3
+numpy==1.22.2
+pandas==1.4.1
+rdflib==6.1.1
+requests==2.27.1
+SPARQLWrapper==2.0.0
+twill==3.0.1
+validators==0.18.2
+xmltodict==0.12.0

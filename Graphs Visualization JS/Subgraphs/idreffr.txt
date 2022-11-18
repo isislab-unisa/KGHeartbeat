@@ -1,0 +1,1 @@
+[["idreffr", "calames"], ["idreffr", "data-bnf-fr"], ["idreffr", "data-persee-fr"], ["idreffr", "FMeSH"], ["idreffr", "sudocfr"], ["idreffr", "geonames-semantic-web"], ["idreffr", "lexvo"], ["idreffr", "thesesfr"], ["idreffr", "wikidata"]]

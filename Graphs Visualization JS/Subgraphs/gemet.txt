@@ -1,0 +1,1 @@
+[["gemet", "agrovoc"], ["gemet", "environmental-applications-reference-thesaurus"], ["gemet", "europeana-lod-v1"], ["gemet", "eurovoc"], ["gemet", "umthes"], ["gemet", "agrovoc-skos"], ["gemet", "dbpedia"], ["gemet", "gemet-annotated"], ["gemet", "nvs"], ["gemet", "ontobeef-domain"], ["gemet", "thist"]]

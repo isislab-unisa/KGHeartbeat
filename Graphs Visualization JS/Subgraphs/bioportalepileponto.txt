@@ -1,0 +1,1 @@
+[["bioportal-epileponto", "bioportal-csp"], ["bioportal-epileponto", "bioportal-nif"], ["bioportal-epileponto", "bioportal-ncit"], ["bioportal-epileponto", "bioportal-msh"], ["bioportal-epileponto", "bioportal-mesh-owl"], ["bioportal-epileponto", "bioportal-snomedct"], ["bioportal-epileponto", "bioportal-rcd"]]
