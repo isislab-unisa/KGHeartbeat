@@ -1,0 +1,1 @@
+[["flickr-wrappr", "ckan"], ["flickr-wrappr", "dbpedia"], ["flickr-wrappr", "dbpedia-el"], ["flickr-wrappr", "event-media"], ["flickr-wrappr", "linkedmdb"], ["flickr-wrappr", "rkb-explorer-photos"]]

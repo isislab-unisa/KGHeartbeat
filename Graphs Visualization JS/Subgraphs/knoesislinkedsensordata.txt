@@ -1,0 +1,1 @@
+[["knoesis-linked-sensor-data", "ckan"], ["knoesis-linked-sensor-data", "geonames-semantic-web"]]

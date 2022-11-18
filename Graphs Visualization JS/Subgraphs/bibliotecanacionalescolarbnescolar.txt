@@ -1,0 +1,1 @@
+[["biblioteca-nacional-escolar-bnescolar", "nytimes-linked-open-data"], ["biblioteca-nacional-escolar-bnescolar", "freebase"], ["biblioteca-nacional-escolar-bnescolar", "geonames-semantic-web"], ["biblioteca-nacional-escolar-bnescolar", "didactalia"], ["biblioteca-nacional-escolar-bnescolar", "dbpedia"]]

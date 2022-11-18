@@ -1,0 +1,1 @@
+[["chembl-rdf", "uniprotkb"], ["chembl-rdf", "identifiers.org"], ["chembl-rdf", "wikidata"]]

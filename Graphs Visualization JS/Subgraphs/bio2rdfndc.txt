@@ -1,0 +1,1 @@
+[["bio2rdf-ndc", "bio2rdf-drugbank"], ["bio2rdf-ndc", "bio2rdf-ndc"], ["bio2rdf-ndc", "bio2rdf-pharmgkb"]]

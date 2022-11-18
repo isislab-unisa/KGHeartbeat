@@ -1,0 +1,1 @@
+[["productdb", "dbpedia"], ["productdb", "semanlink"]]

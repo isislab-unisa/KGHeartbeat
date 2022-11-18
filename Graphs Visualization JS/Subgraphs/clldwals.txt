@@ -1,0 +1,1 @@
+[["clld-wals", "clld-phoible"], ["clld-wals", "geonames"], ["clld-wals", "lexvo"], ["clld-wals", "dbpedia"]]

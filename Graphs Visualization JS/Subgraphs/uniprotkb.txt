@@ -1,0 +1,1 @@
+[["uniprotkb", "biomodels-rdf"], ["uniprotkb", "chembl-rdf"], ["uniprotkb", "gene-expression-atlas-rdf"], ["uniprotkb", "kupkb"], ["uniprotkb", "nextprot"], ["uniprotkb", "reactome-rdf"], ["uniprotkb", "wikidata"]]

@@ -1,0 +1,1 @@
+[["linked-drugs", "dbpedia"], ["linked-drugs", "fu-berlin-drugbank"]]

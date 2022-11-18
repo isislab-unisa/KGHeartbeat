@@ -1,0 +1,1 @@
+[["nextprot", "UniProt"], ["nextprot", "uniprotkb"]]

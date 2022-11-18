@@ -1,0 +1,1 @@
+[["bioportal-hugo", "bioportal-msh"], ["bioportal-hugo", "bioportal-mesh-owl"], ["bioportal-hugo", "bioportal-ncit"]]

@@ -1,0 +1,1 @@
+[["aragodbpedia", "dbpedia-es"], ["aragodbpedia", "ei2a"]]

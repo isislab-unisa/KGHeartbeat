@@ -1,0 +1,1 @@
+[["ASCDC-AS-NTUE-School-Art-Textbooks", "getty-aat"], ["ASCDC-AS-NTUE-School-Art-Textbooks", "dbpedia"], ["ASCDC-AS-NTUE-School-Art-Textbooks", "viaf"]]

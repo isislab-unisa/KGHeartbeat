@@ -1,0 +1,1 @@
+[["revyu", "ckan"], ["revyu", "dbpedia"], ["revyu", "dbpedia-el"], ["revyu", "dbpedia-nl"], ["revyu", "personal-homepages"], ["revyu", "rdf-book-mashup"], ["revyu", "naplesplus"], ["revyu", "rkb-explorer-webconf"], ["revyu", "semantic-web-dog-food"], ["revyu", "semanticweb-org"]]

@@ -1,0 +1,1 @@
+[["bio2rdf-dbsnp", "bio2rdf-ncbigene"], ["bio2rdf-dbsnp", "bio2rdf-dbsnp"], ["bio2rdf-dbsnp", "bio2rdf-taxonomy"], ["bio2rdf-dbsnp", "bio2rdf-genbank"], ["bio2rdf-dbsnp", "bio2rdf-gi"], ["bio2rdf-dbsnp", "bio2rdf-refseq"], ["bio2rdf-dbsnp", "bio2rdf-omim"], ["bio2rdf-dbsnp", "bio2rdf-pharmgkb"], ["bio2rdf-dbsnp", "disgenet"]]

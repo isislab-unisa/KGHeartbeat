@@ -1,0 +1,1 @@
+[["wordlift-io-blog-it", "dbpedia"], ["wordlift-io-blog-it", "freebase"], ["wordlift-io-blog-it", "geonames-semantic-web"], ["wordlift-io-blog-it", "yago"], ["wordlift-io-blog-it", "wikidata"]]

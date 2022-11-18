@@ -1,0 +1,1 @@
+[["statusnet-recit-org", "statusnet-quitter-se"], ["statusnet-recit-org", "statusnet-scoffoni-net"], ["statusnet-recit-org", "statusnet-status-net"], ["statusnet-recit-org", "statusnet-keuser-fr"], ["statusnet-recit-org", "statusnet-soucy-cc"]]

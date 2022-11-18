@@ -1,0 +1,1 @@
+[["linked-uspto-patent-data", "epo"], ["linked-uspto-patent-data", "world-bank-linked-data"], ["linked-uspto-patent-data", "linkedgeodata"], ["linked-uspto-patent-data", "dbpedia"]]

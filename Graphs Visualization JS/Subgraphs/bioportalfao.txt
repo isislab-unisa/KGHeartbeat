@@ -1,0 +1,1 @@
+[["bioportal-fao", "bioportal-bto"], ["bioportal-fao", "bioportal-cl"], ["bioportal-fao", "bioportal-snomedct"], ["bioportal-fao", "bioportal-ncit"], ["bioportal-fao", "bioportal-mccl_x1"], ["bioportal-fao", "bioportal-go_x2"], ["bioportal-fao", "bioportal-go_x1"]]

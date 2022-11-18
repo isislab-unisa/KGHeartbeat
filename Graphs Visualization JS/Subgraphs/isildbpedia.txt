@@ -1,0 +1,1 @@
+[["isil-dbpedia", "dbpedia"], ["isil-dbpedia", "dbpedia-de"]]

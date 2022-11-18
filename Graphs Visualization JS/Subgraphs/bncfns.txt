@@ -1,0 +1,1 @@
+[["bncf-ns", "getty-aat"], ["bncf-ns", "lcsh"], ["bncf-ns", "dnb-gemeinsame-normdatei"], ["bncf-ns", "datos-bne-es"], ["bncf-ns", "data-bnf-fr"], ["bncf-ns", "agrovoc"]]

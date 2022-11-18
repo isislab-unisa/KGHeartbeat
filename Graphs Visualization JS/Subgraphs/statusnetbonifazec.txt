@@ -1,0 +1,1 @@
+[["statusnet-bonifaz-ec", "statusnet-status-net"]]

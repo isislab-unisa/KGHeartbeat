@@ -1,0 +1,1 @@
+[["statusnet-m-kuttner-com", "geonames-semantic-web"], ["statusnet-m-kuttner-com", "statusnet-quitter-se"]]

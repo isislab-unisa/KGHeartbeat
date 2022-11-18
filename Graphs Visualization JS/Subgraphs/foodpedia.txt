@@ -1,0 +1,1 @@
+[["foodpedia", "agrovoc"], ["foodpedia", "dbpedia"]]

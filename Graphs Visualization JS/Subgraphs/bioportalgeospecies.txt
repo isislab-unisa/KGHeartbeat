@@ -1,0 +1,1 @@
+[["bioportal-geospecies", "bioportal-hl7"], ["bioportal-geospecies", "bioportal-ncit"], ["bioportal-geospecies", "bioportal-lnc"], ["bioportal-geospecies", "bioportal-snomedct"]]

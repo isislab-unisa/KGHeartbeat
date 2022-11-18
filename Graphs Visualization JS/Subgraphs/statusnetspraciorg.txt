@@ -1,0 +1,1 @@
+[["statusnet-spraci-org", "statusnet-macno-org"], ["statusnet-spraci-org", "statusnet-quitter-se"], ["statusnet-spraci-org", "geonames-semantic-web"], ["statusnet-spraci-org", "statusnet-status-net"]]

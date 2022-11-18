@@ -1,0 +1,1 @@
+[["lodac-bdls", "dbpedia"], ["lodac-bdls", "dbpedia-ja"]]

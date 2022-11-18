@@ -1,0 +1,1 @@
+[["bioportal-neomarkontology", "bioportal-canco"], ["bioportal-neomarkontology", "bioportal-lnc"], ["bioportal-neomarkontology", "bioportal-msh"], ["bioportal-neomarkontology", "bioportal-ncit"], ["bioportal-neomarkontology", "bioportal-neomark"], ["bioportal-neomarkontology", "bioportal-nif"], ["bioportal-neomarkontology", "bioportal-snomedct"]]

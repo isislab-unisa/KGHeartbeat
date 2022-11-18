@@ -1,0 +1,1 @@
+[["agrovoc-skos", "agris"], ["agrovoc-skos", "data-bnf-fr"], ["agrovoc-skos", "environmental-applications-reference-thesaurus"], ["agrovoc-skos", "gemet"], ["agrovoc-skos", "gesis-thesoz"], ["agrovoc-skos", "ontobeef-domain"], ["agrovoc-skos", "stitch-rameau"], ["agrovoc-skos", "stw-thesaurus-for-economics"], ["agrovoc-skos", "taxref-ld"], ["agrovoc-skos", "thist"]]

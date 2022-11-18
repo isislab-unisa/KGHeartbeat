@@ -1,0 +1,1 @@
+[["eurovoc", "agrovoc"], ["eurovoc", "corporate-body"], ["eurovoc", "country-authority-list"], ["eurovoc", "wikidata"], ["eurovoc", "gemet"], ["eurovoc", "lcsh"], ["eurovoc", "umthes"], ["eurovoc", "german-labor-law-thesaurus"], ["eurovoc", "language-authority-list"]]

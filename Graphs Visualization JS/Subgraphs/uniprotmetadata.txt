@@ -1,0 +1,1 @@
+[["uniprot-metadata", "lexvo"], ["uniprot-metadata", "w3c"], ["uniprot-metadata", "personal-homepages"], ["uniprot-metadata", "bbc-wildlife-finder"], ["uniprot-metadata", "aspire-ucl"]]

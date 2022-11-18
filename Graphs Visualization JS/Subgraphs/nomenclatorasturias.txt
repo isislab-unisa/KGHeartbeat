@@ -1,0 +1,1 @@
+[["nomenclator-asturias", "sdmx-concept"], ["nomenclator-asturias", "geolinkeddata"], ["nomenclator-asturias", "reference-data-gov-uk"], ["nomenclator-asturias", "dbpedia"]]

@@ -1,0 +1,1 @@
+[["prelex", "dbpedia"], ["prelex", "eur-lex-rdf"]]

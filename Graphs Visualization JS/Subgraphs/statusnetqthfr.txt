@@ -1,0 +1,1 @@
+[["statusnet-qth-fr", "statusnet-planet-libre-org"], ["statusnet-qth-fr", "statusnet-postblue-info"], ["statusnet-qth-fr", "statusnet-status-net"], ["statusnet-qth-fr", "geonames-semantic-web"]]

@@ -1,0 +1,1 @@
+[["eagle-i-jsu", "bioportal-swo"], ["eagle-i-jsu", "bioportal-obi"], ["eagle-i-jsu", "bioportal-iao"], ["eagle-i-jsu", "bioportal-ncbitaxon"], ["eagle-i-jsu", "bioportal-vivo"], ["eagle-i-jsu", "bioportal-msh"], ["eagle-i-jsu", "bioportal-uberon"], ["eagle-i-jsu", "bioportal-ero"], ["eagle-i-jsu", "bioportal-ocre"]]

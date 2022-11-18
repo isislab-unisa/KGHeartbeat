@@ -1,0 +1,1 @@
+[["sec-rdfabout", "freebase"], ["sec-rdfabout", "linked-edgar"], ["sec-rdfabout", "dbpedia"], ["sec-rdfabout", "semantic-xbrl"]]

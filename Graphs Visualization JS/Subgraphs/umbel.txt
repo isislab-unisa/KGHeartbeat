@@ -1,0 +1,1 @@
+[["umbel", "dbpedia-nl"], ["umbel", "geospecies"], ["umbel", "hellenic-fire-brigade"], ["umbel", "hellenic-police"], ["umbel", "lingvoj"], ["umbel", "personal-homepages"], ["umbel", "semanlink"], ["umbel", "taxonconcept"], ["umbel", "proton"], ["umbel", "opencyc"], ["umbel", "wikipedia"], ["umbel", "geonames-semantic-web"], ["umbel", "dbpedia"]]

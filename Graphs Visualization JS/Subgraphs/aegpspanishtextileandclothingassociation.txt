@@ -1,0 +1,1 @@
+[["aegp-spanish-textile-and-clothing-association", "nytimes-linked-open-data"], ["aegp-spanish-textile-and-clothing-association", "freebase"], ["aegp-spanish-textile-and-clothing-association", "geonames-semantic-web"], ["aegp-spanish-textile-and-clothing-association", "dbpedia"]]

@@ -1,0 +1,1 @@
+[["libris", "datos-bne-es"], ["libris", "viaf"], ["libris", "lcsh"], ["libris", "dbpedia"], ["libris", "swedish-open-cultural-heritage"], ["libris", "wikidata"]]

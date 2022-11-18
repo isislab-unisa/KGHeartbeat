@@ -1,0 +1,1 @@
+[["universidad-de-cuenca-linkeddata", "dbpedia"]]

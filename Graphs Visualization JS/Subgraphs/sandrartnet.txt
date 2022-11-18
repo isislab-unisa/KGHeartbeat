@@ -1,0 +1,1 @@
+[["sandrart-net", "viaf"], ["sandrart-net", "dnb-gemeinsame-normdatei"], ["sandrart-net", "geonames-semantic-web"], ["sandrart-net", "wikidata"]]

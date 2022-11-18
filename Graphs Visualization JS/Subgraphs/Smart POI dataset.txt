@@ -1,0 +1,1 @@
+[["Smart POI dataset", "geonames-semantic-web"], ["Smart POI dataset", "dbpedia"], ["Smart POI dataset", "wikidata"], ["Smart POI dataset", "linkedgeodata"]]

@@ -1,0 +1,1 @@
+[["catalan-eurowordnet-lemon-lexicon-3-0", "sumo"], ["catalan-eurowordnet-lemon-lexicon-3-0", "lexinfo"]]

@@ -1,0 +1,1 @@
+[["cz-sidc-drugs", "cz-sidc-drug-ingredients"], ["cz-sidc-drugs", "cz-sidc-drug-prices"], ["cz-sidc-drugs", "cz-eh-1-atc"]]

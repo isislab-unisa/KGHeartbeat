@@ -1,0 +1,1 @@
+[["euskadi-farmacias", "geonames-semantic-web"]]

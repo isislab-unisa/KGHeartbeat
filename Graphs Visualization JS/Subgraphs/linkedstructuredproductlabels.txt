@@ -1,0 +1,1 @@
+[["linked-structured-product-labels", "chebi"], ["linked-structured-product-labels", "drugbank"], ["linked-structured-product-labels", "rxnorm"], ["linked-structured-product-labels", "bio2rdf.org"]]

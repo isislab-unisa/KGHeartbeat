@@ -1,0 +1,1 @@
+[["national-diet-library-authorities", "jp-textbook"], ["national-diet-library-authorities", "viaf"], ["national-diet-library-authorities", "lcsh"], ["national-diet-library-authorities", "wikidata"]]

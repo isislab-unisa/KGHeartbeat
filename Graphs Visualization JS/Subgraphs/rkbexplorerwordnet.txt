@@ -1,0 +1,1 @@
+[["rkb-explorer-wordnet", "ckan"], ["rkb-explorer-wordnet", "rkb-explorer-courseware"], ["rkb-explorer-wordnet", "w3c-wordnet"], ["rkb-explorer-wordnet", "opencyc"], ["rkb-explorer-wordnet", "lingvoj"], ["rkb-explorer-wordnet", "dbpedia"]]

@@ -1,0 +1,1 @@
+[["statusnet-otbm-fr", "statusnet-planet-libre-org"], ["statusnet-otbm-fr", "statusnet-status-net"], ["statusnet-otbm-fr", "geonames-semantic-web"], ["statusnet-otbm-fr", "statusnet-postblue-info"]]

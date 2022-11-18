@@ -1,0 +1,1 @@
+[["iate-rdf", "copyrighttermbank"], ["iate-rdf", "emn"]]

@@ -1,0 +1,1 @@
+[["the-european-library-open-dataset", "dewey_decimal_classification"], ["the-european-library-open-dataset", "dnb-gemeinsame-normdatei"], ["the-european-library-open-dataset", "geonames"], ["the-european-library-open-dataset", "b3kat"], ["the-european-library-open-dataset", "lcsh"], ["the-european-library-open-dataset", "data-bnf-fr"]]

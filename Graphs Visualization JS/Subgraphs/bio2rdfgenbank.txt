@@ -1,0 +1,1 @@
+[["bio2rdf-genbank", "bio2rdf-affymetrix"], ["bio2rdf-genbank", "bio2rdf-dbsnp"], ["bio2rdf-genbank", "bio2rdf-drugbank"], ["bio2rdf-genbank", "bio2rdf-iproclass"], ["bio2rdf-genbank", "bio2rdf-irefindex"], ["bio2rdf-genbank", "bio2rdf-mgi"], ["bio2rdf-genbank", "kupkb"]]

@@ -1,0 +1,1 @@
+[["dws-group", "w3c"], ["dws-group", "semanticweb-org"], ["dws-group", "semantic-web-dog-food"], ["dws-group", "personal-homepages"], ["dws-group", "geonames-semantic-web"], ["dws-group", "dbpedia"]]

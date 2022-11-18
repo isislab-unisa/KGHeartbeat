@@ -1,0 +1,1 @@
+[["bioportal-sbro", "bioportal-lnc"], ["bioportal-sbro", "bioportal-mesh-owl"], ["bioportal-sbro", "bioportal-ncit"], ["bioportal-sbro", "bioportal-nif"], ["bioportal-sbro", "bioportal-snomedct"]]

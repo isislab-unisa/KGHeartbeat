@@ -1,0 +1,1 @@
+[["statusnet-glou-org", "statusnet-gegeweb-org"], ["statusnet-glou-org", "statusnet-skilledtests-com"], ["statusnet-glou-org", "geonames-semantic-web"], ["statusnet-glou-org", "statusnet-quitter-se"], ["statusnet-glou-org", "statusnet-postblue-info"]]

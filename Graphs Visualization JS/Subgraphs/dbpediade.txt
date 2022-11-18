@@ -1,0 +1,1 @@
+[["dbpedia-de", "dbpedia-es"], ["dbpedia-de", "dbpedia-ja"], ["dbpedia-de", "dbpedia-nl"], ["dbpedia-de", "isil-dbpedia"], ["dbpedia-de", "lobid-organisations"], ["dbpedia-de", "lobid-resources"], ["dbpedia-de", "personal-homepages"]]

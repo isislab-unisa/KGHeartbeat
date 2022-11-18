@@ -1,0 +1,1 @@
+[["statusnet-mamalibre-com-ar", "statusnet-legadolibre-com-ar"], ["statusnet-mamalibre-com-ar", "statusnet-opensim-chat-eu"], ["statusnet-mamalibre-com-ar", "geonames-semantic-web"], ["statusnet-mamalibre-com-ar", "statusnet-quitter-se"], ["statusnet-mamalibre-com-ar", "statusnet-rainbowdash-net"]]

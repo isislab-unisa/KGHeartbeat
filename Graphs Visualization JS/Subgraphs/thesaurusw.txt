@@ -1,0 +1,1 @@
+[["thesaurus-w", "data-bnf-fr"], ["thesaurus-w", "dbpedia"], ["thesaurus-w", "stitch-rameau"]]

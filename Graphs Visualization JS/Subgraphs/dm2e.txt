@@ -1,0 +1,1 @@
+[["dm2e", "nytimes-linked-open-data"], ["dm2e", "dnb-gemeinsame-normdatei"], ["dm2e", "judaicalink"], ["dm2e", "freebase"], ["dm2e", "geonames-semantic-web"], ["dm2e", "lcsh"], ["dm2e", "linkedgeodata"], ["dm2e", "dbpedia"]]

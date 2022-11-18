@@ -1,0 +1,1 @@
+[["l3s-dblp", "bibbase"], ["l3s-dblp", "BibSonomy"], ["l3s-dblp", "eprints-harvest-rkbexplorer"], ["l3s-dblp", "fu-berlin-dblp"], ["l3s-dblp", "linklion"], ["l3s-dblp", "morelab"], ["l3s-dblp", "my-experiment"], ["l3s-dblp", "personal-homepages"], ["l3s-dblp", "rkb-explorer-dblp"], ["l3s-dblp", "scholarometer"], ["l3s-dblp", "twc-ieeevis"]]

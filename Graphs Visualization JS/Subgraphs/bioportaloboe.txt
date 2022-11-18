@@ -1,0 +1,1 @@
+[["bioportal-oboe", "bioportal-canco"], ["bioportal-oboe", "bioportal-hl7"], ["bioportal-oboe", "bioportal-lnc"], ["bioportal-oboe", "bioportal-ncit"], ["bioportal-oboe", "bioportal-snomedct"], ["bioportal-oboe", "bioportal-oboe-sbc"]]

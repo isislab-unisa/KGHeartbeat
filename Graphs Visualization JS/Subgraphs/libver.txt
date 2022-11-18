@@ -1,0 +1,1 @@
+[["libver", "dbpedia"], ["libver", "dbpedia-el"]]

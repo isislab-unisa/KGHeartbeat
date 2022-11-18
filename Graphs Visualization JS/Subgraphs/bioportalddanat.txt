@@ -1,0 +1,1 @@
+[["bioportal-ddanat", "bioportal-cl"], ["bioportal-ddanat", "bioportal-ncit"], ["bioportal-ddanat", "bioportal-mat"], ["bioportal-ddanat", "bioportal-mccl_x1"], ["bioportal-ddanat", "bioportal-snomedct"]]

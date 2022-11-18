@@ -1,0 +1,1 @@
+[["bio2rdf-lsr", "bio2rdf-miriam"], ["bio2rdf-lsr", "bio2rdf-pubmed"], ["bio2rdf-lsr", "bio2rdf-biodbcore"], ["bio2rdf-lsr", "bio2rdf-lsr"], ["bio2rdf-lsr", "bio2rdf-bio2rdf"]]

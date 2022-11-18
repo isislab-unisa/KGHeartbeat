@@ -1,0 +1,1 @@
+[["open-data-risp", "nytimes-linked-open-data"], ["open-data-risp", "gnoss"], ["open-data-risp", "freebase"], ["open-data-risp", "geonames-semantic-web"], ["open-data-risp", "dblp-deusto-gnoss"], ["open-data-risp", "dbpedia"]]

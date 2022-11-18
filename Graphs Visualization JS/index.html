@@ -1,0 +1,721 @@
+<html>
+<head>
+    <link rel="stylesheet" href="index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/fav.png">
+    <title>KG - Quality analysis visualization</title>
+</head>
+<body>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/stock/highstock.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <script src="http://code.highcharts.com/modules/offline-exporting.js"></script>
+    <script src="http://code.highcharts.com/modules/export-data.js"></script>
+    <script src="http://code.highcharts.com/modules/data.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    
+    
+    
+    <div class = 'wrapper' style="text-align: center; " >
+        <a href='compare.html' id="linkS"><button type="button" id='compare'>Compare analyzed KG </button></a><br>
+        <div class="custom-select">
+            <select id="selectKG" style="align-items: center;">
+                <option>Choose a KG</option>
+            </select>
+        </div>
+        <button id="downloadBtn" onclick="downloadFullCSV(idKG);">Download csv</button>
+        <div id = 'metrics' style="align-items: center;">
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="score" name="metric" value="Score" checked><label for="score">Score</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="believ" name="metric" value="Believability" checked><label for="believ">Believability</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="av" name="metric" value="Availability" ><label for="av" >Availability</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="lic" name="metric" value="Licensing"> <label for="lic">Licensing</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="int" name="metric" value="Interlinking"> <label for="int">Interlinking-Reputation</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="sec" name="metric" value="Security"> <label for="sec">Security</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="perf" name="metric" value="Performance"> <label for="perf">Performance</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="acc" name="metric" value="Accuracy"> <label for="acc">Accuracy</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="cons" name="metric" value="Consistency"> <label for="cons">Consistency</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="verif" name="metric" value="Verifiability"> <label for="verif">Verifiability</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="vol" name="metric" value="Volatility"> <label for="vol">Volatility</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="curr" name="metric" value="Currency"> <label for="curr">Currency</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="con" name="metric" value="Conciseness"> <label for="con">Conciseness</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="com" name="metric" value="Completeness"> <label for="com">Completeness</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="amount" name="metric" value="Amount"> <label for="amount">Amount of data</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="repConc" name="metric" value="RepresentationalConciseness"> <label for="repConc">Representational conciseness</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="repCons" name="metric" value="RepresentationalConsistency"> <label for="repCons">Representational consistency</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="under" name="metric" value="Understendability"> <label for="under">Understendability</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="interp" name="metric" value="Interpretability"> <label for="interp">Interpretability</label></div>
+            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="vers" name="metric" value="Versatility"> <label for="vers">Versatility</label></div>
+        </div>
+    </div>
+    
+    <script>
+    //AUTOMATIC OPTIONS LIST POPULATION WITH KG ANALYZED
+    var ids = [];
+    var xmlhttp;
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+         xmlhttp = new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        var text = xmlhttp.responseText;
+        // Now convert it into array using regex
+        fullName = text.trim().split("\n");
+        ids = []
+        names = []
+        nscore = []
+        for(var i = 0; i<fullName.length;i++){
+            id = fullName[i].trim().slice(0, fullName[i].indexOf(' '))
+            ids.push(id)
+            name = fullName[i].trim().slice(fullName[i].indexOf(' '));
+            lastIndex = name.lastIndexOf(" ");
+            name = name.substring(0,lastIndex)
+            names.push(name.trim())
+            score = fullName[i].match(/[0-9]+/g)
+            nscore.push(score[0])
+        }
+        console.log(nscore)
+        var select = document.getElementById("selectKG");
+        for(var i = 0; i < ids.length; i++) {
+            var el = document.createElement("option");
+            el.textContent = names[i];
+            el.value = ids[i];
+            select.appendChild(el);
+            var checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+<<<<<<< HEAD
+            checkbox.value = ids[i]
+            checkbox.name = ids[i]
+            checkbox.id = ids[i]
+=======
+            checkbox.value = id
+            checkbox.name = id
+            checkbox.id = id
+<<<<<<< HEAD
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+=======
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+            var label = document.createElement('Label')
+            label.htmlFor = ids[i]
+            label.appendChild(document.createTextNode(ids[i]))
+            var br = document.createElement('br')
+            checkbox.appendChild(label)
+        }
+        //By default at firt visit on the page is shown the first kg in the list and the believability dimension
+        d = document.createElement('button')
+        d.value = 'Believability'
+        idKG = ids[0]
+        passValue(ids[0],d)
+    }
+}
+    xmlhttp.open("GET", "KGid.txt", true);
+    xmlhttp.send();
+    console.log(document.getElementById('selectKG'))
+    function KGname(id){
+        $.get('./CSVforJS/'+id+'.csv', function(data) {
+            var lines = data.trim().split('\n');
+            var lastLine = lines[lines.length - 1].split(',');
+            return lastLine[5]
+         
+    });
+    }
+    var select = document.getElementById('selectKG');
+    select.addEventListener("change",function() {
+    var metric = document.querySelector('input[name="metric"]:checked');
+    idKG = this.value
+    passValue(this.value,metric);
+    });
+    const radioButtons = document.getElementById('metrics').querySelectorAll('input[type="radio"][name="metric"]');
+    var select = document.getElementById('selectKG');
+    select.addEventListener("change",function() {
+    idKG = this.value;
+    });
+    
+    </script>
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <div id="container" style="width:100%; margin-top: 10px;"></div>
+    <div id="container2" style="width:100%;  margin-top: 60px;"></div>
+    <div id="containerDef" style="width: 100%; display:none; margin-top: 60px;"></div>
+=======
+=======
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+    <div id="container" style="width:100%; float: left; margin-top: 10px;"></div>
+    <div id="container2" style="width:100%; float: left; margin-top: 85px;"></div>
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+    <div id="containerLicense"style='display: none;'>
+        <table class='center' id="license">
+            <tr>
+                <th id="licenseMetadati"></th>
+                <th id="hmr"></th>
+                <th id="hhr"></th>
+            </tr>
+            <tr>
+                <td id="licenseM"></td>
+                <td id="licenseMR"></td>
+                <td id="licenseHR"></td>
+            </tr>
+        </table>
+        <script> var m = document.querySelector('input[name="metric"]:checked');</script>
+       <!-- <button id='export-btnLic' onclick="exportTableToCSV(idKG+' - licensing.csv','license')"><img src="img/csv-ico.png" width="60" height="60"/></button> -->
+    </div>
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <div id="containerBeliev" style='width:100%; display: none;'> 
+=======
+    <div id="containerBeliev" style='display: none;'> 
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+=======
+    <div id="containerBeliev" style='display: none;'> 
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+
+    </div>
+    <table id="reliablePr">
+        <tr>
+            <th id="headP">List of trusted providers</th>
+        </tr>
+        <tr>
+            <td>Wikipedia</td>
+        </tr>
+        <tr>
+            <td>Government</td>
+        </tr>
+        <tr>
+            <td>Bioportal</td>
+        </tr>
+        <tr>
+            <td>Bio2RDF</td>
+        </tr>
+        <tr>
+            <td>Academic</td>
+        </tr>
+    </table>
+    <div id="containerTrust"  style="width:50%;"> 
+    </div>
+    
+    <div id="mode" style='display: none; margin-left: 15px; margin-bottom: 20px; '>
+        <button id='hiddenB1' type="button" value="Interlinking" style='display: none;'>Interlinking</button>
+        <script>int = document.getElementById('hiddenB1')</script>
+        <div class='input-radio' style="display: none;"><input type="radio"  onclick="passValue(idKG,int);" id="byId"  name="int" value="byId" checked ><label for="byId">Only selected KG</label></div>
+    </div>
+ 
+    <div id="interlinking" style='display: none; width: 60%; height:70% ;float: left;' ></div>
+    <div id="intPie" style="display: none; width: 40%; float: left;"></div>
+    <div id="wrap-tbInt" style="display: none;">
+    <table id="tableInt" style=" margin-top:80px; ">
+            <tr>
+                <th>Degree of connection</th>
+                <th>Clustering coefficient</th>
+                <th>Centrality</th>
+                <th>PageRank</th>
+                <th>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                    <a href="#popupInter" class="wrapHelp"><img src="img/ask.png" width="43" height="43"/></a>
+=======
+                    <a href="#popupInter" class="btn btn-primary btn-circle btn-xl" >?</a>
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+=======
+                    <a href="#popupInter" class="btn btn-primary btn-circle btn-xl" >?</a>
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+                </th>
+            </tr>
+            <tr>
+                <td id="dc"></td>
+                <td id="ccl"></td>
+                <td id="cent"></td>
+                <td id="pr"></td>
+            </tr>
+        </table>
+        <!-- <button id='export-btnInt' onclick="exportTableToCSV(idKG+' - interlinking.csv','tableInt')"><img src="img/csv-ico.png" width="60" height="60"/></button> -->
+        <div id="popupInter" class="overlay">
+            <div class="popup">
+                <h2>Interlinking</h2>
+                <a class="close" href="#" style="background-color:#FFFFFF; border-radius: 50%; padding: 0;">&times;</a>
+                <div class="content">
+                    More links means higher kg quality. <br> PageRank ia a value in the interval [0-10]. <br> Centrality and clustering coefficient are velues in the interval [0-1].<br>
+                    And higher percentage of sameAs chains means higer quality, because a high number of triples is connected with other triples of other kg.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="performance" style="width:100%; display: none;"></div>
+    <div id="performanceT" style="display:none;"></div>
+
+    <div id="wrapSec" style="width:100%; display: none; text-align: center;">
+        <table  id='sec-tb' class="center" style="margin-top:50px;">
+            <tr>
+                <th>Use HTTPS on the SPARQL endpoint</th>
+                <th>Requires authentication to do query</th>
+            </tr>
+            <tr>
+                <td id="https"></td>
+                <td id="auth"></td>
+            </tr>
+        </table>
+        <!-- <button id='export-btnSec' onclick="exportTableToCSV(idKG+' - security.csv','sec-tb')"><img src="img/csv-ico.png" width="60" height="60"/></button> -->
+    </div>
+
+    <button id='hiddenBAcc' type="button" value="Accuracy" style='display: none;'></button>
+    <script>acc = document.getElementById('hiddenBAcc')</script>
+
+    <div id="wrapSwitchAcc" style="width:100%; display: none;">
+        <div style="font-family: sans-serif, Helvetica,Arial;"><h5>Switch to see the data by day</h5></div>
+        <label class="switch">
+            <input id='typeAcc'type="checkbox" onclick="passValue(idKG,acc);">
+            <span class="slider round"></span>
+        </label>
+        <label class='wrapCal' id="labelDatAcc"><input type = "text" class="datapicker" id="datepickerAcc"><img class='calendarico' src="img/calendar.png" width="30" height="35"/></label>
+    </div>
+    <a href="#warning" class="warningTriples" id="wrap-warning-acc" style="display: none;"><img class="warningImg" src="img/warning.png"></a>
+    <div id="accuracy" style="display: none;"></div>
+    <div id="warning" class="overlay">
+        <div class="popup">
+            <h2>Warning</h2>
+            <a class="close" href="#" style="background-color:#FFFFFF; border-radius: 50%; padding: 0;">&times;</a>
+            <div class="content" id="numTriplesLimit">
+                
+            </div>
+        </div>
+    </div>
+    
+    <button id='hiddenB2' type="button" value="Consistency" style='display: none;'>Consistency</button>
+        <script>cons = document.getElementById('hiddenB2')</script>
+    
+    <div id="wrapSwitchCons" style="display: none;">
+        <div style="font-family: sans-serif, Helvetica,Arial;"><h5>Switch to see the data by day</h5></div>
+        <label class="switch">
+            <input id='typeCons'type="checkbox" onclick="passValue(idKG,cons);">
+            <span class="slider round"></span>
+        </label>
+        <label class='wrapCal' id="labelDatCons"><input type = "text" class="datapicker" id="datepickerCons"><img class='calendarico' src="img/calendar.png" width="30" height="35"/></label>
+    </div>
+    <a href="#warningCons" class="warningTriples" id="wrap-warning-cons" style="display: none;"><img class="warningImg" src="img/warning.png"></a>
+    <div id="consistency" style="display: none;"></div>
+        <table id="const-tab" class='center' style="display: none; width: fit-content; text-align: center; margin-top: 20px; margin-bottom: 35px;">
+            <tr> 
+                <th>Entities as member of disjoint class</th>
+                <th>Ontology hijacking</th>
+                <th>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                    <a href="#popupCons" class="wrapHelp" ><img src="img/ask.png" width="43" height="43"/></a>
+=======
+                    <a href="#popupCons" class="btn btn-primary btn-circle btn-xl" >?</a>
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+=======
+                    <a href="#popupCons" class="btn btn-primary btn-circle btn-xl" >?</a>
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+                </th>
+            </tr>
+            <tr>
+                <td id="disjValue" style="text-align: center;"></td>
+                <td id="OHValue" style="text-align: center;"></td>
+            </tr>
+        </table>
+        <div id="popupCons" class="overlay">
+            <div class="popup">
+                <h2>Consistency</h2>
+                <a class="close" href="#" style="background-color:#FFFFFF; border-radius: 50%; padding: 0;">&times;</a>
+                <div class="content">
+                    Ontology Hijacking must be False.
+                </div>
+            </div>
+        </div>
+        <div id="warningCons" class="overlay">
+            <div class="popup">
+                <h2>Warning</h2>
+                <a class="close" href="#" style="background-color:#FFFFFF; border-radius: 50%; padding: 0;">&times;</a>
+                <div class="content" id="numTriplesLimitCons"></div>
+            </div>
+        </div>
+    
+    <div id="verifiability" style="display: none; margin-top: 50px; margin-left: 10px; overflow-x:auto; text-align: center;">
+        <table id="tableVer" class="center" height="500px">
+            <tr>
+                <th>KG name</th>
+                <th id="headVoc"></th>
+                <th>Authors</th>
+                <th id="headPub"></th>
+                <th id="headContr"></th>
+                <th>Sources</th>
+                <th>Signed</th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="scrollable" id="nameV"></div>
+                </td>
+                <td>
+                    <div class="scrollable" id="vocabs"></div>
+                </td>
+                <td>
+                    <div class="scrollable" id="auths"></div>
+                </td>
+                <td>
+                    <div class="scrollable" id="pubs"></div>
+                </td>
+                <td>
+                    <div class="scrollable" id="contribs"></div>
+                </td>
+                <td >
+                    <div class="scrollable" id="sources"></div>
+                </td>
+                <td>
+                    <div class="scrollable" id="signed"></div>
+                </td>
+            </tr>
+        </table>
+       <!-- <button id='export-btnVer' onclick="exportTableToCSV(idKG+' - verifiability.csv','tableVer')"><img src="img/csv-ico.png" width="60" height="60"/></button> -->
+    </div>
+
+    <div id="volatility" style="display: none;">
+        <table id='vol-tab' class="center">
+            <tr>
+                <th>Dataset update frequency</th>
+            </tr>
+            <tr>
+                <td id = 'frequency'></td>
+            </tr>
+        </table>
+    </div>
+
+    <button id='hiddenBCurr' type="button" value="Currency" style='display: none;'></button>
+    <script>curr = document.getElementById('hiddenBCurr')</script>
+    <div id="currency" style="margin-top: 35px; display: none;">
+        <div id="currTimeline"></div>
+        <div id="wrapTabCurr" style="margin-top: 35px; margin-bottom: 50px;">
+            <table id="curr-tab" class="center">
+                <tr>
+                    <th>Creation date</th>
+                    <th>Last modification date</th>
+                    <th>Time since last modification (days)</th>
+                    <th>Number of triples updated (during the last update)</th>
+                </tr>
+                <tr>
+                    <td id="creation"></td>
+                    <td id="modification"></td>
+                    <td id="lastM"></td>
+                    <td id="updated"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <button id='hiddenB3' type="button" value="Conciseness" style='display: none;'>Conciseness</button>
+        <script>conc = document.getElementById('hiddenB3')</script>
+    
+    <div id="wrapSwitchConc" style="display: none;">
+    <div style="font-family: sans-serif, Helvetica,Arial;"><h5>Switch to see the data by day</h5></div>
+    <label class="switch">
+        <input id='typeConc'type="checkbox" onclick="passValue(idKG,conc);">
+        <span class="slider round"></span>
+      </label>
+      <label class='wrapCal' id="labelDatConci"><input type = "text" class="datapicker" id="datepickerConci"><img class='calendarico' src="img/calendar.png" width="30" height="35"/></label>
+    </div>
+    <a href="#warningConc" class="warningTriples" id="wrap-warning-conc" style="display: none;"><img class="warningImg" src="img/warning.png"></a>
+
+    <div id="conciseness" style="display: none;"></div>
+
+    <div id="warningConc" class="overlay">
+        <div class="popup">
+            <h2>Warning</h2>
+            <a class="close" href="#" style="background-color:#FFFFFF; border-radius: 50%; padding: 0;">&times;</a>
+            <div class="content" id="numTriplesLimitConc"></div>
+        </div>
+    </div>
+
+    <button id='hiddenB4' type="button" value="Completeness" style='display: none;'>Completeness</button>
+        <script>comp = document.getElementById('hiddenB4')</script>
+    <div id="wrapSwitchComp" style="display: none;">
+        <div style="font-family: sans-serif, Helvetica,Arial;"><h5>Switch to see the data by day</h5></div>
+        <label class="switch">
+            <input id='typeComp'type="checkbox" onclick="passValue(idKG,comp);">
+            <span class="slider round"></span>
+          </label>
+          <label class='wrapCal' id="labelDatComp"><input type = "text" class="datapicker" id="datepickerComp"><img class='calendarico' src="img/calendar.png" width="30" height="35"/></label>
+        </div>
+    <div id="completeness"></div>
+    <div id="singleC"  style="display: none;"></div>
+    <div id="tabC" style="display: none;">
+        <table class="center">
+            <tr>
+                <th>Number of triples</th>
+                <th>Number of triples linked</th>
+                <th>Percentage of triples linked</th>
+                <th>Interlinking completeness </th>
+                <th>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                    <a href="#popupCompl" class="wrapHelp"><img src="img/ask.png" width="43" height="43"/></a>
+=======
+                    <a href="#popupCompl" class="btn btn-primary btn-circle btn-xl" >?</a>
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+=======
+                    <a href="#popupCompl" class="btn btn-primary btn-circle btn-xl" >?</a>
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+                </th>
+            </tr>
+            <tr>
+                <td id="numTriplesComp"></td>
+                <td id="numTriplesLinked"></td>
+                <td id="percentageLinked"></td>
+                <td id="interlinkingC"></td>
+            </tr>
+        </table>
+        <div id="popupCompl" class="overlay">
+            <div class="popup">
+                <h2>Completeness</h2>
+                <a class="close" href="#" style="background-color:#FFFFFF; border-radius: 50%; padding: 0;">&times;</a>
+                <div class="content">
+                    The number of triples connected should be as close as possible to the number of triples. So the interlinking value should be close to 1 and the percentage of triples linked should be close to 100%.
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <button id='hiddenB5' type="button" value="Amount" style='display: none;'>Amount of data</button>
+    <script>amount = document.getElementById('hiddenB5')</script>
+<div id="wrapSwitchAmount" style="display: none;">
+    <div style="font-family: sans-serif, Helvetica,Arial;"><h5>Switch to see the data by day</h5></div>
+    <label class="switch">
+        <input id='typeAmount'type="checkbox" onclick="passValue(idKG,amount);">
+        <span class="slider round"></span>
+      </label>
+      <label class='wrapCal' id="labelDatAmount"><input type = "text" class="datapicker" id="datepickerAmount"><img class='calendarico' src="img/calendar.png" width="30" height="35"/></label>
+    </div>
+
+    <div id="amountOfData" style="display: none; margin-top: 45px;"></div>
+
+    <div id="wrap-repConc" style="display:none;">
+        <div id="lengthS" style="margin-top: 30px;"></div>
+        <div id="lengthP" style="margin-top: 30px;"></div>
+        <div id="lengthO" style="margin-top: 30px; margin-bottom: 50px;"></div>
+        <div id="rdfStructures"></div>
+    </div>
+
+   
+    <div id="wrap-repCons" style="display: none; margin-left: 10px; overflow-x:auto; text-align: center;">
+        <table id="tab-cons" class="center" height="500px">
+            <tr>
+                <th id="numNewV">New vocabularies defined in the dataset</th>
+                <th id="numNewT">New terms defined in the dataset</th>
+                <th>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                    <a href="#popupRepCons" class="wrapHelp" ><img src="img/ask.png" width="43" height="43"/></a>
+=======
+                    <a href="#popupRepCons" class="btn btn-primary btn-circle btn-xl" >?</a>
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+=======
+                    <a href="#popupRepCons" class="btn btn-primary btn-circle btn-xl" >?</a>
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="scrollable" id="newVocabs"></div>
+                </td>
+                
+                <td>
+                    <div class="scrollable" id="newTerms"></div>
+                </td>
+            </tr>
+        </table>
+        <div id="popupRepCons" class="overlay">
+            <div class="popup">
+                <h2>Representational <br> consistency</h2>
+                <a class="close" href="#" style="background-color:#FFFFFF; border-radius: 50%; padding: 0;">&times;</a>
+                <div class="content">
+                    A good KG should use standard vocabularies and standard terms, without redefining new ones.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id='hiddenB6' type="button" value="Understendability" style='display: none;'>Amount of data</button>
+    <script>und = document.getElementById('hiddenB6')</script>
+    <div id="wrapSwitchUnder" style="display: none;">
+    <div style="font-family: sans-serif, Helvetica,Arial;"><h5>Switch to see the data by day</h5></div>
+    <label class="switch">
+        <input id='typeUnder'type="checkbox" onclick="passValue(idKG,und);">
+        <span class="slider round"></span>
+      </label>
+      <label class='wrapCal' id="labelDatUnder"><input type = "text" class="datapicker" id="datepickerUnder"><img class='calendarico' src="img/calendar.png" width="30" height="35"/></label>
+    </div>
+    <div id="wrap-und" style="display: none;">
+        <div id="understendability"></div>
+        <div id="wrapTabUnd" style="margin-top: 50px; margin-left: 10px; overflow-x:auto; text-align: center;">
+            <table class="center" id="tabUnd" height="500px">
+                <tr>
+                    <th>URI regex</th>
+                    <th>Vocabulary used in the KG</th>
+                    <th>Examples provided</th>
+                    <th>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                        <a href="#popupUnder" class="wrapHelp" ><img src="img/ask.png" width="43" height="43"/></a>
+=======
+                        <a href="#popupUnder" class="btn btn-primary btn-circle btn-xl" >?</a>
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+=======
+                        <a href="#popupUnder" class="btn btn-primary btn-circle btn-xl" >?</a>
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="scrollable" id="regex"></div>
+                    </td>
+                    <td>
+                        <div class='scrollable' id="vocablurayU"></div>
+                    </td>
+                    <td>
+                        <div class="scrollable" id="example"></div>
+                    </td>
+                </tr>
+            </table>
+            <div id="popupUnder" class="overlay">
+                <div class="popup">
+                    <h2>Understendability</h2>
+                    <a class="close" href="#" style="background-color:#FFFFFF; border-radius: 50%; padding: 0;">&times;</a>
+                    <div class="content">
+                        The number of labels should be as close as possible to the number of triples, so have a percentage closer to 100%. <br>
+                        The vocabularies used in the graph should be indicated, as well as the regex of the uri, which helps us to understand what are the entities of the graph.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id='hiddenB7' type="button" value="Interpretability" style='display: none;'></button>
+    <script>interp = document.getElementById('hiddenB7')</script>
+    <div id="wrapSwitchInterp" style="display: none;">
+    <div style="font-family: sans-serif, Helvetica,Arial;"><h5>Switch to see the data by day</h5></div>
+    <label class="switch">
+        <input id='typeInterp'type="checkbox" onclick="passValue(idKG,interp);">
+        <span class="slider round"></span>
+      </label>
+      <label class='wrapCal' id="labelDatInterp"><input type = "text" class="datapicker" id="datepickerInterp"><img class='calendarico' src="img/calendar.png" width="30" height="35"/></label>
+    </div>
+    <div id="wrapInterp" style="display: none;">
+        <div id="interpretability"></div>
+        <div id="wrapRdf" style="margin-top: 35px; margin-bottom: 500px;">
+            <table class="center">
+                <tr>
+                    <th>Use RDF structures</th>
+                    <th>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                        <a href="#popupInterp" class="wrapHelp" ><img src="img/ask.png" width="43" height="43"/></a>
+=======
+                        <a href="#popupInterp" class="btn btn-primary btn-circle btn-xl" >?</a>
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+=======
+                        <a href="#popupInterp" class="btn btn-primary btn-circle btn-xl" >?</a>
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+                    </th>
+                </tr>
+                <tr>
+                    <td id="rdfInt"></td>
+                </tr>
+            </table>
+            <div id="popupInterp" class="overlay">
+                <div class="popup">
+                    <h2>RDF structures</h2>
+                    <a class="close" href="#" style="background-color:#FFFFFF; border-radius: 50%; padding: 0;">&times;</a>
+                    <div class="content">
+                        The use of RDF structure  is discouraged by the W3C.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="wrapVers" style="display: none; overflow-x:auto; text-align: center;">
+        <div id="versTab">
+            <table id="tabVers" class="center" width="100%"height="500px">
+                <tr>
+                    <th>Serialization formats</th>
+                    <th>Available languages </th>
+                    <th>Link SPARQL endpoint</th>
+                    <th>Link for download as RDF dump</th>
+                    <th>
+                        <div>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                            <a href="#popupVers" class="wrapHelp" ><img src="img/ask.png" width="43" height="43"/></a>
+=======
+                            <a href="#popupVers" class="btn btn-primary btn-circle btn-xl" >?</a>
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+=======
+                            <a href="#popupVers" class="btn btn-primary btn-circle btn-xl" >?</a>
+>>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <td >
+                        <div class="scrollable" id="serializations"></div>
+                    </td>
+                    <td>
+                        <div class="scrollable" id="languages"></div>
+                    </td>
+                    <td>
+                        <div class="scrollable" id="linkSPARQL"></div>
+                    </td>
+                    <td>
+                        <div class="scrollable" id="linkRDF"></div>
+                    </td>
+                </tr>
+            </table>
+            <div id="popupVers" class="overlay">
+                <div class="popup">
+                    <h2>Versatility</h2>
+                    <a class="close" href="#" style="background-color:#FFFFFF; border-radius: 50%; padding: 0;">&times;</a>
+                    <div class="content">
+                        A good KG should be able to be serialized in different formats such as JSON or XML. To have a high degree of versatility it is also advisable to support more than one language.
+                    </div>
+                </div>
+            </div>
+            <!-- <button id='export-btnVers' onclick="exportTableToCSV(idKG+' - versatility.csv','tabVers')"><img src="img/csv-ico.png" width="60" height="60"/></button> -->
+        </div>
+    </div>
+
+    <button id='hiddenB8' type="button" value="Score" style='display: none;'></button>
+    <script>score = document.getElementById('hiddenB8')</script>
+    <div id="wrapSwitchScore" style="display: none;">
+        <div style="font-family: sans-serif, Helvetica,Arial;"><h5>Switch to see the data by day</h5></div>
+        <label class="switch">
+            <input id='typeScore'type="checkbox" onclick="passValue(idKG,score);">
+            <span class="slider round"></span>
+        </label>
+        <label class='wrapCal' id="labelDatScore"><input type = "text" class="datapicker" id="datepickerScore"><img class='calendarico' src="img/calendar.png" width="30" height="35"/></label>
+    </div>
+    <div id="scoreCont" >
+        <div id="scoreChart" ></div>
+    </div>
+
+    <footer>
+        <img src="img/logo.png" width="110" height="70" style="margin-bottom: 15px;"/>
+        <p id="txtFooter">Gabriele Tuozzo, Maria Angela Pellegrino <br> gabrieletuozzo@gmail.com</p>
+    </footer>
+
+
+</body>
+</html>

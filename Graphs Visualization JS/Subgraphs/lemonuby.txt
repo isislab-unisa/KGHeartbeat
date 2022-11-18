@@ -1,0 +1,1 @@
+[["lemonuby", "babelnet"], ["lemonuby", "germlex"], ["lemonuby", "olia"], ["lemonuby", "w3c-wordnet"], ["lemonuby", "isocat"], ["lemonuby", "wiktionary-dbpedia-org"], ["lemonuby", "vu-wordnet"], ["lemonuby", "sli_galnet_rdf"], ["lemonuby", "wordnet-rdf"]]

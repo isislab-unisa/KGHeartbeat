@@ -1,0 +1,1 @@
+[["ASCDC-IHP-WCD", "getty-aat"], ["ASCDC-IHP-WCD", "getty-tgn"], ["ASCDC-IHP-WCD", "dbpedia"], ["ASCDC-IHP-WCD", "viaf"]]

@@ -1,0 +1,1 @@
+[["cz-czso-average-salaries", "cz-ruian"], ["cz-czso-average-salaries", "data-gov-uk-time-intervals"]]

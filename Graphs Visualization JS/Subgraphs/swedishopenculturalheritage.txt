@@ -1,0 +1,1 @@
+[["swedish-open-cultural-heritage", "europeana-lod-v1"], ["swedish-open-cultural-heritage", "libris"], ["swedish-open-cultural-heritage", "viaf"], ["swedish-open-cultural-heritage", "wikidata"], ["swedish-open-cultural-heritage", "geonames-semantic-web"]]

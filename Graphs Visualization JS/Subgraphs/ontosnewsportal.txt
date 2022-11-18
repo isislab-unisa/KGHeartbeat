@@ -1,0 +1,1 @@
+[["ontos-news-portal", "freebase"], ["ontos-news-portal", "geonames-semantic-web"], ["ontos-news-portal", "dbpedia"]]

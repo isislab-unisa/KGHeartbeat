@@ -1,0 +1,1 @@
+[["bio2rdf-taxon", "bio2rdf-taxonomy"], ["bio2rdf-taxon", "chem2bio2rdf"], ["bio2rdf-taxon", "data-persee-fr"]]

@@ -1,0 +1,1 @@
+[["statusnet-thornton2-com", "statusnet-fragdev-com"], ["statusnet-thornton2-com", "statusnet-postblue-info"], ["statusnet-thornton2-com", "statusnet-quitter-se"], ["statusnet-thornton2-com", "statusnet-skilledtests-com"], ["statusnet-thornton2-com", "statusnet-status-net"], ["statusnet-thornton2-com", "geonames-semantic-web"]]

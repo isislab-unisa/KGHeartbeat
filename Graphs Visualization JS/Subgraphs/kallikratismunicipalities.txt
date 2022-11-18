@@ -1,0 +1,1 @@
+[["kallikratis-municipalities", "hellenic-fire-brigade"], ["kallikratis-municipalities", "hellenic-police"], ["kallikratis-municipalities", "geonames"], ["kallikratis-municipalities", "dbpedia-el "], ["kallikratis-municipalities", "freebase"], ["kallikratis-municipalities", "eurostat-rdf"], ["kallikratis-municipalities", "dbpedia"]]

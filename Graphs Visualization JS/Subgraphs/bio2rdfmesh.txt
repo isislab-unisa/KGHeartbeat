@@ -1,0 +1,1 @@
+[["bio2rdf-mesh", "bio2rdf-bioportal"], ["bio2rdf-mesh", "bio2rdf-ctd"], ["bio2rdf-mesh", "bio2rdf-mesh"], ["bio2rdf-mesh", "bio2rdf-orphanet"], ["bio2rdf-mesh", "bio2rdf-pharmgkb"], ["bio2rdf-mesh", "chem2bio2rdf"], ["bio2rdf-mesh", "disgenet"]]

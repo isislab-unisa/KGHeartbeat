@@ -1,0 +1,1 @@
+[["rdflicense", "lexvo"], ["rdflicense", "dbpedia"]]

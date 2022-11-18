@@ -1,0 +1,1 @@
+[["statusnet-doomicile-de", "geonames-semantic-web"], ["statusnet-doomicile-de", "statusnet-tschlotfeldt-de"]]

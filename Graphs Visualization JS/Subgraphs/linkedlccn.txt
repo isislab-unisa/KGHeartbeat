@@ -1,0 +1,1 @@
+[["linkedlccn", "ckan"], ["linkedlccn", "linkedmdb"], ["linkedlccn", "marc-codes"], ["linkedlccn", "viaf"], ["linkedlccn", "books-isbn"], ["linkedlccn", "openlibrary"], ["linkedlccn", "dbpedia"], ["linkedlccn", "dbtune-musicbrainz"], ["linkedlccn", "rkb-explorer-webconf"], ["linkedlccn", "talis-openlibrary"]]

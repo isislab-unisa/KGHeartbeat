@@ -1,0 +1,1 @@
+[["fu-berlin-dblp", "bibbase"], ["fu-berlin-dblp", "dbpedia"], ["fu-berlin-dblp", "dbpedia-el"], ["fu-berlin-dblp", "dcs-sheffield"], ["fu-berlin-dblp", "l3s-dblp"], ["fu-berlin-dblp", "rdf-book-mashup"], ["fu-berlin-dblp", "scholarometer"]]

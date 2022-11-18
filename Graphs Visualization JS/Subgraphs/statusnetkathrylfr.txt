@@ -1,0 +1,1 @@
+[["statusnet-kathryl-fr", "statusnet-status-net"], ["statusnet-kathryl-fr", "statusnet-scoffoni-net"], ["statusnet-kathryl-fr", "statusnet-postblue-info"]]

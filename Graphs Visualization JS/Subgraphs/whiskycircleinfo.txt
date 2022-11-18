@@ -1,0 +1,1 @@
+[["whisky-circle-info", "dbpedia"], ["whisky-circle-info", "freebase"], ["whisky-circle-info", "geonames-semantic-web"], ["whisky-circle-info", "yago"], ["whisky-circle-info", "wikidata"]]

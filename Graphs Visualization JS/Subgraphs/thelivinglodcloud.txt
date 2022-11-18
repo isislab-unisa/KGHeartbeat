@@ -1,0 +1,1 @@
+[["the-living-lod-cloud", "dbpedia"], ["the-living-lod-cloud", "twc-logd"]]

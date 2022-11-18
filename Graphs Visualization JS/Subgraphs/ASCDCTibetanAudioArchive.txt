@@ -1,0 +1,1 @@
+[["ASCDC-Tibetan-Audio-Archive", "getty-aat"], ["ASCDC-Tibetan-Audio-Archive", "dbpedia"], ["ASCDC-Tibetan-Audio-Archive", "viaf"]]

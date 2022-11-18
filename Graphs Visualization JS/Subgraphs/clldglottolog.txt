@@ -1,0 +1,1 @@
+[["clld-glottolog", "clld-afbo"], ["clld-glottolog", "clld-apics"], ["clld-glottolog", "geonames"], ["clld-glottolog", "lexvo"], ["clld-glottolog", "dbpedia"], ["clld-glottolog", "gold"], ["clld-glottolog", "clld-sails"], ["clld-glottolog", "clld-wold"], ["clld-glottolog", "wikidata"]]

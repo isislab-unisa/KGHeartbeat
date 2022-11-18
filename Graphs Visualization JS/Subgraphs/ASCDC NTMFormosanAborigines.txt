@@ -1,0 +1,1 @@
+[["ASCDC- NTM-Formosan-Aborigines", "getty-aat"], ["ASCDC- NTM-Formosan-Aborigines", "dbpedia"], ["ASCDC- NTM-Formosan-Aborigines", "viaf"]]

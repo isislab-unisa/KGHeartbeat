@@ -1,0 +1,1 @@
+[["cpv-2008", "http://productontology.org"], ["cpv-2008", "wikidata"]]

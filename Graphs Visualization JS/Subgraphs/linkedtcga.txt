@@ -1,0 +1,1 @@
+[["linked-tcga", "bio2rdf-homologene"], ["linked-tcga", "bio2rdf-affymetrix"], ["linked-tcga", "bio2rdf-omim"], ["linked-tcga", "bio2rdf-hgnc"], ["linked-tcga", "dbpedia"]]

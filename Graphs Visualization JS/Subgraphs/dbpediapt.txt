@@ -1,0 +1,1 @@
+[["dbpedia-pt", "dbpedia-es"], ["dbpedia-pt", "dbpedia-ja"], ["dbpedia-pt", "dbpedia-nl"], ["dbpedia-pt", "dbpedia"], ["dbpedia-pt", "desaparecidos"]]

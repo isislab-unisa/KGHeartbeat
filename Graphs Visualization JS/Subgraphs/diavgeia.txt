@@ -1,0 +1,1 @@
+[["diavgeia", "hellenic-police"], ["diavgeia", "hellenic-fire-brigade"], ["diavgeia", "kalikratis-municipalities"], ["diavgeia", "dbpedia-el"], ["diavgeia", "dbpedia"], ["diavgeia", "eurostat"]]

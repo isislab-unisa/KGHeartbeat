@@ -1,0 +1,1 @@
+[["near", "crosslinks:edubase-dbpedia"], ["near", "crosslinks:dbpedia-geonames"], ["near", "edubase"], ["near", "crosslinks:geonames-dbpedia"], ["near", "crosslinks:edubase-geonames"], ["near", "geonames-semantic-web"], ["near", "crosslinks:dbpedia-edubase"], ["near", "crosslinks:geonames-edubase"], ["near", "dbpedia"]]

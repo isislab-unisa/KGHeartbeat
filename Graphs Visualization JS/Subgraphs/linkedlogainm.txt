@@ -1,0 +1,1 @@
+[["linked-logainm", "linkedgeodata"], ["linked-logainm", "dbpedia"]]

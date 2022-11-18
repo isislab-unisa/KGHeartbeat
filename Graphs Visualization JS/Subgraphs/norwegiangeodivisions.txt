@@ -1,0 +1,1 @@
+[["norwegian-geo-divisions", "geonames-semantic-web"]]

@@ -1,0 +1,1 @@
+[["bio2rdf-omim-resources", "bio2rdf-omim"]]

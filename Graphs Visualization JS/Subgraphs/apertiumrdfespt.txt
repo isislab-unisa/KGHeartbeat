@@ -1,0 +1,1 @@
+[["apertium-rdf-es-pt", "babelnet"], ["apertium-rdf-es-pt", "lexinfo"]]

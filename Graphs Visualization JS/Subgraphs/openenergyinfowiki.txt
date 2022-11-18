@@ -1,0 +1,1 @@
+[["open-energy-info-wiki", "clean-energy-data-reegle"], ["open-energy-info-wiki", "enipedia"], ["open-energy-info-wiki", "dbpedia"], ["open-energy-info-wiki", "geonames-semantic-web"]]

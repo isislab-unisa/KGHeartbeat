@@ -1,0 +1,1 @@
+[["wiktionary-dbpedia-org", "babelnet"], ["wiktionary-dbpedia-org", "ids"], ["wiktionary-dbpedia-org", "lemonuby"], ["wiktionary-dbpedia-org", "lemonwiktionary"], ["wiktionary-dbpedia-org", "mlsa"], ["wiktionary-dbpedia-org", "sentiws"], ["wiktionary-dbpedia-org", "dbpedia"]]

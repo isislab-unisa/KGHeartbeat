@@ -1,0 +1,719 @@
+import base64
+import csv
+from datetime import date, datetime
+from email import header, utils
+from http.client import HTTPConnection
+from pathlib import Path
+from pydoc import pager
+import re
+from statistics import median
+import string
+import time
+import pandas as pd
+import utils
+import requests
+from ExternalLink import ExternalLink
+from MetricsOutput import MetricsOutput
+from QualityDimensions.AmountOfData import AmountOfData
+from QualityDimensions.Availability import Availability
+from QualityDimensions.Believability import Believability
+from QualityDimensions.Completeness import Completeness
+from QualityDimensions.Conciseness import Conciseness
+from QualityDimensions.Consistency import Consistency
+from QualityDimensions.Currency import Currency
+from QualityDimensions.Interlinking import Interlinking
+from QualityDimensions.Interpretability import Interpretability
+from QualityDimensions.Licensing import Licensing
+from QualityDimensions.Performance import Performance
+from QualityDimensions.RepresentationalConciseness import RepresentationalConciseness
+from QualityDimensions.RepresentationalConsistency import RepresentationalConsistency
+from QualityDimensions.Reputation import Reputation
+from QualityDimensions.Security import Security
+from QualityDimensions.Understendability import Understendability
+from QualityDimensions.Verifiability import Verifiability
+from QualityDimensions.Versatility import Versatility
+from QualityDimensions.Volatility import Volatility
+import os.path
+class OutputCSV(MetricsOutput):
+    def __init__(self, kgQuality,idList):
+        super().__init__(kgQuality,idList)
+
+    def writeHeader(filename):
+        header = ['KG id','KG name','Sparql endpoint','SPARQL endpoint URL','Availability of RDF dump (metadata)','Availability of RDF dump (query)','URL for download the dataset','Inactive links','Creation date','Modification date','Percentage of data updated','Time elapsed since last modification','Historical updates','Languages (query)','Languages (metadata)','Serialization formats','Availability for download (query)','Availability for download (metadata)',
+                  'Use HTTPS','Requires authentication','Average length of URIs (subject)','Standard deviation lenght URIs (subject)','Min length URIs (subject)','25th percentile length URIs (subject)','Median length URIs (subject)','75th percentile length URIs (subject)','Max length URIs (subject)','Average length of URIs (predicate)','Standard deviation lenght URIs (predicate)','Min length URIs (predicate)','25th percentile length URIs (predicate)','Median length URIs (predicate)','75th percentile length URIs (predicate)','Max length URIs (predicate)','Average length of URIs (object)','Standard deviation lenght URIs (object)','Min length URIs (object)','25th percentile length URIs (object)','Median length URIs (object)','75th percentile length URIs (object)','Max length URIs (object)','Use RDF structures','License machine redeable (metadata)','License machine redeable (query)','License human redeable','Minimum latency','25th percentile latency','Median latency','75th percentile latency','Maximum latency','Average latency','Standard deviation of latency','Minimum throughput','25th percentile throughput','Median throughput','75th percentile throughput','Maximum throughput','Average throughput',' Standard deviation of throughput',' Number of triples (metadata)','Number of triples (query)','Number of entities','Number of entities counted with regex','Number of property',
+                  'Dataset update frequency','Degree of connection','Clustering coefficient','Centrality','Number of samAs chains','External links','PageRank','Description','Dataset URL','Is on a trusted provider list','Trust value','Vocabularies','Author (query)','Author (metadata)','Contributor','Publisher','Sources','Signed',' Number of triples','Number of triples linked','Interlinking completeness','New vocabularies defined in the dataset','New terms defined in the dataset','Number of labels/comments present on the data',' Percentage of triples with labels','Regex uri','Presence of example','Number of blank nodes','Uses RDF structures',
+                  'Deprecated classes/properties used','Entities as member of disjoint class','Triples with misplaced property problem','Triples with misplaced class problem','Ontology Hijacking problem','Undefined class used without declaration','Undefined properties used without declaration','Extensional conciseness','Intensional conciseness','Triples with empty annotation problem','Triples with white space in annotation(at the beginning or at the end)','Triples with malformed data type literals problem','Functional properties with inconsistent values','Invalid usage of inverse-functional properties','Number of triples updated','Score','Normalized score','Limited','Offline dumps','Url file VoID','Availability VoID file','MinTPNoOff','MeanTPNoOff','MaxTPNoOff','sdTPNoOff']
+        here = os.path.dirname(os.path.abspath(__file__))
+        save_path = os.path.join(here,'./Analysis results')
+        save_path = os.path.join(save_path, filename+".csv")
+        with open(save_path, 'w', encoding='UTF8', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow(header)
+
+    def writeRow(self,filename):
+        here = os.path.dirname(os.path.abspath(__file__))
+        save_path = os.path.join(here,'./Analysis results')
+        save_path = os.path.join(save_path, filename+".csv")
+        with open(save_path, 'a', encoding='UTF8', newline='') as f:
+            writer = csv.writer(f)
+            data = [self.kgQuality.extra.KGid,self.kgQuality.believability.title,self.kgQuality.availability.sparqlEndpoint,self.kgQuality.extra.endpointUrl,self.kgQuality.availability.RDFDumpM,self.kgQuality.availability.RDFDumpQ,self.kgQuality.extra.downloadUrl,self.kgQuality.availability.inactiveLinks,self.kgQuality.currency.creationDate,self.kgQuality.currency.modificationDate,self.kgQuality.currency.percentageUpData,self.kgQuality.currency.timePassed,self.kgQuality.currency.historicalUp,self.kgQuality.versatility.languagesQ,self.kgQuality.versatility.languagesM,self.kgQuality.versatility.serializationFormats,self.kgQuality.versatility.availabilityDownloadQ,self.kgQuality.versatility.availabilityDownloadM,
+                    self.kgQuality.security.useHTTPS,self.kgQuality.security.requiresAuth,self.kgQuality.rConciseness.urisLenghtSA,self.kgQuality.rConciseness.urisLenghtSSd,self.kgQuality.rConciseness.minLengthS,self.kgQuality.rConciseness.percentile25LengthS,self.kgQuality.rConciseness.medianLenghtS,self.kgQuality.rConciseness.percentile75LengthS,self.kgQuality.rConciseness.maxLengthS,self.kgQuality.rConciseness.urisLenghtPA,self.kgQuality.rConciseness.urisLenghtPSd,self.kgQuality.rConciseness.minLengthP,self.kgQuality.rConciseness.percentile25LengthP,self.kgQuality.rConciseness.medianLenghtP,self.kgQuality.rConciseness.percentile75LengthP,self.kgQuality.rConciseness.maxLengthP,self.kgQuality.rConciseness.urisLenghtOA,self.kgQuality.rConciseness.urisLenghtOSd,self.kgQuality.rConciseness.minLengthO,self.kgQuality.rConciseness.percentile25LengthO,self.kgQuality.rConciseness.medianLenghtO,self.kgQuality.rConciseness.percentile75LengthO,self.kgQuality.rConciseness.maxLengthO,self.kgQuality.rConciseness.RDFStructures,self.kgQuality.licensing.licenseMetadata,self.kgQuality.licensing.licenseQuery,self.kgQuality.licensing.licenseHR,self.kgQuality.performance.minLatency,self.kgQuality.performance.percentile25L,self.kgQuality.performance.medianL,self.kgQuality.performance.percentile75L,self.kgQuality.performance.maxLatency,self.kgQuality.performance.averageLatency,self.kgQuality.performance.sDLatency,self.kgQuality.performance.minThroughput,self.kgQuality.performance.percentile25T,self.kgQuality.performance.medianT,self.kgQuality.performance.percentile75T,self.kgQuality.performance.maxThroughput,self.kgQuality.performance.averageThroughput,self.kgQuality.performance.sDThroughput,
+                    self.kgQuality.amountOfData.numTriplesM,self.kgQuality.amountOfData.numTriplesQ,self.kgQuality.amountOfData.numEntities,self.kgQuality.amountOfData.entitiesRe,self.kgQuality.amountOfData.numProperty,self.kgQuality.volatility.frequency,self.kgQuality.interlinking.degreeConnection,self.kgQuality.interlinking.clustering,self.kgQuality.interlinking.centrality,self.kgQuality.interlinking.sameAs,ExternalLink.getListExLinks(self.kgQuality.interlinking.externalLinks),
+                    self.kgQuality.reputation.pageRank,self.kgQuality.believability.description,self.kgQuality.believability.URI,self.kgQuality.believability.reliableProvider,self.kgQuality.believability.trustValue,self.kgQuality.verifiability.vocabularies,self.kgQuality.verifiability.authorQ,self.kgQuality.verifiability.authorM,self.kgQuality.verifiability.contributor,self.kgQuality.verifiability.publisher,"Web:"+self.kgQuality.verifiability.sources.web+" Name:"+ self.kgQuality.verifiability.sources.name+" Email:"+ self.kgQuality.verifiability.sources.email,self.kgQuality.verifiability.sign,self.kgQuality.completeness.numTriples,self.kgQuality.completeness.numTriplesL,self.kgQuality.completeness.interlinkingC,self.kgQuality.rConsistency.newVocab,self.kgQuality.rConsistency.useNewTerms,self.kgQuality.understendability.numLabel,self.kgQuality.understendability.percentageLabel,self.kgQuality.understendability.regexUri,self.kgQuality.understendability.example,
+                    self.kgQuality.interpretability.numBN,self.kgQuality.interpretability.RDFStructures,self.kgQuality.consistency.deprecated,self.kgQuality.consistency.disjointClasses,self.kgQuality.consistency.triplesMP,self.kgQuality.consistency.triplesMC,self.kgQuality.consistency.oHijacking,self.kgQuality.consistency.undefinedClass,self.kgQuality.consistency.undefinedProperties,self.kgQuality.conciseness.exC,self.kgQuality.conciseness.intC,self.kgQuality.accuracy.emptyAnn,self.kgQuality.accuracy.wSA,self.kgQuality.accuracy.malformedDataType,self.kgQuality.accuracy.FPvalue,self.kgQuality.accuracy.IFPvalue,self.kgQuality.extra.numTriplesUpdated,self.kgQuality.extra.score,0,self.kgQuality.extra.limited,self.kgQuality.extra.offlineDumps,self.kgQuality.extra.urlVoid,self.kgQuality.extra.voidAvailability,self.kgQuality.extra.minTPNoOff,self.kgQuality.extra.meanTPNoOff,self.kgQuality.extra.maxTPNoOff,self.kgQuality.extra.devSNoOff]
+            writer.writerow(data)
+    
+    def normalizeScore(filename):
+        here = os.path.dirname(os.path.abspath(__file__))
+        save_path = os.path.join(here,'./Analysis results')
+        save_path = os.path.join(save_path, filename+".csv")
+        df = pd.read_csv(save_path)
+        df_min_max_scaled = df.copy()
+        column = 'Score' 
+        listNormalized = df_min_max_scaled[column].tolist()
+        for i in range(len(listNormalized)):
+            score = listNormalized[i]
+            percentage = (score * 100)/2.65
+            normalizedScore = float("%.2f"%percentage)
+            if normalizedScore > 100.00:
+                normalizedScore = 100.00
+            listNormalized[i] = normalizedScore
+        for i in range(df.shape[0]):
+            df.at[i,"Normalized score"] = listNormalized[i]
+        df.to_csv(save_path,index=False)
+        #print(listNormalized)
+        '''
+        with open(save_path,'w',encoding='UTF8', newline='') as f:
+            writer = csv.writer(f)
+            for i in range(df.shape[0]):
+                row = df.iloc[i]
+                lst = row.tolist()
+                lst[len(lst)-1] = listNormalized[i]
+                print(lst[len(lst)-1])
+                writer.writerow(lst)
+        '''
+
+    def split(idList):
+        here = os.path.dirname(os.path.abspath(__file__))
+        save_path = os.path.join(here,'./Graphs Visualization JS/CSVforJS')
+        analysisR = os.path.join(here,'./Analysis results')
+        p = Path(analysisR)
+        files = list(p.glob('*.csv'))
+        fileNames = []
+        idNameLi = []
+        for i in range(len(idList)):
+            newFilename = re.sub(r'[\\/*?:"<>|]',"",idList[i])
+            remove_punctuation_map = dict((ord(char), None) for char in '\/*?:"<>|')
+            newFilename = newFilename.translate(remove_punctuation_map)
+            remove_punctuation_map = dict((ord(char), None) for char in string.punctuation)
+            newFilename = newFilename.translate(remove_punctuation_map)
+            newFilename = newFilename.replace(" ","")
+            if '_' in idList[i]:
+                newFilename = newFilename + '_'
+            completeName = os.path.join(save_path, newFilename+".csv")
+            fileNames.append(newFilename)
+            with open(completeName,'w',newline='', encoding="utf-8") as file:
+                writer = csv.writer(file)
+                writer.writerow(['Date','SPARQL endpoint','RDF dump','License Machine-Redeable','License Human-Redeable','KG name','Description','Url','Reliable','Trust value'
+                                ,'Degree of connection','Clustring coefficient','Centrality','Number of sameAs chains','Number of triples','KGid','Min latency','25th percentile latency','Median latency','75th percentile latency','Max latency',
+                                'Min TP','25th percentile TP','Median TP','75th percentile TP','Max TP','Requires auth','Use HTTPS','Serialization formats','Languages','Link SPARQL endpoint','Link for download the dataset','Number of void label',
+                                'Number of whitespace label','Number of malformed datatype','Labels','Disjoint class','Undefined class','Undefined property','Deprecated class/property','Ontology hijacking','Misplaced property','Misplaced class',
+                                'PageRank','Vocabularies','Authors','Publishers','Contributors','Sources','Signed','Dataset update frequency','Creation date','Modification date','Num. triples updated','Time since last modification',
+                                'Extensional conciseness','Intensional conciseness','Interlinking completeness','Number of triples linked','Number of entities','Number of property','Min length URIs (subject)','25th percentile length URIs (subject)','Median length URIs (subject)','75th percentile length URIs (subject)','Max length URIs (subject)'
+                                ,'Min length URIs (predicate)','25th percentile length URIs (predicate)','Median length URIs (predicate)','75th percentile length URIs (predicate)','Max length URIs (predicate)','Min length URIs (object)','25th percentile length URIs (object)','Median length URIs (object)','75th percentile length URIs (object)','Max length URIs (object)',
+                                'New vocabularies defined','New terms defined','Number of label','Uri regex','Presence of example','Number of blank nodes','RDF structures','HistoricalUp','Score','Normalized score','FP','IFP','Limited','License MR','Inactive links'])
+                idForTxt = ''
+                nameForTxt = ''
+                files.sort()
+                for f in files:
+                    file_name = f.stem
+                    filename = str(file_name)
+                    print(filename)
+                    df = pd.read_csv(f)
+                    df = df[df['KG id'] == '%s'%idList[i]]
+                    count = df.shape[0]   #GET THE NUMBER OF ROW FOUNDED WITH THE KG ID 
+                    if count == 1:
+                        
+                        endpoint = df.iloc[0]['Sparql endpoint']  #SEARCH FOR THE COLUMN WITH NAME SPARQL ENPOINT AND GET THE VALUE
+                        endpoint = str(endpoint)
+                        endpoint = endpoint.replace(',',';')
+                        if endpoint == 'Available':   #FORMATTING DATA FOR HIGHCHART
+                            endpoint = 1
+                        if endpoint == 'endpoint offline':
+                            endpoint = 0
+                        if endpoint == 'endpoint absent':
+                            endpoint = -1
+                        
+                        rdfDumpQ = df.iloc[0]['Availability of RDF dump (query)']
+                        rdfDumpM = df.iloc[0]['Availability of RDF dump (metadata)']
+                        if (rdfDumpQ != 'True' and rdfDumpQ != True) and (rdfDumpM == 0):
+                            dump = 0
+                        elif rdfDumpM == -1 or rdfDumpQ == 'absent':
+                            dump = -1
+                        else:
+                            dump = 1
+                        
+                        licenseMRM= df.iloc[0]['License machine redeable (metadata)']
+                        licenseMRQ = df.iloc[0]['License machine redeable (query)']
+                        licenseHR = df.iloc[0]['License human redeable']
+                        licenseMRM = (str(licenseMRM).replace(',',';')).replace("\r", "").replace("\n", "")
+                        licenseMRQ = (str(licenseMRQ).replace(',',';')).replace("\r", "").replace("\n", "")
+
+                        if isinstance(licenseHR,str):
+                            if 'EndPointInternalError' in licenseHR or 'endpoint offline' in  licenseHR or 'endpoint absent' in licenseHR:
+                                licenseHR = '-'
+                            if 'Could not' in licenseHR:
+                                licenseHR = 'Query fails on endpoint'
+                        
+                        name = df.iloc[0]['KG name']
+                        description = df.iloc[0]['Description']
+                        url = df.iloc[0]['Dataset URL']
+                        provList = df.iloc[0]['Is on a trusted provider list']
+                        trustValue = df.iloc[0]['Trust value']
+
+                        name = str(name)
+                        name = name.replace(',','-')
+                        name = name.replace("\r", "").replace("\n", "")
+                        description = str(description)
+                        description = description.replace(',','-')
+                        description = description.replace("\r", "").replace("\n", "")
+                        url = str(url)
+                        url = url.replace(',','-')
+                        url = url.replace("\r", "").replace("\n", "")
+                        provList = str(provList)
+                        provList = provList.replace(',','-')
+                        provList = provList.replace("\r", "").replace("\n", "")
+                        trustValue = str(trustValue)
+                        trustValue = trustValue.replace(',','.')
+                        trustValue = trustValue.replace("\r", "").replace("\n", "")
+
+                        dC = df.iloc[0]['Degree of connection']
+                        ccl = df.iloc[0]['Clustering coefficient']
+                        ccl = str(ccl).replace("\r", "").replace("\n", "")
+                        ccl = ccl.replace(',','.')
+                        centrlity = df.iloc[0]['Centrality']
+                        centrlity = str(centrlity)
+                        centrlity = centrlity.replace(',','.').replace("\r", "").replace("\n", "")
+                        sameAs = df.iloc[0]['Number of samAs chains']
+                        numTriples = df.iloc[0]['Number of triples (query)']
+                        try:
+                            numTriples = int(numTriples)
+                        except:
+                            numTriples = df.iloc[0][' Number of triples (metadata)']
+                        try:
+                            numTriples = int(numTriples)
+                        except:
+                            numTriples = '-'
+                        try:
+                            sameAs = int(sameAs)
+                        except:
+                            sameAs = '-'
+
+                        minL = df.iloc[0]['Minimum latency']
+                        minL = str(minL)
+                        minL = minL.replace(',','.').replace("\r", "").replace("\n", "")
+                        percentile25L = df.iloc[0]['25th percentile latency']
+                        medianL = df.iloc[0]['Median latency']
+                        percentile75L = df.iloc[0]['75th percentile latency']
+                        percentile25L = str(percentile25L)
+                        percentile25L = percentile25L.replace(',','.').replace("\r", "").replace("\n", "")
+                        medianL = str(medianL)
+                        medianL = medianL.replace(',','.').replace("\r", "").replace("\n", "")
+                        percentile75L = str(percentile75L)
+                        percentile75L = percentile75L.replace(',','.').replace("\r", "").replace("\n", "")
+                        maxL = df.iloc[0]['Maximum latency']
+                        maxL = str(maxL)
+                        maxL = maxL.replace(',','.').replace("\r", "").replace("\n", "")
+                        minT = df.iloc[0]['Minimum throughput']
+                        minT = str(minT)
+                        minT = minT.replace(',','.').replace("\r", "").replace("\n", "")
+                        maxT = df.iloc[0]['Maximum throughput']
+                        maxT = str(maxT)
+                        maxT = maxT.replace(',','.').replace("\r", "").replace("\n", "")
+                        percentile25T = df.iloc[0]['25th percentile throughput']
+                        medianT = df.iloc[0]['Median throughput']
+                        percentile75T = df.iloc[0]['75th percentile throughput']
+                        percentile25T = str(percentile25T)
+                        percentile25T = percentile25T.replace(',','.').replace("\r", "").replace("\n", "")
+                        medianT = str(medianT)
+                        medianT = medianT.replace(',','.').replace("\r", "").replace("\n", "")
+                        percentile75T = str(percentile75T)
+                        percentile75T = percentile75T.replace(',','.').replace("\r", "").replace("\n", "")
+
+                        if minL == 'endpoint offline':
+                            minL = '-'
+                        if maxL == 'endpoint offline':
+                            maxL = '-'
+                        if percentile25L == 'endpoint offline':
+                            percentile25L = '-'
+                        if percentile75L == 'endpoint offline':
+                            percentile75L = '-'
+                        if medianL == 'endpoint offline':
+                            medianL = '-'
+                        if percentile25T == 'endpoint offline':
+                            percentile25T = '-'
+                        if percentile75T == 'endpoint offline':
+                            percentile75T = '-'
+                        if medianT == 'endpoint offline':
+                            medianT = '-'
+                        if minT == 'endpoint offline':
+                            minT = '-'
+                        if maxT == 'endpoint offline':
+                            maxT = '-'
+                        
+                        auth = df.iloc[0]['Requires authentication']
+                        https = df.iloc[0]['Use HTTPS']
+
+                        if https == 'endpoint offline' or https == 'endpoint absent':
+                            https = '-'
+                        if auth == 'endpoint offline' or auth == 'endpoint absent':
+                            auth = '-'
+
+                        try:
+                            voidLabel = df.iloc[0]['Triples with empty annotation problem']
+                            voidLabel = float(voidLabel.replace(',','.'))
+                            voidLabel = (str(voidLabel)).replace(',','.').replace("\r", "").replace("\n", "")
+                        except ValueError:
+                            voidLabel = '-'
+                        
+                        try:
+                            whitespaceLabel = df.iloc[0]['Triples with white space in annotation(at the beginning or at the end)']
+                            whitespaceLabel = float(whitespaceLabel.replace(',','.'))
+                            whitespaceLabel = str((whitespaceLabel)).replace(',','.').replace("\r", "").replace("\n", "")
+                        except ValueError:
+                            whitespaceLabel = '-'
+                        
+                        try:
+                            datatypeProblem = df.iloc[0]['Triples with malformed data type literals problem']
+                            datatypeProblem = float(datatypeProblem.replace(',','.'))
+                            datatypeProblem = str((datatypeProblem)).replace(',','.').replace("\r", "").replace("\n", "")
+                        except ValueError:
+                            datatypeProblem = '-'
+                        
+                        labels = df.iloc[0]['Number of labels/comments present on the data']
+
+                        
+                        numDisjoint = df.iloc[0]['Entities as member of disjoint class']
+                        undefClass = df.iloc[0]['Undefined class used without declaration']
+                        undefProp = df.iloc[0]['Undefined properties used without declaration']
+                        deprecated = df.iloc[0]['Deprecated classes/properties used']
+                        hijacking = df.iloc[0]['Ontology Hijacking problem']
+                        misplacedP = df.iloc[0]['Triples with misplaced property problem']
+                        misplacedC = df.iloc[0]['Triples with misplaced class problem']
+                        
+                        try:
+                            misplacedP = float(misplacedP)
+                            misplacedP = str(misplacedP)
+                            misplacedP = misplacedP.replace(',','.').replace("\r", "").replace("\n", "")     
+                        except:
+                            misplacedP = '-'
+                        
+                        try:
+                            misplacedC = float(misplacedC)
+                            misplacedC = str(misplacedC)
+                            misplacedC = misplacedC.replace(',','.').replace("\r", "").replace("\n", "")    
+                        except:
+                            misplacedC = '-'
+
+                        try:
+                            undefClass = float(undefClass)
+                            undefClass = str(undefClass)
+                            undefClass = undefClass.replace(',','.').replace("\r", "").replace("\n", "")         
+                        except:
+                            undefClass = '-'
+                        
+                        try:
+                            undefProp = float(undefProp)
+                            undefProp = str(undefProp)
+                            undefProp = undefProp.replace(',','.').replace("\r", "").replace("\n", "")         
+                        except:
+                            undefProp = '-'
+                        
+                        try:
+                            deprecated = float(deprecated)
+                            deprecated = str(deprecated)
+                            deprecated = deprecated.replace(',','.').replace("\r", "").replace("\n", "")         
+                        except:
+                            deprecated = '-'
+                        
+                        try:
+                            numDisjoint = float(numDisjoint)
+                            numDisjoint = str(numDisjoint)
+                            numDisjoint = numDisjoint.replace(',','.').replace("\r", "").replace("\n", "")         
+                        except:
+                            numDisjoint = '-'
+                        
+
+                        pagerank = df.iloc[0]['PageRank']
+                        try:
+                            pagerank = str(pagerank)
+                            pagerank = pagerank.replace(',','.').replace("\r", "").replace("\n", "")
+                            pagerank = float(pagerank)
+                        except:
+                            pagerank = '-'
+                        
+                        vocabularies = df.iloc[0]['Vocabularies']
+                        if vocabularies != 'endpoint offline' and vocabularies != 'endpoint absent' and not 'Could' in vocabularies and not 'Error' in vocabularies and vocabularies != '[]':
+                            vocabularies = vocabularies.replace('[','').replace("\r", "").replace("\n", "")
+                            vocabularies = vocabularies.replace(']','')
+                            vocabularies = vocabularies.replace("'","")
+                            vocabularies = vocabularies.replace(',',';')
+                        elif vocabularies == '[]':
+                            vocabularies = 'Not indicated'
+                        
+                        author = df.iloc[0]['Author (metadata)']
+                        if author == 'False':
+                            author = df.iloc[0]['Author (query)']
+                            if author != 'endpoint offline' and author != 'endpoint absent' and not 'Could' in author and not 'Error' in author and author != '[]':
+                                author = author.replace('[','').replace("\r", "").replace("\n", "")
+                                author = author.replace(']','')
+                                author = author.replace("'","")
+                                author = author.replace(',',';')
+                            elif author == '[]':
+                                author = 'Not indicated'
+                        else:
+                            author = str(author)
+                            author = author.replace(',',';')
+
+                        publisher = df.iloc[0]['Publisher']
+                        publisher = str(publisher)
+                        if publisher == '[]':
+                            publisher = 'Not indicated'
+                        else:
+                            publisher = publisher.replace('[','')
+                            publisher = publisher.replace(']','')
+                            publisher = publisher.replace("'","")
+                            publisher = publisher.replace(',',';').replace("\r", "").replace("\n", "")
+
+
+                        contributor = df.iloc[0]['Contributor']
+                        contributor = str(contributor)
+                        if contributor == '[]':
+                            contributor = 'Not indicated'
+                        else:
+                            contributor = contributor.replace('[','')
+                            contributor = contributor.replace(']','')
+                            contributor = contributor.replace("'","")
+                            contributor = contributor.replace(',',';').replace("\r", "").replace("\n", "")
+                        
+                        
+                        sources = df.iloc[0]['Sources']
+                        sources = str(sources)
+                        sources = sources.replace(',',';').replace("\r", "").replace("\n", "")
+
+                        
+                        signed = df.iloc[0]['Signed']     
+                        
+                        
+                        creationDate = df.iloc[0]['Creation date']
+                        if creationDate == 'absent':
+                            creationDate = 'Not indicated'
+                        else:
+                            try:
+                                datetime.strptime(creationDate,'%Y-%m-%d')
+                            except:
+                                creationDate = '-'
+                        
+                        modificationDate = df.iloc[0]['Modification date']
+                        if modificationDate == 'absent':
+                            modificationDate = 'Not indicated'
+                        else:
+                            try:
+                                datetime.strptime(modificationDate,'%Y-%m-%d')
+                            except:
+                                modificationDate = '-'
+                        
+                        triplesUpdated = df.iloc[0]['Number of triples updated']
+                        
+                        try:
+                            triplesUpdated = int(triplesUpdated)
+                        except:
+                            triplesUpdated = 'insufficient data'
+                        
+                        
+                        lastModification = df.iloc[0]['Time elapsed since last modification']
+                        try:
+                            lastModification = int(lastModification)
+                        except:
+                            lastModification = 'insufficient data'
+                        
+                        frequency = df.iloc[0]['Dataset update frequency']
+                        frequency = str(frequency)
+                        if frequency == '[]':
+                            frequency = 'not indicated'
+                        else:
+                            frequency = str(frequency)
+                            frequency = frequency.replace(',',';')
+                            frequency = frequency.replace('[','')
+                            frequency = frequency.replace(']','')
+                            frequency = frequency.replace("'",'').replace("\r", "").replace("\n", "")
+                            
+                        exC = df.iloc[0]['Extensional conciseness']
+                        intC = df.iloc[0]['Intensional conciseness']
+
+                        interCompl = df.iloc[0]['Interlinking completeness']
+                        numTriplesLinked = df.iloc[0]['Number of triples linked']
+
+                        numEntities = df.iloc[0]['Number of entities']
+                        try:
+                            numEntities = int(numEntities)
+                        except:
+                            numEntities = df.iloc[0]['Number of entities counted with regex']
+
+                        numProperty = df.iloc[0]['Number of property']
+
+                        minLS = df.iloc[0]['Min length URIs (subject)']
+                        percentile25LS = df.iloc[0]['25th percentile length URIs (subject)']
+                        medianLS = df.iloc[0]['Median length URIs (subject)']
+                        percentile75LS = df.iloc[0]['75th percentile length URIs (subject)']
+                        maxLS = df.iloc[0]['Max length URIs (subject)']
+                        minLS = str(minLS)
+                        percentile25LS = str(percentile25LS)
+                        medianLS = str(medianLS)
+                        percentile75LS = str(percentile75LS)
+                        maxLS = str(maxLS)
+                        minLS = minLS.replace(',','.')
+                        percentile25LS = percentile25LS.replace(',','.').replace("\r", "").replace("\n", "")
+                        medianLS = medianLS.replace(',','.')
+                        percentile75LS = percentile75LS.replace(',','.').replace("\r", "").replace("\n", "")
+                        maxLS = maxLS.replace(',','.')
+
+
+                        minLP = df.iloc[0]['Min length URIs (predicate)']
+                        percentile25LP = df.iloc[0]['25th percentile length URIs (predicate)']
+                        medianLP = df.iloc[0]['Median length URIs (predicate)']
+                        percentile75LP = df.iloc[0]['75th percentile length URIs (predicate)']
+                        maxLP = df.iloc[0]['Max length URIs (predicate)']
+                        minLP = str(minLP)
+                        percentile25LP = str(percentile25LP)
+                        medianLP = str(medianLP)
+                        percentile75LP = str(percentile75LP)
+                        maxLP = str(maxLP)
+                        minLP = minLP.replace(',','.')
+                        percentile25LP = percentile25LP.replace(',','.').replace("\r", "").replace("\n", "")
+                        medianLP = medianLP.replace(',','.')
+                        percentile75LP = percentile75LP.replace(',','.').replace("\r", "").replace("\n", "")
+                        maxLP = maxLP.replace(',','.')
+
+                        minLO = df.iloc[0]['Min length URIs (object)']
+                        percentile25LO = df.iloc[0]['25th percentile length URIs (object)']
+                        medianLO = df.iloc[0]['Median length URIs (object)']
+                        percentile75LO = df.iloc[0]['75th percentile length URIs (object)']
+                        maxLO = df.iloc[0]['Max length URIs (object)']
+                        minLO = str(minLO)
+                        percentile25LO = str(percentile25LO)
+                        medianLO = str(medianLO)
+                        percentile75LO = str(percentile75LO)
+                        maxLO = str(maxLO)
+                        minLO = minLO.replace(',','.')
+                        percentile25LO = percentile25LO.replace(',','.').replace("\r", "").replace("\n", "")
+                        medianLO = medianLO.replace(',','.').replace("\r", "").replace("\n", "")
+                        percentile75LO = percentile75LO.replace(',','.').replace("\r", "").replace("\n", "")
+                        maxLO = maxLO.replace(',','.').replace("\r", "").replace("\n", "")
+
+                        newVocabs = df.iloc[0]['New vocabularies defined in the dataset']
+                        if newVocabs == '[]':
+                            newVocabs = 'No new vocabulary defined'
+                        else:
+                            newVocabs = newVocabs.replace('[','')
+                            newVocabs = newVocabs.replace(']','')
+                            newVocabs = newVocabs.replace("'","")
+                            newVocabs = newVocabs.replace(',',';').replace("\r", "").replace("\n", "")
+            
+                        newTerms = df.iloc[0]['New terms defined in the dataset']
+                        if newTerms == '[]':
+                            newTerms = 'No new term defined'
+                        else:
+                            newTerms = newTerms.replace('[','')
+                            newTerms = newTerms.replace(']','')
+                            newTerms = newTerms.replace("'","")
+                            newTerms = newTerms.replace(',',';').replace("\r", "").replace("\n", "")
+
+                        numLabel = df.iloc[0]['Number of labels/comments present on the data']
+                        regexUri = df.iloc[0]['Regex uri']
+                        regexUri = str(regexUri)
+                        if regexUri == '[]':
+                                regexUri = 'No regex provided'
+                        else:
+                            regexUri = regexUri.replace('[','')
+                            regexUri = regexUri.replace(']','')
+                            regexUri = regexUri.replace("'","")
+                            regexUri = regexUri.replace(',',';').replace("\r", "").replace("\n", "")
+                        
+                        example = df.iloc[0]['Presence of example']
+
+                        blankNodes = df.iloc[0]['Number of blank nodes']
+                        try:
+                            blankNodes = int(blankNodes)
+                        except:
+                            blankNodes = str(blankNodes).replace("\r", "").replace("\n", "")
+                        
+                        rdfS = df.iloc[0]['Uses RDF structures']
+                        formats = df.iloc[0]['Serialization formats']
+                        formats = str(formats)
+                        if formats == '[]':
+                            'No serialization format found'
+                        else:
+                            formats = formats.replace('[','')
+                            formats = formats.replace(']','')
+                            formats = formats.replace("'","")
+                            formats = formats.replace(',',';').replace("\r", "").replace("\n", "")
+                        
+                        languages = df.iloc[0]['Languages (query)']
+                        languages = str(languages)
+                        if languages == '[]':
+                            'No language indicated'
+                        else:
+                            languages = languages.replace('[','')
+                            languages = languages.replace(']','')
+                            languages = languages.replace("'","")
+                            languages = languages.replace(',',';').replace("\r", "").replace("\n", "")
+                        
+                        linkSparql = df.iloc[0]['SPARQL endpoint URL']
+                        linkSparql = str(linkSparql)
+                        if linkSparql == '':
+                            linkSparql = 'Not provided'
+                        
+                        linkDump = df.iloc[0]['URL for download the dataset']
+                        linkDump = str(linkDump)
+                        if linkDump == '[]':
+                            linkDump = 'Not provided'
+                        else:
+                            linkDump = linkDump.replace('[','')
+                            linkDump = linkDump.replace(']','')
+                            linkDump = linkDump.replace("'","")
+                            linkDump = linkDump.replace(',',';').replace("\r", "").replace("\n", "")
+                        
+                        
+                        historicalUp = df.iloc[0]["Historical updates"]
+                        historicalUp = str(historicalUp)
+                        if historicalUp == '[]':
+                            historicalUp = 'Insufficient data'
+                        else:
+                            historicalUp = historicalUp.replace('[','')
+                            historicalUp = historicalUp.replace(']','')
+                            historicalUp = historicalUp.replace("'","")
+                            historicalUp = historicalUp.replace(',',';').replace("\r", "").replace("\n", "")
+                        
+                        try:
+                            FPvalue = df.iloc[0]['Functional properties with inconsistent values']
+                            FPvalue = float(FPvalue.replace(',','.'))
+                            FPvalue = str((FPvalue)).replace(',','.').replace("\r", "").replace("\n", "")
+                        except:
+                            FPvalue = '-'
+                        
+                        try:
+                            IFPvalue = df.iloc[0]['Invalid usage of inverse-functional properties']
+                            IFPvalue = float(IFPvalue.replace(',','.'))
+                            IFPvalue = str((IFPvalue)).replace(',','.').replace("\r", "").replace("\n", "")
+                        except:
+                            IFPvalue = '-'
+                    
+                        score = str(df.iloc[0]['Score'])
+                        normalizedS = str(df.iloc[0]['Normalized score'])
+                        normalizedS = normalizedS.replace(',','.')
+                        score = score.replace(',','.')   
+                        limited = df.iloc[0]['Limited']
+
+                        try:
+                            inactiveLinks = df.iloc[0]['Inactive links']
+                        except:
+                            inactiveLinks = '-'
+
+                        idForTxt = newFilename
+                        nameForTxt = name
+
+                        writer.writerow([filename,endpoint,dump,licenseMRM,licenseHR,name,description,url,provList,trustValue,dC,ccl,centrlity,sameAs,numTriples,newFilename,minL,percentile25L,medianL,percentile75L,maxL,
+                                        minT,percentile25T,medianT,percentile75T,maxT,auth,https,formats,languages,linkSparql,linkDump,voidLabel,whitespaceLabel,datatypeProblem,labels,numDisjoint,undefClass,undefProp,deprecated,hijacking,misplacedP,misplacedC,
+                                        pagerank,vocabularies,author,publisher,contributor,sources,signed,frequency,creationDate,modificationDate,triplesUpdated,lastModification,exC,intC,interCompl,numTriplesLinked,numEntities,numProperty,
+                                        minLS,percentile25LS,medianLS,percentile75LS,maxLS,minLP,percentile25LP,medianLP,percentile75LP,maxLP,minLO,percentile25LO,medianLO,percentile75LO,maxLO,newVocabs,newTerms,numLabel,regexUri,example,blankNodes,rdfS,historicalUp,score,normalizedS,FPvalue,IFPvalue,limited,licenseMRQ,inactiveLinks])
+                #USED TO NOT LOAD ALL CSV IN THE JS VISUALIZATION
+                idname = idForTxt + ' ' + nameForTxt + ' ' + normalizedS
+                idNameLi.append(idname)
+
+
+        #STORE THE TXT FILE WITH THE ID OF KNOWLEDGE GRAPH ANALYZED (FOR JS)
+        save_path = os.path.join(here,'./Graphs Visualization JS')
+        completeName = os.path.join(save_path, "KGid.txt")
+        fileNames.sort()
+        with open(completeName,'w', encoding="utf-8") as f:
+            for idname in idNameLi:
+                f.write(idname)
+                f.write('\n')
+    
+        #utils.enableNewData()
+
+'''
+    def pushCSV():
+        here = os.path.dirname(os.path.abspath(__file__))
+        csvJS = os.path.join(here,'./Graphs Visualization JS/CSVforJS')
+        p = Path(csvJS)
+        files = list(p.glob('*.csv'))
+        headers =  {'Authorization' : 'token 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'}
+
+        for file in files:
+            filename = str(file.stem)
+            save_path = os.path.join(here,'./Graphs Visualization JS/CSVforJS')
+            save_path = os.path.join(save_path, filename+".csv")    
+            fullName = filename + '.csv'
+            
+            r = requests.get('https://api.github.com/repos/GabrieleT0/KG-Quality-analysis-visualization/contents/CSVforJS/%s'%fullName,headers=headers)
+            result = r.json()
+            sha = result.get('sha')
+
+            data = {'message': 'committing file', 'sha': sha, 'branch': 'main'}
+            try:
+                r = requests.delete('https://api.github.com/repos/GabrieleT0/KG-Quality-analysis-visualization/contents/CSVforJS/%s'%fullName,headers=headers,json=data)
+                print(r.status_code)
+                print(r.json())
+                print("%s DELETED"%filename)
+            except Exception as e:
+                print("%s ERROR %s"%(filename,e))
+
+        for file in files:
+            filename = str(file.stem)
+            save_path = os.path.join(here,'./Graphs Visualization JS/CSVforJS')
+            save_path = os.path.join(save_path, filename+".csv")    
+            fullName = filename + '.csv'
+            with open(save_path,'rb') as csv:
+                content = str(base64.b64encode(csv.read()), encoding='utf8')
+                data = {'message': 'committing file', 'content': content}
+                try:
+                    r = requests.put('https://api.github.com/repos/GabrieleT0/KG-Quality-analysis-visualization/contents/CSVforJS/%s'%fullName,headers=headers,json=data)
+                    print(r.status_code)
+                    print(r.json())
+                    print("%s CREATED"%filename)
+                except Exception as e:
+                    print("%s ERROR %s"%(filename,e))
+    
+    def pushKGid():
+        here = os.path.dirname(os.path.abspath(__file__))
+        save_path = os.path.join(here,'./Graphs Visualization JS')
+        save_path = os.path.join(save_path,'KGid.txt')
+        headers =  {'Authorization' : 'token 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'}
+        r = requests.get('https://api.github.com/repos/GabrieleT0/KG-Quality-analysis-visualization/contents/KGid.txt',headers=headers)
+        result = r.json()
+        sha = result.get('sha')
+        
+        
+        data = {'message': 'committing file','sha': sha, 'branch': 'main'}
+        try:
+            r = requests.delete('https://api.github.com/repos/GabrieleT0/KG-Quality-analysis-visualization/contents/KGid.txt',headers=headers,json=data)
+            print(r.status_code)
+            print(r.json())
+            print("KGid.txt DELETED")
+        except Exception as e:
+            print("KGid.txt ERROR %s"%e)
+        
+        with open(save_path,'rb') as f:
+            content = str(base64.b64encode(f.read()), encoding='utf8')
+            data = {'message': 'committing file', 'content': content}
+            try:
+                r = requests.put('https://api.github.com/repos/GabrieleT0/KG-Quality-analysis-visualization/contents/KGid.txt',headers=headers,json=data)
+                print(r.status_code)
+                print(r.json())
+                print("KGid.txt CREATED")
+            except Exception as e:
+                print("KGid.txt DELETED %s"%e)
+'''
+

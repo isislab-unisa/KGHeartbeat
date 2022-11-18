@@ -1,0 +1,1 @@
+[["bio2rdf-wormbase", "bio2rdf-affymetrix"], ["bio2rdf-wormbase", "bio2rdf-bioportal"], ["bio2rdf-wormbase", "bio2rdf-gendr"], ["bio2rdf-wormbase", "bio2rdf-pubmed"], ["bio2rdf-wormbase", "bio2rdf-go"], ["bio2rdf-wormbase", "bio2rdf-eco"], ["bio2rdf-wormbase", "bio2rdf-taxonomy"], ["bio2rdf-wormbase", "bio2rdf-wormbase"], ["bio2rdf-wormbase", "bio2rdf-wbphenotype"]]

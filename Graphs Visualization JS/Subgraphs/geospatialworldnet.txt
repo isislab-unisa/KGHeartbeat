@@ -1,0 +1,1 @@
+[["geospatialworld-net", "dbpedia"], ["geospatialworld-net", "freebase"], ["geospatialworld-net", "geonames-semantic-web"], ["geospatialworld-net", "yago"], ["geospatialworld-net", "wikidata"]]
