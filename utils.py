@@ -986,6 +986,7 @@ def removeProblematicEndpoint(kgs):
     kgs.remove('uniprot-unipathway')
     kgs.remove('uniprotkb')
     kgs.remove('uniref')
+    kgs.remove('data-open-ac-uk')
 
 def enableForDownload(filename):
     here = os.path.dirname(os.path.abspath(__file__))

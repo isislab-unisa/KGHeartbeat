@@ -1068,11 +1068,10 @@ def analyses(idKG):
             signedKG = 'Could not process formulated query on indicated endpoint'
 
         #CHECK THE URIs DEFERENTIABILITY (TEST MADE ON 5000 TRIPLES SELECTED RANDOMLY)
-        '''
         try:
             defCount = 0
             uriCount = 0
-            uris = Query.getUris(accessUrl) #QUERY THAT GET 5000 RANDOM URI FROM THE ENDPOINT 
+            uris = query.getUris(accessUrl) #QUERY THAT GET 5000 RANDOM URI FROM THE ENDPOINT 
             for uri in uris:
                 if utils.checkURI(uri) == True:
                     uriCount = uriCount + 1
@@ -1104,10 +1103,9 @@ def analyses(idKG):
                 if uriCount > 0:
                     defValue = defCount / uriCount
                 else:
-                    defValue = 'No uri found'
+                    defValue = 'No uris found'
             except:
                 defValue = 'Could not process formulated query on indicated endpoint'
-        '''
                 
     #IF SPARQL ENDPOINT ISN'T AVAILABLE WE SKIP ALL TEST WITH THE SPARQL QUERY
     else:
@@ -1304,7 +1302,7 @@ def analyses(idKG):
         nameKG = ''
     
     if available == True:
-        availability = Availability(endpoint,availableDownload,availableDump,inactiveLink,0)
+        availability = Availability(endpoint,availableDownload,availableDump,inactiveLink,defValue)
         performance = Performance(minL,maxL,av,standardDeviation,percentile25L,percentile75L,medianL,minThroughput,maxThroughput,averageThroughput,standardDeviationT,percentile25T,percentile75T,medianT)
         amount = QualityDimensions.AmountOfData.AmountOfData(triplesM,triplesQuery,numEntities,numProperty,entitiesRe)
         volatility = Volatility(frequency)
