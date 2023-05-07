@@ -1,7 +1,7 @@
 import requests
 
 def getMetadati(idKG):
-    url = 'https://kgs-search-engine.herokuapp.com/brutalSearch?keyword=%s'%idKG
+    url = 'https://kgs-search-engine.com/brutalSearch?keyword=%s'%idKG
     try:
         response = requests.get(url)    
         if response.status_code == 200:
@@ -16,7 +16,7 @@ def getMetadati(idKG):
         return False
 
 def getAllKg():
-    url = 'https://kgs-search-engine.herokuapp.com/brutalSearch?keyword='
+    url = 'https://kgs-search-engine.com/brutalSearch?keyword='
     try:
         response = requests.get(url)    
         if response.status_code == 200:
@@ -47,7 +47,7 @@ def getNameKG(metadata):
         return False
 
 def getIdByName(keyword):
-    url = 'https://kgs-search-engine.herokuapp.com/brutalSearch?keyword=%s'%keyword
+    url = 'https://kgs-search-engine.com/brutalSearch?keyword=%s'%keyword
     try:
         response = requests.get(url)    
         if response.status_code == 200:
