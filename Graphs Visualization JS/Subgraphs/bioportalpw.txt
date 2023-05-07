@@ -1,0 +1,1 @@
+[["bioportal-pw", "bioportal-cco"], ["bioportal-pw", "bioportal-go_x1"], ["bioportal-pw", "bioportal-go_x2"], ["bioportal-pw", "bioportal-iev"], ["bioportal-pw", "bioportal-mesh-owl"], ["bioportal-pw", "bioportal-msh"], ["bioportal-pw", "bioportal-ncit"], ["bioportal-pw", "bioportal-nif"], ["bioportal-pw", "bioportal-rs"]]

@@ -1,0 +1,1 @@
+[["kupkb", "uniprotkb"], ["kupkb", "bio2rdf-genbank"]]

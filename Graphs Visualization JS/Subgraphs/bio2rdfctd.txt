@@ -1,0 +1,1 @@
+[["bio2rdf-ctd", "bio2rdf-pubmed"], ["bio2rdf-ctd", "bio2rdf-ncbigene"], ["bio2rdf-ctd", "bio2rdf-omim"], ["bio2rdf-ctd", "bio2rdf-taxonomy"], ["bio2rdf-ctd", "bio2rdf-mesh"], ["bio2rdf-ctd", "bio2rdf-reactome"], ["bio2rdf-ctd", "bio2rdf-pharmgkb"]]

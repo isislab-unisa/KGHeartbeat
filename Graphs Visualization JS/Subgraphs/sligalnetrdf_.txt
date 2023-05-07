@@ -1,1 +1,0 @@
-[["sli_galnet_rdf", "lemonuby"], ["sli_galnet_rdf", "wordnet-rdf"]]

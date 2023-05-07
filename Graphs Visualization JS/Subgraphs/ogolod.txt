@@ -1,0 +1,1 @@
+[["ogolod", "bio2rdf-chebi"], ["ogolod", "bio2rdf-omim"]]
