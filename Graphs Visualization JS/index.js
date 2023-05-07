@@ -1,6 +1,18 @@
 function passValue(x,metric) {
 	var m = metric
   	var a = x;
+	idKG = x
+	m = document.querySelector('input[type="radio"][name="metric"]:checked')
+	elements = document.getElementsByClassName("KGbutton")
+    for(var i = 0; i< elements.length;i++){
+        elements[i].style.backgroundColor = "white"
+        elements[i].style.color = "black"
+        addClick(elements[i])
+    }
+    li = document.getElementById(x)
+    li.style.backgroundColor = "#00ea89cc"
+    li.style.color = "white"
+    li.style.borderRadius = "5px"
   	if(m == null){ //IF NO METRIC SELECTED, AVAILABILITY IS SHOWN BY DEFAULT
     	Highcharts.chart({
       		chart:{
@@ -104,12 +116,12 @@ function passValue(x,metric) {
 							measurements.push(data)
 							dataRDF = [date_utc,parseInt(line[2])]
 							measurementsRDF.push(dataRDF)
-							dataDef = [date_utc,parseFloat(parseFloat(line[89]).toFixed(2))]
+							dataDef = [date_utc,parseFloat(parseFloat(line[91]).toFixed(2))]
 							measurementsDef.push(dataDef)
-						}			
+						}		
 						Highcharts.chart({ //CHART FOR SPARQL ENDPOINT AVAILABILITY
 							chart:{
-								type : 'line',
+								type : 'spline',
 								renderTo: 'container',
 							},
 							title: {
@@ -120,7 +132,7 @@ function passValue(x,metric) {
 								text: 'Availability of SPARQL endpoint',
 								},
 							subtitle: {
-								text:'<a href="'+linkSparql+' target="_blank"">'+linkSparql+'</a>',
+								text:'<a href="'+linkSparql+'">'+linkSparql+'</a>',
 								style:{
 									fontSize:'20px'
 								}
@@ -129,6 +141,8 @@ function passValue(x,metric) {
 								type:'datetime',
 							},
 							yAxis: {
+								min: -1,
+								max: 1,
 								allowDecimals: false,
 								title: {
 									text: 'Status'
@@ -199,6 +213,8 @@ function passValue(x,metric) {
 								}
 							},
 							yAxis: {
+								min: -1,
+								max: 1,
 								title: {
 									text: 'Status'
 								}
@@ -345,10 +361,10 @@ function passValue(x,metric) {
 						header3.innerHTML = 'License human-redeable'
 						licenseMR.innerHTML = lastLine[3]
 						licenseHR.innerHTML = lastLine[4]
-						if (lastLine[90] == '[]')
+						if (lastLine[89] == '[]')
 							licenseMr.innerHTML = 'Not indicated'
 						else
-							licenseMr.innerHTML = lastLine[90]
+							licenseMr.innerHTML = lastLine[89]
       				}
     			})
   				break;
@@ -441,118 +457,56 @@ function passValue(x,metric) {
 				document.getElementById(`intPie`).style.display = 'block';
 				document.getElementById(`tableInt`).style.display = 'block';
 				document.getElementById(`wrap-tbInt`).style.display = 'block';
-<<<<<<< HEAD
-=======
-    			if(document.getElementById('all').checked){
-      				$(document).ready(function() {
-        				$.ajax({
-							type: "GET",
-							url: 'subGraph.json',
-							dataType: "text",
-							success: function(data) {processData(data)}
-						});
-        				function processData(data){
-							const obj = JSON.parse(data);
-							linksArr = obj.links
-							data = []
-							linksArr.forEach(function(point){  //BUILDING ARRAY WITH DATA FOR GRAPH
-								data.push([point.source,point.target])
-							});
-            				
-							Highcharts.chart({ //CHART WITH ALL KG FOUND BY THE INPUT
-								chart:{
-									type : 'networkgraph',
-									renderTo: 'interlinking',
-								},
-								title: {
-									style:{
-										fontSize:'30px',
-										fontWeight:'bold'
-									},
-									text: 'External links',
-								},
-								subtitle: {
-									text:a,
-									style:{
-										fontSize:'24px'
-									}
-								},
-								plotOptions: {
-									networkgraph: {
-										keys: ['from', 'to'],
-										layoutAlgorithm: {
-											//enableSimulation: true,
-											//friction: -0.9
-										}
-									}
-								},
-								series: [{
-									dataLabels: {
-										enabled: true,
-										linkFormat: ''
-									},
-									id: 'Graph',
-									marker: {
-										radius: 20
-									},
-									data: data,
-								}]
-							});
-						}
+				$(document).ready(function() {
+					$.ajax({
+						type: "GET",
+						url: './Subgraphs/'+a+'.txt',
+						dataType: "text",
+						success: function(data) {processData(data)}
 					});
-				} 
-				else {
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
-					$(document).ready(function() {
-      					$.ajax({
-							type: "GET",
-							url: './Subgraphs/'+a+'.txt',
-							dataType: "text",
-							success: function(data) {processData(data)}
-      					});
-      					function processData(data){  //CHART FOR EXTERNAL LINKS 
-        					var json = JSON.parse("[" + data + "]" )
-							Highcharts.chart({
-								chart:{
-									type : 'networkgraph',	
-									renderTo: 'interlinking',
+					function processData(data){  //CHART FOR EXTERNAL LINKS 
+						var json = JSON.parse("[" + data + "]" )
+						Highcharts.chart({
+							chart:{
+								type : 'networkgraph',	
+								renderTo: 'interlinking',
+							},
+							title: {
+								style:{
+									fontSize:'30px',
+									fontWeight:'bold'
 								},
-								title: {
-									style:{
-										fontSize:'30px',
-										fontWeight:'bold'
-									},
-									text: 'External links',
-								},
-								subtitle: {
-									text:a,
-									style:{
-										fontSize:'24px'
+								text: 'External links',
+							},
+							subtitle: {
+								text:a,
+								style:{
+									fontSize:'24px'
+								}
+							},
+							plotOptions: {
+								networkgraph: {
+									keys: ['from', 'to'],
+									layoutAlgorithm: {
+										enableSimulation: true,
+										friction: -0.9
 									}
+								}
+							},
+							series: [{
+								dataLabels: {
+									enabled: true,
+									linkFormat: ''
 								},
-								plotOptions: {
-									networkgraph: {
-										keys: ['from', 'to'],
-										layoutAlgorithm: {
-											enableSimulation: true,
-											friction: -0.9
-										}
-									}
+								id: 'Graph',
+								marker: {
+									radius: 20
 								},
-								series: [{
-									dataLabels: {
-										enabled: true,
-										linkFormat: ''
-									},
-									id: 'Graph',
-									marker: {
-										radius: 20
-									},
-									data: json[0],
-								}]
-							});
-  						}
-  					});
+								data: json[0],
+							}]
+						});
+					}
+				});
  
 				$(document).ready(function() {
 					$.ajax({
@@ -610,6 +564,33 @@ function passValue(x,metric) {
 									}
 								}
 							},
+							tooltip: {
+								formatter: function() {
+									for(var i = 0; i<fullName.length;i++){
+										id = fullName[i].trim().slice(0, fullName[i].indexOf(' '))
+										filename = this.point.name.replaceAll('[\\/*?:"<>|]','')
+										filename = filename.replaceAll('-','')
+										filename = filename.replaceAll(' ','')
+										filename = filename.toLowerCase()
+										if(id == filename){
+											name = fullName[i].trim().slice(fullName[i].indexOf(' '));
+											lastIndex = name.lastIndexOf(" ");
+											name = name.substring(0,lastIndex);
+											n = fullName[i].lastIndexOf(" ");
+											score = fullName[i].substring(n+1)
+											score = score.trim()
+											score = parseFloat(score)
+											var text = '<b>KG name:</b> ' + name + '<br>' 
+											//+'<b>Score:</b>' + score;
+											return text
+										}
+										else{
+											text = this.point.name	
+										}
+									}
+								  return text;
+								}
+							  },
 							series: [{
 								name: 'Data in the graph',
 								
@@ -627,6 +608,77 @@ function passValue(x,metric) {
 							]}]
 						});
 					}
+					Highcharts.addEvent(
+						Highcharts.Series,
+						'afterSetOptions',
+						function (e) {
+								let nodeCounts = {};
+								//count connections for each From or To node
+								e.options.data.forEach(function (link) {
+									nodeCounts[link[0]] = (nodeCounts[link[0]] || 0) + 1;
+									nodeCounts[link[1]] = (nodeCounts[link[1]] || 0) + 1;
+								});
+					
+								let radiusFactor = 3; //radius multiplier to graphically enlarge nodes
+								//map each nodeCount to a node object setting the radius
+					
+								$(document).ready(function() {
+									$.ajax({
+										type: "GET",
+										url: 'KGid.txt',
+										dataType: "text",
+										async: false,
+										success: function(data) {processData(data)}
+									});
+									function processData(data){
+										fullName = data.trim().split("\n");
+								}
+								e.options.nodes = Object.keys(nodeCounts).map(function (id) {      
+									for(var i = 0; i<fullName.length;i++){
+										idTxt = fullName[i].trim().slice(0, fullName[i].indexOf(' '))
+										filename = id.replaceAll('[\\/*?:"<>|]','')
+										filename = filename.replaceAll('-','')
+										filename = filename.replaceAll(' ','')
+										filename = filename.toLowerCase()
+										if(filename == idTxt){
+											n = fullName[i].lastIndexOf(" ");
+											score = fullName[i].substring(n+1)
+											score = score.trim()
+											score = parseFloat(score)
+											color = '#ccf9ff'
+											if(nodeCounts[id] <= 20){
+												color = '#ccf9ff'
+												break;
+											}
+											else if (nodeCounts[id] <= 40){
+												color = '#7ce8ff'
+												break;
+											}
+											else if(nodeCounts[id] <= 60){
+												color = '#55d0ff'
+												break;
+											}
+											else if(nodeCounts[id] <= 80){
+												color = '#00acdf'
+												break;
+											}
+											else if(nodeCounts[id] > 100){
+												color = '#0080bf'
+												break;
+											}
+										} else {
+											color = '#ccf9ff'
+										}
+									}
+									return {
+										id: id,
+										marker: { },
+										color: color
+									};
+							});
+							})
+						}    
+						);	
 				});
   				break;
 
@@ -1550,7 +1602,9 @@ function passValue(x,metric) {
 									},
 									text: lastLine[5]
 								},
-						
+								tooltip: {
+									shared: true,
+								},
 								rangeSelector: {
 									enabled:true
 								},
@@ -1842,6 +1896,7 @@ function passValue(x,metric) {
 								entities.push(data)
 								data = [date_utc,parseInt(line[60])]
 								properties.push(data)
+								console.log(entities,triples,properties);
 							}
               				Highcharts.chart({  //AMOUNT OF DATA CHART (CHANGE OVER TIME)
 								chart: {
@@ -1857,6 +1912,9 @@ function passValue(x,metric) {
 								}, 
 								rangeSelector: {
 									enabled:true
+								},
+								tooltip: {
+									shared: true,
 								},
 								xAxis: {
 									type:'datetime',
@@ -2027,7 +2085,7 @@ function passValue(x,metric) {
 							},     
 							legend: {
 								enabled: false
-							},        
+							},       
 							xAxis: {
 								type:'datetime',
 							},
@@ -2051,26 +2109,8 @@ function passValue(x,metric) {
 							series: [{
 								name: 'Observations',
 								data: lengthS,
-								tooltip: {
-									headerFormat: '<em>Date: {point.key}</em><br/>'
-								}
 								}, 
-								{
-								name: 'Outliers',
-								color: Highcharts.getOptions().colors[0],
-								type: 'scatter',
-								data: [ // x, y positions where 0 is the first category
-									
-								],
-								marker: {
-									fillColor: 'white',
-									lineWidth: 1,
-									lineColor: Highcharts.getOptions().colors[0]
-								},
-								tooltip: {
-									pointFormat: 'Observation: {point.y}'
-								}
-							}]
+							]
 						});
             			Highcharts.chart({
 							chart: {
@@ -2842,13 +2882,7 @@ function passValue(x,metric) {
 }
 
 function hideDiv(){
-<<<<<<< HEAD
-<<<<<<< HEAD
 	document.getElementById('containerDef').style.display = 'none'
-=======
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
-=======
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
 	document.getElementById('wrap-warning-conc').style.display = 'none'
 	document.getElementById('wrap-warning-cons').style.display = 'none'
 	document.getElementById('wrap-warning-acc').style.display = 'none'
@@ -3673,3 +3707,25 @@ function downloadFullCSV(id) {
 	a.click()
   }
   
+function myFunction() {
+	var input, filter, ul, li, a, i;
+	input = document.getElementById("mySearch");
+	filter = input.value.toUpperCase();
+	ul = document.getElementById("myMenu");
+	li = ul.getElementsByTagName("li");
+	for (i = 0; i < li.length; i++) {
+	  a = li[i].getElementsByTagName("button")[0];
+	  if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+		li[i].style.display = "";
+	  } else {
+		li[i].style.display = "none";
+	  }
+	}
+}
+
+function addClick(li){
+    li.addEventListener("click",function(){
+        li.style.backgroundColor = "#00ea89cc"
+        li.style.color = "white"
+    });
+}

@@ -8,19 +8,19 @@
 <body>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="http://code.highcharts.com/stock/highstock.js"></script>
-    <script src="http://code.highcharts.com/modules/exporting.js"></script>
-    <script src="http://code.highcharts.com/modules/offline-exporting.js"></script>
-    <script src="http://code.highcharts.com/modules/export-data.js"></script>
-    <script src="http://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/10.0.0/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/10.0.0/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/10.0.0/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/10.0.0/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/stock/10.0.0/modules/data.js"></script>
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-    <script src="https://code.highcharts.com/highcharts-more.js"></script>
-    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-    <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
+    <script src="https://code.highcharts.com/stock/10.0.0/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/stock/10.0.0/modules/solid-gauge.js"></script>
+    <script src="https://code.highcharts.com/stock/10.0.0/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/10.0.0/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/stock/10.0.0/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/stock/10.0.0/modules/networkgraph.js"></script>
     <script type="text/javascript" src="index.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
@@ -31,40 +31,48 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     
     
-    
-    <div class = 'wrapper' style="text-align: center; " >
-        <a href='compare.html' id="linkS"><button type="button" id='compare'>Compare analyzed KG </button></a><br>
-        <div class="custom-select">
-            <select id="selectKG" style="align-items: center;">
-                <option>Choose a KG</option>
-            </select>
+    <div class="row">
+        <div class="left">
+          <h2 id="titleMen">KGs analyzed</h2>
+          <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+          <ul id="specialBtn">
+            <li style="float:left ;"><a href='compare.html' id="linkS"><button type="button" id='compare'>Compare KGs </button></a></li>
+            <li><a href='#' id="linkD"><button id="downloadBtn" onclick="downloadFullCSV(idKG);">Download csv</button></a></li>
+          </ul>
+            <div id="wrapMenu">
+                <ul id="myMenu">
+                </ul>
+            </div>
         </div>
-        <button id="downloadBtn" onclick="downloadFullCSV(idKG);">Download csv</button>
-        <div id = 'metrics' style="align-items: center;">
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="score" name="metric" value="Score" checked><label for="score">Score</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="believ" name="metric" value="Believability" checked><label for="believ">Believability</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="av" name="metric" value="Availability" ><label for="av" >Availability</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="lic" name="metric" value="Licensing"> <label for="lic">Licensing</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="int" name="metric" value="Interlinking"> <label for="int">Interlinking-Reputation</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="sec" name="metric" value="Security"> <label for="sec">Security</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="perf" name="metric" value="Performance"> <label for="perf">Performance</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="acc" name="metric" value="Accuracy"> <label for="acc">Accuracy</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="cons" name="metric" value="Consistency"> <label for="cons">Consistency</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="verif" name="metric" value="Verifiability"> <label for="verif">Verifiability</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="vol" name="metric" value="Volatility"> <label for="vol">Volatility</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="curr" name="metric" value="Currency"> <label for="curr">Currency</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="con" name="metric" value="Conciseness"> <label for="con">Conciseness</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="com" name="metric" value="Completeness"> <label for="com">Completeness</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="amount" name="metric" value="Amount"> <label for="amount">Amount of data</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="repConc" name="metric" value="RepresentationalConciseness"> <label for="repConc">Representational conciseness</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="repCons" name="metric" value="RepresentationalConsistency"> <label for="repCons">Representational consistency</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="under" name="metric" value="Understendability"> <label for="under">Understendability</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="interp" name="metric" value="Interpretability"> <label for="interp">Interpretability</label></div>
-            <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="vers" name="metric" value="Versatility"> <label for="vers">Versatility</label></div>
+
+    <div class="right" style="width: 30%;">
+        <div class = 'wrapper' style="text-align: center; " >
+            <div id = 'metrics' style="align-items: center;">
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="score" name="metric" value="Score" checked><label for="score">Score</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="believ" name="metric" value="Believability" checked><label for="believ">Believability</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="av" name="metric" value="Availability" ><label for="av" >Availability</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="lic" name="metric" value="Licensing"> <label for="lic">Licensing</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="int" name="metric" value="Interlinking"> <label for="int">Interlinking-Reputation</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="sec" name="metric" value="Security"> <label for="sec">Security</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="perf" name="metric" value="Performance"> <label for="perf">Performance</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="acc" name="metric" value="Accuracy"> <label for="acc">Accuracy</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="cons" name="metric" value="Consistency"> <label for="cons">Consistency</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="verif" name="metric" value="Verifiability"> <label for="verif">Verifiability</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="vol" name="metric" value="Volatility"> <label for="vol">Volatility</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="curr" name="metric" value="Currency"> <label for="curr">Currency</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="con" name="metric" value="Conciseness"> <label for="con">Conciseness</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="com" name="metric" value="Completeness"> <label for="com">Completeness</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="amount" name="metric" value="Amount"> <label for="amount">Amount of data</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="repConc" name="metric" value="RepresentationalConciseness"> <label for="repConc">Representational conciseness</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="repCons" name="metric" value="RepresentationalConsistency"> <label for="repCons">Representational consistency</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="under" name="metric" value="Understendability"> <label for="under">Understendability</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="interp" name="metric" value="Interpretability"> <label for="interp">Interpretability</label></div>
+                <div class='input-radio'><input type="radio" onclick="passValue(idKG,this);" id="vers" name="metric" value="Versatility"> <label for="vers">Versatility</label></div>
+            </div>
         </div>
-    </div>
     
     <script>
+    var metric = document.querySelector('input[name="metric"]:checked');
     //AUTOMATIC OPTIONS LIST POPULATION WITH KG ANALYZED
     var ids = [];
     var xmlhttp;
@@ -80,43 +88,32 @@
         fullName = text.trim().split("\n");
         ids = []
         names = []
-        nscore = []
         for(var i = 0; i<fullName.length;i++){
-            id = fullName[i].trim().slice(0, fullName[i].indexOf(' '))
+            id = fullName[i].trim().slice(0, fullName[i].indexOf(' '));
             ids.push(id)
-            name = fullName[i].trim().slice(fullName[i].indexOf(' '));
+            name = fullName[i].trim().slice(fullName[i].indexOf(' ') + 1);
             lastIndex = name.lastIndexOf(" ");
             name = name.substring(0,lastIndex)
+            if(name == 'nan')
+                name = id.substring(0,53);
             names.push(name.trim())
-            score = fullName[i].match(/[0-9]+/g)
-            nscore.push(score[0])
         }
-        console.log(nscore)
-        var select = document.getElementById("selectKG");
+        var select = document.getElementById("myMenu");
         for(var i = 0; i < ids.length; i++) {
-            var el = document.createElement("option");
-            el.textContent = names[i];
-            el.value = ids[i];
-            select.appendChild(el);
-            var checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-<<<<<<< HEAD
-            checkbox.value = ids[i]
-            checkbox.name = ids[i]
-            checkbox.id = ids[i]
-=======
-            checkbox.value = id
-            checkbox.name = id
-            checkbox.id = id
-<<<<<<< HEAD
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
-=======
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
-            var label = document.createElement('Label')
-            label.htmlFor = ids[i]
-            label.appendChild(document.createTextNode(ids[i]))
-            var br = document.createElement('br')
-            checkbox.appendChild(label)
+            name = names[i]
+            id = ids[i]
+            var el = document.createElement("li");
+            var button = document.createElement('button')
+            button.textContent = name;
+            button.value = id;
+            button.innerHTML = name
+            button.id = id
+            button.className = 'KGbutton'
+            button.onclick = function(){
+              passValue(this.value,metric)
+            }
+            el.appendChild(button)
+            select.appendChild(el)
         }
         //By default at firt visit on the page is shown the first kg in the list and the believability dimension
         d = document.createElement('button')
@@ -127,7 +124,7 @@
 }
     xmlhttp.open("GET", "KGid.txt", true);
     xmlhttp.send();
-    console.log(document.getElementById('selectKG'))
+    console.log(document.getElementById('myMenu'))
     function KGname(id){
         $.get('./CSVforJS/'+id+'.csv', function(data) {
             var lines = data.trim().split('\n');
@@ -136,30 +133,10 @@
          
     });
     }
-    var select = document.getElementById('selectKG');
-    select.addEventListener("change",function() {
-    var metric = document.querySelector('input[name="metric"]:checked');
-    idKG = this.value
-    passValue(this.value,metric);
-    });
-    const radioButtons = document.getElementById('metrics').querySelectorAll('input[type="radio"][name="metric"]');
-    var select = document.getElementById('selectKG');
-    select.addEventListener("change",function() {
-    idKG = this.value;
-    });
-    
     </script>
-<<<<<<< HEAD
-<<<<<<< HEAD
     <div id="container" style="width:100%; margin-top: 10px;"></div>
     <div id="container2" style="width:100%;  margin-top: 60px;"></div>
     <div id="containerDef" style="width: 100%; display:none; margin-top: 60px;"></div>
-=======
-=======
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
-    <div id="container" style="width:100%; float: left; margin-top: 10px;"></div>
-    <div id="container2" style="width:100%; float: left; margin-top: 85px;"></div>
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
     <div id="containerLicense"style='display: none;'>
         <table class='center' id="license">
             <tr>
@@ -176,15 +153,7 @@
         <script> var m = document.querySelector('input[name="metric"]:checked');</script>
        <!-- <button id='export-btnLic' onclick="exportTableToCSV(idKG+' - licensing.csv','license')"><img src="img/csv-ico.png" width="60" height="60"/></button> -->
     </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
     <div id="containerBeliev" style='width:100%; display: none;'> 
-=======
-    <div id="containerBeliev" style='display: none;'> 
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
-=======
-    <div id="containerBeliev" style='display: none;'> 
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
 
     </div>
     <table id="reliablePr">
@@ -213,28 +182,20 @@
     <div id="mode" style='display: none; margin-left: 15px; margin-bottom: 20px; '>
         <button id='hiddenB1' type="button" value="Interlinking" style='display: none;'>Interlinking</button>
         <script>int = document.getElementById('hiddenB1')</script>
-        <div class='input-radio' style="display: none;"><input type="radio"  onclick="passValue(idKG,int);" id="byId"  name="int" value="byId" checked ><label for="byId">Only selected KG</label></div>
+        <div class='input-radio' style="display:none ;"><input type="radio"  onclick="passValue(idKG,int);" id="byId"  name="int" value="byId" checked ><label for="byId">Only selected KG</label></div>
     </div>
  
-    <div id="interlinking" style='display: none; width: 60%; height:70% ;float: left;' ></div>
+    <div id="interlinking" style='display: none; width: 60%;float: left;' ></div>
     <div id="intPie" style="display: none; width: 40%; float: left;"></div>
     <div id="wrap-tbInt" style="display: none;">
-    <table id="tableInt" style=" margin-top:80px; ">
+    <table id="tableInt">
             <tr>
                 <th>Degree of connection</th>
                 <th>Clustering coefficient</th>
                 <th>Centrality</th>
                 <th>PageRank</th>
                 <th>
-<<<<<<< HEAD
-<<<<<<< HEAD
                     <a href="#popupInter" class="wrapHelp"><img src="img/ask.png" width="43" height="43"/></a>
-=======
-                    <a href="#popupInter" class="btn btn-primary btn-circle btn-xl" >?</a>
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
-=======
-                    <a href="#popupInter" class="btn btn-primary btn-circle btn-xl" >?</a>
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
                 </th>
             </tr>
             <tr>
@@ -314,15 +275,7 @@
                 <th>Entities as member of disjoint class</th>
                 <th>Ontology hijacking</th>
                 <th>
-<<<<<<< HEAD
-<<<<<<< HEAD
                     <a href="#popupCons" class="wrapHelp" ><img src="img/ask.png" width="43" height="43"/></a>
-=======
-                    <a href="#popupCons" class="btn btn-primary btn-circle btn-xl" >?</a>
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
-=======
-                    <a href="#popupCons" class="btn btn-primary btn-circle btn-xl" >?</a>
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
                 </th>
             </tr>
             <tr>
@@ -347,7 +300,7 @@
             </div>
         </div>
     
-    <div id="verifiability" style="display: none; margin-top: 50px; margin-left: 10px; overflow-x:auto; text-align: center;">
+    <div id="verifiability" style="margin-top: 35px; display: none">
         <table id="tableVer" class="center" height="500px">
             <tr>
                 <th>KG name</th>
@@ -460,15 +413,7 @@
                 <th>Percentage of triples linked</th>
                 <th>Interlinking completeness </th>
                 <th>
-<<<<<<< HEAD
-<<<<<<< HEAD
                     <a href="#popupCompl" class="wrapHelp"><img src="img/ask.png" width="43" height="43"/></a>
-=======
-                    <a href="#popupCompl" class="btn btn-primary btn-circle btn-xl" >?</a>
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
-=======
-                    <a href="#popupCompl" class="btn btn-primary btn-circle btn-xl" >?</a>
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
                 </th>
             </tr>
             <tr>
@@ -516,15 +461,7 @@
                 <th id="numNewV">New vocabularies defined in the dataset</th>
                 <th id="numNewT">New terms defined in the dataset</th>
                 <th>
-<<<<<<< HEAD
-<<<<<<< HEAD
                     <a href="#popupRepCons" class="wrapHelp" ><img src="img/ask.png" width="43" height="43"/></a>
-=======
-                    <a href="#popupRepCons" class="btn btn-primary btn-circle btn-xl" >?</a>
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
-=======
-                    <a href="#popupRepCons" class="btn btn-primary btn-circle btn-xl" >?</a>
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
                 </th>
             </tr>
             <tr>
@@ -567,15 +504,7 @@
                     <th>Vocabulary used in the KG</th>
                     <th>Examples provided</th>
                     <th>
-<<<<<<< HEAD
-<<<<<<< HEAD
                         <a href="#popupUnder" class="wrapHelp" ><img src="img/ask.png" width="43" height="43"/></a>
-=======
-                        <a href="#popupUnder" class="btn btn-primary btn-circle btn-xl" >?</a>
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
-=======
-                        <a href="#popupUnder" class="btn btn-primary btn-circle btn-xl" >?</a>
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
                     </th>
                 </tr>
                 <tr>
@@ -620,15 +549,7 @@
                 <tr>
                     <th>Use RDF structures</th>
                     <th>
-<<<<<<< HEAD
-<<<<<<< HEAD
                         <a href="#popupInterp" class="wrapHelp" ><img src="img/ask.png" width="43" height="43"/></a>
-=======
-                        <a href="#popupInterp" class="btn btn-primary btn-circle btn-xl" >?</a>
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
-=======
-                        <a href="#popupInterp" class="btn btn-primary btn-circle btn-xl" >?</a>
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
                     </th>
                 </tr>
                 <tr>
@@ -657,15 +578,7 @@
                     <th>Link for download as RDF dump</th>
                     <th>
                         <div>
-<<<<<<< HEAD
-<<<<<<< HEAD
                             <a href="#popupVers" class="wrapHelp" ><img src="img/ask.png" width="43" height="43"/></a>
-=======
-                            <a href="#popupVers" class="btn btn-primary btn-circle btn-xl" >?</a>
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
-=======
-                            <a href="#popupVers" class="btn btn-primary btn-circle btn-xl" >?</a>
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
                         </div>
                     </th>
                 </tr>
@@ -710,12 +623,12 @@
     <div id="scoreCont" >
         <div id="scoreChart" ></div>
     </div>
-
+    </div>
     <footer>
         <img src="img/logo.png" width="110" height="70" style="margin-bottom: 15px;"/>
         <p id="txtFooter">Gabriele Tuozzo, Maria Angela Pellegrino <br> gabrieletuozzo@gmail.com</p>
     </footer>
 
-
+  
 </body>
 </html>

@@ -355,3 +355,52 @@ html,body{
   font-size: 25px;
   color: #607D8B;
 }
+
+#container-btn{
+  width: 100%;
+  border: 2px solid #0090eacc;
+  border-radius: 5px;
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+}
+
+#titleS{
+  font-size: 20px;
+  font-family: sans-serif, Helvetica,Arial;
+  font-weight: bold;
+}
+
+#titleDump{
+  font-size: 20px;
+  font-family: sans-serif, Helvetica,Arial;
+  font-weight: bold;
+}
+
+#exportSPARQL-btn{
+  margin-top: 15px;
+}
+
+#exportDump-btn{
+  margin-top: 15px;
+}
+
+#titleDef{
+  font-size: 20px;
+  font-family: sans-serif, Helvetica,Arial;
+  font-weight: bold;
+}
+
+#exportDef-btn{
+  margin-top: 15px;
+}
+
+#tabTrust{
+  float: left;
+  margin-left: 20px;
+}
+
+#reliablePr{
+  float: left;
+  margin-left: 80px;
+}

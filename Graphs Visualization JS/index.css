@@ -1,5 +1,5 @@
 .wrapper{
-    margin-top: 25px;
+
     margin-bottom: 28px;
     text-align: center;
 }
@@ -40,12 +40,13 @@
     }
 
 .center{
+  width: 10%;
   margin-left: auto;
   margin-right: auto;
 }
 
 table, th, td {
-  width: 50%;
+
   border: 1.3px solid #607D8B;
 }
 
@@ -107,16 +108,10 @@ a:hover {
   font-family: sans-serif, Helvetica,Arial ;
 }
 
-#reliablePr{
-  margin-top: 20px;
-  margin-right: 160px;
-  float:right;
-  display: none;
-  width: 20%;
-  margin-left: auto;
-}
+
 
 #tableInt{
+  border-color: white;
   margin-left: 40px;
 }
 
@@ -143,12 +138,34 @@ a:hover {
 #linkS{
   margin-left: 20px;
   margin-top: 15px;
-  float: left;
+  margin-bottom: 10px;
   background-color: #00ea89cc;
 }
 
+#downloadBtn{
+  background-color: transparent;
+  font-weight: bold;
+  color: white;
+  border: 0px;
+}
+
+#linkD{
+  margin-left: 20px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  background-color: #FE9360;
+}
+
+#linkD:hover{
+  background-color: #607D8B !important;
+ }
+
 #linkS:hover{
- background-color: #607D8B;
+ background-color: #607D8B !important;
+}
+
+#downloadBtn:hover{
+  background-color: transparent;
 }
 
 #legendAcc{
@@ -381,6 +398,8 @@ option{
 }
 
 body {
+  width: 100%;
+  height: 100%;
   margin-bottom:50px;
 }
 #description{
@@ -571,35 +590,132 @@ footer {
 }
 
 #txtFooter{
-  font-family: sans-serif, Helvetica,Arial;;
+  font-family: sans-serif, Helvetica,Arial;
   color: #607D8B;;
   font-weight: 500;
   font-size: 18px;
 }
 
-#downloadBtn{
-  padding: 10px 10px;
-  font-size: 16px;
-  border-radius: 18px;
-  font-weight: bold;
-  color: white;
-  border: 0px;
-  float: left; 
-  margin-left: 20px; 
-  margin-right: 50px;
-  background-color: #FE9360;
-}
-
-#downloadBtn:hover{
-  background-color: #607D8B;
-<<<<<<< HEAD
-<<<<<<< HEAD
-}
-
 .wrapHelp{
   background-color: transparent !important
-=======
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
-=======
->>>>>>> 0aa8e7d095a538f2df9f984ec7d0728f991a85db
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create a column layout with Flexbox */
+.row {
+  width: 100%;
+  height: 100%;
+  overflow-x:auto;
+  display: flex;
+}
+
+/* Left column (menu) */
+.left {
+  flex: 15%;
+  padding: 15px 0;
+}
+
+.left h2 {
+  padding-left: 8px;
+}
+
+/* Right column (page content) */
+.right {
+  flex: 65%;
+  padding: 15px;
+}
+
+/* Style the search box */
+#mySearch {
+  width: 100%;
+  font-size: 18px;
+  padding: 11px;
+  border: 1px solid #ddd;
+}
+
+/* Style the navigation menu inside the left column */
+#myMenu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myMenu li a  {
+  padding: 12px;
+  text-decoration: none;
+  color: black;
+  display: block
+}
+
+#myMenu li a:hover {
+  background-color: #eee;
+}
+
+.KGbutton{
+  font-size: 17px;
+  font-weight: 500;
+  margin-top: 13px;
+  font-family: sans-serif, Helvetica,Arial;
+  margin-left: 10px;
+  text-align: left;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.KGbutton:hover{
+  font-weight: 500 !important;
+  color: white !important;
+  border-radius: 5px !important;
+  background-color: #00ea89cc !important;
+}
+
+#mySearch{
+  border-radius: 20px;
+  margin-left: 5px;
+  border: 1px solid #0090eacc;
+}
+
+.left{
+border-width: 1px;
+border: 2px solid #0090eacc;
+}
+
+#titleMen{
+  color:#607D8B;
+  font-weight: 550;
+  font-family: sans-serif, Helvetica,Arial;
+}
+
+#selectTxt{
+  color: #607D8B;
+  margin-left: 8px;
+  font-family: sans-serif, Helvetica,Arial;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#wrapMenu{
+  overflow-x:auto;
+  height: 78%;
+
+}
+
+.left{
+  height: 100%;
+}
+
+#specialBtn{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#wrap-tbInt{
+  margin-top: 60px;
+  margin-bottom: 100px;
+  float: right;
 }
