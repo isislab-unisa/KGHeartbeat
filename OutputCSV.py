@@ -638,7 +638,7 @@ class OutputCSV(MetricsOutput):
 
 
         #STORE THE TXT FILE WITH THE ID OF KNOWLEDGE GRAPH ANALYZED (FOR JS)
-        save_path = os.path.join(here,'./Graphs Visualization JS')
+        save_path = os.path.join(here,'./docs')
         completeName = os.path.join(save_path, "KGid.txt")
         fileNames.sort()
         with open(completeName,'w', encoding="utf-8") as f:

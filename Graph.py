@@ -56,13 +56,13 @@ def getSubgraph(graph,nodeList):
 
 def storeAsJSON(subG):
     here = os.path.dirname(os.path.abspath(__file__))
-    subGfile = os.path.join(here,'./Graphs Visualization JS/subGraph.json')
+    subGfile = os.path.join(here,'./docs/subGraph.json')
     with open(subGfile,'w',encoding="utf-8") as f:
         f.write(json.dumps(json_graph.node_link_data(subG)))
 
 def storeEdges(graph,nodelist):
     here = os.path.dirname(os.path.abspath(__file__))
-    save_path = os.path.join(here,'./Graphs Visualization JS/Subgraphs')
+    save_path = os.path.join(here,'./docs/Subgraphs')
     for i in range(len(nodelist)):
         newFilename = re.sub(r'[\\/*?:"<>|]',"",nodelist[i])
         remove_punctuation_map = dict((ord(char), None) for char in '\/*?:"<>|')

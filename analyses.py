@@ -363,12 +363,13 @@ def analyses(idKG):
         
         #CHECK IF SPARQL ENDPOINT USE HTTPS
         try:
-            isSecure = utils.checkhttps(accessUrl)
-            if isSecure != True:
+            sec_access_url = accessUrl.replace('http','https')
+            isSecure = query.checkEndPoint(sec_access_url)
+            if isinstance(isSecure,Document) or isinstance(isSecure,dict):
                 isSecure = True  
         except:  #IF WE GET A SPARQL QUERY ON URL WITH HTTPS AND GET AN EXCEPTION THEN ENDPOINT ISN'T AVAILABLE ON HTTPS
             isSecure = False
-        
+        print(isSecure)
         #CHECK IF IT USES RDF STRUCTURES    
         try:
             RDFStructures = query.checkRDFDataStructures(accessUrl)

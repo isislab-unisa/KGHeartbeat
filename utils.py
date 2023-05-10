@@ -22,6 +22,7 @@ import networkx as nx
 import re
 import validators
 import shutil
+import urllib.request
 
 #PRINT THE METADATI OF A KG
 def printMetadatiKG(metadct):
@@ -634,8 +635,14 @@ def getNumberResultsLOV(jsonFile):
         return False
 
 def checkURI(uri):
-    valid = validators.url(uri)
-    return valid
+    try:
+        r = requests.head(uri)
+        if r.status_code == 200:
+            return True
+        else:
+            return False
+    except: 
+        return False
 
 def xmlToDict(results):
     dictList = []
@@ -987,6 +994,7 @@ def removeProblematicEndpoint(kgs):
     kgs.remove('uniprotkb')
     kgs.remove('uniref')
     kgs.remove('data-open-ac-uk')
+    kgs.remove('isocat')
 
 def enableForDownload(filename):
     here = os.path.dirname(os.path.abspath(__file__))
@@ -1020,3 +1028,4 @@ def enableNewData():
     shutil.copyfile(save_path,dirDown)
     
     
+print(checkURI('https://stackoverflow.com/questions/1949318/checking-if-a-website-is-up-via-python'))
