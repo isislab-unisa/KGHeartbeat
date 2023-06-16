@@ -37,4 +37,4 @@ python manager.py
 ### Results
 The results of the analysis will be inserted in a csv file in the *"Analysis results"* directory.
 ## Look directly the quality
-An analysis of all automatically discoverable Knowledge Graphs is done weekly by a computer in the [ISISLab laboratory](https://www.isislab.it/). Here it is possible to view directly the quality through graphs and tables: [KG-quality-analysis-visualization](https://kg-quality-analysis-visualization.com/)
+An analysis of all automatically discoverable Knowledge Graphs is done weekly by a computer in the [ISISLab laboratory](https://www.isislab.it/). Here it is possible to view directly the quality through graphs and tables: [KG-quality-analysis-visualization](https://isislab-unisa.github.io/KGHeartbeat/)
