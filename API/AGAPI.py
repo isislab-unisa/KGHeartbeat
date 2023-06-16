@@ -1,7 +1,7 @@
 import requests
 
 def getMetadati(idKG):
-    url = 'https://kgs-search-engine.com/brutalSearch?keyword=%s'%idKG
+    url = 'http://www.isislab.it:12280/kgsearchengine/brutalSearch?keyword=%s'%idKG
     try:
         response = requests.get(url)    
         if response.status_code == 200:
@@ -16,7 +16,7 @@ def getMetadati(idKG):
         return False
 
 def getAllKg():
-    url = 'https://kgs-search-engine.com/brutalSearch?keyword='
+    url = 'http://www.isislab.it:12280/kgsearchengine/brutalSearch?keyword='
     try:
         response = requests.get(url)    
         if response.status_code == 200:
@@ -47,7 +47,7 @@ def getNameKG(metadata):
         return False
 
 def getIdByName(keyword):
-    url = 'https://kgs-search-engine.com/brutalSearch?keyword=%s'%keyword
+    url = 'http://www.isislab.it:12280/kgsearchengine/brutalSearch?keyword=%s'%keyword
     try:
         response = requests.get(url)    
         if response.status_code == 200:

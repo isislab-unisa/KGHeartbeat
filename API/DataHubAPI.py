@@ -125,7 +125,10 @@ def getExternalLinks(jsonFile):
         if isinstance(extras,dict):
             extras = {i:extras[i] for i in extras if'links:' in i} #CLEAN THE DICTIONARY FROM OTHER ENTRY THAT ISN'T LINKS
             for i in extras.copy().keys():
-              extras[i.removeprefix('links:')] = extras.pop(i,None) #REMOVING THE PREFIX LINK
+                try:
+                    extras[i.removeprefix('links:')] = extras.pop(i,None) #REMOVING THE PREFIX LINK
+                except:
+                    continue
             return extras
     else:
         return False
