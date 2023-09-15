@@ -995,6 +995,7 @@ def removeProblematicEndpoint(kgs):
     kgs.remove('uniref')
     kgs.remove('data-open-ac-uk')
     kgs.remove('isocat')
+    kgs.remove('allie-abbreviation-and-long-form-database-in-life-science')
 
 def enableForDownload(filename):
     here = os.path.dirname(os.path.abspath(__file__))

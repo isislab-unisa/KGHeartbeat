@@ -1342,8 +1342,11 @@ def analyses(idKG):
                 except :
                     disjointValue = 'insufficient data'
 
-            if len(classes) + len(properties) > 0 :
-                deprecatedV = 1.0 - (len(deprecated)/(len(classes) + len(properties)))
+            if isinstance(classes,list) and isinstance(properties,list):
+                if len(classes) + len(properties) > 0 :
+                    deprecatedV = 1.0 - (len(deprecated)/(len(classes) + len(properties)))
+                else:
+                    deprecatedV = 'insufficient data'
             else:
                 deprecatedV = 'insufficient data'
             
