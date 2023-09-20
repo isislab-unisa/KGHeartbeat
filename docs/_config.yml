@@ -3,6 +3,6 @@ plugins:
 relative_links:
   enabled: true
   collections: true
+usemathjax: true
 include:
   - index.md
-usemathjax: true
