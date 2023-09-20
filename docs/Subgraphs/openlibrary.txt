@@ -1,1 +1,0 @@
-[["open-library", "aliada-scanbit-net"], ["open-library", "data-szepmuveszeti-hu"], ["open-library", "datos-artium-org"], ["open-library", "lobid-resources"], ["open-library", "oreilly"], ["open-library", "personal-homepages"], ["open-library", "wikidata"]]

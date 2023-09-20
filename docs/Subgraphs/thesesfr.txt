@@ -1,1 +1,0 @@
-[["thesesfr", "idreffr"], ["thesesfr", "wikidata"]]

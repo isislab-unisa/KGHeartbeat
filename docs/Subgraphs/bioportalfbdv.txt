@@ -1,1 +1,0 @@
-[["bioportal-fbdv", "bioportal-uberon"]]

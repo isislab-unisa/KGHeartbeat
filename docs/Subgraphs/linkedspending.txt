@@ -1,1 +1,0 @@
-[["linkedspending", "linkedgeodata"], ["linkedspending", "dbpedia"]]

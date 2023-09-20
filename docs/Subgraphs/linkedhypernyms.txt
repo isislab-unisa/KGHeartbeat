@@ -1,1 +1,0 @@
-[["linked-hypernyms", "yago"], ["linked-hypernyms", "dbpedia"]]

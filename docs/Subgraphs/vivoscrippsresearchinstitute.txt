@@ -1,1 +1,0 @@
-[["vivo-scripps-research-institute", "dbpedia "], ["vivo-scripps-research-institute", "vivo2doi"]]

@@ -1,1 +1,0 @@
-[["premon", "lexinfo"], ["premon", "lexvo"], ["premon", "lime"], ["premon", "wordnet-rdf"]]

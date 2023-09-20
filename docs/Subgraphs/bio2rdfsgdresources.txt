@@ -1,1 +1,0 @@
-[["bio2rdf-sgd-resources", "bio2rdf"]]

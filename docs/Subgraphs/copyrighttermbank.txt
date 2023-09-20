@@ -1,1 +1,0 @@
-[["copyrighttermbank", "iate-rdf"], ["copyrighttermbank", "dbpedia"]]

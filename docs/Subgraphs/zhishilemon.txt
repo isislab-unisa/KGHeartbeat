@@ -1,1 +1,0 @@
-[["zhishi-lemon", "babelnet"], ["zhishi-lemon", "zhishi-me"], ["zhishi-lemon", "dbpedia-es"], ["zhishi-lemon", "dbpedia-en"]]

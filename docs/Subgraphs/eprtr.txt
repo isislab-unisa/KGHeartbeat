@@ -1,1 +1,0 @@
-[["eprtr", "eionet-rdf"], ["eprtr", "eurostat-linked-data"], ["eprtr", "dbpedia"], ["eprtr", "telegraphis"], ["eprtr", "eea-rod"]]

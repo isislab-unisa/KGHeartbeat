@@ -1,1 +1,0 @@
-[["typepad", "semanlink"], ["typepad", "statusnet-status-net"], ["typepad", "w3c"]]

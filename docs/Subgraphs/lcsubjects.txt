@@ -1,1 +1,0 @@
-[["lcsubjects", "marc-codes"], ["lcsubjects", "geonames"], ["lcsubjects", "stitch-rameau"], ["lcsubjects", "lcsh"], ["lcsubjects", "dbpedia"]]

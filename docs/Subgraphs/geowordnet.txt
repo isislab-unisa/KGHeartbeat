@@ -1,1 +1,0 @@
-[["geowordnet", "vu-wordnet"], ["geowordnet", "geonames-semantic-web"]]

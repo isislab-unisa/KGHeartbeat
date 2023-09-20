@@ -1,1 +1,0 @@
-[["springernaturescigraph", "doi"], ["springernaturescigraph", "dbpedia"], ["springernaturescigraph", "grid_dataset"], ["springernaturescigraph", "wikidata"], ["springernaturescigraph", "nlm_2007_mesh"]]

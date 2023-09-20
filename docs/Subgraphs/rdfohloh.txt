@@ -1,1 +1,0 @@
-[["rdfohloh", "berlios"], ["rdfohloh", "personal-homepages"], ["rdfohloh", "dbpedia"], ["rdfohloh", "doapspace"], ["rdfohloh", "w3c"]]

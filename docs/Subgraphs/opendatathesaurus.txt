@@ -1,1 +1,0 @@
-[["open-data-thesaurus", "freebase"], ["open-data-thesaurus", "dbpedia"]]

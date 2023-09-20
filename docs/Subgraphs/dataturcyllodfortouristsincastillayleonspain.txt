@@ -1,1 +1,0 @@
-[["dataturcyl-lod-for-tourists-in-castilla-y-leon-spain", "dbpedia"], ["dataturcyl-lod-for-tourists-in-castilla-y-leon-spain", "RDFLicense"]]

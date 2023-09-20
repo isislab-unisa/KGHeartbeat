@@ -1,1 +1,0 @@
-[["lexvo-org", "yago"], ["lexvo-org", "dbpedia"]]

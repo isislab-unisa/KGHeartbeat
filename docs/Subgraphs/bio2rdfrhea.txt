@@ -1,1 +1,0 @@
-[["bio2rdf-rhea", "bio2rdf-bioportal"]]

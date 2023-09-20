@@ -1,1 +1,0 @@
-[["ASCDC-CTS-TV-Programs", "getty-aat"], ["ASCDC-CTS-TV-Programs", "dbpedia"], ["ASCDC-CTS-TV-Programs", "geonames-semantic-web"], ["ASCDC-CTS-TV-Programs", "viaf"]]

@@ -1,1 +1,0 @@
-[["cht", "ceo"], ["cht", "dbpedia-nl"], ["cht", "dbpedia"], ["cht", "getty-aat"], ["cht", "wikidata"]]

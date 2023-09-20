@@ -1,1 +1,0 @@
-[["greekchildrensartmuseum", "wikidata"], ["greekchildrensartmuseum", "dbpedia"]]

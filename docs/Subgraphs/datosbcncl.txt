@@ -1,1 +1,0 @@
-[["datos-bcn-cl", "geonames"], ["datos-bcn-cl", "dbpedia"]]

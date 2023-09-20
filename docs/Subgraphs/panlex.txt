@@ -1,1 +1,0 @@
-[["panlex", "lexvo"], ["panlex", "dbpedia"]]

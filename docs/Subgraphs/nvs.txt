@@ -1,1 +1,0 @@
-[["nvs", "gemet"], ["nvs", "eionet-rdf"], ["nvs", "geonames"], ["nvs", "dbpedia"]]

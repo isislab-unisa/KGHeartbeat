@@ -1,1 +1,0 @@
-[["semanticquran", "wiktionary"], ["semanticquran", "dbpedia"], ["semanticquran", "DBpedia"]]

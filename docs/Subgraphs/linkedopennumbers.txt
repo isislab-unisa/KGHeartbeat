@@ -1,1 +1,0 @@
-[["linked-open-numbers", "ckan"], ["linked-open-numbers", "dbpedia"], ["linked-open-numbers", "wikidata"]]

@@ -1,1 +1,0 @@
-[["lichfield-spending", "opencorporates"], ["lichfield-spending", "reference-data-gov-uk"], ["lichfield-spending", "dbpedia"], ["lichfield-spending", "statistics-data-gov-uk"]]

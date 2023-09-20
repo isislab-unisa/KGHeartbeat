@@ -1,1 +1,0 @@
-[["Uganda-Disasters-rdf-data ", "geonames-semantic-web"]]

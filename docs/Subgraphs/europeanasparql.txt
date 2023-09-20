@@ -1,1 +1,0 @@
-[["europeana-sparql", "geonames"], ["europeana-sparql", "wikidata"]]

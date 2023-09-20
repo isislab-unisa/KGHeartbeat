@@ -1,1 +1,0 @@
-[["HealthCare Ontology", "SocialLink"], ["HealthCare Ontology", "Face Link"], ["HealthCare Ontology", "WHOnto"]]

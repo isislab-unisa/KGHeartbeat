@@ -1,1 +1,0 @@
-[["pokepedia-fr", "dbpedia"], ["pokepedia-fr", "data-incubator-pokedex"]]

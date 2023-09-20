@@ -1,1 +1,0 @@
-[["opendataec", "wikidata"], ["opendataec", "yago"], ["opendataec", "es.dbpedia"], ["opendataec", "dbpedia"]]

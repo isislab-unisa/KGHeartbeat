@@ -1,1 +1,0 @@
-[["imagesnippets", "art-and-architecture-thesaurus"], ["imagesnippets", "yago"], ["imagesnippets", "freebase"], ["imagesnippets", "geonames"], ["imagesnippets", "dbpedia"]]

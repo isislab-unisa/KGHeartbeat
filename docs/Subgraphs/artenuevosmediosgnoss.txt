@@ -1,1 +1,0 @@
-[["artenuevosmedios-gnoss", "nytimes-linked-open-data"], ["artenuevosmedios-gnoss", "gnoss"], ["artenuevosmedios-gnoss", "mismuseos-gnoss"], ["artenuevosmedios-gnoss", "freebase"], ["artenuevosmedios-gnoss", "geonames-semantic-web"], ["artenuevosmedios-gnoss", "dbpedia"]]

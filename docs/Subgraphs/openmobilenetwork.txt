@@ -1,1 +1,0 @@
-[["openmobilenetwork", "linkedcrowdsourceddata"], ["openmobilenetwork", "linkedgeodata"], ["openmobilenetwork", "dbpedia"]]

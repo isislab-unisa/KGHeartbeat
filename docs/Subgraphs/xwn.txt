@@ -1,1 +1,0 @@
-[["xwn", "wordnet-rdf"]]

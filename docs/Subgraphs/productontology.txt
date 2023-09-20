@@ -1,1 +1,0 @@
-[["productontology", "dbpedia"], ["productontology", "pscs-catalogue"], ["productontology", "semanlink"]]

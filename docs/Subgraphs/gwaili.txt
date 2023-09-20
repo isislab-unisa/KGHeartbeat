@@ -1,1 +1,0 @@
-[["gwa-ili", "english-wordnet"], ["gwa-ili", "wn-wiki-instances"]]

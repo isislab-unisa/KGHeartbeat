@@ -1,1 +1,0 @@
-[["pleiades", "periodo"], ["pleiades", "dbpedia"], ["pleiades", "wikidata"]]

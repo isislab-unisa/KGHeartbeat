@@ -1,1 +1,0 @@
-[["judaicalink", "dm2e"], ["judaicalink", "nytimes-linked-open-data"], ["judaicalink", "freebase"], ["judaicalink", "geonames-semantic-web"], ["judaicalink", "linkedgeodata"], ["judaicalink", "dbpedia"]]

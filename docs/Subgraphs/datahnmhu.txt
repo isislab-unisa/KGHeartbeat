@@ -1,1 +1,0 @@
-[["data-hnm-hu", "wikidata"], ["data-hnm-hu", "viaf"], ["data-hnm-hu", "http://isni.org/isni/"], ["data-hnm-hu", "library-of-congress-name-authority-file"], ["data-hnm-hu", "data-bnf-fr"]]

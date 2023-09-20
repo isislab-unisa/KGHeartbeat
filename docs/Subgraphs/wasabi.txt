@@ -1,1 +1,0 @@
-[["wasabi", "dbpedia"], ["wasabi", "wikidata"]]

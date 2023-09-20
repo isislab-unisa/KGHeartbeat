@@ -1,1 +1,0 @@
-[["statusnet-deuxpi-ca", "statusnet-soucy-cc"], ["statusnet-deuxpi-ca", "statusnet-postblue-info"], ["statusnet-deuxpi-ca", "geonames-semantic-web"], ["statusnet-deuxpi-ca", "statusnet-orangeseeds-org"]]

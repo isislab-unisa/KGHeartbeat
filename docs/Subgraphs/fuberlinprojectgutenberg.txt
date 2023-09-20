@@ -1,1 +1,0 @@
-[["fu-berlin-project-gutenberg", "dbpedia"], ["fu-berlin-project-gutenberg", "dbpedia-el"]]

@@ -1,1 +1,0 @@
-[["statusnet-fcestrada-com", "geonames-semantic-web"], ["statusnet-fcestrada-com", "statusnet-fragdev-com"]]

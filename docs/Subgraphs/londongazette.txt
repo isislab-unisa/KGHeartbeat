@@ -1,1 +1,0 @@
-[["london-gazette", "ckan"], ["london-gazette", "reference-data-gov-uk"]]

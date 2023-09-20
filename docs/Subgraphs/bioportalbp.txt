@@ -1,1 +1,0 @@
-[["bioportal-bp", "bioportal-nif"], ["bioportal-bp", "bioportal-ncit"], ["bioportal-bp", "bioportal-mi"], ["bioportal-bp", "bioportal-chem2bio2owl"], ["bioportal-bp", "bioportal-sbo"], ["bioportal-bp", "bioportal-canco"], ["bioportal-bp", "bioportal-dikb-evidence"]]

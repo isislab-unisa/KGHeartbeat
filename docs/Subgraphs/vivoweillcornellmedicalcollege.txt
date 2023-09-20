@@ -1,1 +1,0 @@
-[["vivo-weill-cornell-medical-college", "dbpedia "], ["vivo-weill-cornell-medical-college", "vivo2doi"]]

@@ -1,1 +1,0 @@
-[["utpl-lod", "yago"], ["utpl-lod", "es.dbpedia"], ["utpl-lod", "dbpedia"]]

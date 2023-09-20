@@ -1,1 +1,0 @@
-[["university-plymouth-reading-lists", "ckan"], ["university-plymouth-reading-lists", "openlibrary"]]

@@ -1,1 +1,0 @@
-[["enipedia", "dbpedia"], ["enipedia", "open-energy-info-wiki"], ["enipedia", "world-factbook-fu-berlin"], ["enipedia", "myopenlink-dataspaces"], ["enipedia", "personal-homepages"]]

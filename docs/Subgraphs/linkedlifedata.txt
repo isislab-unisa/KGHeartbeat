@@ -1,1 +1,0 @@
-[["linked-life-data", "disgenet"], ["linked-life-data", "nobelprizes"]]

@@ -1,1 +1,0 @@
-[["patents-data-gov-uk", "ckan"], ["patents-data-gov-uk", "research-data-gov-uk"]]

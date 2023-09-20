@@ -1,1 +1,0 @@
-[["museums-in-italy", "dbpedia"], ["museums-in-italy", "geonames-semantic-web"]]

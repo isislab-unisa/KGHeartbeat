@@ -1,1 +1,0 @@
-[["statusnet-coreyavis-com", "geonames-semantic-web"], ["statusnet-coreyavis-com", "statusnet-status-net"]]

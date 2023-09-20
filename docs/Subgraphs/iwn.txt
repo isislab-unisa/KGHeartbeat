@@ -1,1 +1,0 @@
-[["iwn", "w3c-wordnet"], ["iwn", "simple"]]

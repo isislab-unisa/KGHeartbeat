@@ -1,1 +1,0 @@
-[["multext-east", "gold"]]

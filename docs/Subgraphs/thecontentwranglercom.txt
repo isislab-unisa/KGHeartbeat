@@ -1,1 +1,0 @@
-[["thecontentwrangler-com", "dbpedia"], ["thecontentwrangler-com", "freebase"], ["thecontentwrangler-com", "geonames-semantic-web"], ["thecontentwrangler-com", "yago"], ["thecontentwrangler-com", "wikidata"]]

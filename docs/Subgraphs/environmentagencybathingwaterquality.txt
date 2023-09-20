@@ -1,1 +1,0 @@
-[["environment-agency-bathing-water-quality", "reference-data-gov-uk"], ["environment-agency-bathing-water-quality", "ordnance-survey-linked-data"], ["environment-agency-bathing-water-quality", "statistics-data-gov-uk"]]

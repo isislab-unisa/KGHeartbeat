@@ -1,1 +1,0 @@
-[["language-authority-list", "eurovoc"], ["language-authority-list", "wikidata"], ["language-authority-list", "dbpedia"]]

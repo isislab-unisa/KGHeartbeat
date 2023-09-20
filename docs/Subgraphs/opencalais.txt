@@ -1,1 +1,0 @@
-[["opencalais", "ckan"], ["opencalais", "linkedmdb"], ["opencalais", "freebase"], ["opencalais", "geonames-semantic-web"], ["opencalais", "dbpedia"], ["opencalais", "rkb-explorer-unlocode"]]

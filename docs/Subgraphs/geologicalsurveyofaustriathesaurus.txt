@@ -1,1 +1,0 @@
-[["geological-survey-of-austria-thesaurus", "opencyc"], ["geological-survey-of-austria-thesaurus", "freebase"], ["geological-survey-of-austria-thesaurus", "dbpedia"]]

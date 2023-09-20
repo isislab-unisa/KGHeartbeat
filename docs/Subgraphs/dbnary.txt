@@ -1,1 +1,0 @@
-[["dbnary", "lexvo"], ["dbnary", "olia"], ["dbnary", "lexinfo"]]

@@ -1,1 +1,0 @@
-[["jrc-names-ec", "DBpedia"]]

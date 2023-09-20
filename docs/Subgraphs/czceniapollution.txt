@@ -1,1 +1,0 @@
-[["cz-cenia-pollution", "cz-cenia-irz-chemicals"], ["cz-cenia-pollution", "cz-ic"]]

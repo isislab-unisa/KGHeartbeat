@@ -1,1 +1,0 @@
-[["uriburner", "ckan"], ["uriburner", "nytimes-linked-open-data"], ["uriburner", "chronicling-america"], ["uriburner", "bbc-music"], ["uriburner", "dbpedia"]]

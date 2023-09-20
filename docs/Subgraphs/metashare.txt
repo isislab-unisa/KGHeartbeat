@@ -1,1 +1,0 @@
-[["metashare", "dbpedia"], ["metashare", "dblp"], ["metashare", "mexico"]]

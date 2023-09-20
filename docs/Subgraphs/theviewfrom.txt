@@ -1,1 +1,0 @@
-[["the-view-from", "ckan"], ["the-view-from", "dbpedia"]]

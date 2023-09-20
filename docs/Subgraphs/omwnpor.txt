@@ -1,1 +1,0 @@
-[["omwn-por", "wordnet-rdf"]]

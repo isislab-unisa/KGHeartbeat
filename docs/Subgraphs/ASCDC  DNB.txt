@@ -1,1 +1,0 @@
-[["ASCDC - DNB", "getty-aat"], ["ASCDC - DNB", "viaf"], ["ASCDC - DNB", "ASCDC-CRB"], ["ASCDC - DNB", "ASCDC-DQOT"]]

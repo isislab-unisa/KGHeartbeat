@@ -1,1 +1,0 @@
-[["psh-subject-headings", "dbpedia"], ["psh-subject-headings", "lcsh"]]

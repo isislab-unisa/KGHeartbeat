@@ -1,1 +1,0 @@
-[["ssf", "lexinfo"], ["ssf", "wordnet"], ["ssf", "babelnet"]]

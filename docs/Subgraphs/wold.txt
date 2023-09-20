@@ -1,1 +1,0 @@
-[["wold", "dbpedia"], ["wold", "iso-639-3"], ["wold", "wals"]]

@@ -1,1 +1,0 @@
-[["oreilly", "open-library"], ["oreilly", "personal-homepages"]]

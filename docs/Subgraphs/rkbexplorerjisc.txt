@@ -1,1 +1,0 @@
-[["rkb-explorer-jisc", "ckan"], ["rkb-explorer-jisc", "eprints-harvest-rkbexplorer"], ["rkb-explorer-jisc", "rkb-explorer-cordis"], ["rkb-explorer-jisc", "rkb-explorer-eprints"], ["rkb-explorer-jisc", "rkb-explorer-dotac"], ["rkb-explorer-jisc", "rkb-explorer-southampton"], ["rkb-explorer-jisc", "rkb-explorer-risks"], ["rkb-explorer-jisc", "rkb-explorer-kisti"]]
