@@ -1,0 +1,10 @@
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: true
+include:
+  - index.md
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
