@@ -1,8 +1,5 @@
-plugins:
-  - jekyll-relative-links
-relative_links:
-  enabled: true
-  collections: true
+theme: jekyll-theme-minimal
+markdown: kramdown
 usemathjax: true
 include:
   - index.md
