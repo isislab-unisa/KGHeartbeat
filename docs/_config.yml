@@ -5,6 +5,4 @@ relative_links:
   collections: true
 include:
   - index.md
-kramdown:
-  math_engine: mathjax
-  syntax_highlighter: rouge
+usemathjax: true
