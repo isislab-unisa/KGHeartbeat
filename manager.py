@@ -12,6 +12,7 @@ from OutputCSV import OutputCSV
 from score import Score
 import utils
 import gc
+from db_interface import DBinterface
 
 try: #GET THE CONFIGURATION FILE AND CHEK IF IT IS VALID
     here = os.path.dirname(os.path.abspath(__file__))
@@ -87,6 +88,8 @@ for i in range(len(toAnalyze)):
     csv = OutputCSV(kg,toAnalyze)
     csv.writeRow(filename)
     print(f"KG score: {kg.extra.score}")
+    mongo_interface = DBinterface()
+    mongo_interface.insert_quality_data(kg)
     del csv
     del kg
     gc.collect()

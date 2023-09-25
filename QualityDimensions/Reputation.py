@@ -8,3 +8,9 @@ class Reputation:
     
     def getReputation(self):
         return f"-Reputation\n   External links:{ExternalLink.getListExLinks(self.externalLinks)}\n   PageRank:{self.pageRank}\n"
+    
+    def to_dict(self):
+        return {
+            "External-Links" : ExternalLink.getListExLinks(self.externalLinks),
+            "PageRank" : self.pageRank
+        }

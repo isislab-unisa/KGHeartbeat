@@ -11,3 +11,12 @@ class Interlinking:
     
     def getInterlinking(self):
         return f"-Interlinking\n   Degree of connection:{self.degreeConnection}\n   Clustering coefficient:{self.clustering}\n   Centrality:{self.centrality}\n   Number of samAs chains:{self.sameAs}\n   External links:{ExternalLink.getListExLinks(self.externalLinks)}\n"
+
+    def to_dict(self):
+        return  {
+            "Degree-of-connection" : self.degreeConnection,
+            "Clustering" : self.clustering,
+            "Centrality" : self.centrality,
+            "sameAs" : self.sameAs,
+            "External-Links": ExternalLink.getListExLinks(self.externalLinks)
+        }

@@ -1028,5 +1028,8 @@ def enableNewData():
     dirDown = os.path.join(dirDown,'KGid.txt')
     shutil.copyfile(save_path,dirDown)
     
+def to_list(old_values):
+    if isinstance(old_values,str):
+        old_values = old_values.split(';')
     
-print(checkURI('https://stackoverflow.com/questions/1949318/checking-if-a-website-is-up-via-python'))
+    return old_values
