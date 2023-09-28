@@ -58,43 +58,48 @@ def full_csv():
 
 def splitted_csv():
     here = os.path.dirname(os.path.abspath(__file__))
+    here = os.path.join(here,'./splitted')
     p = Path(here)
     files = list(p.glob('*.csv'))
     for file in files:
         file_name = file.stem
         filename = str(file_name)
-        with open(filename + '.csv',encoding='utf-8') as csv_file:
+        path = os.path.join(here,filename)
+        with open(path + '.csv',encoding='utf-8') as csv_file:
             csv_reader = csv.DictReader(csv_file)
             for rows in csv_reader:
                 kg_id = filename
-                data = {
-                    "kg_id" : kg_id,
-                    "kg_name" : rows['KG name'],
-                    "analysis_date" : rows['Date'],
-                    "Accessibility": [{"Availability" : {"sparqlEndpoint" : rows['SPARQL endpoint'] , 'RDFDump_merged': rows['RDF dump'], 'inactiveLinks' : rows['Inactive links']}},
-                                    {"Licensing" : {"licenseMetadata" : rows['License Machine-Redeable'],"licenseQuery" : rows['License MR'],'licenseHR' : rows['License Human-Redeable']}}, 
-                                    {"Interlinking" :{'degreeConnection' : rows['Degree of connection'], 'clustering' : rows['Clustring coefficient'], 'centrality' : rows['Centrality'],'sameAs' : rows['Number of sameAs chains']}}, 
-                                    {"Security" : {'useHTTPS' : rows['Use HTTPS'], 'requiresAuth' : rows['Requires auth']}}, 
-                                    {"Performance" : {"minLatency" : rows['Min latency'], 'maxLantency' : rows['Max latency'], 'minThroughput' : rows['Min TP'], 'maxThrougput' : rows['Max TP'], 'percentile25L' : rows['25th percentile latency'], 'percentile75L' : rows['75th percentile latency'], 'medianL' : rows['Median latency'], 'percentile25T' : rows['25th percentile TP'], 'percentile75T' : rows['75th percentile TP'], 'medianT' : rows['Median TP']}}],
-                    "Intrinsic": [{"Accuracy" : {'emptyAnn' : rows['Number of void label'], 'wSA' : rows['Number of whitespace label'], 'malformedDataType' : rows['Number of malformed datatype'],'FPvalue' : rows['FP'], 'IFPvalue' : rows['IFP']}}, 
-                                {"Consistency" : {'deprecated' : rows['Deprecated class/property'], 'disjointClasses' : rows['Disjoint class'], 'triplesMP' : rows['Misplaced property'], 'triplesMC' : rows['Misplaced class'], 'oHijacking' : rows['Ontology hijacking'], 'undefinedClass' : rows['Undefined class'],'undefinedProperties' : rows['Undefined property']}}, 
-                                {"Conciseness" : {'exC' : rows['Extensional conciseness'], 'intC' : rows['Intensional conciseness']}}],
-                    "Trust": [{"Reputation" : {'pageRank' : rows['PageRank']}}, 
-                            {"Believability" : {'title' : rows['KG name'], 'description' : rows['Description'], 'URI' : rows['Url'], 'reliableProvider': rows['Reliable'],'trustValue' : rows['Trust value']}}, 
-                            {"Verifiability" : {'vocabularies' : rows['Vocabularies'], 'authorM' : rows['Authors'], 'contributor' : rows['Contributors'], 'publisher' : rows['Publishers'], 'sources' : rows['Sources'],'sign' : rows['Signed']}}],
-                    "Dataset dynamicity" : [{"Currency" : {'creationDate' : rows['Creation date'], 'modificationDate' : rows['Modification date'], 'timePassed' : rows['Time since last modification'], 'historicalUp' : rows['HistoricalUp']}}, 
-                                            {"Volatility" : {'frequency' : rows['Dataset update frequency']}}],
-                    "Contextual": [{"Completeness" : {'numTriples' : rows['Number of triples'], 'numTriplesL': rows['Number of triples linked'], 'interlinkingC' : rows['Interlinking completeness']}}, 
-                                {"Amount of data" : {'numTriples_merged' : rows['Number of triples'], 'numEntities_merged' : rows['Number of entities'], 'numProperty' : rows['Number of property']}}],
-                    "Representational" : [{"Representational-conciseness" : {'minLengthS' : rows['Min length URIs (subject)'], 'percentile25LengthS' : rows['25th percentile length URIs (subject)'], 'medianLengthS' : rows['Median length URIs (subject)'], 'percentile75LengthS' : rows['75th percentile length URIs (subject)'], 'maxLengthS' : rows['Max length URIs (subject)'], 'minLengthO' : rows['Min length URIs (object)'], 'percentile25LengthO' : rows['25th percentile length URIs (object)'], 'medianLengthO' : rows['Median length URIs (object)'], 'percentile75LengthO' : rows['75th percentile length URIs (object)'], 'maxLengthO' : rows['Max length URIs (object)'], 'minLengthP' : rows['Min length URIs (predicate)'], 'percentile25LengthP' : rows['25th percentile length URIs (predicate)'], 'medianLengthP' : rows['Median length URIs (predicate)'], 'percentile75LengthP' : rows['75th percentile length URIs (predicate)'], 'maxLengthP' : rows['Max length URIs (predicate)'], 'RDFStructures' : rows['RDF structures']}}, 
-                                        {"Representational-consistency" : {'newVocab' : rows['New vocabularies defined'], 'useNewTerms' : rows['New terms defined']}}, 
-                                        {"Understandability" : {'numLabel' : rows['Number of label'], 'regexUri' : rows['Uri regex'], 'vocabularies' : rows['Vocabularies'],'example' : rows['Presence of example']}}, 
-                                        {"Interpretability" : {'numBN' : rows['Number of blank nodes'], 'RDFStructures' : rows['RDF structures']}}, 
-                                        {"Versatility" : {'languages_merged' : rows['Languages'],'serializationFormats' : rows['Serialization formats'], 'sparqlEndpoint' : rows['SPARQL endpoint'], 'availabilityRDFD_merged' : rows['RDF dump']}}]
+                try: 
+                    data = {
+                        "kg_id" : kg_id,
+                        "kg_name" : rows['KG name'],
+                        "analysis_date" : rows['Date'],
+                        "Accessibility": [{"Availability" : {"sparqlEndpoint" : rows['SPARQL endpoint'] , 'RDFDump_merged': rows['RDF dump'], 'inactiveLinks' : rows['Inactive links']}},
+                                        {"Licensing" : {"licenseMetadata" : rows['License Machine-Redeable'],"licenseQuery" : rows['License MR'],'licenseHR' : rows['License Human-Redeable']}}, 
+                                        {"Interlinking" :{'degreeConnection' : rows['Degree of connection'], 'clustering' : rows['Clustring coefficient'], 'centrality' : rows['Centrality'],'sameAs' : rows['Number of sameAs chains']}}, 
+                                        {"Security" : {'useHTTPS' : rows['Use HTTPS'], 'requiresAuth' : rows['Requires auth']}}, 
+                                        {"Performance" : {"minLatency" : rows['Min latency'], 'maxLantency' : rows['Max latency'], 'minThroughput' : rows['Min TP'], 'maxThrougput' : rows['Max TP'], 'percentile25L' : rows['25th percentile latency'], 'percentile75L' : rows['75th percentile latency'], 'medianL' : rows['Median latency'], 'percentile25T' : rows['25th percentile TP'], 'percentile75T' : rows['75th percentile TP'], 'medianT' : rows['Median TP']}}],
+                        "Intrinsic": [{"Accuracy" : {'emptyAnn' : rows['Number of void label'], 'wSA' : rows['Number of whitespace label'], 'malformedDataType' : rows['Number of malformed datatype'],'FPvalue' : rows['FP'], 'IFPvalue' : rows['IFP']}}, 
+                                    {"Consistency" : {'deprecated' : rows['Deprecated class/property'], 'disjointClasses' : rows['Disjoint class'], 'triplesMP' : rows['Misplaced property'], 'triplesMC' : rows['Misplaced class'], 'oHijacking' : rows['Ontology hijacking'], 'undefinedClass' : rows['Undefined class'],'undefinedProperties' : rows['Undefined property']}}, 
+                                    {"Conciseness" : {'exC' : rows['Extensional conciseness'], 'intC' : rows['Intensional conciseness']}}],
+                        "Trust": [{"Reputation" : {'pageRank' : rows['PageRank']}}, 
+                                {"Believability" : {'title' : rows['KG name'], 'description' : rows['Description'], 'URI' : rows['Url'], 'reliableProvider': rows['Reliable'],'trustValue' : rows['Trust value']}}, 
+                                {"Verifiability" : {'vocabularies' : rows['Vocabularies'], 'authorM' : rows['Authors'], 'contributor' : rows['Contributors'], 'publisher' : rows['Publishers'], 'sources' : rows['Sources'],'sign' : rows['Signed']}}],
+                        "Dataset dynamicity" : [{"Currency" : {'creationDate' : rows['Creation date'], 'modificationDate' : rows['Modification date'], 'timePassed' : rows['Time since last modification'], 'historicalUp' : rows['HistoricalUp']}}, 
+                                                {"Volatility" : {'frequency' : rows['Dataset update frequency']}}],
+                        "Contextual": [{"Completeness" : {'numTriples' : rows['Number of triples'], 'numTriplesL': rows['Number of triples linked'], 'interlinkingC' : rows['Interlinking completeness']}}, 
+                                    {"Amount of data" : {'numTriples_merged' : rows['Number of triples'], 'numEntities_merged' : rows['Number of entities'], 'numProperty' : rows['Number of property']}}],
+                        "Representational" : [{"Representational-conciseness" : {'minLengthS' : rows['Min length URIs (subject)'], 'percentile25LengthS' : rows['25th percentile length URIs (subject)'], 'medianLengthS' : rows['Median length URIs (subject)'], 'percentile75LengthS' : rows['75th percentile length URIs (subject)'], 'maxLengthS' : rows['Max length URIs (subject)'], 'minLengthO' : rows['Min length URIs (object)'], 'percentile25LengthO' : rows['25th percentile length URIs (object)'], 'medianLengthO' : rows['Median length URIs (object)'], 'percentile75LengthO' : rows['75th percentile length URIs (object)'], 'maxLengthO' : rows['Max length URIs (object)'], 'minLengthP' : rows['Min length URIs (predicate)'], 'percentile25LengthP' : rows['25th percentile length URIs (predicate)'], 'medianLengthP' : rows['Median length URIs (predicate)'], 'percentile75LengthP' : rows['75th percentile length URIs (predicate)'], 'maxLengthP' : rows['Max length URIs (predicate)'], 'RDFStructures' : rows['RDF structures']}}, 
+                                            {"Representational-consistency" : {'newVocab' : rows['New vocabularies defined'], 'useNewTerms' : rows['New terms defined']}}, 
+                                            {"Understandability" : {'numLabel' : rows['Number of label'], 'regexUri' : rows['Uri regex'], 'vocabularies' : rows['Vocabularies'],'example' : rows['Presence of example']}}, 
+                                            {"Interpretability" : {'numBN' : rows['Number of blank nodes'], 'RDFStructures' : rows['RDF structures']}}, 
+                                            {"Versatility" : {'languages_merged' : rows['Languages'],'serializationFormats' : rows['Serialization formats'], 'sparqlEndpoint' : rows['SPARQL endpoint'], 'availabilityRDFD_merged' : rows['RDF dump']}}]
 
-                }
-                
-                with open(kg_id + rows['Date'] + '.json','w') as jsonFile:
-                    jsonFile.write(json.dumps(data, indent=4))
+                    }
+                    with open('json_files/' + kg_id + rows['Date'] + '.json','w') as jsonFile:
+                        jsonFile.write(json.dumps(data, indent=4))
+                except:
+                    continue
+            
 
 splitted_csv()
