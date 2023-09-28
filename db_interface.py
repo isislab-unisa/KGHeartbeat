@@ -33,7 +33,8 @@ class DBinterface():
             old_new_terms = utils.to_list(most_recent_document['Representational'][1]['Representational-consistency']['useNewTerms'])
             old_license_q = utils.to_list(most_recent_document['Accessibility'][1]['Licensing']['licenseQuery'])
             old_vocabs = utils.to_list(most_recent_document['Trust'][2]['Verifiability']['vocabularies'])
-
+            old_history = utils.to_list(most_recent_document['Dataset dynamicity'][0]['Currency']['historicalUp'])
+            
             #needed to grant compatibility for the splitted csv
             newvalues = { "$set": {
             'Representational.2.Understandability.regexUri': len(old_uri_regex) if len(old_uri_regex) > 1 else most_recent_document['Representational'][2]['Understandability']['regexUri'],
@@ -42,7 +43,8 @@ class DBinterface():
             'Representational.1.Representational-consistency.newVocab' : len(old_new_vocabs) if len(old_new_vocabs) > 1 else most_recent_document['Representational'][1]['Representational-consistency']['newVocab'],
             'Representational.1.Representational-consistency.useNewTerms' : len(old_new_terms) if len(old_new_terms) > 1 else most_recent_document['Representational'][1]['Representational-consistency']['old_new_terms'],
             'Accessibility.1.Licensing.licenseQuery' : len(old_license_q) if len(old_license_q) > 1 else most_recent_document['Accessibility'][1]['Licensing']['licenseQuery'],
-            'Trust.2.Verifiability.vocabularies' : len(old_vocabs) if len(old_vocabs) > 1 else most_recent_document['Trust'][2]['Verifiability']['vocabularies']
+            'Trust.2.Verifiability.vocabularies' : len(old_vocabs) if len(old_vocabs) > 1 else most_recent_document['Trust'][2]['Verifiability']['vocabularies'],
+            'Dataset dynamicity.0.Currency.historicalUp' : len(old_history) if len(old_history) > 1 else most_recent_document['Dataset dynamicity'][0]['Currency']['historicalUp']
             }}
 
             self.collection.update_one({'kg_id' : kg_quality.extra.KGid, 'analysis_date' : most_recent_document['analysis_date']}, newvalues)
