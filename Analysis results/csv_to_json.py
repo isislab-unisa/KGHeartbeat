@@ -53,7 +53,7 @@ def full_csv():
 
                 }
                 
-                with open(kg_id + '.json','w') as jsonFile:
+                with open(kg_id + ' ' + filename + '.json','w') as jsonFile:
                     jsonFile.write(json.dumps(data, indent=4))
 
 def splitted_csv():
@@ -72,7 +72,7 @@ def splitted_csv():
                     "kg_name" : rows['KG name'],
                     "analysis_date" : rows['Date'],
                     "Accessibility": [{"Availability" : {"sparqlEndpoint" : rows['SPARQL endpoint'] , 'RDFDump_merged': rows['RDF dump'], 'inactiveLinks' : rows['Inactive links']}},
-                                    {"Licensing" : {"license_merged" : rows['License Machine-Redeable'],'licenseHR' : rows['License Human-Redeable']}}, 
+                                    {"Licensing" : {"licenseMetadata" : rows['License Machine-Redeable'],"licenseQuery" : rows['License MR'],'licenseHR' : rows['License Human-Redeable']}}, 
                                     {"Interlinking" :{'degreeConnection' : rows['Degree of connection'], 'clustering' : rows['Clustring coefficient'], 'centrality' : rows['Centrality'],'sameAs' : rows['Number of sameAs chains']}}, 
                                     {"Security" : {'useHTTPS' : rows['Use HTTPS'], 'requiresAuth' : rows['Requires auth']}}, 
                                     {"Performance" : {"minLatency" : rows['Min latency'], 'maxLantency' : rows['Max latency'], 'minThroughput' : rows['Min TP'], 'maxThrougput' : rows['Max TP'], 'percentile25L' : rows['25th percentile latency'], 'percentile75L' : rows['75th percentile latency'], 'medianL' : rows['Median latency'], 'percentile25T' : rows['25th percentile TP'], 'percentile75T' : rows['75th percentile TP'], 'medianT' : rows['Median TP']}}],

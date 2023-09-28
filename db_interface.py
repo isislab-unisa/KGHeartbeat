@@ -21,16 +21,28 @@ class DBinterface():
             most_recent_document = None
 
         #This is done for performance reason, we only store in the most recent analysis all the triples for a specific quality metric, in the old analysis we save only the number 
-        #TODO: controllo nel caso SPARQL endpoint e VoID file sono offline, altrimenti inseriremo in modo errato sempre 1 come vecchio valore, se non era disp. nell'ultima analisi, saltiamo la cancellazione del valore. Il controllo è da fare sul vecchio document.
-        #TODO: per fare il controllo sopra è necessario inserire esplicitamente un campo che indichi se VoID file è disponibile (è nel campo extra). Per o vecchi csv (splitted, vedi manual_db_insert)
-        if most_recent_document:
+        #TODO: Per i vecchi csv (splitted, vedi manual_db_insert)
+        #This is necessary to avoid inserting or deleting unnecessary values if they were not available during the last analysis
+        void_status = most_recent_document['Accessibility'][0]['Availability']["voidAvailability"]
+        sparql_status = most_recent_document['Accessibility'][0]['Availability']["sparqlEndpoint"]
+        if most_recent_document and (sparql_status == 'Available' or void_status == 'VoID file available'):
             old_uri_regex = utils.to_list(most_recent_document['Representational'][2]['Understandability']['regexUri'])
-            
             old_serializationFormats = utils.to_list(most_recent_document['Representational'][4]['Versatility']['serializationFormats'])
+            old_publishers = utils.to_list(most_recent_document['Trust'][2]['Verifiability']['publisher'])
+            old_new_vocabs = utils.to_list(most_recent_document['Representational'][1]['Representational-consistency']['newVocab'])
+            old_new_terms = utils.to_list(most_recent_document['Representational'][1]['Representational-consistency']['useNewTerms'])
+            old_license_q = utils.to_list(most_recent_document['Accessibility'][1]['Licensing']['licenseQuery'])
+            old_vocabs = utils.to_list(most_recent_document['Trust'][2]['Verifiability']['vocabularies'])
 
+            #needed to grant compatibility for the splitted csv
             newvalues = { "$set": {
-            'Representational.2.Understandability.regexUri': len(old_uri_regex),
-            'Representational.4.Versatility.serializationFormats': len(old_serializationFormats)
+            'Representational.2.Understandability.regexUri': len(old_uri_regex) if len(old_uri_regex) > 1 else most_recent_document['Representational'][2]['Understandability']['regexUri'],
+            'Representational.4.Versatility.serializationFormats': len(old_serializationFormats) if len(old_serializationFormats) > 1 else most_recent_document['Representational'][4]['Versatility']['serializationFormats'],
+            'Trust.2.Verifiability.publisher':  len(old_publishers) if len(old_publishers) > 1 else most_recent_document['Trust'][2]['Verifiability']['publisher'],
+            'Representational.1.Representational-consistency.newVocab' : len(old_new_vocabs) if len(old_new_vocabs) > 1 else most_recent_document['Representational'][1]['Representational-consistency']['newVocab'],
+            'Representational.1.Representational-consistency.useNewTerms' : len(old_new_terms) if len(old_new_terms) > 1 else most_recent_document['Representational'][1]['Representational-consistency']['old_new_terms'],
+            'Accessibility.1.Licensing.licenseQuery' : len(old_license_q) if len(old_license_q) > 1 else most_recent_document['Accessibility'][1]['Licensing']['licenseQuery'],
+            'Trust.2.Verifiability.vocabularies' : len(old_vocabs) if len(old_vocabs) > 1 else most_recent_document['Trust'][2]['Verifiability']['vocabularies']
             }}
 
             self.collection.update_one({'kg_id' : kg_quality.extra.KGid, 'analysis_date' : most_recent_document['analysis_date']}, newvalues)
