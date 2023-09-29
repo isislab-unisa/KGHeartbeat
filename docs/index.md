@@ -147,7 +147,7 @@ alternative queries are provided which instead use the UNION.
 
 ---
 #### **Human-readable license**
-For this type of license we must access the triples of the KG to verify that there is a label understandable to the user on a triple. All the labels contained in the KF are recovered and then filtered using the following regex: 
+For this type of license we must access the triples of the KG to verify that there is a label understandable to the user on a triple. All the labels contained in the KG are recovered and then filtered using the following regex: 
 
 ```. ∗(licensed?|copyrighte?d?).∗(under|grante?d?|rights?)```
 
@@ -175,16 +175,38 @@ regex(?o,
 
 ---
 #### **License in the metadata**
-In this case, they are simply analyzed the KG metadata and the value of the ```license``` key is checked.
+In this case, we simply analyze the KG metadata and the value of the ```license``` key in it.
 
 ---
 
 ### **Interlinking**
+For the caluculation of the Degree of connection, clustering coefficient and centrality, we utilize a tool for network measurement. We use a Python library named ```networkx``` for our purpose. In KGHeartbeat, the module called [```Graph.py```](https://github.com/isislab-unisa/KGHeartbeat/blob/main/Graph.py) is responsable to the caluculation of these three value. In particular, it is responsible for creating the graph that contains all the KGs that can be retrieved automatically from Internet. The external connections for every KG are analyzed (field
+present in the metadata under the "external links" key) and for each connection we find, we insert the node inside the graph, labeled with the id of the KG and insert the edge with a weight equal to the number of triples with which it is connected to the other KGs. The process is then iterated for every KGs recovered. At the end of these process, on this Graph we calculate: *Degree of connection*, *Clustering coefficient* and *Centrality*. 
 
+---
 #### **Degree of connection**
+The degree of connection is calculated by counting the number of edge that the KG has in the graph constructed as explained before.
+
+---
 #### **Clustering coefficient**
+The clustering coefficient (specifically here we calculate the local clustering coefficient), measures the degree to which the node tends to form a clique with its neighbors and is a value in the range [0-1].
+
+---
 #### **Centrality**
+Centrality allows us to understand how important the KG is inside the graph and it is also a value between [0-1]. A higher centrality means a higher importance of the node, that is, it is involved in many connections. Instead, the lower it is, the more it means that those node is in the peripheral areas of the graph.
+
+---
 #### **Number of *same as* chains**
+In this case we use the following query which counts the number of triples that have the ```owl:sameAs``` predicate.
+
+```
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT (COUNT(?o) AS ?triples)
+WHERE {
+?s owl:sameAs ?o
+}
+```
+
 ---
 
 ### **Security**
