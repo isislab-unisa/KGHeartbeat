@@ -40,8 +40,9 @@ Little introduction
 ### Security
 1. [Authentication](#authentication)
 2. [Use HTTPS](#use-https)
+
 --- 
-### Availability
+### **Availability**
 
 #### **SPARQL endpoint**
 First of we need to check that it is present
@@ -115,7 +116,7 @@ All links present in the "resources" field in the metadata are recovered for the
 
 ---
 
-### Licensing
+### **Licensing**
 
 #### **Machine-readable license**
 We can verify the presence of this type
@@ -144,6 +145,7 @@ Because queries with the VALUES function may not be supported
 from SPARQL endpoints that are based on SPARQL 1.0,
 alternative queries are provided which instead use the UNION.
 
+---
 #### **Human-readable license**
 For this type of license we must access the triples of the KG to verify that there is a label understandable to the user on a triple. All the labels contained in the KF are recovered and then filtered using the following regex: 
 
@@ -171,12 +173,13 @@ regex(?o,
 }
 ```
 
+---
 #### **License in the metadata**
 In this case, they are simply analyzed the KG metadata and the value of the ```license``` key is checked.
 
 ---
 
-### Interlinking
+### **Interlinking**
 
 #### **Degree of connection**
 #### **Clustering coefficient**
@@ -184,10 +187,12 @@ In this case, they are simply analyzed the KG metadata and the value of the ```l
 #### **Number of *same as* chains**
 ---
 
-### Security
+### **Security**
 For the calculation of the following two metrics we will need the SPARQL endpoint to be present and active see how [here](#sparql-endpoint).
 #### **Authentication**
 To check this metric we use the same query used to test the availability of the SPARQL endpoint (see [here](#sparql-endpoint)), but in this case we check if the status code 401 is returned to us.
+
+---
 
 #### **Use HTTPS**
 To check if the HTTPS protocol is used, we check if
@@ -210,6 +215,7 @@ WHERE {?s ?p ?o .}
 LIMIT 1
 ```
 
+---
 #### **Throughput**
 Also in this case the test is repeated 5 times and we use the same previous query. But in this case we see in a second how many requests we can complete. The query executes in a while loop that stops after one second, and a count counter is incremented each time the query returns the result. At the end of each test, this variable will contain the number of requests and responses completed.
 
