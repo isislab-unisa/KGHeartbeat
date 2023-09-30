@@ -14,7 +14,8 @@ router.route('/').get((req, res) => {
         {
             $project: {
                 _id: 0, // Per escludere il campo _id dal risultato
-                kg_id: 1 // Per includere il campo kg_id nel risultato
+                kg_id: 1, // Per includere il campo kg_id nel risultato
+                kg_name: 1
             }
         }
     ];

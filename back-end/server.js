@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { connectToMongoDB } = require('./db');
 const knowledge_graph_router = require('./routes/knowledge_graph');
+const accessibility = require('./routes/accessibility')
 
 require('dotenv').config();
 
@@ -23,7 +24,7 @@ app.use(async (req, res, next) => {
 });
 
 app.use('/knowledge_graph',knowledge_graph_router);
-
+app.use('/accessibility',accessibility)
 
 app.listen(port,() => {
     console.log(`Server is running on port: ${port}`);
