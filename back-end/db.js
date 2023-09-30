@@ -1,19 +1,21 @@
-// db.js
-
 const { MongoClient } = require('mongodb');
+require('dotenv').config();
 
-const dbConnectionString = process.env.MONGO_DB_CONN_STR; // Sostituisci con la tua stringa di connessione
+let dbInstance = null; // This is used to store the DB connection
 
 async function connectToMongoDB() {
-  const client = new MongoClient(dbConnectionString, { useNewUrlParser: true, useUnifiedTopology: true });
-  try {
-    await client.connect();
-    console.log('Conntected to MongoDB');
-    return client.db(); // Ritorna l'istanza del database
-  } catch (error) {
-    console.error('Error during connection to the Database:', error);
-    throw error;
+  if (!dbInstance) {
+    const client = new MongoClient(process.env.MONGO_DB_CONN_STR);
+    try {
+      await client.connect();
+      console.log('Connected to MongoDB');
+      dbInstance = client.db(process.env.DB_NAME);
+    } catch (error) {
+      console.error('Error during connection to the Database:', error);
+      throw error;
+    }
   }
+  return dbInstance;
 }
 
-module.exports = { connectToMongoDB };
+module.exports = {connectToMongoDB};
