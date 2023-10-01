@@ -18,4 +18,53 @@ async function connectToMongoDB() {
   return dbInstance;
 }
 
-module.exports = {connectToMongoDB};
+async function find_single_data(kg_id,quality_category,dimension_index){
+  try{
+    const result = await dbInstance.collection('quality_analysis_data').findOne(
+      { 'kg_id': kg_id },
+        {
+            projection: {
+                _id: 0, 
+                kg_id: 1,
+                kg_name: 1,
+                analysis_date: 1,
+                Quality_category_array: { $arrayElemAt: [`$${quality_category}`, dimension_index] }, 
+            },
+            sort: { analysis_date: -1 }
+        }
+    );
+    return result
+
+  } catch (error) {
+    console.error(error)
+
+    return []
+  }
+}
+
+async function find_data_over_time(kg_id,quality_category,dimension_index){
+  try{
+    const result = await dbInstance.collection('quality_analysis_data').find(
+      { 'kg_id': kg_id },
+      {
+          projection:{
+              _id: 0, 
+              kg_id: 1,
+              kg_name: 1,
+              analysis_date: 1,
+              Quality_category_array: { $arrayElemAt: [`$${quality_category}`, dimension_index] }, 
+          },
+          sort: { analysis_date: 1 }
+      },
+    ).toArray();
+
+    return result
+    
+  } catch (error) {
+    console.error(error)
+
+    return []
+  }
+}
+
+module.exports = {connectToMongoDB, find_single_data, find_data_over_time};

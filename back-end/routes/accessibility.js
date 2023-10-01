@@ -1,21 +1,11 @@
 const router = require('express').Router();
+const { find_single_data, find_data_over_time } = require('../db');
+
+const quality_category = 'Accessibility';
 
 router.route('/availability').get((req,res) =>{
     const id = req.query.id;
-    req.db.collection('quality_analysis_data').find(
-        { 'kg_id': id },
-        {
-            projection:{
-                _id: 0, 
-                kg_id: 1,
-                kg_name: 1,
-                analysis_date: 1,
-                Accessibility: { $arrayElemAt: ['$Accessibility', 0] }, 
-            },
-            sort: { analysis_date: 1 }
-        },
-    ).toArray()
-    .then(result => {
+    find_data_over_time(id,quality_category,0).then(result => {
         if(result.length > 0)
             res.json(result);
         else
@@ -23,26 +13,13 @@ router.route('/availability').get((req,res) =>{
     })
     .catch(err => {
         console.error(err);
-        res.status(500).send('Error during the aggregation: '+ err);
-    })
+        res.status(500).send('Error during the aggregation: ' + err);
+    });
 })
 
 router.route('/licensing').get((req, res) =>{
     const id = req.query.id;
-    req.db.collection('quality_analysis_data').findOne(
-        { 'kg_id': id },
-        {
-            projection: {
-                _id: 0, 
-                kg_id: 1,
-                kg_name: 1,
-                analysis_date: 1,
-                Accessibility: { $arrayElemAt: ['$Accessibility', 1] }, 
-            },
-            sort: { analysis_date: -1 }
-        }
-    )
-    .then(result => {
+    find_single_data(id,quality_category,1).then(result => {
         if(result)
             res.json(result);
         else
@@ -56,20 +33,7 @@ router.route('/licensing').get((req, res) =>{
 
 router.route('/interlinking').get((req,res) =>{
     const id = req.query.id;
-    req.db.collection('quality_analysis_data').find(
-        { 'kg_id': id },
-        {
-            projection:{
-                _id: 0, 
-                kg_id: 1,
-                kg_name: 1,
-                analysis_date: 1,
-                Accessibility: { $arrayElemAt: ['$Accessibility', 2] }, 
-            },
-            sort: { analysis_date: 1 }
-        },
-    ).toArray()
-    .then(result => {
+    find_data_over_time(id,quality_category,2).then(result => {
         if(result.length > 0)
             res.json(result);
         else
@@ -77,26 +41,13 @@ router.route('/interlinking').get((req,res) =>{
     })
     .catch(err => {
         console.error(err);
-        res.status(500).send('Error during the aggregation: '+ err);
-    })
+        res.status(500).send('Error during the aggregation: ' + err);
+    });
 })
 
 router.route('/security').get((req, res) =>{
     const id = req.query.id;
-    req.db.collection('quality_analysis_data').findOne(
-        { 'kg_id': id },
-        {
-            projection: {
-                _id: 0, 
-                kg_id: 1,
-                kg_name: 1,
-                analysis_date: 1,
-                Accessibility: { $arrayElemAt: ['$Accessibility', 3] }, 
-            },
-            sort: { analysis_date: -1 }
-        }
-    )
-    .then(result => {
+    find_single_data(id,quality_category,3).then(result => {
         if(result)
             res.json(result);
         else
@@ -110,20 +61,7 @@ router.route('/security').get((req, res) =>{
 
 router.route('/performance').get((req,res) =>{
     const id = req.query.id;
-    req.db.collection('quality_analysis_data').find(
-        { 'kg_id': id },
-        {
-            projection:{
-                _id: 0, 
-                kg_id: 1,
-                kg_name: 1,
-                analysis_date: 1,
-                Accessibility: { $arrayElemAt: ['$Accessibility', 4] }, 
-            },
-            sort: { analysis_date: 1 }
-        },
-    ).toArray()
-    .then(result => {
+    find_data_over_time(id,quality_category,4).then(result => {
         if(result.length > 0)
             res.json(result);
         else
@@ -131,8 +69,8 @@ router.route('/performance').get((req,res) =>{
     })
     .catch(err => {
         console.error(err);
-        res.status(500).send('Error during the aggregation: '+ err);
-    })
+        res.status(500).send('Error during the aggregation: ' + err);
+    });
 })
 
 module.exports = router;
