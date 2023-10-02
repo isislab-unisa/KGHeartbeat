@@ -13,8 +13,8 @@ router.route('/').get((req, res) => {
         },
         {
             $project: {
-                _id: 0, // Per escludere il campo _id dal risultato
-                kg_id: 1, // Per includere il campo kg_id nel risultato
+                _id: 0,
+                kg_id: 1,
                 kg_name: 1
             }
         }
