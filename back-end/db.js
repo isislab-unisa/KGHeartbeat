@@ -67,4 +67,37 @@ async function find_data_over_time(kg_id,quality_category,dimension_index){
   }
 }
 
-module.exports = {connectToMongoDB, find_single_data, find_data_over_time};
+async function searchKG(keywords){
+  try{
+    const result = await dbInstance.collection('quality_analysis_data').aggregate([
+      {
+        $match: {
+          'kg_name': { $regex: `${keywords}`, $options: 'i' }
+        }
+      },
+      {
+        $group: {
+          _id: '$kg_id',
+          kg_name: { $first: '$kg_name' }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          kg_id: '$_id',
+          kg_name: 1
+        }
+      }
+    ]).toArray();
+    
+    return result
+
+  } catch (error) {
+    console.error(error)
+
+    return false
+  }
+}
+
+
+module.exports = {connectToMongoDB, find_single_data, find_data_over_time, searchKG};

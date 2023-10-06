@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { searchKG } = require('../db');
 
 router.route('/').get((req, res) => {
     const pipeline = [
@@ -27,5 +28,20 @@ router.route('/').get((req, res) => {
         res.status(500).send('Error during the aggregation: '+ err);
     })
 });
+
+
+router.route('/search').get((req, res) => {
+    const keywords = req.query.q;
+    searchKG(keywords).then(result => {
+        if(result.length > 0)
+            res.json(result);
+        else
+            res.status(404).json({ error: 'No data found' });
+    })
+    .catch(err => {
+        console.error(err);
+        res.status(500).send('Error during the aggregation: ' + err);
+    });
+})
 
 module.exports = router;
