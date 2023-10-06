@@ -23,11 +23,11 @@ return (
     <div>
         <input
         type="text"
-        placeholder="Cerca..."
+        placeholder="Search..."
         value={query}
         onChange={handleChange}
         />
-        <button onClick={handleSearch}>Cerca</button>
+        <button onClick={handleSearch}>Search</button>
     </div>
     );
 }

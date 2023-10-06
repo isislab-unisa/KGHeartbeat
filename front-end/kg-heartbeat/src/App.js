@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>App di Ricerca</h1>
+      <h1>KGHearthbeat</h1>
       <SearchBar onSearch={handle_search} />
       <SearchResults results={searchResults} />
     </div>
