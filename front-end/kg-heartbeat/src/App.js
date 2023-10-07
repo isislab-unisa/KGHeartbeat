@@ -15,11 +15,18 @@ function App() {
     setKG(newKG);
   }
 
+  let content;
+  if(selectedKGs.length > 0){
+    content = <button>View quality data</button>
+  }
+
+  console.log(selectedKGs)
   return (
     <div className="App">
       <h1>KGHeartbeat</h1>
       <SearchBar onSearch={handle_search} />
-      <SearchResults results={searchResults} selected={selectedKGs} onChechboxChange={handleSelectedDataChange} />
+      {content}
+      <SearchResults results={searchResults} selected={selectedKGs} onCheckboxChange={handleSelectedDataChange} />
     </div>
   );
 }
