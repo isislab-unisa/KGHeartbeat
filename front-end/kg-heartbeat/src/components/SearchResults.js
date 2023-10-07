@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
-function SearchResults({ results }){
-  const [selected, setKG] = useState([]);
-
+function SearchResults({ results, selected, onChechboxChange }){
+  //TODO: Spostare in App per poter passare la selezione ai vari component per i grafici
+  
   const handleOnChange = (kg_id) => {
     let found = false
     for(let i = 0; i<selected.length; i++){
@@ -11,33 +13,35 @@ function SearchResults({ results }){
         break;
       }
     }
-    console.log(selected)
     if(!found){
-      setKG([
-        ...selected,
-        {id: kg_id}
-      ]);
+      const newSelection = [...selected,{id: kg_id}];
+      onChechboxChange(newSelection)
     }else {
-      setKG(
-        selected.filter(kg => kg.id !== kg_id)
-      );
+      const newSelection = selected.filter(kg => kg.id !== kg_id);
+      onChechboxChange(newSelection)
     }
   }
 
     return (
-        <div>
-          {results.map((result) => (
-            <div>
-              <input type='checkbox' id={result.kg_id} name={result.kg_id} value={result.kg_id} className="kg_checkbox" onChange={() => handleOnChange(result.kg_id)}/>
-              <label htmlFor={result.kg_id}>{result.kg_name}</label>
-            </div>
-        ))}
-            <div>
-              {selected.map(selected => (
-                <li>{selected.id}</li>
-              ))}
-            </div>
-        </div>
+      <Container>
+        <Row>
+        <Col md="9">
+            {results.map((result) => (
+              <div>
+                <input type='checkbox' id={result.kg_id} name={result.kg_id} value={result.kg_id} className="kg_checkbox" onChange={() => handleOnChange(result.kg_id)}/>
+                <label htmlFor={result.kg_id}>{result.kg_name}</label>
+              </div>
+          ))} 
+          </Col>
+            <Col md="3">
+              <div id="selectedKG">
+                {selected.map(selected => (
+                  <li>{selected.id}</li>
+                ))}
+              </div>
+            </Col>
+          </Row>
+        </Container>
       );
 }
 
