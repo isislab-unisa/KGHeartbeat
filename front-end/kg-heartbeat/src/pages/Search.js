@@ -7,7 +7,7 @@ function Search({searchResults, handle_search, selectedKGs, handleSelectedDataCh
 
         <div>
             <div className="App">
-            <h1>KGHeartbeat</h1>
+            <h2>Search the KGs</h2>
             <SearchBar onSearch={handle_search} />
             <SearchResults results={searchResults} selected={selectedKGs} onCheckboxChange={handleSelectedDataChange} />
             </div>

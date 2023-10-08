@@ -1,10 +1,10 @@
 import './App.css';
-import SearchBar from './components/SearchBar';
-import SearchResults from './components/SearchResults';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
 import QualityData from './pages/QualityData';
 import Search from './pages/Search';
+import NavBar from './components/NavBar';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -25,9 +25,9 @@ function App() {
 
   console.log(selectedKGs)
   return (
+    <div>
     <Router>
-        <Link to="/pages/QualityData">View Quality</Link>
-        <Link to="/pages/Search">Search</Link>
+      <NavBar />
         {/* Configura le rotte */}
         <Routes>
           <Route path="/pages/QualityData" component={QualityData} element={<QualityData selectedKGs={selectedKGs}/>}/>
@@ -35,6 +35,7 @@ function App() {
           {/* Altre rotte se necessario */}
         </Routes>
     </Router>
+    </div>
   );
 }
 
