@@ -926,7 +926,100 @@ FILTER(regex(?s,"%s"))
 ## Representational
 
 ### Representational-conciseness
+1. URIs length
+2. Use of RDF structures
+
 ### Representational-consistency
+1. Reuse of vocabularies
+2. Reuse of terms
+
 ### Understandability
+1. Number of label
+2. Presence of example
+3. URIs regex
+4. Vocabularies
+
 ### Interpretability
+1. Number of blank nodes
+2. Use of RDF structures
+
+### Versatility
+1. Languages
+2. Serialization formats
+3. KG access
+
+
+### **Representational-conciseness**
+
+#### **URIs Length**
+For the calculation of this metric we need all the KG triples. For recover it, we use the following query:
+
+```sql
+SELECT *
+WHERE{?s ?p ?o}
+```
+
+Three separate values are created, so as to have the length of the subject, predicate and object URIs. The calculation proceeds by counting the number of characters and the average, maximum, minimum and standard deviation are maintained.
+
+--- 
+
+#### **Use or RDF structures**
+In this case we check that there are no RDF data structures, in fact their use comes discouraged by W3C. To check their use we use the following query:
+```sql
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT (COUNT(?s) AS ?triples)
+WHERE{
+{?s rdf:type rdf:List }
+UNION
+{?s rdf:type rdf:Statement}
+UNION
+{?s rdf:type rdf:Alt}
+UNION
+{?s rdf:type rdf:Bag}
+UNION
+{?s rdf:type rdf:Seq}
+UNION
+{?s rdf:type rdf:Container}
+UNION
+{?s rdf:subject ?o}
+UNION
+{?s rdf:predicate ?o}
+UNION
+{?s rdf:object ?o}
+UNION
+{?s rdfs:member ?o}
+UNION
+{?s rdf:first ?o}
+UNION
+{?s rdf:rest ?o}
+UNION
+{?s rdf:_’[0-9]+’}
+}
+```
+If the query returns even just one result, it means we have
+a triple that declares the use of RDF structures and therefore
+we attribute a value of 1 to the data (i.e. they are used), 0 otherwise.
+
+
+### **Representational-consistency**
+#### **Reuse of vocabularies**
+For the calculation of this metric we need the vocabularies used in the KG. To recover this information we have used the same method that we have seen [here](#vocabularies). Then thanks to the REST API of the Linked Open Vocabularies (LOV), we check if the vocabularies is standard (i.e. is in the LOV). We assign at the metric 1 if new vocabularies are defined, otherwise 0.
+Furthermore, track of the new vocabularies used will also be kept.
+
+#### **Reuse of terms**
+In this case we need all the terms used in the KG. We can get this information by using the following query:
+
+```sql
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+SELECT DISTINCT ?o
+WHERE {?s rdf:type ?o}
+```
+
+Then we search every term founded on the Linked Open Vocabularies, to check if is present or not (if yes this mean that is considered a standard term). At the end of the analysis of all the terms, a value of 1 will be assigned if new ones are defined, 0 otherwise. Even in this case, a list of all new terms declared is still maintained
+
+### Understandability
+
+### Interpretability
+
 ### Versatility
