@@ -19,7 +19,10 @@ Little introduction
     2.1 [Accuracy](#accuracy)  
     2.2 [Consistency](#consistency)  
     2.3 [Conciseness](#conciseness)
-
+3. [Trust](#trust)  
+    3.1 [Reputation](#reputation)  
+    3.2 [Believability](#believability)  
+    3.3 [Verifiability](#verifiability)
 ---
 
 ## Accessibility
@@ -44,6 +47,10 @@ Little introduction
 ### Security
 1. [Authentication](#authentication)
 2. [Use HTTPS](#use-https)
+
+### Performance
+1. [Latency](#latency)
+2. [Throughput](#throughput)
 
 --- 
 ### **Availability**
@@ -614,6 +621,14 @@ In the end the value of extensional conciseness is given by the formula that fol
 4. [Reliable provider](#reliable-provider)
 5. [Trust value](#trust-value)
 
+### Verifiability
+1. [Vocabularies](#vocabularies)
+2. [Authors](#authors)
+3. [Contributors](#contributors)
+4. [Publishers](#publishers)
+5. [Sources](#sources)
+6. [Signature](#signature)
+
 ---
 
 
@@ -659,24 +674,254 @@ In fact, this value is calculated as a weighted average based on how many of the
 
 ---
 
-### Verifiability
+### **Verifiability**
 
+#### **Vocabularies**
+For recover the vocabularies used in the KG we can use two different approach. The first is try to parse the VoID file if available and we have to search the triples with the $void:vocabulary$ triples. The second method is to use the following query on the SPARQL endpoint.
 
-### Objectivity
+```sql
+PREFIX void: <http://rdfs.org/ns/void#>
+SELECT DISTINCT ?o
+WHERE{?s void:vocabulary ?o }
+```
 
+---
 
+#### **Authors**
+Also the authors can be recovered via the VoID file or the SPARQL endpoint. In the VoID file we have to search the triples with the predicate equals to $dcterms:creator$. As alternative, we execute the following query on the SPARQL endpoint.
+
+```sql
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+SELECT DISTINCT ?o
+WHERE{
+{?s dc:creator ?o }
+UNION
+{?s dcterms:creator ?o}
+UNION
+{?s foaf:maker ?o}
+}
+```
+---
+
+#### **Contributors**
+This metric is recoverable by searching the $dcterms:contributor$ predicate in the VoID file or by executing the following query on the SPARQL endpoint:
+
+```sql
+PREFIX dcterms:<http://purl.org/dc/terms/>
+SELECT DISTINCT ?o
+WHERE {?s dcterms:contributor ?o.}
+```
+
+---
+
+#### **Publishers**
+The metric is calculated by searching the $dcterms:publisher$ predicate in the VoID file or by executing the following query on the SPARQL endpoint:
+
+```sql
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+SELECT DISTINCT ?o
+WHERE {?s dc:publisher ?o}
+```
+
+---
+
+#### **Sources**
+For this metric we analyze the KG metadata and in particular we get the value from the field that has as key $sources$ .
+
+---
+
+### **Signature**
+To check and retrieve the signature on the KG if present, the following query is executed:
+
+```sql
+PREFIX swp:<http://www.w3.org/2004/03/trix/swp-2/>
+SELECT ?s ?o
+WHERE{
+{?s swp:signature ?o}
+UNION
+{?s swp:authority ?o}
+UNION
+{?s swp:certificate ?o}
+UNION
+{?s swp:quotedBy ?o}
+UNION
+{?s swp:assertedBy ?o}
+}
+```
+---
 
 ## Dataset dynamicity
 
 ### Currency
+1. [Creation date](#creation-date)
+2. [Modification date](#modification-date)
+3. [Time since last modification](#time-since-last-modification)
+4. [History of changes made](#history-of-changes-made)
+
 ### Volatility
-### Timeliness
+1. [Update frequency](#update-frequency)
+
+#### **Creation date**
+The value regarding the KG creation date can be obtained from the VoID file or by executing a query on the SPARQL endpoint. In the VoID file we look for a triple having $dcterms:created$ as predicate. Instead the query for the endpoint should be of the type:
+
+```sql
+PREFIX dcterms: <http://purl.org/dc/terms/>
+SELECT DISTINCT ?o
+WHERE{?s dcterms:created ?o}
+ORDER BY ASC(?o)
+LIMIT 1
+```
+What this query does is retrieve all triples with predicate
+$dcterms:created$, then sorts the results in ascending order and takes the
+first value. This is because often multiple triples can be indicated
+with that predicate.
+
+---
+
+#### **Modification date**
+This value can also be obtained either from the file
+VoID or by executing a query. In the VoID file we look for the triple with predicate $dcterms:modified$, while on the SPARQL endpoint we execute the following query:
+
+```sql
+PREFIX dcterms: <http://purl.org/dc/terms/>
+SELECT DISTINCT ?o
+WHERE{?s dcterms:modified ?o}
+ORDER BY ASC(?o)
+LIMIT 1
+```
+In the opposite way to what happened for the creation date, here we sort the output in descending order and take the first result.
+
+---
+
+#### **Time since last modification**
+In this case we simply retrieve the modification date (with the previous query) and make the difference between the date on which we are performing the analysis and the date of the last modification. The value is expressed in days.
+
+---
+
+#### **History of changes made**
+To calculate this data we need all the triples with $dcterm:modified$ predicate, which correspond to all the different modification dates. We use the same query used in the [modification date metric](#modification-date), but we remove LIMIT 1. At this point, for each date we obtained from the query, we execute the following query:
+
+```sql
+PREFIX dcterms:<http://purl.org/dc/terms/>
+SELECT DISTINCT (COUNT(?o) AS ?triples)
+WHERE{
+{?s dcterms:modified ?o}
+FILTER regex(?o,’%s’)
+}
+```
+In the regex function the ```%s``` parameter is set with the modification date for which we want to count the number of updated triples.
+
+---
+
+### **Volatility**
+
+#### **Update frequency**
+For the calculation of this metric we use this query:
+```sql
+PREFIX dcterms:<http://purl.org/dc/terms/>
+SELECT DISTINCT ?o
+WHERE{
+{?s dcterms:accrualPeriodicity ?o}
+UNION
+{?s dcterms:Frequency ?o}
+}
+```
+The output of this query can be a code that indicate the update frequency (may vary based on the KG considered). For example A stands for annual, M for monthly, D for daily, W for weekly.
 
 ## Contextual
 
 ### Completeness
-### Amount of data
-### Relevancy
+1. [Interlinking completeness](#interlinking-completeness)
+
+### Amunt of data
+1. [Number of triples](#number-of-triples)
+2. [Number of properties](#number-of-properties)
+3. [Number of entities](#number-of-entities)
+
+### **Completeness**
+
+#### **Interlinking completeness**
+For the calculation of the interlinking completeness
+we count the total number of triples that are connected with other KGs. This occurs by analyzing the metadata and in particular the *external links* field, which contains a list of values in the form *key*-*value*, where the *key* is the id of the KG with which it is connected and the *value* is the number of triples. We analyze this list and we do the sum of all the values. Then we apply the following formula to obtain the interlinking completeness (where $triplesL$ is the number of triples linked and $T_{KG}$ is the set of all the triples in the KG):
+
+$$
+m_{intCompl} = \frac{triplesL}{T_{KG}}
+$$
+
+---
+
+### **Amount of data**
+
+#### **Number of triples**
+To calculate the number of triples in the KG we can proceed in two ways. The first consists in recovering the data through the metadata, in particular the *triples* key. This method is only applied when actual triples cannot be counted by accessing the SPARQL endpoint. Because the metadata is not updated along with the content of the KG. The following query is used for count the number of triples: 
+```sql
+SELECT (COUNT(?s) AS ?triples)
+WHERE { ?s ?p ?o }
+```
+
+#### **Number of properties**
+We can only obtain this type of value by executing a SPARQL query. In particular, the number of properties is given to us by this query:
+
+```sql
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+SELECT DISTINCT (COUNT(?o) AS ?triples)
+WHERE {
+{ ?o a rdf:Property}
+UNION
+{?o a owl:DatatypeProperty}
+UNION
+{?o a skos:Property}
+UNION
+{?o a owl:DatatypeProperty}
+UNION
+{?o a owl:AnnotationProperty}
+UNION
+{?o a owl:OntologyProperty}
+UNION
+{?o a rdfs:subPropertyOf}
+UNION
+{?o a rdfs:Property}
+}
+```
+
+#### **Number of entities**
+In this case we simply recover it by searching for the triple with $void:entities$ predicate inside the VoID file. As an alternative if there isn't a VoID file available, we execute the following query on the SPARQL endpoint. 
+
+```sql
+PREFIX void:<http://rdfs.org/ns/void#>
+SELECT ?triples
+WHERE {?s void:entities ?triples}
+```
+
+Both of these methods, however, are based on the assumption that the provider of the dataset insert a triple in the KG with this information. Often, however, this does not happen, so in the event that the information is not provided we use another method. We first recover the URI regex or pattern, we recover this information by doing the following query:
+
+```sql
+SELECT DISTINCT ?o
+WHERE
+{?s void:uriRegexPattern ?o}
+```
+
+or this for the URI pattern
+
+```sql
+PREFIX void: <http://rdfs.org/ns/void#>
+SELECT DISTINCT ?o
+WHERE {?s void:uriSpace ?o}
+```
+In case the regex is not available, but we only have the
+URI space (which is not a regex), we transform it into a regex to use it for comparison. Once we got the regex we use the following query for count the number of entities:
+```sql
+SELECT (COUNT(?s) as ?triples)
+WHERE{
+{?s ?p ?o}
+FILTER(regex(?s,"%s"))
+```
+(The %s parameter in the regex function is set with the regex that we obtained with the mechanisms indicated above.)
+
 
 ## Representational
 
