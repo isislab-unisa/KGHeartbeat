@@ -1,4 +1,6 @@
-# Accessibility category
+---
+title: Accessibility category
+---
 
 ## Performance
 1. [Latency](#latency)
