@@ -159,6 +159,8 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 db_files/data
+db_files/docker.env
 Analysis results/json_files
 Analysis results/splitted
+manual_db_insert.py
 .vscode
