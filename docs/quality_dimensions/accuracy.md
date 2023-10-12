@@ -1,4 +1,6 @@
-# Intrinsic category
+---
+title: Intrinsic category
+---
 
 ## Accuracy
 1. [Empty label](#empty-label)

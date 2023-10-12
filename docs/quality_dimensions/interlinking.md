@@ -1,4 +1,6 @@
-# Accessibility category
+---
+title: Accessibility category
+---
 
 ## Interlinking
 1. [Degree of connection](#degree-of-connection)

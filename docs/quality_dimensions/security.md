@@ -1,4 +1,6 @@
-# Accessibility category
+---
+title: Accessibility category
+---
 
 ## Security
 1. [Authentication](#authentication)

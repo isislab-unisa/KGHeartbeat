@@ -1,4 +1,6 @@
-# Contextual category
+---
+title: Contextual category
+---
 
 ## Amount of data
 1. [Number of triples](#number-of-triples)

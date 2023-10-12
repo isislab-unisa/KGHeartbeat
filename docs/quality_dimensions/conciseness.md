@@ -1,4 +1,6 @@
-# Intrinsic category
+---
+title: Intrinsic category
+---
 
 ## Conciseness
 1. [Intensional conciseness](#intensional-conciseness)

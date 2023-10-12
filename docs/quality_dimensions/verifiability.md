@@ -1,4 +1,6 @@
-# Trust category
+---
+title: Trust category
+---
 
 ## Verifiability
 1. [Vocabularies](#vocabularies)

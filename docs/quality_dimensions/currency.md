@@ -1,4 +1,6 @@
-# Dataset dynamicity caregory
+---
+title: Dataset dynamicity category
+---
 
 ## Currency
 1. [Creation date](#creation-date)

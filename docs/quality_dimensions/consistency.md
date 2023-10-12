@@ -1,5 +1,6 @@
-
-# Intrinsic catagory
+---
+title: Intrinsic category
+---
 
 ## Consistency
 1. [Number of entities defined as member of disjoint class](#number-of-entities-defined-as-member-of-disjoint-class)

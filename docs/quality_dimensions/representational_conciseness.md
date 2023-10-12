@@ -1,4 +1,6 @@
-# Representational category
+---
+title: Representational category
+---
 
 ## Representational-conciseness
 1. [URIs length](#uris-length)

@@ -1,4 +1,6 @@
-# Representational category
+---
+title: Representational category
+---
 
 ## Versatility
 1. [Languages](#languages)

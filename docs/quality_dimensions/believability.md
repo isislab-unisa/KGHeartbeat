@@ -1,4 +1,6 @@
-# Trust category
+---
+title: Trust category
+---
 
 ## Believability
 

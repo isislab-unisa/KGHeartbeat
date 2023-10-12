@@ -1,4 +1,6 @@
-# Representational category
+---
+title: Accessibility category
+---
 
 ## Interpretability
 1. [Number of blank nodes](#number-of-blank-nodes)

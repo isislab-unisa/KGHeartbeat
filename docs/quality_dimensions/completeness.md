@@ -1,4 +1,6 @@
-# Contextual category
+---
+title: Contextual category
+---
 
 ## Completeness
 1. [Interlinking completeness](#interlinking-completeness)

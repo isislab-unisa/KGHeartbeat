@@ -1,4 +1,6 @@
-# Representational category
+---
+title: Representational category
+---
 
 ## Understandability
 1. [Number of label](#number-of-labels)
