@@ -1,7 +1,7 @@
 
-## Intrinsic catagory
+# Intrinsic catagory
 
-### Consistency
+## Consistency
 1. [Number of entities defined as member of disjoint class](#number-of-entities-defined-as-member-of-disjoint-class)
 2. [Misplaced classes](#misplaced-class)
 3. [Misplaced properties](#misplaced-properties)

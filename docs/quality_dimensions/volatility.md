@@ -1,6 +1,6 @@
-## Dataset dynamicity caregory
+# Dataset dynamicity caregory
 
-### Volatility
+## Volatility
 1. [Update frequency](#update-frequency)
 
 #### **Update frequency**

@@ -1,4 +1,4 @@
-## Accessibility category
+# Accessibility category
 
 ## Availability
 1. [SPARQL endpoint](#sparql-endpoint)

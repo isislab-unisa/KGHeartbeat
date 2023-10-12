@@ -1,6 +1,6 @@
-## Trust category
+# Trust category
 
-### Reputation
+## Reputation
 1. [PageRank](#pagerank)
 
 #### **PageRank**

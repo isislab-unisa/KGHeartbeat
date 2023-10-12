@@ -1,6 +1,6 @@
-## Representational category
+# Representational category
 
-### Versatility
+## Versatility
 1. [Languages](#languages)
 2. [Serialization formats](#serialization-formats)
 3. [Access to the KG](#access-to-the-kg)

@@ -1,6 +1,6 @@
-## Dataset dynamicity caregory
+# Dataset dynamicity caregory
 
-### Currency
+## Currency
 1. [Creation date](#creation-date)
 2. [Modification date](#modification-date)
 3. [Time since last modification](#time-since-last-modification)

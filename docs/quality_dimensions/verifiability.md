@@ -1,6 +1,6 @@
-## Trust category
+# Trust category
 
-### Verifiability
+## Verifiability
 1. [Vocabularies](#vocabularies)
 2. [Authors](#authors)
 3. [Contributors](#contributors)

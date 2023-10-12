@@ -1,6 +1,6 @@
-## Representational category
+# Representational category
 
-### Interpretability
+## Interpretability
 1. [Number of blank nodes](#number-of-blank-nodes)
 2. [Use of RDF structures](#rdf-structures)
 

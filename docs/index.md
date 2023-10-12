@@ -14,13 +14,13 @@ Little introduction
     1.1 [Availability](./quality_dimensions/availability)  
     1.2 [Licensing](./quality_dimensions/licensing)  
     1.3 [Interlinking](./quality_dimensions/interlinking)  
-    1.4 [Security](./quality_dimensions/security)
+    1.4 [Security](./quality_dimensions/security)  
     1.5 [Performance](./quality_dimensions/performance)
-2. Intrinsic
+2. Intrinsic  
     2.1 [Accuracy](./quality_dimensions/accuracy)  
     2.2 [Consistency](./quality_dimensions/consistency)  
     2.3 [Conciseness](./quality_dimensions/conciseness)
-3. Trust
+3. Trust  
     3.1 [Reputation](./quality_dimensions/reputation)  
     3.2 [Believability](./quality_dimensions/believability)  
     3.3 [Verifiability](./quality_dimensions/verifiability)  

@@ -1,6 +1,6 @@
-## Intrinsic category
+# Intrinsic category
 
-### Accuracy
+## Accuracy
 1. [Empty label](#empty-label)
 2. [Whitespace at the beginnig or end of the label](#whitespace-at-the-beginnig-or-end-of-the-label)
 3. [Wrong datatype](#wrong-datatype)

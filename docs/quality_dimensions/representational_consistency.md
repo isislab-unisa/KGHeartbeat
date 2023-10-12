@@ -1,6 +1,6 @@
-## Representational category
+# Representational category
 
-### Representational-consistency
+## Representational-consistency
 1. [Reuse of vocabularies](#reuse-of-vocabularies)
 2. [Reuse of terms](#reuse-of-terms)
 

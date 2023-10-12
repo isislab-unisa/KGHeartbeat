@@ -1,6 +1,6 @@
-## Intrinsic category
+# Intrinsic category
 
-### Conciseness
+## Conciseness
 1. [Intensional conciseness](#intensional-conciseness)
 2. [Extensional conciseness](#extensional-conciseness)
 

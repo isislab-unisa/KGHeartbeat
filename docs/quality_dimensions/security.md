@@ -1,6 +1,6 @@
-## Accessibility category
+# Accessibility category
 
-### Security
+## Security
 1. [Authentication](#authentication)
 2. [Use HTTPS](#use-https)
 

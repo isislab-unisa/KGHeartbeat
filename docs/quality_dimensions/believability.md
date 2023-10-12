@@ -1,6 +1,6 @@
-### Trust category
+# Trust category
 
-### Believability
+## Believability
 
 1. [Title](#title)
 2. [Description](#description)

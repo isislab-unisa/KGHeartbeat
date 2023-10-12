@@ -1,6 +1,6 @@
-## Representational category
+# Representational category
 
-### Representational-conciseness
+## Representational-conciseness
 1. [URIs length](#uris-length)
 2. [Use of RDF structures](#rdf-structures)
 

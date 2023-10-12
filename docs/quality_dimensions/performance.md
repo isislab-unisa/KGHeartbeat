@@ -1,6 +1,6 @@
-## Accessibility category
+# Accessibility category
 
-### Performance
+## Performance
 1. [Latency](#latency)
 2. [Throughput](#throughput)
 

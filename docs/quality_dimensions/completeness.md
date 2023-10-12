@@ -1,6 +1,6 @@
-## Contextual category
+# Contextual category
 
-### Completeness
+## Completeness
 1. [Interlinking completeness](#interlinking-completeness)
 
 #### **Interlinking completeness**

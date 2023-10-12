@@ -1,6 +1,6 @@
-## Contextual category
+# Contextual category
 
-### Amount of data
+## Amount of data
 1. [Number of triples](#number-of-triples)
 2. [Number of properties](#number-of-properties)
 3. [Number of entities](#number-of-entities)

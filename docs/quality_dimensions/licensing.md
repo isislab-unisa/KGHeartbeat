@@ -1,5 +1,5 @@
 
-## Accessibility category
+# Accessibility category
 
 ## Licensing
 1. [Machine-readable license](#machine-readable-license)

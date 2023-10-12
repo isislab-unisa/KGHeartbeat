@@ -1,6 +1,6 @@
-## Representational category
+# Representational category
 
-### Understandability
+## Understandability
 1. [Number of label](#number-of-labels)
 2. [Presence of example](#presence-of-examples)
 3. [URIs regex](#uris-regex)

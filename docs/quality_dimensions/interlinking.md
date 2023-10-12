@@ -1,6 +1,6 @@
-## Accessibility category
+# Accessibility category
 
-### Interlinking
+## Interlinking
 1. [Degree of connection](#degree-of-connection)
 2. [Clustering coefficient](#clustering-coefficient)
 3. [Centrality](#centrality)
