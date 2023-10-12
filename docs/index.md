@@ -23,16 +23,16 @@ Little introduction
 3. Trust
     3.1 [Reputation](./quality_dimensions/reputation)  
     3.2 [Believability](./quality_dimensions/believability)  
-    3.3 [Verifiability](./quality_dimensions/verifiability)
-4. Dataset dynamicity
+    3.3 [Verifiability](./quality_dimensions/verifiability)  
+4. Dataset dynamicity  
     4.1 [Currency](./quality_dimensions/currency)  
     4.2 [Volatility](./quality_dimensions/volatility)  
-5. Contextual
+5. Contextual  
     5.1 [Completeness](./quality_dimensions/completeness)  
     5.2 [Amount of data](./quality_dimensions/amount_of_data)
-6. Representational
-    6.1 [Representational-conciseness](./quality_dimensions/representational_conciseness)
-    6.2 [Representational-consistency](./quality_dimensions/representational_consistency)
-    6.3 [Understandability](./quality_dimensions/understandability)
-    6.4 [Interpretability](./quality_dimensions/interpretability)
-    6.5 [Versatility](./quality_dimensions/versatility)
+6. Representational  
+    6.1 [Representational-conciseness](./quality_dimensions/representational_conciseness)  
+    6.2 [Representational-consistency](./quality_dimensions/representational_consistency)  
+    6.3 [Understandability](./quality_dimensions/understandability)  
+    6.4 [Interpretability](./quality_dimensions/interpretability)  
+    6.5 [Versatility](./quality_dimensions/versatility)  
