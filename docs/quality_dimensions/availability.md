@@ -1,7 +1,3 @@
----
-layout: home
----
-
 ## Accessibility category
 
 ## Availability

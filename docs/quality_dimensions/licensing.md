@@ -1,4 +1,7 @@
-### Licensing
+
+## Accessibility category
+
+## Licensing
 1. [Machine-readable license](#machine-readable-license)
 2. [Human-readable license](#human-readable-license)
 3. [License in the metadata](#license-in-the-metadata)
