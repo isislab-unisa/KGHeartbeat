@@ -1,4 +1,8 @@
-## Accessibility category
+---
+layout: home
+---
+
+## **Accessibility category**
 
 ## Availability
 1. [SPARQL endpoint](#sparql-endpoint)
