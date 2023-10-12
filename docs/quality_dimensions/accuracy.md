@@ -100,9 +100,8 @@ WHERE
 At this point we verify that there isn't any triples in the KG that have the same subject but with different object, if this triple exist, the triple violate the functional property. With the following algorithm, we automatize the metric calculation.
 
 <p align="center">
-<img src="../img/alg2.png" alt="drawing" width="580"/>
+    <img src="../img/alg2.png" width="590">
 </p>
-
 
 After the calculation of the number of triples that violate the functional property we use the following formula to quantize the metric, where $T_{KG}$ is the set of all triples in the KG:
 
@@ -123,7 +122,7 @@ WHERE
 Then with the following algorithm we obtain the number of triples that violate the inverse functional property.
 
 <p align="center">
-<img src="../img/alg3.png" alt="drawing" width="580"/>
+    <img src="../img/alg3.png" width="590">
 </p>
 
 The following formula instead, allow us to quantize the metric (where $T_{KG}$ is the set with all the KG triples):
