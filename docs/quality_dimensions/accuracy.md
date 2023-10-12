@@ -77,10 +77,22 @@ $$
 In this case we used the W3C documentation available [here](https://www.w3.org/TR/xmlschema11-2/). From this document, in addition to the data types, for each of them the regex has also been indicated which defines the range of values that it can take on. In our application an hash table was therefore created, where each entry is made up of a key, which is one of the data types, while the value is the corresponding regex which determines the domain. At this point we just have to catch up
 all triples from the KG and filter out those that contain a literal to perform the type checking (the check can also be done directly with a query on the SPARQL endpoint, but this often leads to overloading and the query might fail). The value calculation mechanism is given by the following pseudo code.
 
-<p align="center">
-<img src="../img/alg1.png" alt="drawing" width="580"/>
-</p>
-
+```c
+Data: triples list triplesLi
+Result: number of malformed triples malformedLiteral
+malformedLiteral ← 0;
+while NOT at the end of triplesLi do
+    tripla = read triple from triplesLi;
+    o = object in the triple ;
+    if o is a literal then
+        dataType = datatype key returned with the literal;
+        regex = call the get in the hash table by using dataType as key
+        if o NOT satisfy regex then
+            malformedLiteral ← malformedLiteral +1;
+        end
+    end
+end
+```
 #### **Functional Property violation**
 For the calcuation of this metric we have followed the definition given [here](https://www.w3.org/TR/owl-ref/#FunctionalProperty-def). For identify the functional property violation we first recover all triples that are a declaration of a functional property with the following query:
 ```sql
@@ -92,11 +104,24 @@ WHERE
 
 At this point we verify that there isn't any triples in the KG that have the same subject but with different object, if this triple exist, the triple violate the functional property. With the following algorithm, we automatize the metric calculation.
 
-<p align="center">
-<img src="../img/alg2.png" alt="drawing" width="580"/>
-</p>
-
-
+```c
+Data: list of all triples that declare a functional property
+triplesFP and list of all the triples of the KG
+Result: number of triples that violates the Functional property
+violationFP ← 0;
+while NOT at the end of triplesFP do
+    tripla = read a triple from the triplesFP list;
+    s = subject in the triple;
+    o = object in the triple;
+    while NOT at the end of triples do
+        s2 = sobject of the triple;
+        o2 = object in the triple;
+        if s is equal to s2 AND o in not equal to o2 then
+            violationFP ← violationFP +1;
+        end
+    end
+end
+```
 After the calculation of the number of triples that violate the functional property we use the following formula to quantize the metric, where $T_{KG}$ is the set of all triples in the KG:
 
 $$
@@ -114,11 +139,23 @@ WHERE
 {?s owl:InverseFunctionalProperty ?o.}
 ```
 Then with the following algorithm we obtain the number of triples that violate the inverse functional property.
-
-<p align="center">
-<img src="../img/alg3.png" alt="drawing" width="580"/>
-</p>
-
+```c
+Data: list of triple that declare a inverse functional-property triplesIFP and list of all triplesin the KG triples
+Result: number of triples that violate the inverse functional property violationIFP
+violationIFP ← 0;
+    while NOT at the end of triplesIFP do
+        triple = read the triple from the triplesIFP list;
+        s = subject in the triple;
+        o = object in the triple;
+        while NOT at the end of triples do
+            s2 = subject in the triple in triples;
+            o2 = object in the triple in triples;
+            if o is equal to o2 AND s is not equal to s2 then
+                violationIFP ← violationIFP +1;
+            end
+        end
+    end
+```
 The following formula instead, allow us to quantize the metric (where $T_{KG}$ is the set with all the KG triples):
 
 $$

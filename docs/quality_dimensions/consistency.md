@@ -46,9 +46,7 @@ UNION
 ```
 Then with the following algorithm we calculate the number of triples with this problem
 
-<p align="center">
-<img src="../img/alg4.png" alt="drawing" width="580"/>
-</p>
+<!--TODO: inserire algoritmo-->
 
 In the end, the following formula allow us to quantize the metric:
 
@@ -67,9 +65,7 @@ WHERE {?s rdf:type owl:Class}
 ```
 With the following algorithm instead we count the number of triples that have this problem.
 
-<p align="center">
-<img src="../img/alg5.png" alt="drawing" width="580"/>
-</p>
+<!--TODO: Inserire algoritmo-->
 
 Finally, the following formula help us to quantize the metric (where $T_{KG}$ is the set of all triples in the KG):
 
@@ -111,10 +107,7 @@ WHERE {?s rdf:type ?o}
 
 And then we use the following algorithm
 
-<p align="center">
-<img src="../img/alg6.png" alt="drawing" width="580"/>
-</p>
-
+<!--TODO: inserire algoritmo-->
 This formula, where $T_{KG}$ is the set of all KG triples
 
 $$
@@ -128,9 +121,7 @@ give us the metric value.
 #### **Undefined properties**
 The calculation of this metric is equal to the previous, but in this case we focus on the properties, that is, on the predicate in the triple.
 
-<p align="center">
-<img src="../img/alg7.png" alt="drawing" width="580"/>
-</p>
+<!-- TODO: inserire algoritmo-->
 
 Similar to the previous case, the following formula allow us to quantize the metric, where $T_{KG}$ is the set of all KG triples.
 
@@ -141,9 +132,7 @@ $$
 #### **Ontology Hijacking**
 We need the terms defined inside the KG, to check whether standard terms have been redefined. Let's recover all classes and properties declarations in the same way as done for the undefined classes and undefined properties, by using the same query used [here](#undefined-classes). Then we use the [Linked Open Vocabulary](https://lov.linkeddata.es/dataset/lov) [REST API](https://lov.linkeddata.es/dataset/lov/api) (LOV), to search if the selected one is a standard term. The following algorithm allow us to detect the problem:
 
-<p align="center">
-<img src="../img/alg8.png" alt="drawing" width="580"/>
-</p>
+<!--TODO: inserire algoritmo-->
 
 If the problem is present, the data is assigned a value
 1, otherwise 0.
