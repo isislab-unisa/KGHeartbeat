@@ -99,10 +99,24 @@ WHERE
 
 At this point we verify that there isn't any triples in the KG that have the same subject but with different object, if this triple exist, the triple violate the functional property. With the following algorithm, we automatize the metric calculation.
 
-<p align="center">
-    <img src="../img/alg2.png" width="590">
-</p>
-
+```c
+Data: list of all triples that declare a functional property
+triplesFP and list of all the triples of the KG
+Result: number of triples that violates the Functional property
+violationFP ← 0;
+while NOT at the end of triplesFP do
+    tripla = read a triple from the triplesFP list;
+    s = subject in the triple;
+    o = object in the triple;
+    while NOT at the end of triples do
+        s2 = sobject of the triple;
+        o2 = object in the triple;
+        if s is equal to s2 AND o in not equal to o2 then
+            violationFP ← violationFP +1;
+        end
+    end
+end
+```
 After the calculation of the number of triples that violate the functional property we use the following formula to quantize the metric, where $T_{KG}$ is the set of all triples in the KG:
 
 $$
@@ -120,11 +134,23 @@ WHERE
 {?s owl:InverseFunctionalProperty ?o.}
 ```
 Then with the following algorithm we obtain the number of triples that violate the inverse functional property.
-
-<p align="center">
-    <img src="../img/alg3.png" width="590">
-</p>
-
+```c
+Data: list of triple that declare a inverse functional-property triplesIFP and list of all triplesin the KG triples
+Result: number of triples that violate the inverse functional property violationIFP
+violationIFP ← 0;
+    while NOT at the end of triplesIFP do
+        triple = read the triple from the triplesIFP list;
+        s = subject in the triple;
+        o = object in the triple;
+        while NOT at the end of triples do
+            s2 = subject in the triple in triples;
+            o2 = object in the triple in triples;
+            if o is equal to o2 AND s is not equal to s2 then
+                violationIFP ← violationIFP +1;
+            end
+        end
+    end
+```
 The following formula instead, allow us to quantize the metric (where $T_{KG}$ is the set with all the KG triples):
 
 $$
