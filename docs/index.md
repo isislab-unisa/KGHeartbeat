@@ -11,7 +11,7 @@ Little introduction
 
 # Index
 1. [Accessibility](#accessibility)  
-    1.1 [Availability](#availability)  
+    1.1 [Availability](./quality_dimensions/availability.md)  
     1.2 [Licensing](#licensing)  
     1.3 [Interlinking](#interlinking)  
     1.4 [Security](#security)
@@ -23,6 +23,7 @@ Little introduction
     3.1 [Reputation](#reputation)  
     3.2 [Believability](#believability)  
     3.3 [Verifiability](#verifiability)
+
 ---
 
 ## Accessibility
