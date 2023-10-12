@@ -2,15 +2,13 @@
 layout: home
 ---
 
-## **Accessibility category**
+## Accessibility category
 
 ## Availability
 1. [SPARQL endpoint](#sparql-endpoint)
 2. [RDF Dump](#rdf-dump)
 3. [URIs dereferenciability](#uris-dereferenciability)
 4. [Inactive links](#inactive-links)
-
-### **Availability**
 
 #### **SPARQL endpoint**
 First of we need to check that it is present
