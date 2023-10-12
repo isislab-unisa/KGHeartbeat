@@ -25,7 +25,9 @@ UNION
 ```
 Once we have obtained the list of properties we can apply the following algorithm to detect any duplicates.
 
-<!--TODO: inserire algoritmo-->
+<p align="center">
+<img src="../img/alg9.png" alt="drawing" width="580"/>
+</p>
 
 Finally, to obtain the value of Intentional conciseness, we use the following formula, where $duplicateP$ and $propertiesConcat$ come from the output of the previous algorithm:
 
@@ -43,6 +45,8 @@ WHERE{?s ?p ?o}
 ```
 Then we apply the following algorithm:
 
-<!--TODO: inserire algoritmo-->
+<p align="center">
+<img src="../img/alg10.png" alt="drawing" width="580"/>
+</p>
 
 In the end the value of extensional conciseness is given by the formula that follows, where $duplicates$ and $triplesConcat$ come as output from the previous algorithm.
