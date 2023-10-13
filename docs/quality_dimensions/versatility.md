@@ -18,6 +18,8 @@ WHERE{
 BIND(LANG(?o) as ?triples)
 }
 ```
+To quantize this metric, we assign 1 if we have indication about the languages used, 0 otherwise.
+
 ---
 
 #### **Serialization formats**
@@ -33,7 +35,7 @@ UNION
 {?s dcat:mediaType ?o}
 }
 ```
-
+To quantize this metric, we assign 1 if we have indication about the serialization formats available, 0 otherwise.
 ---
 
 #### **Access to the KG**

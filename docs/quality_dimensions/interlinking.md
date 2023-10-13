@@ -13,7 +13,7 @@ present in the metadata under the "external links" key) and for each connection 
 
 ---
 #### **Degree of connection**
-The degree of connection is calculated by counting the number of edge that the KG has in the graph constructed as explained before.
+The degree of connection is calculated by counting the number of edge that the KG has in the graph constructed as explained before. To quantize the metric, if we have this value, we assign 1 to the metric, 0 otherwise.
 
 ---
 #### **Clustering coefficient**
@@ -34,3 +34,6 @@ WHERE {
 ?s owl:sameAs ?o
 }
 ```
+To quantize this metric we use the following formula where $|T_{KG}|$ is the number of triples in the KG and nSameAs is the output of the previous query:
+
+$$ m_{sameAS} = \frac{nSameAs}{T_{KG}} $$

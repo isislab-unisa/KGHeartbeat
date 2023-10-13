@@ -36,3 +36,4 @@ Little introduction
     6.3 [Understandability](./quality_dimensions/understandability)  
     6.4 [Interpretability](./quality_dimensions/interpretability)  
     6.5 [Versatility](./quality_dimensions/versatility)  
+7. [Quality score](./score)

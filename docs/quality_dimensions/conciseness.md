@@ -51,4 +51,8 @@ Then we apply the following algorithm:
     <img src="../img/alg10.png" width="590">
 </p>
 
-In the end the value of extensional conciseness is given by the formula that follows, where $duplicates$ and $triplesConcat$ come as output from the previous algorithm.
+In the end the value of extensional conciseness is given by the formula that follows, where $duplicates$ and $triplesConcat$ come as output from the previous algorithm:
+
+$$
+m_{exC} = 1.0 - \frac{duplicate}{|triplesConcat|}
+$$

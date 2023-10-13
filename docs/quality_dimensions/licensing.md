@@ -33,7 +33,7 @@ VALUES (?p) {
 ```
 Because queries with the VALUES function may not be supported
 from SPARQL endpoints that are based on SPARQL 1.0,
-alternative queries are provided which instead use the UNION.
+alternative queries are provided which instead use the UNION. If a machine-readable license is indicated, we assign 1 to this metric, 0 otherwise.
 
 ---
 #### **Human-readable license**
@@ -62,9 +62,10 @@ regex(?o,
 ".*(licensed?|copyrighte?d?).*(under|grante?d?|rights?).*")
 }
 ```
+If a human-readable license is indicated, we assign 1 to this metric, 0 otherwise.
 
 ---
 #### **License in the metadata**
-In this case, we simply analyze the KG metadata and the value of the ```license``` key in it.
+In this case, we simply analyze the KG metadata and the value of the ```license``` key in it. If a license is indicated, we assign 1 to this metric, 0 otherwise.
 
 ---

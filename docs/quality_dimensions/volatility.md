@@ -15,4 +15,4 @@ UNION
 {?s dcterms:Frequency ?o}
 }
 ```
-The output of this query can be a code that indicate the update frequency (may vary based on the KG considered). For example A stands for annual, M for monthly, D for daily, W for weekly.
+The output of this query can be a code that indicate the update frequency (may vary based on the KG considered). For example A stands for annual, M for monthly, D for daily, W for weekly. To quantize the metric we assign 1 if the data is indicated, 0 otherwise.

@@ -55,4 +55,4 @@ there is also the one relating to the provider. Then, the list is traversed and 
 
 #### **Trust value**
 It is a score which is between 0 and 1 which helps the KG user to understand how much information about the believability is available.
-In fact, this value is calculated as a weighted average based on how many of the following values are present: name, description, URL and presence in the reliable provider list. For each of these values, if the KG has it, 1 is assigned, otherwise 0. The sum is made and then divided by 4. The value obtained will be the trust value of the dataset.
+In fact, this value is calculated as a weighted average based on how many of the following values are present: name, description, URL and presence in the reliable provider list. For each of these values, if the KG has it, 1 is assigned, otherwise 0. The sum is made and then divided by 4. The value obtained will be the trust value of the dataset. We also use this value to quantize the entire believability dimension, because this is a value which summarizes all the metrics.

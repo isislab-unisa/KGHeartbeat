@@ -37,6 +37,8 @@ UNION
 {?s foaf:maker ?o}
 }
 ```
+To quantize this metric, we assign 1 if authors are indicated, 0 otherwise.
+
 ---
 
 #### **Contributors**
@@ -47,6 +49,7 @@ PREFIX dcterms:<http://purl.org/dc/terms/>
 SELECT DISTINCT ?o
 WHERE {?s dcterms:contributor ?o.}
 ```
+To quantize this metric, we assign 1 if contributors are indicated, 0 otherwise.
 
 ---
 
@@ -58,11 +61,13 @@ PREFIX dc: <http://purl.org/dc/elements/1.1/>
 SELECT DISTINCT ?o
 WHERE {?s dc:publisher ?o}
 ```
+To quantize this metric, we assign 1 if publichers are indicated, 0 otherwise.
 
 ---
 
 #### **Sources**
 For this metric we analyze the KG metadata and in particular we get the value from the field that has as key $sources$ .
+To quantize this metric, we assign 1 if sources is indicated, 0 otherwise.
 
 ---
 
@@ -84,3 +89,4 @@ UNION
 {?s swp:assertedBy ?o}
 }
 ```
+To quantize this metric, we assign 1 if there is a signature, 0 otherwise.

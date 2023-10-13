@@ -21,7 +21,7 @@ LIMIT 1
 What this query does is retrieve all triples with predicate
 $dcterms:created$, then sorts the results in ascending order and takes the
 first value. This is because often multiple triples can be indicated
-with that predicate.
+with that predicate. To quantize the metric, if the creation date is indicated, then we assign 1 to this metric, 0 otherwise.
 
 ---
 
@@ -36,12 +36,12 @@ WHERE{?s dcterms:modified ?o}
 ORDER BY ASC(?o)
 LIMIT 1
 ```
-In the opposite way to what happened for the creation date, here we sort the output in descending order and take the first result.
+In the opposite way to what happened for the creation date, here we sort the output in descending order and take the first result. To quantize the metric, if the modification date is indicated, then we assign 1 to this metric, 0 otherwise.
 
 ---
 
 #### **Time since last modification**
-In this case we simply retrieve the modification date (with the previous query) and make the difference between the date on which we are performing the analysis and the date of the last modification. The value is expressed in days.
+In this case we simply retrieve the modification date (with the previous query) and make the difference between the date on which we are performing the analysis and the date of the last modification. In this case we do not attribute a numerical value to the metric to possibly increase the score, because if we have the modification date we can certainly obtain this data, so the value of this metric depends on the modification date.
 
 ---
 
@@ -56,6 +56,6 @@ WHERE{
 FILTER regex(?o,’%s’)
 }
 ```
-In the regex function the ```%s``` parameter is set with the modification date for which we want to count the number of updated triples.
+In the regex function the ```%s``` parameter is set with the modification date for which we want to count the number of updated triples. In this case we do not attribute a numerical value to the metric to possibly increase the score, because if we have the modification date we can certainly obtain this data, so the value of this metric depends on the modification date.
 
 ---

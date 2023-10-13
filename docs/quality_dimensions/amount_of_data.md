@@ -14,6 +14,8 @@ SELECT (COUNT(?s) AS ?triples)
 WHERE { ?s ?p ?o }
 ```
 
+To quantize the metric, if we can count the number of triples in the KG, we assign 1 to the metric, 0 otherwise.
+
 #### **Number of properties**
 We can only obtain this type of value by executing a SPARQL query. In particular, the number of properties is given to us by this query:
 
@@ -40,6 +42,7 @@ UNION
 {?o a rdfs:Property}
 }
 ```
+To quantize the metric, if we can count the number of properties in the KG, we assign 1 to the metric, 0 otherwise.
 
 #### **Number of entities**
 In this case we simply recover it by searching for the triple with $void:entities$ predicate inside the VoID file. As an alternative if there isn't a VoID file available, we execute the following query on the SPARQL endpoint. 
@@ -75,3 +78,5 @@ FILTER(regex(?s,"%s"))
 }
 ```
 (The %s parameter in the regex function is set with the regex that we obtained with the mechanisms indicated above.)
+
+To quantize the metric, if we can count the number of entities in the KG, we assign 1 to the metric, 0 otherwise.
