@@ -71,4 +71,4 @@ We check if in the KG resources provided there are some examples of SPAQRL query
 To obtain the URIs regex we follow the same steps that we have illustred [here](./amount_of_data#number-of-entities). To quantize the metric, if a regex is indicated, we assign 1 to this metric, 0 otherwise.
 
 #### **Vocabularies**
-For the calculation of this metric we use the same method illustred [here](./verifiability#vocabularies).
+For the calculation of this metric and quantization we use the same method illustred [here](./verifiability#vocabularies).
