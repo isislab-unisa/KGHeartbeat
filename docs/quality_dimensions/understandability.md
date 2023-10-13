@@ -68,7 +68,7 @@ $$
 We check if in the KG resources provided there are some examples of SPAQRL query or other examples on how to use the KG. To obtain this type of data we simply need to analyze the "resources" field within the metadata and search for resources that have the *example* tag. The metric is quantized by assigning 1 if there are examples, 0 otherwise.
 
 #### **URIs regex**
-To obtain the URIs regex we follow the same steps that we have illustred [here](#number-of-entities).
+To obtain the URIs regex we follow the same steps that we have illustred [here](./amount_of_data#number-of-entities).
 
 #### **Vocabularies**
-For the calculation of this metric we use the same method illustred [here](#vocabularies).
+For the calculation of this metric we use the same method illustred [here](./verifiability#vocabularies).

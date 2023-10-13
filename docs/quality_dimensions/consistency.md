@@ -21,7 +21,7 @@ SELECT DISTINCT (COUNT(?s) AS ?triples)
 WHERE
 {?s owl:disjointWith ?o.}
 ```
-To obtain the final value of the metric, we need also the number of entities in the KG. To recover this number, we follow the same method described [here](insert refer here when understandability is available). Lastly, with the following formula we obtain the value of the metric (where $E_{KG}$ is the set of all KG entities and $disjV$ is the number of triples recovered with the previuos query).
+To obtain the final value of the metric, we need also the number of entities in the KG. To recover this number, we follow the same method described [here](./amount_of_data#number-of-entities). Lastly, with the following formula we obtain the value of the metric (where $E_{KG}$ is the set of all KG entities and $disjV$ is the number of triples recovered with the previuos query).
 
 $$
 m_{disjV} = \frac{numDisj}{E_{KG}}

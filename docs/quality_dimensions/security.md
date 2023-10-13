@@ -2,15 +2,16 @@
 title: Accessibility category
 ---
 
+For the calculation of the following two metrics we will need the SPARQL endpoint to be present and active see how [here](./availability#sparql-endpoint).
 ## Security
 1. [Authentication](#authentication)
 2. [Use HTTPS](#use-https)
 
 ### **Security**
-For the calculation of the following two metrics we will need the SPARQL endpoint to be present and active see how [here](#sparql-endpoint).
+
 
 #### **Authentication**
-To check this metric we use the same query used to test the availability of the SPARQL endpoint (see [here](#sparql-endpoint)), but in this case we check if the status code 401 is returned to us.
+To check this metric we use the same query used to test the availability of the SPARQL endpoint (see [here](./availability#sparql-endpoint)), but in this case we check if the status code 401 is returned to us.
 
 ---
 

@@ -17,4 +17,4 @@ The query output is the number of blank nodes in the KG, and is used to understa
 
 ---
 #### **RDF structures**
-For the calculation of this metric we use the same method described [here](#use-of-rdf-structures).
+For the calculation of this metric we use the same method described [here](./representational_conciseness#use-of-rdf-structures).

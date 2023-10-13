@@ -7,7 +7,7 @@ title: Intrinsic category
 2. [Whitespace at the beginnig or end of the label](#whitespace-at-the-beginnig-or-end-of-the-label)
 3. [Wrong datatype](#wrong-datatype)
 4. [Functional property violation](#functional-property-violation)
-5. [Inverse functional property violation](#functional-property-violation)
+5. [Inverse functional property violation](#inverse-functional-property-violation)
 
 #### **Empty label**
 For the calculation of this metric, we first recover the label in the KG with the follow query:
