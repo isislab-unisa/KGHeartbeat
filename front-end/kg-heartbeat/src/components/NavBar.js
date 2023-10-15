@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 
-function BasicExample() {
+function BasicExample({quality_link}) {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -13,7 +13,7 @@ function BasicExample() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
           <Nav.Link><Link to="/pages/Search">Search</Link></Nav.Link>
-          <Nav.Link><Link to="/pages/QualityData">View Quality</Link></Nav.Link>
+          <Nav.Link>{quality_link}</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">

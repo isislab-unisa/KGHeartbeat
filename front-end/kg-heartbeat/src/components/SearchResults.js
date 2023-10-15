@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 function SearchResults({ results, selected, onCheckboxChange }) {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
 
-  // Effect to edit the sttus of chechkbox when the the results is changed
+  // Effect to edit the status of chechkbox when the the results is changed
   useEffect(() => {
     setSelectedCheckboxes(selected.map((item) => item.id));
   }, [selected]);

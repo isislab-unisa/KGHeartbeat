@@ -1,13 +1,19 @@
 import React from 'react';
+import QualityBar from '../components/QualityBar';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 function QualityData({ selectedKGs }) {
-  console.log(selectedKGs)
 
   return(
-    <div id="selectedKG">
-      {selectedKGs.map((item) => (
-        <li key={item.id}>{item.id}</li>
-      ))}
+    <div className="d-flex">
+        <QualityBar />
+      <div id="selectedKG" className='float-right'>
+        <ListGroup>
+          {selectedKGs.map((item) => (
+            <ListGroup.Item>{item.id}</ListGroup.Item>
+          ))}
+        </ListGroup>
+      </div>
     </div>
   )
   }
