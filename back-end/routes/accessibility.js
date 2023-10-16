@@ -20,7 +20,6 @@ router.route('/availability').get((req,res) =>{
 router.route('/availability').post((req,res) => {
     const body = req.body;   
     id_list = body.id;
-    console.log(id_list)
     find_data_over_time(id_list,quality_category,0).then(result => {
         if(result.length > 0)
             res.json(result);

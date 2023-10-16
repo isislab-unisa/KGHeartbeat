@@ -43,6 +43,8 @@ async function find_single_data(kg_id,quality_category,dimension_index){
 }
 
 async function find_data_over_time(kg_ids,quality_category,dimension_index){
+  if (!Array.isArray(kg_ids))
+    kg_ids = [kg_ids]
   try{
     const result = await dbInstance.collection('quality_analysis_data').find(
       { 'kg_id': { $in : kg_ids} },
