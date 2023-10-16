@@ -9,14 +9,23 @@ function Availability({ selectedKGs }) {
 
   useEffect(() => {
     async function fetchData() {
-      if (selectedKGs.length === 1) {
+      
         try {
-          const response = await axios.get(`${base_url}accessibility/availability?id=${selectedKGs[0].id}`);
-          setAvailabilityData(response.data);
+          if (selectedKGs.length === 1) {
+            const response = await axios.get(`${base_url}accessibility/availability?id=${selectedKGs[0].id}`);
+            setAvailabilityData(response.data);
+          }
+          else if(selectedKGs.length > 1){
+            let arrayIDs = selectedKGs.map((item) => item.id);
+            arrayIDs = {
+              id : arrayIDs
+            }
+            const response = await axios.post(`${base_url}accessibility/availability`,arrayIDs);
+            setAvailabilityData(response.data);
+          }
         } catch (error) {
           console.error('Error during the search', error);
         }
-      }
     }
     fetchData();
   }, [selectedKGs]);

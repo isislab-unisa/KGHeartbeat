@@ -1,3 +1,16 @@
 .quality-navbar{
     background-color: #C6E2FF;
 }
+
+.quality-link{
+    color: black;
+    text-decoration: none;
+}
+
+.quality-link:link{
+    text-decoration: none;
+}
+
+.quality-link:visited{
+    text-decoration: none;
+}
