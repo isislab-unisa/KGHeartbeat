@@ -6,7 +6,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 function QualityBar({selectedKGs}) {
   return (
     <Nav defaultActiveKey="/home"  className="flex-column quality-navbar">
-    <NavDropdown title="Accesibility" id="nav-dropdown">
+    <NavDropdown title="Accessibility" id="nav-dropdown">
         <NavDropdown.Item eventKey="4.1"><Link to="/pages/Availability" className='quality-link'>Availability</Link></NavDropdown.Item>
         <NavDropdown.Item eventKey="4.2">Another action</NavDropdown.Item>
         <NavDropdown.Item eventKey="4.3">Something else here</NavDropdown.Item>

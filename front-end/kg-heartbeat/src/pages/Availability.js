@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import QualityBar from '../components/QualityBar';
-import ListGroup from 'react-bootstrap/ListGroup';
 import { base_url } from '../api';
 import axios from 'axios';
 import LineChart from '../components/LineChart';
 import trasform_to_series from '../utils';
+import Table from '../components/PersonalTable';
 
 function Availability({ selectedKGs }) {
   const [availabilityData, setAvailabilityData] = useState(null);
@@ -36,23 +36,24 @@ function Availability({ selectedKGs }) {
     if (availabilityData) {
       const series = trasform_to_series(availabilityData, selectedKGs);
       if(selectedKGs.length === 1)
-        setSparqlChart(<LineChart chart_title={'SPARQL endpoint availability'} series={series} />);
+        setSparqlChart(<LineChart chart_title={'SPARQL endpoint availability'} series={series} y_min={-1} y_max={1}/>);
       else if (selectedKGs.length >= 1)
-        setSparqlChart(<p>Table here</p>)
+        setSparqlChart(<Table series={series}/>)
     }
   }, [availabilityData, selectedKGs]);
 
     return(
-        <div className= "d-flex w-80 p-3">
-        <QualityBar selectedKGs={selectedKGs}/>
-        {availabilityData && (
-        <div> 
-          <h2>Availability Data</h2>
-          {sparlq_chart}
-        </div>
-      )}
-    </div>
-    )
+		<div>
+			<div className= "d-flex">
+				<QualityBar selectedKGs={selectedKGs}/>
+				{availabilityData && (
+				<div className='w-100 p-3'> 
+					{sparlq_chart}
+				</div>    
+		)}
+			</div>
+    	</div>
+	)
 }
 
 export default Availability;

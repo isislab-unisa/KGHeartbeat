@@ -3,7 +3,7 @@ import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
 
 
-function create_options(chart_title,series){
+function create_options(chart_title,series,y_min,y_max){
 
   const options = {
     chart: {
@@ -15,7 +15,10 @@ function create_options(chart_title,series){
     xAxis: {
       type:'datetime',
     },
-
+    yAxis:{
+      min: y_min,
+      max: y_max
+    },
     series: series
   }
 
@@ -32,10 +35,10 @@ const addSeries = () => {
     })
 }
 */
-const LineChart = ({chart_title, series}) => <HighchartsReact
+const LineChart = ({chart_title, series, y_min, y_max}) => <HighchartsReact
   //containerProps = {{style: {width: "80%"}}}
   highcharts={Highcharts}
-  options={create_options(chart_title,series)}
+  options={create_options(chart_title,series, y_min, y_max)}
 />
 
 export default LineChart

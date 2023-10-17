@@ -14,7 +14,6 @@ function trasform_to_series(quality_data,selectedKGs){
                 const tab_date = quality_data[i].analysis_date.split('-');
                 const date_utc = Date.UTC(parseInt(tab_date[0]),parseInt(tab_date[1])-1,parseInt(tab_date[2]));
                 series[j].data.push([date_utc,parseInt(quality_data[i].Quality_category_array.Availability.sparqlEndpoint)])
-                console.log(quality_data[i])
                 if(series[j].name === '')
                     series[j].name = quality_data[i].kg_name;
             }
