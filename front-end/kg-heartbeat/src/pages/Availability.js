@@ -3,13 +3,15 @@ import QualityBar from '../components/QualityBar';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { base_url } from '../api';
 import axios from 'axios';
+import LineChart from '../components/LineChart';
+import trasform_to_series from '../utils';
 
 function Availability({ selectedKGs }) {
   const [availabilityData, setAvailabilityData] = useState(null);
+  const [sparlq_chart,setSparqlChart] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
-      
         try {
           if (selectedKGs.length === 1) {
             const response = await axios.get(`${base_url}accessibility/availability?id=${selectedKGs[0].id}`);
@@ -30,23 +32,25 @@ function Availability({ selectedKGs }) {
     fetchData();
   }, [selectedKGs]);
 
+  useEffect(() => { //everytime that availability data change, we create series and redraw the chart
+    if (availabilityData) {
+      const series = trasform_to_series(availabilityData, selectedKGs);
+      if(selectedKGs.length === 1)
+        setSparqlChart(<LineChart chart_title={'SPARQL endpoint availability'} series={series} />);
+      else if (selectedKGs.length >= 1)
+        setSparqlChart(<p>Table here</p>)
+    }
+  }, [availabilityData, selectedKGs]);
+
     return(
-        <div className="d-flex">
-        <QualityBar />
+        <div className= "d-flex w-80 p-3">
+        <QualityBar selectedKGs={selectedKGs}/>
         {availabilityData && (
-        <div>
+        <div> 
           <h2>Availability Data</h2>
-          <pre>{JSON.stringify(availabilityData, null, 2)}</pre>
+          {sparlq_chart}
         </div>
       )}
-      <div id="selectedKG" className='float-right'>
-        <ListGroup>
-          <ListGroup.Item><b>KG selected</b></ListGroup.Item>
-          {selectedKGs.map((item) => (
-            <ListGroup.Item key={item.id}>{item.id}</ListGroup.Item>
-          ))}
-        </ListGroup>
-      </div>
     </div>
     )
 }
