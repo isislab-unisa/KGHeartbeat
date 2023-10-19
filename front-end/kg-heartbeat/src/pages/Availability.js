@@ -6,9 +6,13 @@ import LineChart from '../components/LineChart';
 import trasform_to_series from '../utils';
 import Table from '../components/PersonalTable';
 
+const availability = 'Availability'
+
 function Availability({ selectedKGs }) {
   const [availabilityData, setAvailabilityData] = useState(null);
   const [sparlq_chart,setSparqlChart] = useState(null);
+  const [rdfDumpChart,setRDFDumpC] = useState(null);
+  const [uriDefChart,setUriDefC] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -34,11 +38,16 @@ function Availability({ selectedKGs }) {
 
   useEffect(() => { //everytime that availability data change, we create series and redraw the chart
     if (availabilityData) {
-      const series = trasform_to_series(availabilityData, selectedKGs);
-      if(selectedKGs.length === 1)
-        setSparqlChart(<LineChart chart_title={'SPARQL endpoint availability'} series={series} y_min={-1} y_max={1}/>);
-      else if (selectedKGs.length >= 1)
-        setSparqlChart(<Table series={series}/>)
+      const sparql_series = trasform_to_series(availabilityData, selectedKGs,availability,'sparqlEndpoint');
+      const rdfD_series = trasform_to_series(availabilityData,selectedKGs,availability,'RDFDump_merged');
+      //const uridef_series = trasform_to_series(availabilityData,selectedKGs,availability,'')
+      if(selectedKGs.length === 1){
+        setSparqlChart(<LineChart chart_title={'SPARQL endpoint availability'} series={sparql_series} y_min={-1} y_max={1}/>);
+        setRDFDumpC(<LineChart chart_title={'RDF dump availability'} series={rdfD_series} y_min={-1} y_max={1} />);
+      }else if (selectedKGs.length >= 1){
+        setSparqlChart(<Table series={sparql_series} title={'SPARQL endpoint availability'}/>);
+        setRDFDumpC(<Table series={rdfD_series} title={'RDF dump availability'}/>);
+      }
     }
   }, [availabilityData, selectedKGs]);
 
@@ -48,7 +57,10 @@ function Availability({ selectedKGs }) {
 				<QualityBar selectedKGs={selectedKGs}/>
 				{availabilityData && (
 				<div className='w-100 p-3'> 
+          <span id="sparql"></span>
 					{sparlq_chart}
+          <span id="rdfdump"></span>
+          {rdfDumpChart}
 				</div>    
 		)}
 			</div>

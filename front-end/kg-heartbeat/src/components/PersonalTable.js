@@ -1,10 +1,11 @@
 import Table from 'react-bootstrap/Table';
 
-function PersonalTable({series}){
+function PersonalTable({series,title}){
     console.log(series)
     const serie = series[0]
     return(
         <div>
+            <p>{title}</p>
             <Table striped bordered hover>
                 <tr>
                     <td className='cell' style={{fontSize: '18px'}}>KG name</td>
