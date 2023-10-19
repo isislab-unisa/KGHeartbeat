@@ -18,27 +18,50 @@ async function connectToMongoDB() {
   return dbInstance;
 }
 
-async function find_single_data(kg_id,quality_category,dimension_index){
-  try{
-    const result = await dbInstance.collection('quality_analysis_data').findOne(
-      { 'kg_id': kg_id },
-        {
-            projection: {
-                _id: 0, 
-                kg_id: 1,
-                kg_name: 1,
-                analysis_date: 1,
-                Quality_category_array: { $arrayElemAt: [`$${quality_category}`, dimension_index] }, 
-            },
-            sort: { analysis_date: -1 }
+async function find_single_data(kg_ids, quality_category, dimension_index) {
+  if (!Array.isArray(kg_ids)) {
+    kg_ids = [kg_ids];
+  }
+  try {
+    const pipeline = [
+      {
+        $match: {
+          'kg_id': { $in: kg_ids }
         }
-    );
-    return result
+      },
+      {
+        $sort: {
+          'analysis_date': -1, // Sort based on the analysis data
+          'kg_name': -1 // Sort based on the name
+        }
+      },
+      {
+        $group: {
+          _id: '$kg_id', // group by id
+          document: { $first: '$$ROOT' } // Get first document for every group
+        }
+      },
+      {
+        $replaceRoot: { newRoot: '$document' } // Substitute the root with the obtained document
+      },
+      {
+        $project: {
+          _id: 0,
+          kg_id: 1,
+          kg_name: 1,
+          analysis_date: 1,
+          Quality_category_array: { $arrayElemAt: [`$${quality_category}`, dimension_index] }
+        }
+      }
+    ];
+    const result = await dbInstance.collection('quality_analysis_data').aggregate(pipeline).toArray();
+    
+    return result;
 
   } catch (error) {
-    console.error(error)
-
-    return []
+    console.error(error);
+    
+    return [];
   }
 }
 

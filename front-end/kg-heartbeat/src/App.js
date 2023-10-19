@@ -6,6 +6,7 @@ import QualityData from './pages/QualityData';
 import Search from './pages/Search';
 import NavBar from './components/NavBar';
 import Availability from './pages/Availability';
+import Licensing from './pages/Licensing';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -33,6 +34,7 @@ function App() {
           <Route path="/pages/QualityData" component={QualityData} element={<QualityData selectedKGs={selectedKGs}/>}/>
           <Route path="/pages/Search" component={Search} element={<Search searchResults={searchResults} handle_search={handle_search} selectedKGs={selectedKGs} handleSelectedDataChange={handleSelectedDataChange}/>}/>
           <Route path="/pages/Availability" component={Availability} element={<Availability selectedKGs={selectedKGs}/>}/>
+          <Route path="/pages/Licensing" component={Licensing} element={<Licensing selectedKGs={selectedKGs}/>}/>
         </Routes>
     </Router>
     </div>

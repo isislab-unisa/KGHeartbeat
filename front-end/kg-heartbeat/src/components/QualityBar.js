@@ -1,17 +1,20 @@
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { HashLink as Link } from 'react-router-hash-link';
 
 function QualityBar({selectedKGs}) {
   return (
     <Nav defaultActiveKey="/home"  className="flex-column quality-navbar">
-    <NavDropdown title="Accessibility" id="nav-dropdown">
-        <NavDropdown.Item eventKey="4.1"><Link to="/pages/Availability" className='quality-link'>Availability</Link></NavDropdown.Item>
-        <NavDropdown.Item eventKey="4.2">Another action</NavDropdown.Item>
-        <NavDropdown.Item eventKey="4.3">Something else here</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item eventKey="4.4">Separated link</NavDropdown.Item>
+    <NavDropdown title="Availability" id="nav-dropdown">
+        <NavDropdown.Item eventKey="4.1"><Link to="/pages/Availability#sparql" className='quality-link'>SPARQL endpoint</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.2"><Link to="/pages/Availability#rdfdump" className='quality-link'>RDF dump</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.3">Another action</NavDropdown.Item>
+    </NavDropdown>
+    <NavDropdown title="Licensing" id="nav-dropdown">
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Licensing" className='quality-link'>Machine-redeable license</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.6">Another action</NavDropdown.Item>
     </NavDropdown>
     <Nav.Link href="/home">Test</Nav.Link>
     <Nav.Link eventKey="link-1">Link</Nav.Link>
