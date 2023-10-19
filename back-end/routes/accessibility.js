@@ -49,7 +49,7 @@ router.route('/licensing').get((req, res) =>{
 router.route('/licensing').post((req,res) => {
     const body = req.body;   
     id_list = body.id;
-    find_data_over_time(id_list,quality_category,1).then(result => {
+    find_single_data(id_list,quality_category,1).then(result => {
         if(result.length > 0)
             res.json(result);
         else
