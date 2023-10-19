@@ -7,7 +7,7 @@ title: Representational category
 2. [Reuse of terms](#reuse-of-terms)
 
 #### **Reuse of vocabularies**
-For the calculation of this metric we need the vocabularies used in the KG. To recover this information we have used the same method that we have seen [here](./verifiability#vocabularies). Then thanks to the REST API of the Linked Open Vocabularies (LOV), we check if the vocabularies is standard (i.e. is in the LOV). We assign at the metric 1 if new vocabularies are defined, otherwise 0.
+For the calculation of this metric we need the vocabularies used in the KG. To recover this information we have used the same method that we have seen [here](./verifiability#vocabularies). Then thanks to the REST API of the Linked Open Vocabularies (LOV), we check if the vocabularies is standard (i.e. is in the LOV). We assign at the metric 1 if no new vocabularies are defined, otherwise 0.
 Furthermore, track of the new vocabularies used will also be kept.
 
 #### **Reuse of terms**
@@ -19,4 +19,4 @@ SELECT DISTINCT ?o
 WHERE {?s rdf:type ?o}
 ```
 
-Then we search every term founded on the Linked Open Vocabularies, to check if is present or not (if yes this mean that is considered a standard term). At the end of the analysis of all the terms, a value of 1 will be assigned if new ones are defined, 0 otherwise. Even in this case, a list of all new terms declared is still maintained
+Then we search every term founded on the Linked Open Vocabularies, to check if is present or not (if yes this mean that is considered a standard term). At the end of the analysis of all the terms, a value of 1 will be assigned if there aren't new terms defined, 0 otherwise. Even in this case, a list of all new terms declared is still maintained

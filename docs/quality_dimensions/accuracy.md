@@ -83,6 +83,11 @@ all triples from the KG and filter out those that contain a literal to perform t
     <img src="../img/alg1.png" width="590">
 </p>
 
+Then, we use the following formula to quantize the metric, where $LI_{KG}$ is the set of all literal in the KG.
+$$
+m_{malf} = 1.0 - \frac{malformedLiteral}{LI_{KG}}
+$$
+
 #### **Functional Property violation**
 For the calcuation of this metric we have followed the definition given [here](https://www.w3.org/TR/owl-ref/#FunctionalProperty-def). For identify the functional property violation we first recover all triples that are a declaration of a functional property with the following query:
 ```sql

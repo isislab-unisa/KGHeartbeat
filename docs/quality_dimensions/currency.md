@@ -36,7 +36,7 @@ WHERE{?s dcterms:modified ?o}
 ORDER BY ASC(?o)
 LIMIT 1
 ```
-In the opposite way to what happened for the creation date, here we sort the output in descending order and take the first result. To quantize the metric, if the modification date is indicated, then we assign 1 to this metric, 0 otherwise.
+In the opposite way to what happened for the creation date, here we sort the output in ascending order and take the first result. To quantize the metric, if the modification date is indicated, then we assign 1 to this metric, 0 otherwise.
 
 ---
 
