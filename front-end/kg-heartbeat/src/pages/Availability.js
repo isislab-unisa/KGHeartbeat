@@ -95,7 +95,7 @@ function Availability({ selectedKGs }) {
 				</div>    
 		)}
 			</div>
-    	</div>
+    </div>
 	)
 }
 

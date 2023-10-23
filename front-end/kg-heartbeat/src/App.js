@@ -7,6 +7,7 @@ import Search from './pages/Search';
 import NavBar from './components/NavBar';
 import Availability from './pages/Availability';
 import Licensing from './pages/Licensing';
+import Interlinking from './pages/Interlinking';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -35,6 +36,7 @@ function App() {
           <Route path="/pages/Search" component={Search} element={<Search searchResults={searchResults} handle_search={handle_search} selectedKGs={selectedKGs} handleSelectedDataChange={handleSelectedDataChange}/>}/>
           <Route path="/pages/Availability" component={Availability} element={<Availability selectedKGs={selectedKGs}/>}/>
           <Route path="/pages/Licensing" component={Licensing} element={<Licensing selectedKGs={selectedKGs}/>}/>
+          <Route path="/pages/Interlinking" component={Interlinking} element={<Interlinking selectedKGs={selectedKGs}/>}/>
         </Routes>
     </Router>
     </div>
