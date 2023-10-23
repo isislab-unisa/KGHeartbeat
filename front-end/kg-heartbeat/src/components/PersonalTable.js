@@ -1,7 +1,6 @@
 import Table from 'react-bootstrap/Table';
 
 function PersonalTable({series,title}){
-    console.log(series)
     const serie = series[0]
     return(
         <div>
