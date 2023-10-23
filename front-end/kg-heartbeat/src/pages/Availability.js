@@ -14,6 +14,7 @@ function Availability({ selectedKGs }) {
   const [sparlq_chart,setSparqlChart] = useState(null);
   const [rdfDumpChart,setRDFDumpC] = useState(null);
   const [inactiveTab,setInactiveTab] = useState(null);
+  //const [uriDefChart,setDefChart] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -42,7 +43,7 @@ function Availability({ selectedKGs }) {
       console.log(availabilityData);
       const sparql_series = trasform_to_series(availabilityData, selectedKGs,availability,'sparqlEndpoint');
       const rdfD_series = trasform_to_series(availabilityData,selectedKGs,availability,'RDFDump_merged');
-      //const uridef_series = trasform_to_series(availabilityData,selectedKGs,availability,'')
+      //const uridef_series = trasform_to_series(availabilityData,selectedKGs,availability,'uris_def')
       if(selectedKGs.length === 1){
         setSparqlChart(<LineChart chart_title={'SPARQL endpoint availability'} series={sparql_series} y_min={-1} y_max={1}/>);
         setRDFDumpC(<LineChart chart_title={'RDF dump availability'} series={rdfD_series} y_min={-1} y_max={1} />);
@@ -54,7 +55,8 @@ function Availability({ selectedKGs }) {
             </tr>
           </TableBoot>
         );
-        setInactiveTab(inactive_tab)
+        setInactiveTab(inactive_tab);
+        //setDefChart(<LineChart chart_title={'URIs dereferenziability'} series={uridef_series} y_min={-1} y_max={1} />);
       }else if (selectedKGs.length >= 1){
         setSparqlChart(<Table series={sparql_series} title={'SPARQL endpoint availability'}/>);
         setRDFDumpC(<Table series={rdfD_series} title={'RDF dump availability'}/>);
@@ -72,7 +74,8 @@ function Availability({ selectedKGs }) {
             ))}
           </TableBoot>
         );
-        setInactiveTab(inactive_tab)
+        setInactiveTab(inactive_tab);
+        //setDefChart(<Table series={uridef_series} title={'URIs dereferenziability'}/>)
       }
     }
   }, [availabilityData, selectedKGs]);
@@ -87,6 +90,7 @@ function Availability({ selectedKGs }) {
 					{sparlq_chart}
           <span id="rdfdump"></span>
           {rdfDumpChart}
+          {/*uriDefChart*/}
           {inactiveTab}
 				</div>    
 		)}
