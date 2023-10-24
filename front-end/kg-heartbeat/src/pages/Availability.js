@@ -69,7 +69,7 @@ function Availability({ selectedKGs }) {
             {inactive_l_series.map((item) => (
               <tr>
                 <td className='cell' key={item.kg_id} style={{fontSize: '18px'}}>{item.name}</td>
-                <td className='cell' key={item.kg_id} style={{fontSize: '18px'}}>{item.data[item.data.length -1][1]}</td>
+                <td className='cell' style={{fontSize: '18px'}}>{item.data[item.data.length -1][1]}</td>
               </tr>
             ))}
           </TableBoot>
