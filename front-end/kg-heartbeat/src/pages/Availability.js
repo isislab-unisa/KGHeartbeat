@@ -40,7 +40,6 @@ function Availability({ selectedKGs }) {
 
   useEffect(() => { //everytime that availability data change, we create series and redraw the chart
     if (availabilityData) {
-      console.log(availabilityData);
       const sparql_series = trasform_to_series(availabilityData, selectedKGs,availability,'sparqlEndpoint');
       const rdfD_series = trasform_to_series(availabilityData,selectedKGs,availability,'RDFDump_merged');
       //const uridef_series = trasform_to_series(availabilityData,selectedKGs,availability,'uris_def')

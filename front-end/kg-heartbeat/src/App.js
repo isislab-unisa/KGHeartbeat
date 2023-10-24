@@ -8,6 +8,7 @@ import NavBar from './components/NavBar';
 import Availability from './pages/Availability';
 import Licensing from './pages/Licensing';
 import Interlinking from './pages/Interlinking';
+import Security from './pages/Security';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -26,7 +27,6 @@ function App() {
     content = <Link to="/pages/QualityData">View Quality</Link>
   }
 
-  console.log(selectedKGs)
   return (
     <div>
     <Router>
@@ -37,6 +37,7 @@ function App() {
           <Route path="/pages/Availability" component={Availability} element={<Availability selectedKGs={selectedKGs}/>}/>
           <Route path="/pages/Licensing" component={Licensing} element={<Licensing selectedKGs={selectedKGs}/>}/>
           <Route path="/pages/Interlinking" component={Interlinking} element={<Interlinking selectedKGs={selectedKGs}/>}/>
+          <Route path="/pages/Security" component={Security} element={<Security selectedKGs={selectedKGs}/>}/>
         </Routes>
     </Router>
     </div>
