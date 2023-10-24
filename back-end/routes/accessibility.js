@@ -133,4 +133,19 @@ router.route('/performance').get((req,res) =>{
     });
 })
 
+router.route('/performance').post((req,res) => {
+    const body = req.body;   
+    id_list = body.id;
+    find_data_over_time(id_list,quality_category,4).then(result => {
+        if(result.length > 0)
+            res.json(result);
+        else
+            res.status(404).json({ error: 'No data found' });
+    })
+    .catch(err => {
+        console.error(err);
+        res.status(500).send('Error during the aggregation: ' + err);
+    });
+})
+
 module.exports = router;
