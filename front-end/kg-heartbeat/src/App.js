@@ -9,6 +9,7 @@ import Availability from './pages/Availability';
 import Licensing from './pages/Licensing';
 import Interlinking from './pages/Interlinking';
 import Security from './pages/Security';
+import Performance from './pages/Performance';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -38,6 +39,7 @@ function App() {
           <Route path="/pages/Licensing" component={Licensing} element={<Licensing selectedKGs={selectedKGs}/>}/>
           <Route path="/pages/Interlinking" component={Interlinking} element={<Interlinking selectedKGs={selectedKGs}/>}/>
           <Route path="/pages/Security" component={Security} element={<Security selectedKGs={selectedKGs}/>}/>
+          <Route path="/pages/Performance" component={Performance} element={<Performance selectedKGs={selectedKGs}/>}/>
         </Routes>
     </Router>
     </div>

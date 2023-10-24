@@ -24,7 +24,11 @@ function QualityBar({selectedKGs}) {
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Security" className='quality-link'>Access to data is secure</Link></NavDropdown.Item>
         <NavDropdown.Item eventKey="4.6">Another action</NavDropdown.Item>
     </NavDropdown>
-  
+    <NavDropdown title="Performance" id="nav-dropdown">
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Performance" className='quality-link'>Low latency</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Performance" className='quality-link'>High Throughput</Link></NavDropdown.Item>
+    </NavDropdown>
+
     <Nav.Link href="/home">Test</Nav.Link>
     <Nav.Link eventKey="link-1">Link</Nav.Link>
     <Nav.Link eventKey="link-2">Link</Nav.Link>

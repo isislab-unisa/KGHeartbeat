@@ -4,7 +4,6 @@ import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import QualityBar from '../components/QualityBar';
 
-const security = 'Security';
 
 function Security({ selectedKGs }){
     const [secuirityData, setSecurityData] = useState(null);
@@ -34,7 +33,6 @@ function Security({ selectedKGs }){
 
     useEffect(() => {
         if(secuirityData){
-            console.log(secuirityData)
             if(selectedKGs.length === 1){
                 const security_tab = (
                     <Table>
