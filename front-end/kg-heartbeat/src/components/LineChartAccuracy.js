@@ -2,7 +2,7 @@ import React from 'react';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from "highcharts/highstock";
 
-function create_options(chart_title,series,y_min,y_max){
+function create_options(chart_title,series,y_min,y_max,sub_title){
 
   const options = {
     chart: {
@@ -10,6 +10,9 @@ function create_options(chart_title,series,y_min,y_max){
     }, 
     title: {
       text: chart_title
+    },
+    subtitle: {
+      text: sub_title,
     },
     tooltip: {
       headerFormat: '<span style=" border:0px">{point.key}</span><table style="width=100%; border:0px">: ',
@@ -71,10 +74,10 @@ const addSeries = () => {
     })
 }
 */
-const LineChartAccuracy = ({chart_title, series, y_min, y_max}) => <HighchartsReact
+const LineChartAccuracy = ({chart_title, series, y_min, y_max,sub_title}) => <HighchartsReact
   //containerProps = {{style: {width: "80%"}}}
   highcharts={Highcharts}
-  options={create_options(chart_title,series, y_min, y_max)}
+  options={create_options(chart_title,series, y_min, y_max, sub_title)}
 />
 
 export default LineChartAccuracy;

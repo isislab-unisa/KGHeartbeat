@@ -59,7 +59,7 @@ function Accuracy( {selectedKGs } ){
                 setDeafaultDate(parseISO(accuracyData[accuracyData.length-1].analysis_date))
             if (selectedKGs.length === 1){
                 if(!toggleSwitch){
-                    setAccuracyChart(<LineChartAccuracy chart_title={'Accuracy'} series={series} y_min={0} y_max={1}/>)
+                    setAccuracyChart(<LineChartAccuracy chart_title={'Accuracy'} sub_title={accuracyData[0].kg_name} series={series} y_min={0} y_max={1}/>)
                     setSelectedDate(null)
                 }else{
                     setAvailableDate(get_analysis_date(accuracyData)) //set the analysis date available
@@ -68,10 +68,9 @@ function Accuracy( {selectedKGs } ){
                         analysis_selected = find_target_analysis(accuracyData,accuracyData[accuracyData.length-1].analysis_date,selectedKGs);
                     else
                         analysis_selected = find_target_analysis(accuracyData,selectedDate,selectedKGs); 
-                    console.log(analysis_selected)
                     const accuracy_obj = analysis_selected[0].Quality_category_array.Accuracy;
                     const data = [parseFloat(accuracy_obj.emptyAnn),parseFloat(accuracy_obj.wSA),parseFloat(accuracy_obj.malformedDataType),parseFloat(accuracy_obj.FPvalue),parseFloat(accuracy_obj.IFPvalue)]
-                    const series = [{name:analysis_selected.kg_name, data : data}]
+                    const series = [{name:analysis_selected[0].kg_name, data : data}]
                     const x_categories = ['Empty annotation labels','White space in annotation','Datatype consistency','Functional property violation','Inverse functional property violation'];
 
                     setAccuracyChart(<PolarChart key={selectedDate} chart_title={'Accuracy'} series={series} x_categories={x_categories} y_min={0} y_max={1} />)
