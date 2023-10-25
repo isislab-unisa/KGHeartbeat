@@ -28,6 +28,10 @@ function QualityBar({selectedKGs}) {
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Performance" className='quality-link'>Low latency</Link></NavDropdown.Item>
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Performance" className='quality-link'>High Throughput</Link></NavDropdown.Item>
     </NavDropdown>
+    <NavDropdown title="Accuracy" id="nav-dropdown">
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Accuracy" className='quality-link'>Empty annotation labels</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Accuracy" className='quality-link'>White space in annotation</Link></NavDropdown.Item>
+    </NavDropdown>
 
     <Nav.Link href="/home">Test</Nav.Link>
     <Nav.Link eventKey="link-1">Link</Nav.Link>

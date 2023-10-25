@@ -1,5 +1,5 @@
 import React from 'react';
-import Highcharts from "highcharts";
+import Highcharts from "highcharts/highstock";
 import HighchartsReact from 'highcharts-react-official';
 
 
@@ -15,6 +15,9 @@ function create_options(chart_title,series,y_min,y_max){
     xAxis: {
       type:'datetime',
     },
+    rangeSelector: {
+      enabled:true
+  },
     yAxis:{
       min: y_min,
       max: y_max

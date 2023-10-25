@@ -1,9 +1,9 @@
-function trasform_to_series(quality_data,selectedKGs,quality_dimension,quality_metric){
+function trasform_to_series(quality_data,selectedKGs,quality_dimension,quality_metric,custom_series_name){
     let series = []
     for(let i = 0; i< selectedKGs.length; i++){
         let serie = {
             id : selectedKGs[i].id,
-            name: '',
+            name: custom_series_name,
             data : []
         }
         series.push(serie)
@@ -14,7 +14,7 @@ function trasform_to_series(quality_data,selectedKGs,quality_dimension,quality_m
                 const tab_date = quality_data[i].analysis_date.split('-');
                 const date_utc = Date.UTC(parseInt(tab_date[0]),parseInt(tab_date[1])-1,parseInt(tab_date[2]));
                 series[j].data.push([date_utc,parseInt(quality_data[i].Quality_category_array[quality_dimension][quality_metric])])
-                if(series[j].name === '')
+                if(series[j].name === '' || series[j].name === undefined) 
                     series[j].name = quality_data[i].kg_name;
             }
         }
