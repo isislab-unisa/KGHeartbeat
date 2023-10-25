@@ -84,7 +84,6 @@ function create_options(chart_title,series,y_min,y_max,x_categories){
 const PolarChart = ({chart_title, series, y_min, y_max, x_categories}) => <HighchartsReact 
   highcharts={Highcharts}
   options={create_options(chart_title,series,y_min,y_max,x_categories)}
-
 />
 
 export default PolarChart;

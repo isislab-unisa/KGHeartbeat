@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import QualityBar from '../components/QualityBar';
 import { base_url } from '../api';
 import axios from 'axios';
-import { trasform_to_series } from '../utils';
+import { trasform_to_series, get_analysis_date} from '../utils';
 import LineChartAccuracy from '../components/LineChartAccuracy';
 import Form from 'react-bootstrap/Form';
 import PolarChart from '../components/PolarChart';
+import CalendarPopup from '../components/CalendatPopup';
+import { find_target_analysis } from '../utils';
+import {  parseISO } from "https://cdn.skypack.dev/date-fns@2.28.0";
 
 const accuracy = 'Accuracy';
 
@@ -13,7 +16,9 @@ function Accuracy( {selectedKGs } ){
     const [accuracyData, setAccuracyData] = useState(null);
     const [accuracyChart, setAccuracyChart] = useState(null);
     const [toggleSwitch, setToggleSwitch] = useState(null);
-    
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [defaultDate, setDeafaultDate] = useState(null);
+    const [availableDates, setAvailableDate] = useState(null);
     
     useEffect(() => {
         async function fetchData() {
@@ -39,7 +44,6 @@ function Accuracy( {selectedKGs } ){
 
     useEffect(() => {
         if (accuracyData){
-            console.log(accuracyData)
             const fp_series = trasform_to_series(accuracyData,selectedKGs,accuracy,'FPvalue','Functional property violation');
             const ifp_series = trasform_to_series(accuracyData,selectedKGs,accuracy,'IFPvalue','Inverse functional property violation');
             const empty_ann_series = trasform_to_series(accuracyData,selectedKGs,accuracy,'emptyAnn','Empty annotation labels');
@@ -51,22 +55,41 @@ function Accuracy( {selectedKGs } ){
             delete malformed_series[0].id;
             delete whitespace_ann[0].id;
             const series = [fp_series[0],ifp_series[0],empty_ann_series[0],malformed_series[0],whitespace_ann[0]];
+            if(selectedDate == null)
+                setDeafaultDate(parseISO(accuracyData[accuracyData.length-1].analysis_date))
             if (selectedKGs.length === 1){
-                if(!toggleSwitch)
+                if(!toggleSwitch){
                     setAccuracyChart(<LineChartAccuracy chart_title={'Accuracy'} series={series} y_min={0} y_max={1}/>)
-                else{
-                    const most_recent_analysis = accuracyData[accuracyData.length -1];
-                    const accuracy_obj = most_recent_analysis.Quality_category_array.Accuracy;
+                    setSelectedDate(null)
+                }else{
+                    setAvailableDate(get_analysis_date(accuracyData)) //set the analysis date available
+                    let analysis_selected;
+                    if(selectedDate == null || selectedDate === '1970-01-01')
+                        analysis_selected = find_target_analysis(accuracyData,accuracyData[accuracyData.length-1].analysis_date,selectedKGs);
+                    else
+                        analysis_selected = find_target_analysis(accuracyData,selectedDate,selectedKGs); 
+                    console.log(analysis_selected)
+                    const accuracy_obj = analysis_selected[0].Quality_category_array.Accuracy;
                     const data = [parseFloat(accuracy_obj.emptyAnn),parseFloat(accuracy_obj.wSA),parseFloat(accuracy_obj.malformedDataType),parseFloat(accuracy_obj.FPvalue),parseFloat(accuracy_obj.IFPvalue)]
-                    const series = [{name:most_recent_analysis.kg_name, data : data}]
+                    const series = [{name:analysis_selected.kg_name, data : data}]
                     const x_categories = ['Empty annotation labels','White space in annotation','Datatype consistency','Functional property violation','Inverse functional property violation'];
-                    setAccuracyChart(<PolarChart chart_title={'Accuracy'} series={series} x_categories={x_categories} y_min={0} y_max={1} />)
+
+                    setAccuracyChart(<PolarChart key={selectedDate} chart_title={'Accuracy'} series={series} x_categories={x_categories} y_min={0} y_max={1} />)
                 }
             } else if (selectedKGs.length >= 1){
 
             }
         }
-    },[accuracyData, selectedKGs,toggleSwitch]);
+    },[accuracyData, selectedKGs,toggleSwitch,selectedDate]);
+
+    const handleDateSelect = (date) => {
+        const calendar_date = new Date(date)
+        const year = calendar_date.getFullYear();
+        const month = (calendar_date.getMonth() + 1).toString().padStart(2,'0');
+        const day = calendar_date.getDate().toString().padStart(2,'0');
+        const converted_date = `${year}-${month}-${day}`;
+        setSelectedDate(converted_date);
+    }
 
     return(
         <div>
@@ -77,10 +100,19 @@ function Accuracy( {selectedKGs } ){
                             <Form.Check
                                 type="switch"
                                 id="custom-switch"
-                                label='Switch to see analysis by day'
+                                label='Switch to chage view'
                                 checked={toggleSwitch}
                                 onChange={() => setToggleSwitch(!toggleSwitch)}
                                 />
+                            {toggleSwitch ? (
+                                <div>
+                                    <CalendarPopup selectableDates={availableDates} onDateSelect={handleDateSelect} defaultDate={defaultDate}/>
+                                </div>
+                            ) : (
+                                <div>
+ 
+                                </div>
+                            )}
                             {accuracyChart}
                         </div>
                     )}

@@ -1,3 +1,5 @@
+import {  parseISO } from "https://cdn.skypack.dev/date-fns@2.28.0";
+
 function trasform_to_series(quality_data,selectedKGs,quality_dimension,quality_metric,custom_series_name){
     let series = []
     for(let i = 0; i< selectedKGs.length; i++){
@@ -97,4 +99,25 @@ function trasform_throughput_to_series(quality_data,selectedKGs,quality_dimensio
     return series
 }
 
-export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series};
+function get_analysis_date(quality_data){
+    let parsed_date = []
+    for(let i = 0; i<quality_data.length; i++){
+        parsed_date.push(parseISO(quality_data[i].analysis_date))
+    }   
+    return parsed_date
+}
+
+function find_target_analysis(quality_data,analysis_date,selectedKGs){
+    let target_analysis = [];
+    for(let i = 0; i<selectedKGs.length; i++){
+        for(let j = 0; j<quality_data.length; j++){
+            if(selectedKGs[i].id === quality_data[j].kg_id && quality_data[j].analysis_date === analysis_date){
+                target_analysis.push(quality_data[j])
+            }
+        }
+    }
+
+    return target_analysis;
+}
+
+export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis};

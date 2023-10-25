@@ -12,6 +12,7 @@
     "highcharts-react-official": "^3.2.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.0",
+    "react-datepicker": "^4.21.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
     "react-router-hash-link": "^2.4.3",
