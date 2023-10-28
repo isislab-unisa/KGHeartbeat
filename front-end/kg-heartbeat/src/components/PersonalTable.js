@@ -10,7 +10,10 @@ function PersonalTable({series,title}){
                     <td className='cell' style={{fontSize: '18px'}}>KG name</td>
                     {serie.data.map((item) => {
                         const data = new Date(item[0])
-                        const parsed_data = data.toLocaleDateString(); 
+                        const year = data.getFullYear();
+                        const month = (data.getMonth() + 1).toString().padStart(2,'0');
+                        const day = data.getDate().toString().padStart(2,'0');
+                        const parsed_data = `${year}-${month}-${day}`;
                         return <td className='cell' style={{fontSize: '18px'}}>{parsed_data}</td>     
                     })}
                 </tr>
