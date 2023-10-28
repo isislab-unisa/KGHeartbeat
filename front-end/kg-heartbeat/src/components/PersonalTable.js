@@ -14,7 +14,7 @@ function PersonalTable({series,title}){
                         const month = (data.getMonth() + 1).toString().padStart(2,'0');
                         const day = data.getDate().toString().padStart(2,'0');
                         const parsed_data = `${year}-${month}-${day}`;
-                        return <td className='cell' style={{fontSize: '18px'}}>{parsed_data}</td>     
+                        return <td className='cell' style={{fontSize: '18px', minWidth: "135px"}}>{parsed_data}</td>     
                     })}
                 </tr>
                     {series.map((item) => (
