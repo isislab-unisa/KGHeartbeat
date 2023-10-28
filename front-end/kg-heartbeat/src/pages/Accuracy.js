@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import QualityBar from '../components/QualityBar';
 import { base_url } from '../api';
 import axios from 'axios';
-import { trasform_to_series, get_analysis_date} from '../utils';
+import { trasform_to_series, get_analysis_date, trasform_to_series_test, remove_duplicates, trasform_to_series_test2} from '../utils';
 import LineChartAccuracy from '../components/LineChartAccuracy';
 import Form from 'react-bootstrap/Form';
 import PolarChart from '../components/PolarChart';
 import CalendarPopup from '../components/CalendatPopup';
 import { find_target_analysis } from '../utils';
 import {  parseISO } from "https://cdn.skypack.dev/date-fns@2.28.0";
+import ColumnChart from '../components/ColumnChart';
 
 const accuracy = 'Accuracy';
 
@@ -44,25 +45,25 @@ function Accuracy( {selectedKGs } ){
 
     useEffect(() => {
         if (accuracyData){
-            const fp_series = trasform_to_series(accuracyData,selectedKGs,accuracy,'FPvalue','Functional property violation');
-            const ifp_series = trasform_to_series(accuracyData,selectedKGs,accuracy,'IFPvalue','Inverse functional property violation');
-            const empty_ann_series = trasform_to_series(accuracyData,selectedKGs,accuracy,'emptyAnn','Empty annotation labels');
-            const malformed_series = trasform_to_series(accuracyData,selectedKGs,accuracy,'malformedDataType','Datatype consistency');
-            const whitespace_ann = trasform_to_series(accuracyData,selectedKGs,accuracy,'wSA','White space in annotation');
-            delete fp_series[0].id;
-            delete ifp_series[0].id;
-            delete empty_ann_series[0].id;
-            delete malformed_series[0].id;
-            delete whitespace_ann[0].id;
-            const series = [fp_series[0],ifp_series[0],empty_ann_series[0],malformed_series[0],whitespace_ann[0]];
+            setAvailableDate(get_analysis_date(accuracyData)) //set the analysis date available
             if(selectedDate == null)
                 setDeafaultDate(parseISO(accuracyData[accuracyData.length-1].analysis_date))
             if (selectedKGs.length === 1){
+                const fp_series = trasform_to_series(accuracyData,selectedKGs,accuracy,'FPvalue','Functional property violation');
+                const ifp_series = trasform_to_series(accuracyData,selectedKGs,accuracy,'IFPvalue','Inverse functional property violation');
+                const empty_ann_series = trasform_to_series(accuracyData,selectedKGs,accuracy,'emptyAnn','Empty annotation labels');
+                const malformed_series = trasform_to_series(accuracyData,selectedKGs,accuracy,'malformedDataType','Datatype consistency');
+                const whitespace_ann = trasform_to_series(accuracyData,selectedKGs,accuracy,'wSA','White space in annotation');
+                const series = [fp_series[0],ifp_series[0],empty_ann_series[0],malformed_series[0],whitespace_ann[0]];
+                delete fp_series[0].id;
+                delete ifp_series[0].id;
+                delete empty_ann_series[0].id;
+                delete malformed_series[0].id;
+                delete whitespace_ann[0].id;
                 if(!toggleSwitch){
                     setAccuracyChart(<LineChartAccuracy chart_title={'Accuracy'} sub_title={accuracyData[0].kg_name} series={series} y_min={0} y_max={1}/>)
                     setSelectedDate(null)
                 }else{
-                    setAvailableDate(get_analysis_date(accuracyData)) //set the analysis date available
                     let analysis_selected;
                     if(selectedDate == null || selectedDate === '1970-01-01')
                         analysis_selected = find_target_analysis(accuracyData,accuracyData[accuracyData.length-1].analysis_date,selectedKGs);
@@ -76,7 +77,24 @@ function Accuracy( {selectedKGs } ){
                     setAccuracyChart(<PolarChart key={selectedDate} chart_title={'Accuracy'} series={series} x_categories={x_categories} y_min={0} y_max={1} />)
                 }
             } else if (selectedKGs.length >= 1){
+                if(!toggleSwitch){
+                    //TODO:insert chart
+                    setAccuracyChart(<p> TODO</p>)
+                    
+                }else{
+                    let analysis_selected;
+                    if(selectedDate === null || selectedDate === '1970-01-01')
+                        analysis_selected = find_target_analysis(accuracyData,accuracyData[accuracyData.length-1].analysis_date,selectedKGs);
+                    else
+                        analysis_selected = find_target_analysis(accuracyData,selectedDate,selectedKGs);
 
+                    const series = trasform_to_series_test(analysis_selected,selectedKGs,accuracy,['FPvalue','IFPvalue','emptyAnn','malformedDataType','wSA'],['Functional property violation','Inverse functional property violation','Empty label','Wrong datatype','Whitespace at the beginnig or end of the label'])
+                    let kgs_name = []
+                    analysis_selected.map((item)=>
+                        kgs_name.push(item.kg_name)
+                    )
+                    setAccuracyChart(<ColumnChart chart_title={'Accuracy'} series={series} x_categories={kgs_name} best_value={5} y_max={5} y_min={0} y_title={'N. triples'} key={selectedDate}/>)
+                }
             }
         }
     },[accuracyData, selectedKGs,toggleSwitch,selectedDate]);

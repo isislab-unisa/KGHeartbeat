@@ -1,6 +1,8 @@
 import React from 'react';
 import Highcharts from "highcharts/highstock";
 import HighchartsReact from 'highcharts-react-official';
+require("highcharts/modules/exporting")(Highcharts);
+require("highcharts/modules/export-data")(Highcharts);
 
 
 function create_options(chart_title,series,y_min,y_max){

@@ -15,6 +15,7 @@ function CalendarPopup ({selectableDates, onDateSelect, defaultDate}) {
     return(
         <div>
             <DatePicker
+                showIcon
                 selected={selectedDate}
                 onChange={handleDateSelect}
                 dateFormat="yyyy-MM-dd"

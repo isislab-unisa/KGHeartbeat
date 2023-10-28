@@ -6,7 +6,9 @@ function trasform_to_series(quality_data,selectedKGs,quality_dimension,quality_m
         let serie = {
             id : selectedKGs[i].id,
             name: custom_series_name,
-            data : []
+            data : [],
+            linkedTo: quality_metric,
+            stack: ''
         }
         series.push(serie)
     }
@@ -16,7 +18,9 @@ function trasform_to_series(quality_data,selectedKGs,quality_dimension,quality_m
                 const tab_date = quality_data[i].analysis_date.split('-');
                 const date_utc = Date.UTC(parseInt(tab_date[0]),parseInt(tab_date[1])-1,parseInt(tab_date[2]));
                 series[j].data.push([date_utc,parseInt(quality_data[i].Quality_category_array[quality_dimension][quality_metric])])
-                if(series[j].name === '' || series[j].name === undefined) 
+                if(series[j].stack === '')
+                    series[j].stack = quality_data[i].kg_name;
+                if(series[j].name === '' || series[j].name === undefined)
                     series[j].name = quality_data[i].kg_name;
             }
         }
@@ -120,4 +124,24 @@ function find_target_analysis(quality_data,analysis_date,selectedKGs){
     return target_analysis;
 }
 
-export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis};
+function trasform_to_series_test(quality_data,selectedKGs,quality_dimension,quality_metrics, quality_metrics_label){
+    let series = []
+    for(let i = 0; i< quality_metrics.length; i++){
+        let serie = {
+            name: quality_metrics_label[i],
+            data : [],
+        }
+        for(let j = 0; j < quality_data.length; j++){
+            let quality_category_array = quality_data[j].Quality_category_array;
+            serie.data.push(parseFloat(quality_category_array[quality_dimension][quality_metrics[i]]))
+        }
+        series.push(serie);
+    }
+    return series
+}
+
+function remove_duplicates(arr){
+    return arr.filter((item,index) => arr.indexOf(item) === index);
+}
+
+export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_test, remove_duplicates};
