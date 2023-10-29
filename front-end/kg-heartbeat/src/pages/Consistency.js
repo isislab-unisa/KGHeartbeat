@@ -4,10 +4,11 @@ import QualityBar from '../components/QualityBar';
 import CalendarPopup from '../components/CalendatPopup';
 import { base_url } from '../api';
 import axios from 'axios';
-import { find_target_analysis, get_analysis_date, trasform_to_series } from '../utils';
+import { find_target_analysis, get_analysis_date, trasform_to_series, trasform_to_series_stacked } from '../utils';
 import {  parseISO } from "https://cdn.skypack.dev/date-fns@2.28.0";
 import LineChartAccuracy from '../components/LineChartAccuracy';
 import PolarChart from '../components/PolarChart';
+import ColumnChart from '../components/ColumnChart';
 
 const consistency = 'Consistency'
 
@@ -79,6 +80,18 @@ function Consistency({ selectedKGs }){
                     //TODO:insert chart
                     setConsistencyChart(<p>TODO</p>)
                 } else {
+                    let analysis_selected;
+                    if(selectedDate === null || selectedDate === '1970-01-01')
+                        analysis_selected = find_target_analysis(consistencyData,consistencyData[consistencyData.length-1].analysis_date,selectedKGs);
+                    else
+                        analysis_selected = find_target_analysis(consistencyData,selectedDate,selectedKGs);
+
+                        const series = trasform_to_series_stacked(analysis_selected,selectedKGs,consistency,['deprecated','disjointClasses','oHijacking','triplesMC','triplesMP'],['Use of deprecated classes or properties','Entities as members of disjoint classes','Ontology hijacking','Misplaced classes','Misplaced properties']);
+                        let kgs_name = [];
+                        analysis_selected.map((item) => 
+                            kgs_name.push(item.kg_name)
+                        )
+                        setConsistencyChart(<ColumnChart chart_title={'Consistency'} x_categories={kgs_name} best_value={5} y_min={0} y_max={5} y_title={'Values'} series={series} key={selectedDate}/>)
 
                 }
             }
