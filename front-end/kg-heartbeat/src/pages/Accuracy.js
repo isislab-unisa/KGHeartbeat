@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import QualityBar from '../components/QualityBar';
 import { base_url } from '../api';
 import axios from 'axios';
-import { trasform_to_series, get_analysis_date, trasform_to_series_test, remove_duplicates, trasform_to_series_test2} from '../utils';
+import { trasform_to_series, get_analysis_date, trasform_to_series_stacked} from '../utils';
 import LineChartAccuracy from '../components/LineChartAccuracy';
 import Form from 'react-bootstrap/Form';
 import PolarChart from '../components/PolarChart';
@@ -88,7 +88,7 @@ function Accuracy( {selectedKGs } ){
                     else
                         analysis_selected = find_target_analysis(accuracyData,selectedDate,selectedKGs);
 
-                    const series = trasform_to_series_test(analysis_selected,selectedKGs,accuracy,['FPvalue','IFPvalue','emptyAnn','malformedDataType','wSA'],['Functional property violation','Inverse functional property violation','Empty label','Wrong datatype','Whitespace at the beginnig or end of the label'])
+                    const series = trasform_to_series_stacked(analysis_selected,selectedKGs,accuracy,['FPvalue','IFPvalue','emptyAnn','malformedDataType','wSA'],['Functional property violation','Inverse functional property violation','Empty label','Wrong datatype','Whitespace at the beginnig or end of the label'])
                     let kgs_name = []
                     analysis_selected.map((item)=>
                         kgs_name.push(item.kg_name)
