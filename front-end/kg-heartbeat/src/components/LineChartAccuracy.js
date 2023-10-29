@@ -32,7 +32,7 @@ function create_options(chart_title,series,y_min,y_max,sub_title){
         min: y_min,
         max: y_max,
         title: {
-            text: 'Number of triples'
+            text: 'Value'
         },
         plotOptions: {
             series:{

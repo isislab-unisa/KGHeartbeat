@@ -124,7 +124,7 @@ function find_target_analysis(quality_data,analysis_date,selectedKGs){
     return target_analysis;
 }
 
-function trasform_to_series_test(quality_data,selectedKGs,quality_dimension,quality_metrics, quality_metrics_label){
+function trasform_to_series_stacked(quality_data,selectedKGs,quality_dimension,quality_metrics, quality_metrics_label){
     let series = []
     for(let i = 0; i< quality_metrics.length; i++){
         let serie = {
@@ -144,4 +144,4 @@ function remove_duplicates(arr){
     return arr.filter((item,index) => arr.indexOf(item) === index);
 }
 
-export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_test, remove_duplicates};
+export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates};
