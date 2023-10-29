@@ -36,6 +36,10 @@ function QualityBar({selectedKGs}) {
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Consistency" className='quality-link'>Entities as members of disjoint classes</Link></NavDropdown.Item>
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Consistency" className='quality-link'>Misplaced classes or properties </Link></NavDropdown.Item>
     </NavDropdown>
+    <NavDropdown title="Conciseness" id="nav-dropdown">
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Conciseness" className='quality-link'>Intensional conciseness</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Conciseness" className='quality-link'>Extensional conciseness</Link></NavDropdown.Item>
+    </NavDropdown>
 
     <Nav.Link href="/home">Test</Nav.Link>
     <Nav.Link eventKey="link-1">Link</Nav.Link>

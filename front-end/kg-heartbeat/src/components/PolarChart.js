@@ -16,16 +16,21 @@ function create_options(chart_title,series,y_min,y_max,x_categories){
             },
             text: chart_title
         },
+        pane: {
+            size: '95%'
+        },
         xAxis: {
             categories: x_categories,
             lineWidth: 0,
             tickmarkPlacement: 'on',
+            tickAmount:0.1,
         },
         yAxis: {
             gridLineInterpolation: 'polygon',
             lineWidth: 0,
             min: y_min,
             max: y_max,
+            tickAmount:0.1,
             plotLines: [{ 
                 width:2,
                 value: 1,
@@ -42,18 +47,8 @@ function create_options(chart_title,series,y_min,y_max,x_categories){
                 }
             }],
         },
-        tooltips: {
-            enabled: true,
-            callbacks: {
-                label: function(tooltipItem, data) {
-                    try{
-                        return data.datasets[tooltipItem.datasetIndex].label + ' : ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                    }catch (error){
-                        console.log(error);
-                        return;
-                    }
-                }
-            }
+        tooltip: {
+            shared: true
         },
 
         series: series,

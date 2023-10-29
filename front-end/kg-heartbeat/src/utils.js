@@ -144,4 +144,25 @@ function remove_duplicates(arr){
     return arr.filter((item,index) => arr.indexOf(item) === index);
 }
 
-export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates};
+function series_for_polar_chart(analysis_selected,selectedKGs,quality_dimension){
+    let series = [];
+    for(let i = 0; i<selectedKGs.length; i++){
+        let serie = {
+            name : '',
+            data: [],
+        };
+        for(let j = 0; j<analysis_selected.length; j++){
+            if(selectedKGs[i].id === analysis_selected[j].kg_id){
+                const consistency_obj = analysis_selected[j].Quality_category_array[quality_dimension];
+                serie.data = [parseFloat(consistency_obj.deprecated),parseFloat(consistency_obj.triplesMC),parseFloat(consistency_obj.triplesMP),parseFloat(consistency_obj.undefinedClass),parseFloat(consistency_obj.undefinedProperties)];
+                serie.name = analysis_selected[j].kg_name;
+                console.log(consistency_obj)
+            }
+        }
+        series.push(serie);
+    }
+
+    return series
+}
+
+export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart};

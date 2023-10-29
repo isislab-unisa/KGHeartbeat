@@ -12,6 +12,7 @@ import Security from './pages/Security';
 import Performance from './pages/Performance';
 import Accuracy from './pages/Accuracy';
 import Consistency from './pages/Consistency';
+import Conciseness from './pages/Conciseness';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -44,6 +45,7 @@ function App() {
           <Route path="/pages/Performance" component={Performance} element={<Performance selectedKGs={selectedKGs}/>}/>
           <Route path="/pages/Accuracy" component={Accuracy} element={<Accuracy selectedKGs={selectedKGs}/>}/>
           <Route path="/pages/Consistency" component={Consistency} element={<Consistency selectedKGs={selectedKGs}/>}/>
+          <Route path="/pages/Conciseness" component={Conciseness} element={<Conciseness selectedKGs={selectedKGs}/>}/>
         </Routes>
     </Router>
     </div>

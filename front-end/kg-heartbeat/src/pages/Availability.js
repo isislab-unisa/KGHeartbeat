@@ -50,7 +50,7 @@ function Availability({ selectedKGs }) {
           <TableBoot striped bordered hover>
             <tr><th>Inactive links</th></tr>
             <tr>
-              <td className='cell' tyle={{fontSize: '18px'}}>{availabilityData[0].Quality_category_array.Availability.inactiveLinks}</td>
+              <td className='cell'>{availabilityData[0].Quality_category_array.Availability.inactiveLinks}</td>
             </tr>
           </TableBoot>
         );

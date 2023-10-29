@@ -4,11 +4,11 @@ import QualityBar from '../components/QualityBar';
 import CalendarPopup from '../components/CalendatPopup';
 import { base_url } from '../api';
 import axios from 'axios';
-import { find_target_analysis, get_analysis_date, trasform_to_series, trasform_to_series_stacked } from '../utils';
+import { find_target_analysis, get_analysis_date, series_for_polar_chart, trasform_to_series, trasform_to_series_stacked } from '../utils';
 import {  parseISO } from "https://cdn.skypack.dev/date-fns@2.28.0";
 import LineChartAccuracy from '../components/LineChartAccuracy';
 import PolarChart from '../components/PolarChart';
-import ColumnChart from '../components/ColumnChart';
+import Table from 'react-bootstrap/esm/Table';
 
 const consistency = 'Consistency'
 
@@ -19,6 +19,7 @@ function Consistency({ selectedKGs }){
     const [selectedDate, setSelectedDate] = useState(null);
     const [defaultDate, setDeafaultDate] = useState(null);
     const [availableDates, setAvailableDate] = useState(null);
+    const [consistencyTable, setConsistencyTable] = useState(null);
 
     useEffect(() => {
         async function fetchData() {
@@ -50,18 +51,27 @@ function Consistency({ selectedKGs }){
             if(selectedKGs.length === 1){
                 if(!toggleSwitch){
                     const deprecated_series = trasform_to_series(consistencyData,selectedKGs,consistency,'deprecated','Use of deprecated classes or properties');
-                    const disjoint_series = trasform_to_series(consistencyData,selectedKGs,consistency,'disjointClasses','Entities as members of disjoint classes');
-                    const hijacking_series = trasform_to_series(consistencyData,selectedKGs,consistency,'oHijacking','Ontology hijacking');
                     const misplacedC_series = trasform_to_series(consistencyData,selectedKGs,consistency,'triplesMC','Misplaced classes');
                     const misplacedP_series = trasform_to_series(consistencyData,selectedKGs,consistency,'triplesMP','Misplaced properties');
+                    const undefinedC_series = trasform_to_series(consistencyData,selectedKGs,consistency,'undefinedClass','Invalid usage of undefined classes');
+                    const undefinedP_series = trasform_to_series(consistencyData,selectedKGs,consistency,'undefinedProperties','Invalid usage of undefined properties');
                     delete deprecated_series[0].id;
-                    delete disjoint_series[0].id;
-                    delete hijacking_series[0].id;
                     delete misplacedC_series[0].id;
                     delete misplacedP_series[0].id;
-                    const series = [deprecated_series[0], disjoint_series[0], hijacking_series[0], misplacedC_series[0], misplacedP_series[0]];
+                    const series = [deprecated_series[0], misplacedC_series[0], misplacedP_series[0],undefinedC_series[0], undefinedP_series[0]];
+                    const consistency_last_measurement = consistencyData[consistencyData.length -1].Quality_category_array[consistency];
+                    const table = (
+                        <Table striped bordered hover >
+                            <tr>
+                                <th className='cell'>Entities as members of disjoint classes</th><th className='cell'>Ontology hijacking</th>
+                            </tr>
+                            <tr>
+                                <td className='cell'>{consistency_last_measurement.disjointClasses}</td><td className='cell'>{consistency_last_measurement.oHijacking}</td>
+                            </tr>
+                        </Table>
+                    )
                     setConsistencyChart(<LineChartAccuracy chart_title={'Consistency'} sub_title={consistencyData[0].kg_name} y_min={0} y_max={1} series={series}/>)
-                    setSelectedDate(null);
+                    setConsistencyTable(table);
                 }else{
                     let analysis_selected;
                     if(selectedDate == null || selectedDate === '1970-01-01')
@@ -69,16 +79,27 @@ function Consistency({ selectedKGs }){
                     else    
                         analysis_selected = find_target_analysis(consistencyData,selectedDate,selectedKGs);
                     const consistency_obj = analysis_selected[0].Quality_category_array[consistency];
-                    const data = [parseFloat(consistency_obj.deprecated),parseFloat(consistency_obj.disjointClasses),parseFloat(consistency_obj.oHijacking),parseFloat(consistency_obj.triplesMC),parseFloat(consistency_obj.triplesMP)]
+                    const data = [parseFloat(consistency_obj.deprecated),parseFloat(consistency_obj.triplesMC),parseFloat(consistency_obj.triplesMP),parseFloat(consistency_obj.undefinedClass),parseFloat(consistency_obj.undefinedProperties)]
                     const series = [{name:analysis_selected[0].kg_name, data : data}]
-                    const x_categories = ['Use of deprecated classes or properties','Entities as members of disjoint classes','Ontology hijacking','Misplaced classes','Misplaced properties'];
-                
-                    setConsistencyChart(<PolarChart chart_title={'Consistency'} x_categories={x_categories} y_min={0} y_max={1} series={series} key={selectedDate} />)
+                    const x_categories = ['Use of deprecated classes or properties','Misplaced classes','Misplaced properties','Invalid usage of undefined classes','Invalid usage of undefined properties'];
+                    const table = (
+                        <Table striped bordered hover key={selectedDate}>
+                            <tr>
+                                <th className='cell'>Entities as members of disjoint classes</th><th className='cell'>Ontology hijacking</th>
+                            </tr>
+                            <tr>
+                                <td className='cell'>{consistency_obj.disjointClasses}</td><td className='cell'>{consistency_obj.oHijacking}</td>
+                            </tr>
+                        </Table>
+                    )
+                    setConsistencyTable(table)
+                    setConsistencyChart(<PolarChart chart_title={'Consistency'} x_categories={x_categories} y_min={0} y_max={1} series={series} key={selectedDate + ' chart'}/>)
                 }
             } else if(selectedKGs.length >= 1){
                 if(!toggleSwitch){
                     //TODO:insert chart
                     setConsistencyChart(<p>TODO</p>)
+                    setSelectedDate(null);
                 } else {
                     let analysis_selected;
                     if(selectedDate === null || selectedDate === '1970-01-01')
@@ -86,13 +107,22 @@ function Consistency({ selectedKGs }){
                     else
                         analysis_selected = find_target_analysis(consistencyData,selectedDate,selectedKGs);
 
-                        const series = trasform_to_series_stacked(analysis_selected,selectedKGs,consistency,['deprecated','disjointClasses','oHijacking','triplesMC','triplesMP'],['Use of deprecated classes or properties','Entities as members of disjoint classes','Ontology hijacking','Misplaced classes','Misplaced properties']);
-                        let kgs_name = [];
-                        analysis_selected.map((item) => 
-                            kgs_name.push(item.kg_name)
-                        )
-                        setConsistencyChart(<ColumnChart chart_title={'Consistency'} x_categories={kgs_name} best_value={5} y_min={0} y_max={5} y_title={'Values'} series={series} key={selectedDate}/>)
-
+                    const x_categories = ['Use of deprecated classes or properties','Misplaced classes','Misplaced properties','Invalid usage of undefined classes','Invalid usage of undefined properties'];
+                    const series = series_for_polar_chart(analysis_selected,selectedKGs,consistency);
+                    const table = (
+                        <Table striped bordered hover>
+                            <tr>
+                                <th>KG name</th><th>Entities as members of disjoint classes</th><th>Ontology hijacking</th>
+                            </tr>
+                            {analysis_selected.map((item) => (
+                                <tr>
+                                    <td>{item.kg_name}</td><td>{item.Quality_category_array[consistency].disjointClasses}</td><td>{item.Quality_category_array[consistency].oHijacking}</td>
+                                </tr>
+                            ))}
+                        </Table>
+                    )
+                    setConsistencyChart(<PolarChart chart_title={'Consistency'} x_categories={x_categories} y_min={0} y_max={1} series={series}/>)
+                    setConsistencyTable(table)
                 }
             }
         }
@@ -129,6 +159,7 @@ function Consistency({ selectedKGs }){
                                 </div>
                             )}
                             {consistencyChart}
+                            {consistencyTable}
                         </div>
                     )}
             </div>
