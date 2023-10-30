@@ -4,7 +4,7 @@ import QualityBar from '../components/QualityBar';
 import CalendarPopup from '../components/CalendatPopup';
 import { base_url } from '../api';
 import axios from 'axios';
-import { find_target_analysis, get_analysis_date, series_for_polar_chart, trasform_to_series, trasform_to_series_stacked } from '../utils';
+import { find_target_analysis, get_analysis_date, series_for_polar_chart, trasform_to_series} from '../utils';
 import {  parseISO } from "https://cdn.skypack.dev/date-fns@2.28.0";
 import LineChartAccuracy from '../components/LineChartAccuracy';
 import PolarChart from '../components/PolarChart';
@@ -112,11 +112,11 @@ function Consistency({ selectedKGs }){
                     const table = (
                         <Table striped bordered hover>
                             <tr>
-                                <th>KG name</th><th>Entities as members of disjoint classes</th><th>Ontology hijacking</th>
+                                <th className='cell'>KG name</th><th className='cell'>Entities as members of disjoint classes</th><th className='cell'>Ontology hijacking</th>
                             </tr>
                             {analysis_selected.map((item) => (
                                 <tr>
-                                    <td>{item.kg_name}</td><td>{item.Quality_category_array[consistency].disjointClasses}</td><td>{item.Quality_category_array[consistency].oHijacking}</td>
+                                    <td className='cell'>{item.kg_name}</td><td className='cell'>{item.Quality_category_array[consistency].disjointClasses}</td><td className='cell'>{item.Quality_category_array[consistency].oHijacking}</td>
                                 </tr>
                             ))}
                         </Table>

@@ -6,6 +6,10 @@ import { base_url } from '../api';
 import {  parseISO } from "https://cdn.skypack.dev/date-fns@2.28.0";
 import QualityBar from '../components/QualityBar';
 import Form from 'react-bootstrap/Form';
+import { find_target_analysis, get_analysis_date, trasform_to_series_conc } from '../utils';
+import ConcisenessChart from '../components/ConcisenessChart';
+import ColumnChart from '../components/ColumnChart';
+import Table from 'react-bootstrap/esm/Table';
 
 const conciseness = 'Conciseness'
 
@@ -41,18 +45,53 @@ function Conciseness({ selectedKGs }){
     
     useEffect(() => {
         if(concisenessData){
-            setDeafaultDate(parseISO(concisenessData[concisenessData.length-1].analysis_date));
+            setAvailableDate(get_analysis_date(concisenessData))
+            if(selectedDate == null)
+                setDeafaultDate(parseISO(concisenessData[concisenessData.length-1].analysis_date));
             if(selectedKGs.length === 1){
                 if(!toggleSwitch){
-
+                    const int_conc_series = trasform_to_series_conc(concisenessData,selectedKGs,conciseness,'intC','Intensional conciseness');
+                    const ext_conc_series = trasform_to_series_conc(concisenessData,selectedKGs,conciseness,'exC','Extensional conciseness');
+                    const series = [int_conc_series[0],ext_conc_series[0]]
+                    setConcisenessChart(<ConcisenessChart chart_title={'Conciseness'} series={series} y_min={0} y_max={1}/>)
                 }else{
-
+                    let analysis_selected;
+                    if(selectedDate == null || selectedDate === '1970-01-01')
+                        analysis_selected = find_target_analysis(concisenessData, concisenessData[concisenessData.length - 1].analysis_date,selectedKGs);
+                    else    
+                        analysis_selected = find_target_analysis(concisenessData,selectedDate,selectedKGs);
+                    const int_conc_series = trasform_to_series_conc(analysis_selected,selectedKGs,conciseness,'intC','Intensional conciseness');
+                    const ext_conc_series = trasform_to_series_conc(analysis_selected,selectedKGs,conciseness,'exC','Extensional conciseness');
+                    const series = [int_conc_series[0],ext_conc_series[0]]
+                    console.log(series)
+                    setConcisenessChart(<ColumnChart chart_title={'Conciseness'} series={series} y_min={0} y_max={0} key={selectedDate + 'chart'} />)
                 }
             } else if(selectedKGs.length >= 1){
                 if(!toggleSwitch){
-                    
+                    //TODO_insert chart
+                    setConcisenessChart(<p>TODO</p>)
+                    setSelectedDate(null);
                 } else {
-
+                    let analysis_selected;
+                    if(selectedDate === null || selectedDate === '1970-01-01')
+                        analysis_selected = find_target_analysis(concisenessData,concisenessData[concisenessData.length-1].analysis_date,selectedKGs);
+                    else
+                        analysis_selected = find_target_analysis(concisenessData,selectedDate,selectedKGs);
+                    
+                    const conc_table = (
+                        <Table striped bordered hover key={selectedDate}>
+                            <tr>
+                                <th className='cell'>KG name</th><th className='cell'>Intensional conciseness</th><th className='cell'>Extensional conciseness</th>
+                            </tr>
+                            {analysis_selected.map((item) => (
+                                <tr>
+                                    <td className='cell'>{item.kg_name}</td><td className='cell'>{item.Quality_category_array[conciseness].intC}</td><td className='cell'>{item.Quality_category_array[conciseness].exC}</td>
+                                </tr>
+                            ))}
+                        </Table>
+                    )
+                    setConcisenessChart(conc_table)
+                
                 }
             }
         }

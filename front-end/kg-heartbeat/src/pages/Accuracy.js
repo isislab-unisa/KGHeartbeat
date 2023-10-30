@@ -9,7 +9,7 @@ import PolarChart from '../components/PolarChart';
 import CalendarPopup from '../components/CalendatPopup';
 import { find_target_analysis } from '../utils';
 import {  parseISO } from "https://cdn.skypack.dev/date-fns@2.28.0";
-import ColumnChart from '../components/ColumnChart';
+import StackedChart from '../components/StackedChart';
 
 const accuracy = 'Accuracy';
 
@@ -93,7 +93,7 @@ function Accuracy( {selectedKGs } ){
                     analysis_selected.map((item)=>
                         kgs_name.push(item.kg_name)
                     )
-                    setAccuracyChart(<ColumnChart chart_title={'Accuracy'} series={series} x_categories={kgs_name} best_value={5} y_max={5} y_min={0} y_title={'N. triples'} key={selectedDate}/>)
+                    setAccuracyChart(<StackedChart chart_title={'Accuracy'} series={series} x_categories={kgs_name} best_value={5} y_max={5} y_min={0} y_title={'N. triples'} key={selectedDate}/>)
                 }
             }
         }

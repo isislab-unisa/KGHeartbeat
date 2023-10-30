@@ -1,75 +1,75 @@
 import React from 'react';
-import HighchartsReact from 'highcharts-react-official';
 import Highcharts from "highcharts/highstock";
+import HighchartsReact from 'highcharts-react-official';
+require("highcharts/modules/exporting")(Highcharts);
+require("highcharts/modules/export-data")(Highcharts);
 
-function create_options(chart_title, series,y_min,y_max,y_title,best_value,x_categories){
-    
+function create_options(chart_title, series, y_min,y_max){
+
     const options = {
         chart: {
-            type: "column"
-        }, 
+            type: 'column'
+        },
         title: {
+            style:{
+                fontSize:'30px',
+                fontWeight:'bold'
+            },
             text: chart_title
         },
         xAxis: {
-            categories: x_categories
+            type:'datetime',
         },
         yAxis: {
-            allowDecimals: false,
-            min: y_min,
-            max: y_max,
-            title: {
-                text: y_title
-            },
             stackLabels: {
                 enabled: true,
+                style: {
+                    fontWeight: 'bold',
+                    color: 'gray'
+                },
                 formatter: function() {
-                    return this.stack;
+                    return  this.stack;
                 }
             },
-            style: {
-                fontWeight: 'bold',
-                color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+            min:y_min,
+            max:y_max,
+            title: {
+                text: 'Values conciseness'
             },
             plotLines: [{ 
-                width:2,
-                value: 5,
-                color: '#28FF49',
+                width:4,
+                value: 1,
+                color: '#0090eacc',
                 label: { 
                     style:{
                         color:'#0090eacc',
                         fontSize:'15px',
                         fontWeight:'bold'
                     },
-                text: `Best value: ${best_value}`, // Content of the label. 
-                align: 'left', // Positioning of the label. 
+                    text: 'Best value: 1', // Content of the label. 
+                    align: 'left', // Positioning of the label. 
                 }
-            }],
-        },
-        tooltip: {
-            headerFormat: '<b>{point.x}</b><br/>',
-            pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
-        },
-        legend:{
-            enabled: true
+            }]
         },
         plotOptions: {
-            series: {
-                stacking: 'normal',
-                dataLabels: {
-                    enabled: true
-                }
+            column: {
+              dataLabels: {
+                verticalAlign: 'top',
+                allowOverlap: true,
+                enabled: true,
+                inside: true
+              },
             }
-        },
+          },
         series: series
     }
-    
-      return options
+
+    return options;
 }
 
-const ColumnChart = ({chart_title,series,y_min,y_max,y_title,best_value, x_categories}) => <HighchartsReact
+const ColumnChart = ({chart_title, series, y_min, y_max}) => <HighchartsReact
     highcharts={Highcharts}
-    options={create_options(chart_title,series, y_min,y_max,y_title,best_value,x_categories)}
+    options={create_options(chart_title,series, y_min, y_max)}
 />
 
 export default ColumnChart;
