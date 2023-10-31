@@ -10,6 +10,7 @@ function QualityBar({selectedKGs}) {
     <NavDropdown title="Availability" id="nav-dropdown">
         <NavDropdown.Item eventKey="4.1"><Link to="/pages/Availability#sparql" className='quality-link'>SPARQL endpoint</Link></NavDropdown.Item>
         <NavDropdown.Item eventKey="4.2"><Link to="/pages/Availability#rdfdump" className='quality-link'>RDF dump</Link></NavDropdown.Item>
+        <NavDropdown.Divider />
         <NavDropdown.Item eventKey="4.3">Another action</NavDropdown.Item>
     </NavDropdown>
     <NavDropdown title="Licensing" id="nav-dropdown">
@@ -42,6 +43,9 @@ function QualityBar({selectedKGs}) {
     </NavDropdown>
     <NavDropdown title="Reputation" id="nav-dropdown">
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Reputation" className='quality-link'>PageRank</Link></NavDropdown.Item>
+    </NavDropdown>
+    <NavDropdown title="Believability" id="nav-dropdown">
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Believability" className='quality-link'>Meta-information about the indentity of information provider</Link></NavDropdown.Item>
     </NavDropdown>
 
     <Nav.Link href="/home">Test</Nav.Link>
