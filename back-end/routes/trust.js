@@ -65,7 +65,7 @@ router.route('/believability').post((req,res) => {
 
 router.route('/verifiability').get((req, res) =>{
     const id = req.query.id;
-    find_single_data(id,quality_category,2).then(result => {
+    find_data_over_time(id,quality_category,2).then(result => {
         if(result)
             res.json(result);
         else
@@ -77,10 +77,10 @@ router.route('/verifiability').get((req, res) =>{
     });
 });
 
-router.route('/licensing').post((req,res) => {
+router.route('/verifiability').post((req,res) => {
     const body = req.body;   
     id_list = body.id;
-    find_single_data(id_list,quality_category,2).then(result => {
+    find_data_over_time(id_list,quality_category,2).then(result => {
         if(result.length > 0)
             res.json(result);
         else
