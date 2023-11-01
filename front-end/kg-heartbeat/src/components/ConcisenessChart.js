@@ -5,7 +5,7 @@ require("highcharts/modules/exporting")(Highcharts);
 require("highcharts/modules/export-data")(Highcharts);
 
 
-function create_options(chart_title,series,y_min,y_max){
+function create_options(chart_title,series,y_min,y_max,y_label){
 
   const options = {
     chart: {
@@ -28,10 +28,10 @@ function create_options(chart_title,series,y_min,y_max){
         type:'datetime',
     },
     yAxis: {
-        min:0,
-        max:1,
+        min:y_min,
+        max:y_max,
         title: {
-            text: 'Conciseness values'
+            text: y_label
         },
         plotLines: [{ 
             width:2,
@@ -70,10 +70,10 @@ const addSeries = () => {
     })
 }
 */
-const ConcisenessChart = ({chart_title, series, y_min, y_max}) => <HighchartsReact
+const ConcisenessChart = ({chart_title, series, y_min, y_max, y_label}) => <HighchartsReact
   //containerProps = {{style: {width: "80%"}}}
   highcharts={Highcharts}
-  options={create_options(chart_title,series, y_min, y_max)}
+  options={create_options(chart_title,series, y_min, y_max, y_label)}
 />
 
 export default ConcisenessChart;

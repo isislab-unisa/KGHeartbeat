@@ -16,6 +16,7 @@ import Conciseness from './pages/Conciseness';
 import Reputation from './pages/Reputation';
 import Believability from './pages/Believability';
 import Verifiability from './pages/Verifiability';
+import Currency from './pages/Currency';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -52,6 +53,7 @@ function App() {
           <Route path="/pages/Reputation" component={Reputation} element={<Reputation selectedKGs={selectedKGs}/>}/>
           <Route path="/pages/Believability" component={Believability} element={<Believability selectedKGs={selectedKGs}/>}/>
           <Route path="/pages/Verifiability" component={Verifiability} element={<Verifiability selectedKGs={selectedKGs}/>}/>
+          <Route path="/pages/Currency" component={Currency} element={<Currency selectedKGs={selectedKGs}/>}/>        
         </Routes>
     </Router>
     </div>

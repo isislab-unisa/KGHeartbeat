@@ -186,5 +186,37 @@ function trasform_to_series_conc(quality_data,selectedKGs,quality_dimension,qual
     return series
 }
 
+function trasform_history_data(quality_data,selectedKGs){
+    let series = []
+    for(let i = 0; i< selectedKGs.length; i++){
+        let serie = {
+            name: '',
+            data : [],
+        }
+        series.push(serie)
+    }
+    for(let i = 0; i < quality_data.length; i++){
+        for(let j = 0; j<selectedKGs.length; j++){
+            if (selectedKGs[j].id === quality_data[i].kg_id){
+                const historical_up = quality_data[i].Quality_category_array['Currency'].historicalUp;
+                const historical_up_arr = historical_up.split(';')
+                const data = historical_up_arr.map((item) =>{
+                    const date = item.split('|')[0];
+                    const triples_modified = item.split('|')[1];
+                    const tab_date = date.split('-');
+                    const date_utc = Date.UTC(parseInt(tab_date[0]),parseInt(tab_date[1])-1,parseInt(tab_date[2]));
+                    const data = [date_utc,parseInt(triples_modified)]  
+                    
+                    return data
+                });
+                series[j].data = data
+                if(series[j].name === '' || series[j].name === undefined)
+                    series[j].name = quality_data[i].kg_name;
+            }
+        }
+    }
+    return series
+}
 
-export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc};
+
+export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data };

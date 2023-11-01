@@ -52,6 +52,11 @@ function QualityBar({selectedKGs}) {
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Verifiability" className='quality-link'>Verifying autenticity of the dataset</Link></NavDropdown.Item>
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Verifiability" className='quality-link'>Verifying usage of digital signatures</Link></NavDropdown.Item>
     </NavDropdown>
+    <NavDropdown title="Currency" id="nav-dropdown">
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Currency" className='quality-link'>Time since the last modification</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Currency" className='quality-link'>Specification of the modification date od statements</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Currency" className='quality-link'>Age of data</Link></NavDropdown.Item>
+    </NavDropdown>
 
     <Nav.Link href="/home">Test</Nav.Link>
     <Nav.Link eventKey="link-1">Link</Nav.Link>
