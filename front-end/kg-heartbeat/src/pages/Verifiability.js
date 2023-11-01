@@ -50,7 +50,7 @@ function Verifiability({ selectedKGs }){
                 analysis_selected = find_target_analysis(verifiabilityData,selectedDate,selectedKGs); 
             if(selectedKGs.length === 1){
                 const verifiability_table = (
-                    <Table striped bordered hover>
+                    <Table striped bordered hover key={selectedDate + 'verifiability'}>
                         <tr>
                             <th colSpan={4} className='cell'>Verifying publisher information</th><th className='cell'>Verifying authenticity of the dataset</th><th className='cell'>Verifying usage of digital signatures</th>
                         </tr>
@@ -68,7 +68,7 @@ function Verifiability({ selectedKGs }){
             }else if(selectedKGs.length >= 1){
                 console.log(analysis_selected)
                 const verifiability_table = (
-                    <Table striped bordered hover>
+                    <Table striped bordered hover key={selectedDate + 'verifiability'}>
                         <tr>
                             <th className='cell'>KG name</th><th colSpan={4} className='cell'>Verifying publisher information</th><th className='cell'>Verifying authenticity of the dataset</th><th className='cell'>Verifying usage of digital signatures</th>
                         </tr>

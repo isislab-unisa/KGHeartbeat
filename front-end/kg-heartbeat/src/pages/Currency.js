@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import QualityBar from '../components/QualityBar';
 import { base_url } from '../api';
 import axios from 'axios';
-import LineChart from '../components/LineChart';
-import {trasform_to_series, compact_temporal_data, trasform_history_data} from '../utils';
+import { trasform_history_data } from '../utils';
 import Table from 'react-bootstrap/esm/Table';
 import ConcisenessChart from '../components/ConcisenessChart';
 

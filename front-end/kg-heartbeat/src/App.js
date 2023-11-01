@@ -17,6 +17,7 @@ import Reputation from './pages/Reputation';
 import Believability from './pages/Believability';
 import Verifiability from './pages/Verifiability';
 import Currency from './pages/Currency';
+import Volatility from './pages/Volatility';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -54,6 +55,7 @@ function App() {
           <Route path="/pages/Believability" component={Believability} element={<Believability selectedKGs={selectedKGs}/>}/>
           <Route path="/pages/Verifiability" component={Verifiability} element={<Verifiability selectedKGs={selectedKGs}/>}/>
           <Route path="/pages/Currency" component={Currency} element={<Currency selectedKGs={selectedKGs}/>}/>        
+          <Route path="/pages/Volatility" component={Volatility} element={<Volatility selectedKGs={selectedKGs}/>}/>        
         </Routes>
     </Router>
     </div>

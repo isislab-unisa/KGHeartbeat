@@ -57,6 +57,9 @@ function QualityBar({selectedKGs}) {
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Currency" className='quality-link'>Specification of the modification date od statements</Link></NavDropdown.Item>
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Currency" className='quality-link'>Age of data</Link></NavDropdown.Item>
     </NavDropdown>
+    <NavDropdown title="Volatility" id="nav-dropdown">
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Volatility" className='quality-link'>Timeliness frequency</Link></NavDropdown.Item>
+    </NavDropdown>
 
     <Nav.Link href="/home">Test</Nav.Link>
     <Nav.Link eventKey="link-1">Link</Nav.Link>
