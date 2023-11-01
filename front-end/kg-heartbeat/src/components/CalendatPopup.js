@@ -25,6 +25,7 @@ function CalendarPopup ({selectableDates, onDateSelect, defaultDate}) {
                         enabled: true
                     }
                 }}
+                placeholderText="Click to change the date"
             />
         </div>
     )

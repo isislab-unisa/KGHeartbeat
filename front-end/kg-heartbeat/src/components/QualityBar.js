@@ -47,6 +47,11 @@ function QualityBar({selectedKGs}) {
     <NavDropdown title="Believability" id="nav-dropdown">
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Believability" className='quality-link'>Meta-information about the indentity of information provider</Link></NavDropdown.Item>
     </NavDropdown>
+    <NavDropdown title="Verifiability" id="nav-dropdown">
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Verifiability" className='quality-link'>Verifying publisher information</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Verifiability" className='quality-link'>Verifying autenticity of the dataset</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Verifiability" className='quality-link'>Verifying usage of digital signatures</Link></NavDropdown.Item>
+    </NavDropdown>
 
     <Nav.Link href="/home">Test</Nav.Link>
     <Nav.Link eventKey="link-1">Link</Nav.Link>
