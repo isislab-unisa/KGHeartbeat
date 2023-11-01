@@ -60,6 +60,9 @@ function QualityBar({selectedKGs}) {
     <NavDropdown title="Volatility" id="nav-dropdown">
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Volatility" className='quality-link'>Timeliness frequency</Link></NavDropdown.Item>
     </NavDropdown>
+    <NavDropdown title="Completeness" id="nav-dropdown">
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Completeness" className='quality-link'>Interlinking completeness</Link></NavDropdown.Item>
+    </NavDropdown>
 
     <Nav.Link href="/home">Test</Nav.Link>
     <Nav.Link eventKey="link-1">Link</Nav.Link>

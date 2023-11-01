@@ -48,7 +48,7 @@ function Volatility({ selectedKGs }){
                 analysis_selected = find_target_analysis(volatilityData,volatilityData[volatilityData.length-1].analysis_date,selectedKGs);
             else
                 analysis_selected = find_target_analysis(volatilityData,selectedDate,selectedKGs); 
-            console.log(analysis_selected)
+
             if(selectedKGs.length === 1){
                 const volatility_table = (
                     <Table striped bordered hover key={selectedDate + 'volatility'}>
