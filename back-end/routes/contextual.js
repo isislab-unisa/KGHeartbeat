@@ -49,7 +49,7 @@ router.route('/amount_of_data').get((req,res) =>{
 router.route('/amount_of_data').post((req,res) => {
     const body = req.body;   
     id_list = body.id;
-    find_data_over_time(id_list,quality_category,0).then(result => {
+    find_data_over_time(id_list,quality_category,1).then(result => {
         if(result.length > 0)
             res.json(result);
         else
