@@ -71,6 +71,10 @@ function QualityBar({selectedKGs}) {
     <NavDropdown title="Representational-conciseness" id="nav-dropdown">
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/RepresentationalConciseness" className='quality-link'>Keeping URI short</Link></NavDropdown.Item>
     </NavDropdown>
+    <NavDropdown title="Representational-consistency" id="nav-dropdown">
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/RepresentationalConsistency" className='quality-link'>Re-use of existing vocabularies</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/RepresentationalConsistency" className='quality-link'>Re-use of existing terms</Link></NavDropdown.Item>
+    </NavDropdown>
 
     <Nav.Link href="/home">Test</Nav.Link>
     <Nav.Link eventKey="link-1">Link</Nav.Link>

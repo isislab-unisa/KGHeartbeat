@@ -20,3 +20,8 @@
     border: 1px solid black;
     font-size: 18px;
 }
+
+.scroll{
+    overflow: auto;
+    height: 100px;
+}
