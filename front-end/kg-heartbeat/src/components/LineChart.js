@@ -5,7 +5,7 @@ require("highcharts/modules/exporting")(Highcharts);
 require("highcharts/modules/export-data")(Highcharts);
 
 
-function create_options(chart_title,series,y_min,y_max){
+function create_options(chart_title,series,y_min,y_max,sub_title){
 
   const options = {
     chart: {
@@ -13,6 +13,9 @@ function create_options(chart_title,series,y_min,y_max){
     }, 
     title: {
       text: chart_title
+    },
+    subtitle: {
+      text: sub_title
     },
     xAxis: {
       type:'datetime',
@@ -23,6 +26,9 @@ function create_options(chart_title,series,y_min,y_max){
     yAxis:{
       min: y_min,
       max: y_max
+    },
+    tooltip: {
+      shared: true
     },
     series: series
   }
@@ -40,10 +46,10 @@ const addSeries = () => {
     })
 }
 */
-const LineChart = ({chart_title, series, y_min, y_max}) => <HighchartsReact
+const LineChart = ({chart_title, series, y_min, y_max, sub_title}) => <HighchartsReact
   //containerProps = {{style: {width: "80%"}}}
   highcharts={Highcharts}
-  options={create_options(chart_title,series, y_min, y_max)}
+  options={create_options(chart_title,series, y_min, y_max,sub_title)}
 />
 
 export default LineChart

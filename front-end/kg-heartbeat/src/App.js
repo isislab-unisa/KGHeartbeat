@@ -19,6 +19,7 @@ import Verifiability from './pages/Verifiability';
 import Currency from './pages/Currency';
 import Volatility from './pages/Volatility';
 import Completeness from './pages/Completeness';
+import AmountOfData from './pages/AmountOfData';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -58,6 +59,7 @@ function App() {
           <Route path="/pages/Currency" component={Currency} element={<Currency selectedKGs={selectedKGs}/>}/>        
           <Route path="/pages/Volatility" component={Volatility} element={<Volatility selectedKGs={selectedKGs}/>}/>        
           <Route path="/pages/Completeness" component={Completeness} element={<Completeness selectedKGs={selectedKGs}/>}/>        
+          <Route path="/pages/AmountOfData" component={AmountOfData} element={<AmountOfData selectedKGs={selectedKGs}/>}/>        
         </Routes>
     </Router>
     </div>

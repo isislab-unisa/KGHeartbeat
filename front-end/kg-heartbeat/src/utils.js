@@ -130,6 +130,7 @@ function trasform_to_series_stacked(quality_data,selectedKGs,quality_dimension,q
         let serie = {
             name: quality_metrics_label[i],
             data : [],
+            minPointLength: 10,
         }
         for(let j = 0; j < quality_data.length; j++){
             let quality_category_array = quality_data[j].Quality_category_array;
@@ -165,14 +166,25 @@ function series_for_polar_chart(analysis_selected,selectedKGs,quality_dimension)
     return series
 }
 
-function trasform_to_series_conc(quality_data,selectedKGs,quality_dimension,quality_metric,custom_series_name){
+function trasform_to_series_conc(quality_data,selectedKGs,quality_dimension,quality_metric,custom_series_name,min_point){
     let series = []
     for(let i = 0; i< selectedKGs.length; i++){
-        let serie = {
-            name: custom_series_name,
-            data : [],
+        if(min_point){
+            let serie = {
+                name: custom_series_name,
+                data : [],
+                minPointLength: 10,
+            }
+            series.push(serie)
         }
-        series.push(serie)
+        else{
+            let serie = {
+                name: custom_series_name,
+                data : [],
+                minPointLength: 10,
+            }
+            series.push(serie)
+        }
     }
     for(let i = 0; i < quality_data.length; i++){
         for(let j = 0; j<selectedKGs.length; j++){

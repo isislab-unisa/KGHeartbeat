@@ -63,6 +63,11 @@ function QualityBar({selectedKGs}) {
     <NavDropdown title="Completeness" id="nav-dropdown">
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Completeness" className='quality-link'>Interlinking completeness</Link></NavDropdown.Item>
     </NavDropdown>
+    <NavDropdown title="Amount of data" id="nav-dropdown">
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/AmountOfData" className='quality-link'>Number of triples</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/AmountOfData" className='quality-link'>Level of detail</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/AmountOfData" className='quality-link'>Scope</Link></NavDropdown.Item>
+    </NavDropdown>
 
     <Nav.Link href="/home">Test</Nav.Link>
     <Nav.Link eventKey="link-1">Link</Nav.Link>
