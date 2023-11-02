@@ -20,6 +20,7 @@ import Currency from './pages/Currency';
 import Volatility from './pages/Volatility';
 import Completeness from './pages/Completeness';
 import AmountOfData from './pages/AmountOfData';
+import RepresentationalConciseness from './pages/RepresentationalConciseness';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -60,6 +61,7 @@ function App() {
           <Route path="/pages/Volatility" component={Volatility} element={<Volatility selectedKGs={selectedKGs}/>}/>        
           <Route path="/pages/Completeness" component={Completeness} element={<Completeness selectedKGs={selectedKGs}/>}/>        
           <Route path="/pages/AmountOfData" component={AmountOfData} element={<AmountOfData selectedKGs={selectedKGs}/>}/>        
+          <Route path="/pages/RepresentationalConciseness" component={RepresentationalConciseness} element={<RepresentationalConciseness selectedKGs={selectedKGs}/>}/>        
         </Routes>
     </Router>
     </div>

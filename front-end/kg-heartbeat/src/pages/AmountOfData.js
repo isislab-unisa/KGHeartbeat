@@ -3,7 +3,7 @@ import QualityBar from '../components/QualityBar';
 import CalendarPopup from '../components/CalendatPopup';
 import { base_url } from '../api';
 import axios from 'axios';
-import { find_target_analysis, get_analysis_date, series_for_polar_chart, trasform_to_series, trasform_to_series_conc, trasform_to_series_stacked} from '../utils';
+import { find_target_analysis, get_analysis_date, trasform_to_series_conc, trasform_to_series_stacked} from '../utils';
 import {  parseISO } from "https://cdn.skypack.dev/date-fns@2.28.0";
 import Form from 'react-bootstrap/Form';
 import LineChart from '../components/LineChart';
@@ -46,7 +46,6 @@ function AmountOfData({ selectedKGs }){
     useEffect(() => {
         if(amountData){
             setAvailableDate(get_analysis_date(amountData));
-            console.log(amountData)
             if(selectedDate == null)
                 setDeafaultDate(parseISO(amountData[amountData.length-1].analysis_date));
             if(selectedKGs.length === 1){
@@ -73,7 +72,6 @@ function AmountOfData({ selectedKGs }){
                     const property_series = trasform_to_series_conc(analysis_selected,selectedKGs,amount,'numProperty','Properties',true);
                     const entities_series = trasform_to_series_conc(analysis_selected,selectedKGs,amount,'numEntities_merged','Entities',true);
                     const series = [triples_series[0],property_series[0],entities_series[0]];
-                    console.log(analysis_selected)
                     setAmountChart(<BarChart chart_title={'Amount of data'} series={series} y_min={0} y_max={null} sub_title={analysis_selected[0].kg_name} key={selectedDate + 'amount'}/>)
 
                 }

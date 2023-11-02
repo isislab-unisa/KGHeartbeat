@@ -255,5 +255,53 @@ function trasform_to_series_compl(quality_data,selectedKGs,quality_dimension,qua
     return series
 }
 
+function trasform_rep_conc_to_series(quality_data,selectedKGs,quality_dimension,min,perc25,median,perc75,max,series_name){
+    let series = []
+    for(let i = 0; i< selectedKGs.length; i++){
+        let serie = {
+            id : selectedKGs[i].id,
+            name: series_name,
+            data : []
+        }
+        series.push(serie)
+    }
+    for(let i = 0; i < quality_data.length; i++){
+        for(let j = 0; j<selectedKGs.length; j++){
+            if (series[j].id === quality_data[i].kg_id){
+                const tab_date = quality_data[i].analysis_date.split('-');
+                const date_utc = Date.UTC(parseInt(tab_date[0]),parseInt(tab_date[1])-1,parseInt(tab_date[2]));
+                const  dimension_obj =  quality_data[i].Quality_category_array[quality_dimension]
+                series[j].data.push([date_utc,parseFloat(dimension_obj[min]),parseFloat(dimension_obj[perc25]),parseFloat(dimension_obj[median]),parseFloat(dimension_obj[perc75]),parseFloat(dimension_obj[max])])
+            }
+        }
+    }
+    return series
+}
 
-export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data, trasform_to_series_compl};
+function trasform_rep_conc_to_series_multiple(quality_data,selectedKGs,quality_dimension,min,perc25,median,perc75,max,series_name){
+    let series = []
+    for(let i = 0; i< selectedKGs.length; i++){
+        let serie = {
+            id : selectedKGs[i].id,
+            name: series_name,
+            data : []
+        }
+        series.push(serie)
+    }
+    for(let i = 0; i < quality_data.length; i++){
+        for(let j = 0; j<selectedKGs.length; j++){
+            if (series[j].id === quality_data[i].kg_id){
+                const tab_date = quality_data[i].analysis_date.split('-');
+                const date_utc = Date.UTC(parseInt(tab_date[0]),parseInt(tab_date[1])-1,parseInt(tab_date[2]));
+                const  dimension_obj =  quality_data[i].Quality_category_array[quality_dimension]
+                series[j].data.push([date_utc,parseFloat(dimension_obj[min]),parseFloat(dimension_obj[perc25]),parseFloat(dimension_obj[median]),parseFloat(dimension_obj[perc75]),parseFloat(dimension_obj[max])])
+                if(series[j].name === '' || series[j].name === undefined)
+                    series[j].name = quality_data[i].kg_name;
+            }
+        }
+    }
+    return series
+}
+
+
+export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data, trasform_to_series_compl, trasform_rep_conc_to_series, trasform_rep_conc_to_series_multiple};
