@@ -20,6 +20,7 @@ function Consistency({ selectedKGs }){
     const [defaultDate, setDeafaultDate] = useState(null);
     const [availableDates, setAvailableDate] = useState(null);
     const [consistencyTable, setConsistencyTable] = useState(null);
+    const [switchComponent, setSwitchComponent] = useState(null);
 
     useEffect(() => {
         async function fetchData() {
@@ -49,6 +50,7 @@ function Consistency({ selectedKGs }){
             if(selectedDate == null)
                 setDeafaultDate(parseISO(consistencyData[consistencyData.length-1].analysis_date));
             if(selectedKGs.length === 1){
+                setSwitchComponent(<Form.Check type="switch" id="custom-switch" label='Switch to chage view' checked={toggleSwitch} onChange={() => setToggleSwitch(!toggleSwitch)}/>)
                 if(!toggleSwitch){
                     const deprecated_series = trasform_to_series(consistencyData,selectedKGs,consistency,'deprecated','Use of deprecated classes or properties');
                     const misplacedC_series = trasform_to_series(consistencyData,selectedKGs,consistency,'triplesMC','Misplaced classes');
@@ -83,7 +85,7 @@ function Consistency({ selectedKGs }){
                     const series = [{name:analysis_selected[0].kg_name, data : data}]
                     const x_categories = ['Use of deprecated classes or properties','Misplaced classes','Misplaced properties','Invalid usage of undefined classes','Invalid usage of undefined properties'];
                     const table = (
-                        <Table striped bordered hover key={selectedDate}>
+                        <Table striped bordered hover key={selectedDate + 'tab'}>
                             <tr>
                                 <th className='cell'>Entities as members of disjoint classes</th><th className='cell'>Ontology hijacking</th>
                             </tr>
@@ -96,34 +98,31 @@ function Consistency({ selectedKGs }){
                     setConsistencyChart(<PolarChart chart_title={'Consistency'} x_categories={x_categories} y_min={0} y_max={1} series={series} key={selectedDate + ' chart'}/>)
                 }
             } else if(selectedKGs.length >= 1){
-                if(!toggleSwitch){
-                    //TODO:insert chart
-                    setConsistencyChart(<p>TODO</p>)
-                    setSelectedDate(null);
-                } else {
-                    let analysis_selected;
-                    if(selectedDate === null || selectedDate === '1970-01-01')
-                        analysis_selected = find_target_analysis(consistencyData,consistencyData[consistencyData.length-1].analysis_date,selectedKGs);
-                    else
-                        analysis_selected = find_target_analysis(consistencyData,selectedDate,selectedKGs);
+                setSwitchComponent(null);
+                setToggleSwitch(true);
+                let analysis_selected;
+                if(selectedDate === null || selectedDate === '1970-01-01')
+                    analysis_selected = find_target_analysis(consistencyData,consistencyData[consistencyData.length-1].analysis_date,selectedKGs);
+                else
+                    analysis_selected = find_target_analysis(consistencyData,selectedDate,selectedKGs);
 
-                    const x_categories = ['Use of deprecated classes or properties','Misplaced classes','Misplaced properties','Invalid usage of undefined classes','Invalid usage of undefined properties'];
-                    const series = series_for_polar_chart(analysis_selected,selectedKGs,consistency);
-                    const table = (
-                        <Table striped bordered hover>
+                const x_categories = ['Use of deprecated classes or properties','Misplaced classes','Misplaced properties','Invalid usage of undefined classes','Invalid usage of undefined properties'];
+                const series = series_for_polar_chart(analysis_selected,selectedKGs,consistency);
+                const table = (
+                    <Table striped bordered hover key={selectedDate + 'tab'}>
+                        <tr>
+                            <th className='cell'>KG name</th><th className='cell'>Entities as members of disjoint classes</th><th className='cell'>Ontology hijacking</th>
+                        </tr>
+                        {analysis_selected.map((item) => (
                             <tr>
-                                <th className='cell'>KG name</th><th className='cell'>Entities as members of disjoint classes</th><th className='cell'>Ontology hijacking</th>
+                                <td className='cell'>{item.kg_name}</td><td className='cell'>{item.Quality_category_array[consistency].disjointClasses}</td><td className='cell'>{item.Quality_category_array[consistency].oHijacking}</td>
                             </tr>
-                            {analysis_selected.map((item) => (
-                                <tr>
-                                    <td className='cell'>{item.kg_name}</td><td className='cell'>{item.Quality_category_array[consistency].disjointClasses}</td><td className='cell'>{item.Quality_category_array[consistency].oHijacking}</td>
-                                </tr>
-                            ))}
-                        </Table>
-                    )
-                    setConsistencyChart(<PolarChart chart_title={'Consistency'} x_categories={x_categories} y_min={0} y_max={1} series={series}/>)
-                    setConsistencyTable(table)
-                }
+                        ))}
+                    </Table>
+                )
+                setConsistencyChart(<PolarChart chart_title={'Consistency'} x_categories={x_categories} y_min={0} y_max={1} series={series} key={selectedDate + 'chart'}/>)
+                setConsistencyTable(table)
+                
             }
         }
     },[consistencyData, selectedKGs, toggleSwitch, selectedDate]);
@@ -142,13 +141,7 @@ function Consistency({ selectedKGs }){
                 <QualityBar selectedKGs={selectedKGs}/>
                     {consistencyData && (
                         <div className='w-100 p-3'>
-                            <Form.Check
-                                type="switch"
-                                id="custom-switch"
-                                label='Switch to chage view'
-                                checked={toggleSwitch}
-                                onChange={() => setToggleSwitch(!toggleSwitch)}
-                                />
+                            {switchComponent}
                             {toggleSwitch ? (
                                 <div>
                                     <CalendarPopup selectableDates={availableDates} onDateSelect={handleDateSelect} defaultDate={defaultDate}/>

@@ -20,6 +20,7 @@ function Accuracy( {selectedKGs } ){
     const [selectedDate, setSelectedDate] = useState(null);
     const [defaultDate, setDeafaultDate] = useState(null);
     const [availableDates, setAvailableDate] = useState(null);
+    const [switchComponent, setSwitchComponent] = useState(null);
     
     useEffect(() => {
         async function fetchData() {
@@ -49,6 +50,7 @@ function Accuracy( {selectedKGs } ){
             if(selectedDate == null)
                 setDeafaultDate(parseISO(accuracyData[accuracyData.length-1].analysis_date))
             if (selectedKGs.length === 1){
+                setSwitchComponent(<Form.Check type="switch" id="custom-switch" label='Switch to chage view' checked={toggleSwitch} onChange={() => setToggleSwitch(!toggleSwitch)}/>)
                 const fp_series = trasform_to_series(accuracyData,selectedKGs,accuracy,'FPvalue','Functional property violation');
                 const ifp_series = trasform_to_series(accuracyData,selectedKGs,accuracy,'IFPvalue','Inverse functional property violation');
                 const empty_ann_series = trasform_to_series(accuracyData,selectedKGs,accuracy,'emptyAnn','Empty annotation labels');
@@ -77,24 +79,20 @@ function Accuracy( {selectedKGs } ){
                     setAccuracyChart(<PolarChart key={selectedDate} chart_title={'Accuracy'} series={series} x_categories={x_categories} y_min={0} y_max={1} />)
                 }
             } else if (selectedKGs.length >= 1){
-                if(!toggleSwitch){
-                    //TODO:insert chart
-                    setAccuracyChart(<p> TODO</p>)
-                    
-                }else{
-                    let analysis_selected;
-                    if(selectedDate === null || selectedDate === '1970-01-01')
-                        analysis_selected = find_target_analysis(accuracyData,accuracyData[accuracyData.length-1].analysis_date,selectedKGs);
-                    else
-                        analysis_selected = find_target_analysis(accuracyData,selectedDate,selectedKGs);
+                setSwitchComponent(null);
+                setToggleSwitch(true);
+                let analysis_selected;
+                if(selectedDate === null || selectedDate === '1970-01-01')
+                    analysis_selected = find_target_analysis(accuracyData,accuracyData[accuracyData.length-1].analysis_date,selectedKGs);
+                else
+                    analysis_selected = find_target_analysis(accuracyData,selectedDate,selectedKGs);
 
-                    const series = trasform_to_series_stacked(analysis_selected,selectedKGs,accuracy,['FPvalue','IFPvalue','emptyAnn','malformedDataType','wSA'],['Functional property violation','Inverse functional property violation','Empty label','Wrong datatype','Whitespace at the beginnig or end of the label'])
-                    let kgs_name = []
-                    analysis_selected.map((item)=>
-                        kgs_name.push(item.kg_name)
-                    )
-                    setAccuracyChart(<StackedChart chart_title={'Accuracy'} series={series} x_categories={kgs_name} best_value={5} y_max={5} y_min={0} y_title={'N. triples'} key={selectedDate}/>)
-                }
+                const series = trasform_to_series_stacked(analysis_selected,selectedKGs,accuracy,['FPvalue','IFPvalue','emptyAnn','malformedDataType','wSA'],['Functional property violation','Inverse functional property violation','Empty label','Wrong datatype','Whitespace at the beginnig or end of the label'])
+                let kgs_name = []
+                analysis_selected.map((item)=>
+                    kgs_name.push(item.kg_name)
+                )
+                setAccuracyChart(<StackedChart chart_title={'Accuracy'} series={series} x_categories={kgs_name} best_value={5} y_max={5} y_min={0} y_title={'N. triples'} key={selectedDate}/>)
             }
         }
     },[accuracyData, selectedKGs,toggleSwitch,selectedDate]);
@@ -114,13 +112,7 @@ function Accuracy( {selectedKGs } ){
                 <QualityBar selectedKGs={selectedKGs}/>
                     {accuracyData && (
                         <div className='w-100 p-3'>
-                            <Form.Check
-                                type="switch"
-                                id="custom-switch"
-                                label='Switch to chage view'
-                                checked={toggleSwitch}
-                                onChange={() => setToggleSwitch(!toggleSwitch)}
-                                />
+                            {switchComponent}
                             {toggleSwitch ? (
                                 <div>
                                     <CalendarPopup selectableDates={availableDates} onDateSelect={handleDateSelect} defaultDate={defaultDate}/>
