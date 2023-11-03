@@ -157,7 +157,6 @@ function series_for_polar_chart(analysis_selected,selectedKGs,quality_dimension)
                 const consistency_obj = analysis_selected[j].Quality_category_array[quality_dimension];
                 serie.data = [parseFloat(consistency_obj.deprecated),parseFloat(consistency_obj.triplesMC),parseFloat(consistency_obj.triplesMP),parseFloat(consistency_obj.undefinedClass),parseFloat(consistency_obj.undefinedProperties)];
                 serie.name = analysis_selected[j].kg_name;
-                console.log(consistency_obj)
             }
         }
         series.push(serie);
@@ -303,5 +302,68 @@ function trasform_rep_conc_to_series_multiple(quality_data,selectedKGs,quality_d
     return series
 }
 
+function create_percentage_label_series(underst_data,amount_data,selectedKGs){
+    let series = [];
+    for(let i = 0; i<selectedKGs.length; i++){
+        let serie = {
+            name: '',
+            data : []
+        }
+        series.push(serie)
+    }
+        for(let j = 0; j < selectedKGs.length; j++){
+            for(let k = 0; k < underst_data.length; k++){
+                if(underst_data[k].kg_id === selectedKGs[j].id){
+                    const analysis_date = underst_data[k].analysis_date;
+                    for(let i = 0; i<amount_data.length; i++){
+                        if(underst_data[k].kg_id === amount_data[i].kg_id && analysis_date === amount_data[i].analysis_date){
+                            const num_triples = parseInt(amount_data[i].Quality_category_array['Amount of data'].numTriples_merged);
+                            const num_label = parseInt(underst_data[k].Quality_category_array['Understandability'].numLabel);
+                            const percentage = num_label/num_triples * 100;
+                            const tab_date = underst_data[k].analysis_date.split('-');
+                            const date_utc = Date.UTC(parseInt(tab_date[0]),parseInt(tab_date[1])-1,parseInt(tab_date[2]));
+                            series[j].data.push([date_utc,parseFloat(percentage.toFixed(2))]);
+                            if(series[j].name === '')
+                                series[j].name = underst_data[k].kg_name 
+                        }
+                    }
+                }
+            }
+        }
+    return series;
+}
 
-export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data, trasform_to_series_compl, trasform_rep_conc_to_series, trasform_rep_conc_to_series_multiple};
+function extract_most_recent(quality_data,selectedKGs){
+    let last_analysis = []
+    for(let i = 0; i<selectedKGs.length; i++){
+        const last_analysis_date = quality_data[quality_data.length -1].analysis_date;
+        for(let j = 0; j<quality_data.length; j++){
+            if(selectedKGs[i].id === quality_data[j].kg_id && last_analysis_date === quality_data[j].analysis_date){
+                last_analysis.push(quality_data[j])
+            }
+        }
+    }
+    return last_analysis;
+}
+
+function add_believability_and_amount(under_data,believability_data,amount_data,selectedKGs){
+    for(let i = 0; i<under_data.length; i++){
+        for(let j = 0; j<believability_data.length; j++){
+            if(under_data[i].kg_id === believability_data[j].kg_id){
+                let quality_obj = under_data[i].Quality_category_array['Understandability'];
+                quality_obj['title'] = believability_data[j].Quality_category_array['Believability'].title;
+                quality_obj['description'] = believability_data[j].Quality_category_array['Believability'].description;
+                quality_obj['URI'] = believability_data[j].Quality_category_array['Believability'].URI;
+            }
+        }
+        for(let k = 0; k<amount_data.length;k++){
+            if(under_data[i].kg_id === amount_data[k].kg_id && under_data[i].analysis_date === amount_data[k].analysis_date){
+                let quality_obj = under_data[i].Quality_category_array['Understandability'];
+                quality_obj['numTriples_merged'] = amount_data[k].Quality_category_array['Amount of data'].numTriples_merged;
+            }
+        }
+    }
+    return under_data
+}
+
+export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data, trasform_to_series_compl, trasform_rep_conc_to_series, trasform_rep_conc_to_series_multiple, create_percentage_label_series,extract_most_recent,add_believability_and_amount};

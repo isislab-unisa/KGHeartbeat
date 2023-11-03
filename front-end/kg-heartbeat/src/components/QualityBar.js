@@ -75,6 +75,14 @@ function QualityBar({selectedKGs}) {
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/RepresentationalConsistency" className='quality-link'>Re-use of existing vocabularies</Link></NavDropdown.Item>
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/RepresentationalConsistency" className='quality-link'>Re-use of existing terms</Link></NavDropdown.Item>
     </NavDropdown>
+    <NavDropdown title="Understandability" id="nav-dropdown">
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Understandability" className='quality-link'>Human-readable labelling </Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Understandability" className='quality-link'>Indication of some example</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Understandability" className='quality-link'>Indication of metadata about a dataset</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Understandability" className='quality-link'>Indication of a regular expression</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Understandability" className='quality-link'>Indication of the vocabularies used in the
+dataset</Link></NavDropdown.Item>
+    </NavDropdown>
 
     <Nav.Link href="/home">Test</Nav.Link>
     <Nav.Link eventKey="link-1">Link</Nav.Link>
