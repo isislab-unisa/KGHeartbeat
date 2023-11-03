@@ -24,6 +24,7 @@ import RepresentationalConciseness from './pages/RepresentationalConciseness';
 import RepresentationalConsistency from './pages/RepresentationalConsistency';
 import Understandability from './pages/Understandability';
 import Interpretability from './pages/Interpretability';
+import Versatility from './pages/Versatility';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -68,6 +69,7 @@ function App() {
           <Route path="/pages/RepresentationalConsistency" component={RepresentationalConsistency} element={<RepresentationalConsistency selectedKGs={selectedKGs}/>}/>        
           <Route path="/pages/Understandability" component={Understandability} element={<Understandability selectedKGs={selectedKGs}/>}/>        
           <Route path="/pages/Interpretability" component={Interpretability} element={<Interpretability selectedKGs={selectedKGs}/>}/>                
+          <Route path="/pages/Versatility" component={Versatility} element={<Versatility selectedKGs={selectedKGs}/>}/>                
         </Routes>
     </Router>
     </div>

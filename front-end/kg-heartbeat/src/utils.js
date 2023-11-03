@@ -378,4 +378,25 @@ function add_amount(interp_data,amount_data,selectedKGs){
     return interp_data
 }
 
-export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data, trasform_to_series_compl, trasform_rep_conc_to_series, trasform_rep_conc_to_series_multiple, create_percentage_label_series,extract_most_recent,add_believability_and_amount,add_amount};
+function set_message_availability(versatilityData){
+    for(let i = 0; i<versatilityData.length; i++){
+        let sparql = versatilityData[i].Quality_category_array['Versatility'].sparqlEndpoint;
+        let rdf = versatilityData[i].Quality_category_array['Versatility'].availabilityRDFD_merged;
+        if(sparql === '1')
+            sparql = 'Link online'
+        else if(sparql === '-1')
+            sparql = 'No link available'
+        else if(sparql === '0')
+            sparql = 'Link offline'
+        if(rdf === '1')
+            rdf = 'Link online'
+        else if(rdf === '-1')
+            rdf = 'No link available'
+        else if(rdf === '0')
+            rdf = 'Link offline'
+        versatilityData[i].Quality_category_array['Versatility'].sparqlEndpoint = sparql;
+        versatilityData[i].Quality_category_array['Versatility'].availabilityRDFD_merged = rdf;
+    }
+}
+
+export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data, trasform_to_series_compl, trasform_rep_conc_to_series, trasform_rep_conc_to_series_multiple, create_percentage_label_series,extract_most_recent,add_believability_and_amount,add_amount,set_message_availability};

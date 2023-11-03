@@ -53,10 +53,10 @@ function Currency( {selectedKGs} ){
                 const currency_table = (
                     <Table striped bordered hover>
                         <tr>
-                            <th>Time since last modification (days)</th><th>Specification of the modification date of statements</th><th>Age of data (days)</th><th>Creation date</th>
+                            <th className='cell'>Time since last modification (days)</th><th className='cell'>Specification of the modification date of statements</th><th className='cell'>Age of data (days)</th><th className='cell'>Creation date</th>
                         </tr>
                         <tr>
-                            <td>{time_sinc_lm}</td><td>{currencyData[0].Quality_category_array[currency].modificationDate}</td><td>{age_of_data}</td><td>{currencyData[0].Quality_category_array[currency].modificationDate}</td>
+                            <td className='cell'>{time_sinc_lm}</td><td className='cell'>{currencyData[0].Quality_category_array[currency].modificationDate}</td><td className='cell'>{age_of_data}</td><td className='cell'>{currencyData[0].Quality_category_array[currency].modificationDate}</td>
                         </tr>
                     </Table>
                 )

@@ -86,6 +86,11 @@ function QualityBar({selectedKGs}) {
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Interpretability" className='quality-link'>No misinterpretation of missing values</Link></NavDropdown.Item>
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Interpretability" className='quality-link'>Atypical use of collections, containers and reification</Link></NavDropdown.Item>
     </NavDropdown>
+    <NavDropdown title="Versatility" id="nav-dropdown">
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Versatility" className='quality-link'>Usage of multiple languages</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Versatility" className='quality-link'>Different serialization formats</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Versatility" className='quality-link'>Accessing of data in different ways</Link></NavDropdown.Item>
+    </NavDropdown>
 
     <Nav.Link href="/home">Test</Nav.Link>
     <Nav.Link eventKey="link-1">Link</Nav.Link>
