@@ -95,7 +95,7 @@ router.route('/understandability').post((req,res) => {
 //TODO: add routes to get only the nblank_nodes variations over time ?
 router.route('/interpretability').get((req, res) =>{
     const id = req.query.id;
-    find_single_data(id,quality_category,3).then(result => {
+    find_data_over_time(id,quality_category,3).then(result => {
         if(result)
             res.json(result);
         else
@@ -110,7 +110,7 @@ router.route('/interpretability').get((req, res) =>{
 router.route('/interpretability').post((req,res) => {
     const body = req.body;   
     id_list = body.id;
-    find_single_data(id_list,quality_category,3).then(result => {
+    find_data_over_time(id_list,quality_category,3).then(result => {
         if(result.length > 0)
             res.json(result);
         else
