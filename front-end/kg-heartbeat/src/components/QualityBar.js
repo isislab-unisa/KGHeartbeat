@@ -80,8 +80,11 @@ function QualityBar({selectedKGs}) {
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Understandability" className='quality-link'>Indication of some example</Link></NavDropdown.Item>
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Understandability" className='quality-link'>Indication of metadata about a dataset</Link></NavDropdown.Item>
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Understandability" className='quality-link'>Indication of a regular expression</Link></NavDropdown.Item>
-        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Understandability" className='quality-link'>Indication of the vocabularies used in the
-dataset</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Understandability" className='quality-link'>Indication of the vocabularies used in the dataset</Link></NavDropdown.Item>
+    </NavDropdown>
+    <NavDropdown title="Interpretability" id="nav-dropdown">
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Interpretability" className='quality-link'>No misinterpretation of missing values</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Interpretability" className='quality-link'>Atypical use of collections, containers and reification</Link></NavDropdown.Item>
     </NavDropdown>
 
     <Nav.Link href="/home">Test</Nav.Link>
