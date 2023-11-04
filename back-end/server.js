@@ -8,6 +8,7 @@ const trust = require('./routes/trust');
 const dataset_dynamicity = require('./routes/dataset_dynamicity');
 const contextual = require('./routes/contextual');
 const representational = require('./routes/representational');
+const score = require('./routes/score');
 
 require('dotenv').config();
 
@@ -35,6 +36,7 @@ app.use('/trust',trust);
 app.use('/dataset_dynamicity',dataset_dynamicity);
 app.use('/contextual',contextual);
 app.use('/representational',representational);
+app.use('/score',score);
 
 app.listen(port,() => {
     console.log(`Server is running on port: ${port}`);
