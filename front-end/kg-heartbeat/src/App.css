@@ -25,3 +25,7 @@
     overflow: auto;
     height: 100px;
 }
+
+.react-datepicker-popper {
+    z-index: 9999 !important;
+}

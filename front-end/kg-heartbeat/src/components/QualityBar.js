@@ -1,6 +1,5 @@
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-//import { Link } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { HashLink as Link } from 'react-router-hash-link';
 
@@ -92,9 +91,6 @@ function QualityBar({selectedKGs}) {
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Versatility" className='quality-link'>Accessing of data in different ways</Link></NavDropdown.Item>
     </NavDropdown>
 
-    <Nav.Link href="/home">Test</Nav.Link>
-    <Nav.Link eventKey="link-1">Link</Nav.Link>
-    <Nav.Link eventKey="link-2">Link</Nav.Link>
     <div id="selectedKG" className='float-right'>
         <ListGroup>
           <ListGroup.Item><b>KG selected</b></ListGroup.Item>

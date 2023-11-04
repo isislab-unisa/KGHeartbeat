@@ -25,6 +25,7 @@ import RepresentationalConsistency from './pages/RepresentationalConsistency';
 import Understandability from './pages/Understandability';
 import Interpretability from './pages/Interpretability';
 import Versatility from './pages/Versatility';
+import Score from './pages/Score';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -38,15 +39,16 @@ function App() {
     setKG(newKG);
   }
 
-  let content;
+  let content, score_link;
   if(selectedKGs.length > 0){
     content = <Link to="/pages/QualityData">View Quality</Link>
+    score_link = <Link to="/pages/Score">View Score</Link>
   }
 
   return (
     <div>
     <Router>
-      <NavBar quality_link={content}/>
+      <NavBar quality_link={content} score_link={score_link}/>
         <Routes>
           <Route path="/pages/QualityData" component={QualityData} element={<QualityData selectedKGs={selectedKGs}/>}/>
           <Route path="/pages/Search" component={Search} element={<Search searchResults={searchResults} handle_search={handle_search} selectedKGs={selectedKGs} handleSelectedDataChange={handleSelectedDataChange}/>}/>
@@ -70,7 +72,8 @@ function App() {
           <Route path="/pages/Understandability" component={Understandability} element={<Understandability selectedKGs={selectedKGs}/>}/>        
           <Route path="/pages/Interpretability" component={Interpretability} element={<Interpretability selectedKGs={selectedKGs}/>}/>                
           <Route path="/pages/Versatility" component={Versatility} element={<Versatility selectedKGs={selectedKGs}/>}/>                
-        </Routes>
+          <Route path="/pages/Score" component={Score} element={<Score selectedKGs={selectedKGs}/>}/>                
+       </Routes>
     </Router>
     </div>
   );
