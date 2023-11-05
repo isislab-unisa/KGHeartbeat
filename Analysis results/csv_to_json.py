@@ -49,8 +49,9 @@ def full_csv():
                                         {"Representational-consistency" : {'newVocab' : rows['New vocabularies defined in the dataset'], 'useNewTerms' : rows['New terms defined in the dataset']}}, 
                                         {"Understandability" : {'numLabel' : rows['Number of labels/comments present on the data'], 'percentageLabel' : rows[' Percentage of triples with labels'], 'regexUri' : rows['Regex uri'], 'vocabularies' : rows['Vocabularies'],'example' : rows['Presence of example']}}, 
                                         {"Interpretability" : {'numBN' : rows['Number of blank nodes'], 'RDFStructures' : rows['Uses RDF structures']}}, 
-                                        {"Versatility" : {'languagesQ' : rows['Languages (query)'], 'languagesM' : rows['Languages (metadata)'], 'serializationFormats' : rows['Serialization formats'], 'sparqlEndpoint' : rows['SPARQL endpoint URL'], 'availabilityDownloadQ' : rows['Availability of RDF dump (query)'], 'availabilityDownloadM' : rows['Availability of RDF dump (metadata)']}}]
-
+                                        {"Versatility" : {'languagesQ' : rows['Languages (query)'], 'languagesM' : rows['Languages (metadata)'], 'serializationFormats' : rows['Serialization formats'], 'sparqlEndpoint' : rows['SPARQL endpoint URL'], 'availabilityDownloadQ' : rows['Availability of RDF dump (query)'], 'availabilityDownloadM' : rows['Availability of RDF dump (metadata)']}}],
+                    "Score": {"totalScore" : rows['Score']},
+                    "Extra": {"sparql_link" : rows['SPARQL endpoint URL'], "rdf_dump_link": rows['URL for download the dataset'], "external_links": rows['External links']}
                 }
                 
                 with open(kg_id + ' ' + filename + '.json','w') as jsonFile:
@@ -93,8 +94,9 @@ def splitted_csv():
                                             {"Representational-consistency" : {'newVocab' : rows['New vocabularies defined'], 'useNewTerms' : rows['New terms defined']}}, 
                                             {"Understandability" : {'numLabel' : rows['Number of label'], 'regexUri' : rows['Uri regex'], 'vocabularies' : rows['Vocabularies'],'example' : rows['Presence of example']}}, 
                                             {"Interpretability" : {'numBN' : rows['Number of blank nodes'], 'RDFStructures' : rows['RDF structures']}}, 
-                                            {"Versatility" : {'languages_merged' : rows['Languages'],'serializationFormats' : rows['Serialization formats'], 'sparqlEndpoint' : rows['SPARQL endpoint'], 'availabilityRDFD_merged' : rows['RDF dump']}}]
-
+                                            {"Versatility" : {'languages_merged' : rows['Languages'],'serializationFormats' : rows['Serialization formats'], 'sparqlEndpoint' : rows['SPARQL endpoint'], 'availabilityRDFD_merged' : rows['RDF dump']}}],
+                        "Score": {"totalScore" : rows['Score']},
+                        "Extra":{"sparql_link" : rows['Link SPARQL endpoint'],"rdf_dump_link" : rows['Link for download the dataset']}
                     }
                     with open('json_files/' + kg_id + rows['Date'] + '.json','w') as jsonFile:
                         jsonFile.write(json.dumps(data, indent=4))

@@ -81,20 +81,22 @@ except ValueError:
 for i in range(len(toAnalyze)):
     kg = analyses.analyses(toAnalyze[i],filename)
     score = Score(kg,20)
-    totalScore = score.getWeightedDimensionScore(1)
+    totalScore,normalizedScore = score.getWeightedDimensionScore(1)
     totalScore = "%.3f"%totalScore
+    normalizedScore = "%.3f"%normalizedScore
     totalScore = float(totalScore)
+    normalizedScore = float(normalizedScore)
     kg.extra.score = totalScore
+    kg.extra.normalizedScore = normalizedScore
     csv = OutputCSV(kg,toAnalyze)
     csv.writeRow(filename)
     print(f"KG score: {kg.extra.score}")
     mongo_interface = DBinterface()
-    mongo_interface.insert_quality_data(kg)
+    mongo_interface.insert_quality_data(kg,score)
     del csv
     del kg
     gc.collect()
     #print(kg.getQualityKG()) #PRINT THE KG QUALITY ON THE COMAND LINE
 
-#CALCULATION OF THE NORMALIZED SCORE
-OutputCSV.normalizeScore(filename)
-
+#CREATING NEW CSV FOR OUTPUT WITH JS
+#OutputCSV.split(toAnalyze)

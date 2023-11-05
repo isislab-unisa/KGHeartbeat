@@ -5,12 +5,33 @@ from string import whitespace
 import time
 import query
 
-
+#Total score = 54
 class Score:
     def __init__(self,kg,dimensionNumber):
         self.kg = kg
         self.dimensionNumber = dimensionNumber
-    
+        self.availabilityScoreValue = 0
+        self.licensingScoreValue = 0
+        self.interlinkingScoreValue = 0
+        self.performanceScoreValue = 0
+        self.accuracyScoreValue = 0
+        self.consistencyScoreValue = 0
+        self.concisenessScoreValue = 0
+        self.verifiabilityScoreValue = 0
+        self.reputationScoreValue = 0
+        self.believabilityScoreValue = 0
+        self.currencyScoreValue = 0
+        self.volatilityScoreValue = 0
+        self.completenessScoreValue = 0
+        self.amountScoreValue = 0
+        self.repConsScoreValue = 0
+        self.repConcScoreValue = 0
+        self.understScoreValue = 0
+        self.interpretabilityScoreValue = 0
+        self.versatilityScoreValue = 0
+        self.securityScoreValue = 0
+        self.totalScore = 0
+        self.normalizedScore = 0
 
     def availabilityScore(self,weight):
         if self.kg.availability.sparqlEndpoint == 'Available':
@@ -97,9 +118,9 @@ class Score:
         auth = self.kg.security.requiresAuth
         if isinstance(auth,bool):
             if auth == True:
-                authV = 1
-            else:
                 authV = 0
+            else:
+                authV = 1
         else:
             authV = 0
         
@@ -550,39 +571,70 @@ class Score:
                 accessibilityV = 0
         else:
             accessibilityV = 0
-        if self.kg.availability.sparqlEndpoint == 'Available':
+        if self.kg.availability.sparqlEndpoint == 'Available' and (self.kg.availability.RDFDumpM == True or self.kg.availability.RDFDumpQ):
             accessibilityV = accessibilityV + 1 
         
         return ((seriValue + langsV + accessibilityV) * weight) / self.dimensionNumber
     
     def getWeightedDimensionScore(self,weight):
-        availability = self.availabilityScore(weight)
-        licensing = self.licensingScore(weight)
-        inter = self.interlinkingScore(weight)
-        security = self.securityScore(weight)
-        perf = self.performanceScore(weight)
-        acc = self.accuracyScore(weight)
-        consistency = self.consistencyScore(weight)
-        conciseness = self.concisenessScore(weight)
-        reputation = self.reputationScore(weight)
-        believability = self.believabilityScore(weight)
-        verifiability = self.verifiabilityScore(weight)
-        currency = self.currencyScore(weight)
-        volatility = self.volatilityScore(weight)
-        completeness = self.completenessScore(weight)
-        amount = self.amountScore(weight)
-        repConc = self.repConcScore(weight)
-        repCons = self.repConsScore(weight)
-        underst = self.understScore(weight)
-        interp = self.interpretabilityScore(weight)
-        versatility = self.versatilityScore(weight)
-        score = availability + licensing + inter + security + perf + acc + consistency + conciseness + reputation + believability + verifiability + currency + volatility + completeness + amount + repConc + repCons + underst + interp + versatility
+        self.availabilityScoreValue = self.availabilityScore(weight)
+        self.licensingScoreValue = self.licensingScore(weight)
+        self.interlinkingScoreValue = self.interlinkingScore(weight)
+        self.securityScoreValue = self.securityScore(weight)
+        self.performanceScoreValue = self.performanceScore(weight)
+        self.accuracyScoreValue = self.accuracyScore(weight)
+        self.consistencyScoreValue = self.consistencyScore(weight)
+        self.concisenessScoreValue = self.concisenessScore(weight)
+        self.reputationScoreValue = self.reputationScore(weight)
+        self.believabilityScoreValue = self.believabilityScore(weight)
+        self.verifiabilityScoreValue = self.verifiabilityScore(weight)
+        self.currencyScoreValue = self.currencyScore(weight)
+        self.volatilityScoreValue = self.volatilityScore(weight)
+        self.completenessScoreValue = self.completenessScore(weight)
+        self.amountScoreValue = self.amountScore(weight)
+        self.repConcScoreValue = self.repConcScore(weight)
+        self.repConsScoreValue = self.repConsScore(weight)
+        self.understScoreValue = self.understScore(weight)
+        self.interpretabilityScoreValue = self.interpretabilityScore(weight)
+        self.versatilityScoreValue = self.versatilityScore(weight)
+        score = self.availabilityScoreValue + self.licensingScoreValue + self.interlinkingScoreValue + self.securityScoreValue + self.performanceScoreValue + self.accuracyScoreValue + self.consistencyScoreValue + self.concisenessScoreValue + self.reputationScoreValue + self.believabilityScoreValue + self.verifiabilityScoreValue + self.currencyScoreValue + self.volatilityScoreValue + self.completenessScoreValue + self.amountScoreValue + self.repConcScoreValue + self.repConsScoreValue + self.understScoreValue +  self.interpretabilityScoreValue + self.versatilityScoreValue
         if score > 0:
-            return score
+            normalized_score = utils.normalize_score(score,54)
+            self.totalScore = score
+            self.normalizedScore = normalized_score
+            return score,normalized_score
         else:
-            return 0
+            self.totalScore = 0
+            self.normalizedScore = 0
+            return 0,0
 
-
+    def to_dict(self):
+        score_dict = {
+            'dimensionNumber' : self.dimensionNumber,
+            'totalScore' : self.totalScore,
+            'normalizedScore' : self.normalizedScore,
+            'availabilityScoreValue' : self.availabilityScoreValue,
+            'licensingScoreValue' : self.licensingScoreValue ,
+            'interlinkingScoreValue' : self.interlinkingScoreValue,
+            'performanceScoreValue' : self.performanceScoreValue,
+            'accuracyScoreValue' : self.accuracyScoreValue,
+            'consistencyScoreValue' : self.consistencyScoreValue,
+            'concisenessScoreValue' : self.concisenessScoreValue,
+            'verifiabilityScoreValue' : self.verifiabilityScoreValue, 
+            'reputationScoreValue' : self.reputationScoreValue, 
+            'believabilityScoreValue' : self.believabilityScoreValue, 
+            'currencyScoreValue' : self.currencyScoreValue,
+            'volatilityScoreValue' : self.volatilityScoreValue,
+            'completenessScoreValue': self.completenessScoreValue,
+            'amountScoreValue' : self.amountScoreValue ,
+            'repConsScoreValue' : self.repConsScoreValue,
+            'repConcScoreValue' : self.repConcScoreValue,
+            'understScoreValue' : self.understScoreValue,
+            'interpretabilityScoreValue' : self.interpretabilityScoreValue,
+            'versatilityScoreValue' : self.versatilityScoreValue,
+            'securityScoreValue' : self.securityScoreValue 
+        }
+        return score_dict
 
 
 

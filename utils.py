@@ -584,7 +584,7 @@ def getClusteringCoefficient(nameKG,externalLinks):
 def getThroughput(accessUrl):
     count = 0
     countList = []
-    for i in range(5):
+    for i in range(10):
         count = 0
         start_time = time.time()
         while (time.time() - start_time) < 1:
@@ -1033,3 +1033,6 @@ def to_list(old_values):
         old_values = old_values.split(';')
     
     return old_values
+
+def normalize_score(score,max_value):
+    return (score)/(max_value) * 100

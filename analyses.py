@@ -1555,24 +1555,25 @@ def analyses(idKG,analysis_date):
             percentageLabel = "%.2f"%percentageLabel
             percentageLabel = str(percentageLabel)
             percentageLabel = percentageLabel + "%"
-            understendability = Understendability(numLabel,percentageLabel,regex,vocabularies,example)
+            understendability = Understendability(numLabel,percentageLabel,regex,vocabularies,example,nameKG,description,sourcesC.web)
         elif isinstance(numLabel,int) and isinstance(triplesM,int) and triplesM > 0:
             percentageLabel = (numLabel/triplesM) * 100
             percentageLabel = "%.2f"%percentageLabel
             percentageLabel = str(percentageLabel)
             percentageLabel = percentageLabel + "%"
-            understendability = Understendability(numLabel,percentageLabel,regex,vocabularies,example) 
+            understendability = Understendability(numLabel,percentageLabel,regex,vocabularies,example,nameKG,description,sourcesC.web) 
         else:
-            understendability = Understendability(numLabel,'insufficient data',regex,vocabularies,example)
+            understendability = Understendability(numLabel,'insufficient data',regex,vocabularies,example,nameKG,description,sourcesC.web)
         if isinstance(creationDate,str) and isinstance(modificationDate,str):
             try:
                 creationDate = datetime.datetime.strptime(creationDate, "%Y-%m-%d").date()
                 today = datetime.date.today()
+                ageOfData = (today - creationDate).days
                 todayFormatted = today.strftime("%Y-%m-%d")
                 todayDate =  datetime.datetime.strptime(todayFormatted, "%Y-%m-%d").date()
                 modificationDate = datetime.datetime.strptime(modificationDate, "%Y-%m-%d").date()
                 delta = (todayDate - modificationDate).days
-                currency = Currency(creationDate,modificationDate,percentageUp,delta,historicalUp)
+                currency = Currency(ageOfData,modificationDate,percentageUp,delta,historicalUp)
             except ValueError:
                 logger.warning(f"Currency | Use of dates as the point in time of the last verification of a statement represented by dcterms:modified | Insufficient data to compute this metric",extra=kg_info)
                 currency = Currency(creationDate,modificationDate,percentageUp,'-',historicalUp)
@@ -1657,7 +1658,7 @@ def analyses(idKG,analysis_date):
                         value = s.get('value')
                         uriListS.append(value)
                 if isinstance(numTriplesUpdated,int):
-                    extra = Extra(idKG,accessUrl,downloadUrl,numTriplesUpdated,classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff) #EXTRA OBJ CONTAINS ALL INFORMATION FOR SCORE CALCULATION AND OTHER USEFUL INFORMATION
+                    extra = Extra(idKG,accessUrl,downloadUrl,numTriplesUpdated,classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0) #EXTRA OBJ CONTAINS ALL INFORMATION FOR SCORE CALCULATION AND OTHER USEFUL INFORMATION
                 else:
                     logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
                     extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff)
