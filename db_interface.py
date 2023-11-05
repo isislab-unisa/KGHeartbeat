@@ -6,7 +6,7 @@ import utils
 class DBinterface():
     def __init__(self):
         #TODO: use environment variable to construct the connection string
-        self.client = pymongo.MongoClient("mongodb://gabrieleT:KGHeartbeat2023@host.docker.internal:27017")
+        self.client = pymongo.MongoClient("mongodb://gabrieleT:KGHeartbeat2023@localhost:27017")
         self.db = self.client["KGHeartbeatDB"]
         self.collection = self.db['quality_analysis_data'] 
     
