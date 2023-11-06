@@ -1,4 +1,4 @@
-import {  parseISO } from "https://cdn.skypack.dev/date-fns@2.28.0";
+import parseISO from 'date-fns/parseISO';
 
 function trasform_to_series(quality_data,selectedKGs,quality_dimension,quality_metric,custom_series_name){
     let series = []

@@ -5,7 +5,7 @@ import CalendarPopup from '../components/CalendatPopup';
 import { base_url } from '../api';
 import axios from 'axios';
 import { find_target_analysis, get_analysis_date, series_for_polar_chart, trasform_to_series} from '../utils';
-import {  parseISO } from "https://cdn.skypack.dev/date-fns@2.28.0";
+import parseISO from 'date-fns/parseISO';
 import LineChartAccuracy from '../components/LineChartAccuracy';
 import PolarChart from '../components/PolarChart';
 import Table from 'react-bootstrap/esm/Table';

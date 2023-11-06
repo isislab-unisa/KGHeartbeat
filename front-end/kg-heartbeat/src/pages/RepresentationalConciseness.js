@@ -6,7 +6,7 @@ import { trasform_latency_to_series, trasform_throughput_to_series, trasform_rep
 import BoxPlot from '../components/BoxPlot';
 import CalendarPopup from '../components/CalendatPopup';
 import { find_target_analysis } from '../utils';
-import {  parseISO } from "https://cdn.skypack.dev/date-fns@2.28.0";
+import parseISO from 'date-fns/parseISO';
 
 const rep_conciseness = 'Representational-conciseness';
 

@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form';
 import PolarChart from '../components/PolarChart';
 import CalendarPopup from '../components/CalendatPopup';
 import { find_target_analysis } from '../utils';
-import {  parseISO } from "https://cdn.skypack.dev/date-fns@2.28.0";
+import parseISO from 'date-fns/parseISO';
 import StackedChart from '../components/StackedChart';
 
 const accuracy = 'Accuracy';

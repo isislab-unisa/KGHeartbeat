@@ -6,7 +6,7 @@ import { trasform_to_series, get_analysis_date, trasform_toies_stacked, score_to
 import Form from 'react-bootstrap/Form';
 import CalendarPopup from '../components/CalendatPopup';
 import { find_target_analysis } from '../utils';
-import {  parseISO } from "https://cdn.skypack.dev/date-fns@2.28.0";
+import parseISO from 'date-fns/parseISO';
 import LineChart from '../components/LineChart';
 import SolidGauge from '../components/SolidGauge';
 import MaterialTable from '../components/MaterialTable';

@@ -4,7 +4,7 @@ import QualityBar from '../components/QualityBar';
 import CalendarPopup from '../components/CalendatPopup';
 import { base_url } from '../api';
 import axios from 'axios';
-import {  parseISO } from "https://cdn.skypack.dev/date-fns@2.28.0";
+import parseISO from 'date-fns/parseISO';
 import Table from 'react-bootstrap/esm/Table';
 import { find_target_analysis, get_analysis_date, trasform_to_series_conc, trasform_to_series_compl} from '../utils';
 import LineChart from '../components/LineChart';

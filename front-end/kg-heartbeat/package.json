@@ -1,5 +1,6 @@
 {
   "name": "kg-heartbeat",
+  "homepage": "/KGHeartbeat",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,6 +11,8 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.5.1",
     "bootstrap": "^5.3.2",
+    "date-fns": "^2.30.0",
+    "@babel/plugin-proposal-private-property-in-object": "",
     "export-to-csv": "^1.2.1",
     "highcharts": "^11.1.0",
     "highcharts-react-official": "^3.2.1",

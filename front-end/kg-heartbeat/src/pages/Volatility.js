@@ -5,7 +5,7 @@ import axios from 'axios';
 import Table from 'react-bootstrap/esm/Table';
 import CalendarPopup from '../components/CalendatPopup';
 import { find_target_analysis, get_analysis_date} from '../utils';
-import {  parseISO } from "https://cdn.skypack.dev/date-fns@2.28.0";
+import parseISO from 'date-fns/parseISO';
 
 const volatility = 'Volatility';
 

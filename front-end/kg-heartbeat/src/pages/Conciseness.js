@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import CalendarPopup from '../components/CalendatPopup';
 import { base_url } from '../api';
-import {  parseISO } from "https://cdn.skypack.dev/date-fns@2.28.0";
+import parseISO from 'date-fns/parseISO';
 import QualityBar from '../components/QualityBar';
 import Form from 'react-bootstrap/Form';
 import { find_target_analysis, get_analysis_date, trasform_to_series_conc } from '../utils';
