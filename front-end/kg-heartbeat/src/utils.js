@@ -440,4 +440,76 @@ function score_series_multiple_kgs(quality_data,selectedKGs,max_score){
     return data
 }
 
-export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data, trasform_to_series_compl, trasform_rep_conc_to_series, trasform_rep_conc_to_series_multiple, create_percentage_label_series,extract_most_recent,add_believability_and_amount,add_amount,set_message_availability,score_to_series, score_series_multiple_kgs};
+function initialize_score_map(){
+    let score_map = {
+        'availability' : "1",
+        'licensing' : "1",
+        'interlinking' : "1",
+        'security' : "1",
+        'performance' : "1",
+        'accuracy' : "1",
+        'consistency' : "1",
+        'conciseness' : "1",
+        'reputation' : "1",
+        'believability' : "1",
+        'verifiability' : "1",
+        'currency' : "1",
+        'volatility' : "1",
+        'completeness' :"1",
+        'amount' : "1",
+        'repConc' : "1",
+        'rep-cons' : "1",
+        'under' : "1",
+        'interp' : "1",
+        'vers': "1"
+    }
+    return score_map
+}
+
+function recalculate_score(score_data,selectedKGs,score_weights,max_value){
+    const personalized_score = JSON.parse(JSON.stringify(score_data));
+
+    let weights_sum = 0
+    for(let key in score_weights){
+        if(score_weights.hasOwnProperty(key)){
+            weights_sum+= parseInt(score_weights[key],10);
+        }
+    }
+    const ratio = max_value/weights_sum;
+    
+    for(let i = 0; i<selectedKGs.length; i++){
+        for(let j = 0; j<personalized_score.length; j++){
+            const score_obj = personalized_score[j]['Score']
+            for(let key_weights in score_weights){
+                for(let key_score in score_obj){
+                    if(key_score.includes(key_weights)){
+                        const weight = parseInt(score_weights[key_weights])
+                        if(score_obj[key_score] !== 0 ){
+                            console.log(score_obj[key_score])
+                            const new_score_value = Math.floor(parseInt(weight));
+                            score_obj[key_score] = new_score_value;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    for(let i = 0; i<personalized_score.length; i++){
+        let sum_score = 0;
+        for(let key in personalized_score[i]['Score']){
+            if(key !== 'normalizedScore' && key !== 'totalScore')
+                sum_score += personalized_score[i]['Score'][key];
+        }
+        //for old data we have 0 because we doesn't have the single score from every quality dimension
+        personalized_score[i]['Score']['normalizedScore'] = (sum_score/max_value) * 100;
+        personalized_score[i]['Score']['totalScore'] = sum_score;
+    }
+
+    console.log(score_data)
+    console.log(personalized_score)
+    return personalized_score
+}
+
+export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data, trasform_to_series_compl, trasform_rep_conc_to_series, trasform_rep_conc_to_series_multiple, create_percentage_label_series,extract_most_recent,add_believability_and_amount,add_amount,set_message_availability,score_to_series, score_series_multiple_kgs, recalculate_score, initialize_score_map};

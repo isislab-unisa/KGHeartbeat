@@ -17,6 +17,7 @@
     "material-table": "^2.0.5",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.0",
+    "react-bootstrap-range-slider": "^3.0.8",
     "react-datepicker": "^4.21.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
