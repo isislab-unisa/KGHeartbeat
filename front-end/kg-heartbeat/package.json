@@ -1,6 +1,6 @@
 {
   "name": "kg-heartbeat",
-  "homepage": "/KGHeartbeat",
+  "homepage": "/kgheartbeat",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
