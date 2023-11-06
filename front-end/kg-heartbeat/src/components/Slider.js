@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/Row';
 import RangeSlider from 'react-bootstrap-range-slider';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 
 function Slider( { onSliderSet, default_value, label,id}) {
     return (
