@@ -29,3 +29,8 @@
 .react-datepicker-popper {
     z-index: 9999 !important;
 }
+
+.personalized-title{
+    text-align: center;
+    font-size: 40px;
+}

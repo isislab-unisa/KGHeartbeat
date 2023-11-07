@@ -6,14 +6,14 @@ import HighchartsReact from "highcharts-react-official";
 highchartsMore(Highcharts);
 solidGauge(Highcharts);
 
-function create_options(series){
+function create_options(series,chart_title){
 
     const options = {
         chart:{
             type : 'solidgauge',
             renderTo: 'scoreChart',
         },
-        title: null,	
+        title: chart_title,	
         pane: {
             center: ['50%', '85%'],
             size: '140%',
@@ -38,12 +38,12 @@ function create_options(series){
             min: 0,
             max: 100,
             title: {
-                text: 'Score'
+                text: chart_title
             }
         },
         series: [{
             
-            name: 'Score',
+            name: chart_title,
             data: [series],
             dataLabels: {
             format:
@@ -58,9 +58,9 @@ function create_options(series){
     return options;
 }
 
-const SolidGauge = ({series}) => <HighchartsReact
+const SolidGauge = ({series, chart_title}) => <HighchartsReact
     highcharts={Highcharts}
-    options={create_options(series)}
+    options={create_options(series, chart_title)}
 />
 
 export default SolidGauge;

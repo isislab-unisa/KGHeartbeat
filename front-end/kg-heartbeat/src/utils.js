@@ -468,14 +468,6 @@ function initialize_score_map(){
 
 function recalculate_score(score_data,selectedKGs,score_weights,max_value){
     const personalized_score = JSON.parse(JSON.stringify(score_data));
-
-    let weights_sum = 0
-    for(let key in score_weights){
-        if(score_weights.hasOwnProperty(key)){
-            weights_sum+= parseInt(score_weights[key],10);
-        }
-    }
-    const ratio = max_value/weights_sum;
     
     for(let i = 0; i<selectedKGs.length; i++){
         for(let j = 0; j<personalized_score.length; j++){
@@ -483,23 +475,19 @@ function recalculate_score(score_data,selectedKGs,score_weights,max_value){
             for(let key_weights in score_weights){
                 for(let key_score in score_obj){
                     if(key_score.includes(key_weights)){
-                        const weight = parseInt(score_weights[key_weights])
-                        if(score_obj[key_score] !== 0 ){
-                            console.log(score_obj[key_score])
-                            const new_score_value = Math.floor(parseInt(weight));
-                            score_obj[key_score] = new_score_value;
-                            break;
+                        const weight = parseFloat(score_weights[key_weights])
+                        score_obj[key_score] *= weight 
+                        break;
                         }
                     }
                 }
             }
         }
-    }
 
     for(let i = 0; i<personalized_score.length; i++){
         let sum_score = 0;
         for(let key in personalized_score[i]['Score']){
-            if(key !== 'normalizedScore' && key !== 'totalScore')
+            if(key !== 'normalizedScore' && key !== 'totalScore' && key !== 'dimensionNumber')
                 sum_score += personalized_score[i]['Score'][key];
         }
         //for old data we have 0 because we doesn't have the single score from every quality dimension
@@ -507,8 +495,6 @@ function recalculate_score(score_data,selectedKGs,score_weights,max_value){
         personalized_score[i]['Score']['totalScore'] = sum_score;
     }
 
-    console.log(score_data)
-    console.log(personalized_score)
     return personalized_score
 }
 

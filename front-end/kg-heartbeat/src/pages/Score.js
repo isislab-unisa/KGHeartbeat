@@ -12,6 +12,7 @@ import SolidGauge from '../components/SolidGauge';
 import MaterialTable from '../components/MaterialTable';
 import Slider from '../components/Slider';
 import Button from 'react-bootstrap/Button';
+import { set } from 'date-fns';
 
 const score = 'Score'
 
@@ -50,6 +51,7 @@ function Score( { selectedKGs } ){
     const [score_weights, setScoreWeights] = useState(initialize_score_map());
     const [personalizedScoreData, setPersonalizedScoreData] = useState(null);
     const [personalizedScoreChart,setPersonalizedScoreChart] = useState(null);
+    const [analysisSelected,setAnalysisSelected] = useState(null)
 
     useEffect(() => {
         async function fetchData() {
@@ -96,7 +98,7 @@ function Score( { selectedKGs } ){
                     else
                         analysis_selected = find_target_analysis(scoreData,selectedDate,selectedKGs); 
                     const series = score_to_series(analysis_selected,selectedKGs,score,'totalScore','Quality score value',54);
-                    setScoreChart(<SolidGauge series={series[0].data[0][1]} key={selectedDate + 'score'}/>)
+                    setScoreChart(<SolidGauge series={series[0].data[0][1]} key={selectedDate + 'score'} chart_title={'Score'}/>)
                 }
             } else if(selectedKGs.length >= 1){
                 setGraphicToggle(null);
@@ -106,7 +108,7 @@ function Score( { selectedKGs } ){
                     analysis_selected = find_target_analysis(scoreData,scoreData[scoreData.length-1].analysis_date,selectedKGs);
                 else
                     analysis_selected = find_target_analysis(scoreData,selectedDate,selectedKGs);
-
+                setAnalysisSelected(analysis_selected)
                 const columns = [
                     {
                         accessorKey: 'kgname',
@@ -125,8 +127,29 @@ function Score( { selectedKGs } ){
         }
         if(personalizedScoreData){
             if(selectedKGs.length === 1){
-                const series = score_to_series(personalizedScoreData,selectedKGs,score,'totalScore','Personalized Score value',54);
-                setPersonalizedScoreChart(<LineChart chart_title={'Personalinze Score value'} series={series} sub_title={personalizedScoreData[0].kg_name} y_min={0} y_max={100}/>)
+                if(!toggleSwitch){
+                    const series = score_to_series(personalizedScoreData,selectedKGs,score,'totalScore','Personalized Score value',54);
+                    setPersonalizedScoreChart(<LineChart chart_title={'Personalinze Score value'} series={series} sub_title={personalizedScoreData[0].kg_name} y_min={0} y_max={100}/>)
+                }else{
+                    const series = score_to_series(personalizedScoreData,selectedKGs,score,'totalScore','Personalized Score value',54);
+                    console.log(series[0].data.length - 1)
+                    setPersonalizedScoreChart(<SolidGauge series={series[0].data[series[0].data.length - 1][1]} key={selectedDate + 'score personalized'} chart_title={'Personalized score'}/>)
+                }
+            } else if(selectedKGs.length !== 1){
+                const columns = [
+                    {
+                        accessorKey: 'kgname',
+                        header: 'KG name',
+                        size: 150,
+                    },
+                    {
+                        accessorKey: 'score',
+                        header: 'Personalized score',
+                        size: 5,
+                    }
+                ]
+                const data = score_series_multiple_kgs(personalizedScoreData,selectedKGs,54);
+                setPersonalizedScoreChart(<MaterialTable columns_value={columns} data_table={data} key={selectedDate + 'score personalized'}/>)
             }
         }
     }, [scoreData, selectedKGs, toggleSwitch, selectedDate,personalizedScoreData]);
@@ -180,7 +203,7 @@ function Score( { selectedKGs } ){
                 score_weights['reputation'] = new_value
                 break;
             case 'believ':
-                setSliderRep(new_value);
+                setSliderBeli(new_value);
                 score_weights['believability'] = new_value
                 break;
             case 'veri':
@@ -225,7 +248,11 @@ function Score( { selectedKGs } ){
                 break;
             default:
         }
-        setPersonalizedScoreData(recalculate_score(scoreData,selectedKGs,score_weights,54))
+        setPersonalizedScoreChart(null)
+        if(selectedKGs.length === 1)
+            setPersonalizedScoreData(recalculate_score(scoreData,selectedKGs,score_weights,54))
+        else if(selectedKGs.length !== 1)
+            setPersonalizedScoreData(recalculate_score(analysisSelected,selectedKGs,score_weights,54))
     }
 
     const handleClickBtn = (click) =>{
@@ -242,9 +269,32 @@ function Score( { selectedKGs } ){
                 if(buttonLabel !== 'Close'){
                     setButtonLabel('Close')
                     setButtonColor('outline-danger')
-                    setResetButton(<Button className='mb-2' variant="outline-danger">Reset weights</Button>)
+                    setResetButton(<Button className='mb-2' variant="outline-danger" onClick={handleResetBtn}>Reset weights</Button>)
                 }
             }
+    }
+
+    const handleResetBtn = (click) =>{
+        setSliderAv(1);
+        setSliderLic(1);
+        setSliderInter(1);
+        setSliderSec(1);
+        setSliderPerf(1);
+        setSliderAcc(1);
+        setSliderCons(1);
+        setSliderRep(1);
+        setSliderBeli(1);
+        setSliderVeri(1);
+        setSliderCurr(1);
+        setSliderVol(1);
+        setSliderComp(1);
+        setSliderAmount(1);
+        setSliderRepConc(1);
+        setSliderRepCons(1);
+        setSliderUnder(1);
+        setSliderInterp(1);
+        setSliderVers(1); 
+        setPersonalizedScoreData(scoreData); 
     }
 
     return(

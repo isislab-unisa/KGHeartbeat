@@ -16,9 +16,9 @@ function Slider( { onSliderSet, default_value, label,id}) {
           </Form.Label>
             <RangeSlider
               value={default_value}
-              step={1}
-              min={1}
-              max={5}
+              step={0.10}
+              min={0}
+              max={1}
               onChange={e => onSliderSet(e.target.value,id)}
             />
           </Col>
