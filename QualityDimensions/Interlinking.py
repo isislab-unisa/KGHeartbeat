@@ -13,6 +13,8 @@ class Interlinking:
         return f"-Interlinking\n   Degree of connection:{self.degreeConnection}\n   Clustering coefficient:{self.clustering}\n   Centrality:{self.centrality}\n   Number of samAs chains:{self.sameAs}\n   External links:{ExternalLink.getListExLinks(self.externalLinks)}\n"
 
     def to_dict(self):
+        if not isinstance(self.degreeConnection,int):
+            self.degreeConnection = "Can't retrieve this information, missing metadata"
         return  {
             "Degree-of-connection" : self.degreeConnection,
             "Clustering" : self.clustering,
