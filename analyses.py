@@ -1191,7 +1191,7 @@ def analyses(idKG,analysis_date):
             try:
                 uriCount = 0
                 defCount = 0
-                for i in range(5000):
+                for i in range(10):
                     s = allTriples[i].get('s')
                     value = s.get('value')
                     if utils.checkURI(value):
