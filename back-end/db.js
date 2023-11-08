@@ -119,6 +119,33 @@ async function find_score_over_time(kg_ids,quality_category){
   }
 }
 
+async function find_extra_data(kg_ids){
+  if (!Array.isArray(kg_ids))
+    kg_ids = [kg_ids]
+  try{
+    const result = await dbInstance.collection('quality_analysis_data').find(
+      { 'kg_id': { $in : kg_ids} },
+      {
+          projection:{
+              _id: 0, 
+              kg_id: 1,
+              kg_name: 1,
+              analysis_date: 1,
+              Extra: 1, 
+          },
+          sort: { kg_name: 1, analysis_date: 1}
+      },
+    ).toArray();
+
+    return result
+    
+  } catch (error) {
+    console.error(error)
+
+    return []
+  }
+}
+
 async function searchKG(keywords){
   try{
     const result = await dbInstance.collection('quality_analysis_data').aggregate([
@@ -152,4 +179,4 @@ async function searchKG(keywords){
 }
 
 
-module.exports = {connectToMongoDB, find_single_data, find_data_over_time, searchKG, find_score_over_time};
+module.exports = {connectToMongoDB, find_single_data, find_data_over_time, searchKG, find_score_over_time, find_extra_data};

@@ -9,6 +9,7 @@ const dataset_dynamicity = require('./routes/dataset_dynamicity');
 const contextual = require('./routes/contextual');
 const representational = require('./routes/representational');
 const score = require('./routes/score');
+const extra = require('./routes/extra');
 
 require('dotenv').config();
 
@@ -37,6 +38,7 @@ app.use('/dataset_dynamicity',dataset_dynamicity);
 app.use('/contextual',contextual);
 app.use('/representational',representational);
 app.use('/score',score);
+app.use('/extra',extra);
 
 app.listen(port,() => {
     console.log(`Server is running on port: ${port}`);
