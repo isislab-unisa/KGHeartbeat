@@ -6,7 +6,7 @@ import utils
 class DBinterface():
     def __init__(self):
         #TODO: use environment variable to construct the connection string
-        self.client = pymongo.MongoClient("mongodb://gabrieleT:KGHeartbeat2023@localhost:27017")
+        self.client = pymongo.MongoClient("mongodb://gabrieleT:KGHeartbeat2023@host.docker.internal:27017")
         self.db = self.client["KGHeartbeatDB"]
         self.collection = self.db['quality_analysis_data'] 
     
@@ -38,20 +38,25 @@ class DBinterface():
                 old_history = utils.to_list(most_recent_document['Dataset dynamicity'][0]['Currency']['historicalUp'])
                 
                 #needed to grant compatibility for the splitted csv
-                newvalues = { "$set": {
-                'Representational.2.Understandability.regexUri': len(old_uri_regex) if len(old_uri_regex) > 1 else most_recent_document['Representational'][2]['Understandability']['regexUri'],
-                'Representational.4.Versatility.serializationFormats': len(old_serializationFormats) if len(old_serializationFormats) > 1 else most_recent_document['Representational'][4]['Versatility']['serializationFormats'],
-                'Trust.2.Verifiability.publisher':  len(old_publishers) if len(old_publishers) > 1 else most_recent_document['Trust'][2]['Verifiability']['publisher'],
-                'Representational.1.Representational-consistency.newVocab' : len(old_new_vocabs) if len(old_new_vocabs) > 1 else most_recent_document['Representational'][1]['Representational-consistency']['newVocab'],
-                'Representational.1.Representational-consistency.useNewTerms' : len(old_new_terms) if len(old_new_terms) > 1 else most_recent_document['Representational'][1]['Representational-consistency']['old_new_terms'],
-                'Accessibility.1.Licensing.licenseQuery' : len(old_license_q) if len(old_license_q) > 1 else most_recent_document['Accessibility'][1]['Licensing']['licenseQuery'],
-                'Trust.2.Verifiability.vocabularies' : len(old_vocabs) if len(old_vocabs) > 1 else most_recent_document['Trust'][2]['Verifiability']['vocabularies'],
-                'Dataset dynamicity.0.Currency.historicalUp' : len(old_history) if len(old_history) > 1 else most_recent_document['Dataset dynamicity'][0]['Currency']['historicalUp'],
-                'Representational.2.Understandability.vocabularies' : len(old_vocabs2) if len(old_vocabs2) > 1 else most_recent_document['Representational'][2]['Understandability']['vocabularies']
+                try: 
+                    newvalues = { "$set": {
+                    'Representational.2.Understandability.regexUri': len(old_uri_regex) if len(old_uri_regex) > 1 else most_recent_document['Representational'][2]['Understandability']['regexUri'],
+                    'Representational.4.Versatility.serializationFormats': len(old_serializationFormats) if len(old_serializationFormats) > 1 else most_recent_document['Representational'][4]['Versatility']['serializationFormats'],
+                    'Trust.2.Verifiability.publisher':  len(old_publishers) if len(old_publishers) > 1 else most_recent_document['Trust'][2]['Verifiability']['publisher'],
+                    'Representational.1.Representational-consistency.newVocab' : len(old_new_vocabs) if len(old_new_vocabs) > 1 else most_recent_document['Representational'][1]['Representational-consistency']['newVocab'],
+                    'Representational.1.Representational-consistency.useNewTerms' : len(old_new_terms) if len(old_new_terms) > 1 else most_recent_document['Representational'][1]['Representational-consistency']['old_new_terms'],
+                    'Accessibility.1.Licensing.licenseQuery' : len(old_license_q) if len(old_license_q) > 1 else most_recent_document['Accessibility'][1]['Licensing']['licenseQuery'],
+                    'Trust.2.Verifiability.vocabularies' : len(old_vocabs) if len(old_vocabs) > 1 else most_recent_document['Trust'][2]['Verifiability']['vocabularies'],
+                    'Dataset dynamicity.0.Currency.historicalUp' : len(old_history) if len(old_history) > 1 else most_recent_document['Dataset dynamicity'][0]['Currency']['historicalUp'],
+                    'Representational.2.Understandability.vocabularies' : len(old_vocabs2) if len(old_vocabs2) > 1 else most_recent_document['Representational'][2]['Understandability']['vocabularies']
 
-                }}
+                    }}
 
-                self.collection.update_one({'kg_id' : kg_quality.extra.KGid, 'analysis_date' : most_recent_document['analysis_date']}, newvalues)
+                    self.collection.update_one({'kg_id' : kg_quality.extra.KGid, 'analysis_date' : most_recent_document['analysis_date']}, newvalues)
+                except KeyError:
+                    pass
+
+
 
         availability_dict = kg_quality.availability.__dict__
         availability_dict['voidAvailability'] = kg_quality.extra.voidAvailability
