@@ -2,8 +2,23 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { HashLink as Link } from 'react-router-hash-link';
+import RemoveImg from '../img/remove.png'
+import { useNavigate } from 'react-router-dom';
 
-function QualityBar({selectedKGs}) {
+function QualityBar({selectedKGs, setSelectedKG}) {
+    let navigate = useNavigate(); 
+
+    const handleOnChangeRemove = (kg_id) => {
+        if(selectedKGs.length > 1){
+            setSelectedKG(selectedKGs.filter((item) => item !== kg_id))
+        } else if(selectedKGs.length === 1){
+            setSelectedKG(selectedKGs.filter((item) => item !== kg_id))
+            navigate('/pages/Search/');
+        }
+
+      };
+
+
   return (
     <Nav defaultActiveKey="/home"  className="flex-column quality-navbar">
     <NavDropdown title="Availability" id="nav-dropdown">
@@ -91,13 +106,24 @@ function QualityBar({selectedKGs}) {
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Versatility" className='quality-link'>Accessing of data in different ways</Link></NavDropdown.Item>
     </NavDropdown>
 
-    <div id="selectedKG" className='float-right'>
-        <ListGroup>
-          <ListGroup.Item><b>KG selected</b></ListGroup.Item>
-          {selectedKGs.map((item) => (
-            <ListGroup.Item key={item.id}>{item.id}</ListGroup.Item>
-          ))}
-        </ListGroup>
+    <div id="selectedKG-tab" className='float-right'>
+        <p id='selectedKGs-text'> Selected KGs</p>
+          {selectedKGs.map((item) => {
+            return(
+                <>
+                    <input 
+                    type='image' 
+                    src={RemoveImg} 
+                    alt='remove'
+                    id={item}
+                    name={item}
+                    value={item}
+                    className="kg-del-btn"
+                    onClick={() => handleOnChangeRemove(item)}/>
+                    <span className='btn-text'>{item.id}</span><br/>
+                </>
+            )
+        })}
       </div>
     </Nav>
   );

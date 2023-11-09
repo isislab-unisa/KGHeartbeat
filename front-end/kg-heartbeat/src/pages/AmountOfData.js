@@ -12,7 +12,7 @@ import StackedChartAmount from '../components/StackedChartAmount';
 
 const amount = 'Amount of data'
 
-function AmountOfData({ selectedKGs }){
+function AmountOfData({ selectedKGs, setSelectedKGs}){
     const [amountData, setAmountData] = useState(null);
     const [toggleSwitch, setToggleSwitch] = useState(null);
     const [selectedDate, setSelectedDate] = useState(null);
@@ -104,7 +104,7 @@ function AmountOfData({ selectedKGs }){
 
     return (
         <div className='d-flex'>
-                <QualityBar selectedKGs={selectedKGs}/>
+                <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
                     {amountData && (
                         <div className='w-100 p-3'>
                             {formCheck}

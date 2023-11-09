@@ -12,7 +12,7 @@ import ConcisenessChart from '../components/ConcisenessChart';
 
 const completeness = 'Completeness'
 
-function Completeness ( {selectedKGs} ){
+function Completeness ( {selectedKGs, setSelectedKGs} ){
     const [completenessData, setCompletenessData] = useState(null);
     const [toggleSwitch, setToggleSwitch] = useState(null);
     const [selectedDate, setSelectedDate] = useState(null);
@@ -112,7 +112,7 @@ function Completeness ( {selectedKGs} ){
 
     return (
         <div className='d-flex'>
-                <QualityBar selectedKGs={selectedKGs}/>
+                <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
                     {completenessData && (
                         <div className='w-100 p-3'>
                             <Form.Check

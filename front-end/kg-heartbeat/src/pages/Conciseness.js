@@ -13,7 +13,7 @@ import Table from 'react-bootstrap/esm/Table';
 
 const conciseness = 'Conciseness'
 
-function Conciseness({ selectedKGs }){
+function Conciseness({ selectedKGs, setSelectedKGs}){
     const [concisenessData, setConcisenessData] = useState(null);
     const [concisenessChart, setConcisenessChart] = useState(null);
     const [toggleSwitch, setToggleSwitch] = useState(null);
@@ -108,7 +108,7 @@ function Conciseness({ selectedKGs }){
 
     return (
         <div className='d-flex'>
-                <QualityBar selectedKGs={selectedKGs}/>
+                <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
                     {concisenessData && (
                         <div className='w-100 p-3'>
                             <Form.Check

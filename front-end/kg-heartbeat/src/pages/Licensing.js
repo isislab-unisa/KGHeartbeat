@@ -4,7 +4,7 @@ import { base_url } from '../api';
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 
-function Licensing({ selectedKGs }) {
+function Licensing({ selectedKGs, setSelectedKGs}) {
     const [licensingData, setLicensingData] = useState(null);
     const [licensingTable, setLicensingTable] = useState(null);
 
@@ -66,7 +66,7 @@ function Licensing({ selectedKGs }) {
     return(
 		<div>
 			<div className= "d-flex">
-				<QualityBar selectedKGs={selectedKGs}/>
+				<QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
 				{licensingData && (
 				<div className='w-100 p-3'> 
           <span id="licensing"></span>

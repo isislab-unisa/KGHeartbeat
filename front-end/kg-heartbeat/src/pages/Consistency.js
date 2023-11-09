@@ -12,7 +12,7 @@ import Table from 'react-bootstrap/esm/Table';
 
 const consistency = 'Consistency'
 
-function Consistency({ selectedKGs }){
+function Consistency({ selectedKGs, setSelectedKGs}){
     const [consistencyData, setConsistencyData] = useState(null);
     const [consistencyChart, setConsistencyChart] = useState(null);
     const [toggleSwitch, setToggleSwitch] = useState(null);
@@ -138,7 +138,7 @@ function Consistency({ selectedKGs }){
 
     return (
         <div className='d-flex'>
-                <QualityBar selectedKGs={selectedKGs}/>
+                <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
                     {consistencyData && (
                         <div className='w-100 p-3'>
                             {switchComponent}

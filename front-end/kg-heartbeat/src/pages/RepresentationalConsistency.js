@@ -6,7 +6,7 @@ import Table from 'react-bootstrap/Table';
 
 const repr_consistency = 'Representational-consistency';
 
-function RepresentationalConsistency( {selectedKGs} ){
+function RepresentationalConsistency( {selectedKGs, setSelectedKGs} ){
     const [reprConsData, setReprConsData] = useState(null);
     const [reprConsTable, setReprConsTable] = useState(null);
 
@@ -87,7 +87,7 @@ function RepresentationalConsistency( {selectedKGs} ){
     return (
         <div>
             <div className= "d-flex">
-                <QualityBar selectedKGs={selectedKGs}/>
+                <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
                 {reprConsData && (
                 <div className='w-100 p-3'> 
                     {reprConsTable}

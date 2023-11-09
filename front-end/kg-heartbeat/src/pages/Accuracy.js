@@ -13,7 +13,7 @@ import StackedChart from '../components/StackedChart';
 
 const accuracy = 'Accuracy';
 
-function Accuracy( {selectedKGs } ){
+function Accuracy( {selectedKGs, setSelectedKGs} ){
     const [accuracyData, setAccuracyData] = useState(null);
     const [accuracyChart, setAccuracyChart] = useState(null);
     const [toggleSwitch, setToggleSwitch] = useState(null);
@@ -109,7 +109,7 @@ function Accuracy( {selectedKGs } ){
     return(
         <div>
             <div className='d-flex'>
-                <QualityBar selectedKGs={selectedKGs}/>
+                <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
                     {accuracyData && (
                         <div className='w-100 p-3'>
                             {switchComponent}

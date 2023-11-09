@@ -9,7 +9,7 @@ import parseISO from 'date-fns/parseISO';
 
 const volatility = 'Volatility';
 
-function Volatility({ selectedKGs }){
+function Volatility({ selectedKGs, setSelectedKGs}){
     const [volatilityData, setVolatilityData] = useState(null);
     const [volatilityTable, setVolatilityTable] = useState(null);
     const [selectedDate, setSelectedDate] = useState(null);
@@ -91,7 +91,7 @@ function Volatility({ selectedKGs }){
     return(
         <div>
             <div className='d-flex'>
-                <QualityBar selectedKGs={selectedKGs}/>
+                <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
                 {volatilityData && (
                     <div className='w-100 p-3'>
                         <div>

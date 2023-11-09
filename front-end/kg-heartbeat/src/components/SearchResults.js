@@ -7,8 +7,6 @@ import RemoveImg from '../img/remove.png'
 
 function SearchResults({ results, selected, onCheckboxChange }) {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
-  const [tableData, setTableData] = useState(null);
-  const [columns, setColumns] = useState(null);
   const [KGsTable,setKGsTable] = useState(null);
 
   // Effect to edit the status of chechkbox when the the results is changed
@@ -92,7 +90,6 @@ function SearchResults({ results, selected, onCheckboxChange }) {
             }
           data.push(row_data)
       }
-      setTableData(data)
       if(results.length > 0)
         setKGsTable(<MaterialTable columns_value={columns} data_table={data}/>)
     }

@@ -9,7 +9,7 @@ import Table from 'react-bootstrap/esm/Table';
 
 const versatility = 'Versatility';
 
-function Versatility({ selectedKGs } ){
+function Versatility({ selectedKGs, setSelectedKGs} ){
     const [versatilityData, setVersatilityData] = useState(null);
     const [toggleSwitch, setToggleSwitch] = useState(null);
     const [selectedDate, setSelectedDate] = useState(null);
@@ -129,7 +129,7 @@ function Versatility({ selectedKGs } ){
     return (
         <div>
         <div className='d-flex'>
-            <QualityBar selectedKGs={selectedKGs}/>
+            <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
                 {versatilityData && (
                     <div className='w-100 p-3'>
                         {toggleSwitch ? (

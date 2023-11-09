@@ -7,7 +7,7 @@ import BoxPlot from '../components/BoxPlot';
 
 const performance = 'Performance'
 
-function Performance( {selectedKGs} ){
+function Performance( {selectedKGs, setSelectedKGs} ){
     const [performanceData, setPerformanceData] = useState(null);
     const [latencyChart, setLatencyChart] = useState(null);
     const [throughputChart, setThroughputChart] = useState(null);
@@ -53,7 +53,7 @@ function Performance( {selectedKGs} ){
     return(
         <div>
             <div className='d-flex'>
-                <QualityBar selectedKGs={selectedKGs}/>
+                <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
                 {performanceData && (
                     <div className='w-100 p-3'>
                         {latencyChart}

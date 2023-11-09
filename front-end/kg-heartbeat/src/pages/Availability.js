@@ -9,7 +9,7 @@ import TableBoot from 'react-bootstrap/Table';
 
 const availability = 'Availability'
 
-function Availability({ selectedKGs }) {
+function Availability({ selectedKGs, setSelectedKGs}) {
   const [availabilityData, setAvailabilityData] = useState(null);
   const [sparlq_chart,setSparqlChart] = useState(null);
   const [rdfDumpChart,setRDFDumpC] = useState(null);
@@ -82,7 +82,7 @@ function Availability({ selectedKGs }) {
     return(
 		<div>
 			<div className= "d-flex">
-				<QualityBar selectedKGs={selectedKGs}/>
+				<QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
 				{availabilityData && (
 				<div className='w-100 p-3'> 
           <span id="sparql"></span>

@@ -8,7 +8,7 @@ import ConcisenessChart from '../components/ConcisenessChart';
 
 const currency = 'Currency'
 
-function Currency( {selectedKGs} ){
+function Currency( {selectedKGs, setSelectedKGs} ){
     const [currencyData, setCurrencyData] = useState(null);
     const [historyChart, setHistoryChart] = useState(null);
     const [currencyTable, setCurrencyTab] = useState(null);
@@ -95,7 +95,7 @@ function Currency( {selectedKGs} ){
     return(
         <div>
             <div className='d-flex'>
-                <QualityBar selectedKGs={selectedKGs}/>
+                <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
                 {currencyData && (
                     <div className='w-100 p-3'>
                         {historyChart}

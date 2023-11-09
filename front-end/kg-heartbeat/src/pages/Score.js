@@ -15,7 +15,7 @@ import Button from 'react-bootstrap/Button';
 
 const score = 'Score'
 
-function Score( { selectedKGs } ){
+function Score( { selectedKGs, setSelectedKGs} ){
     const [scoreData, setScoreData] = useState(null);
     const [scoreChart, setScoreChart] = useState(null);
     const [toggleSwitch, setToggleSwitch] = useState(null);
@@ -299,7 +299,7 @@ function Score( { selectedKGs } ){
     return(
         <div>
             <div className='d-flex'>
-                <QualityBar selectedKGs={selectedKGs}/>
+                <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
                     {scoreData && (
                         <div className='w-100 p-3'>
                             <Button className='mb-2' variant={buttonColor} onClick={handleClickBtn}>{buttonLabel}</Button>

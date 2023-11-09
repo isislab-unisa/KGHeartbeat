@@ -11,7 +11,7 @@ import Form from 'react-bootstrap/Form';
 
 const reputation = 'Reputation'
 
-function Reputation({ selectedKGs }){
+function Reputation({ selectedKGs, setSelectedKGs}){
     const [reputationData,setReputationData] = useState(null);
     const [reputationChart,setReputationChart] = useState(null);
     const [selectedDate, setSelectedDate] = useState(null);
@@ -105,7 +105,7 @@ function Reputation({ selectedKGs }){
 
     return (
         <div className="d-flex">
-            <QualityBar selectedKGs={selectedKGs} />
+            <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
             {reputationData && (
                 <div className='w-100 p-3'>
                     <Form.Check

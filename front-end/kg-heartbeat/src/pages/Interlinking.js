@@ -5,7 +5,7 @@ import QualityBar from '../components/QualityBar';
 import PieChart from '../components/PieChart';
 import Table from 'react-bootstrap/esm/Table';
 
-function Interlinking({ selectedKGs }) {
+function Interlinking({ selectedKGs, setSelectedKGs}) {
     const [interlinkingData, setInterlinkingData] = useState(null);
     const [amountData, setAmountData] = useState(null);
     const [sameAsChart, setSameAsChart] = useState(null);
@@ -102,7 +102,7 @@ function Interlinking({ selectedKGs }) {
     return(
         <div>
             <div className= "d-flex">
-                <QualityBar selectedKGs={selectedKGs} />
+                <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs} />
                 {interlinkingData && (
                     <div className='w-100 p-3'> 
                         {sameAsChart}

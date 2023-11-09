@@ -13,7 +13,7 @@ import StackedChart from '../components/StackedChart';
 
 const interpretability = 'Interpretability';
 
-function Interpretability( { selectedKGs } ){
+function Interpretability( { selectedKGs, setSelectedKGs} ){
     const [interpretabilityData, setInterpretabilityData] = useState(null);
     const [amountData, setAmountData] = useState(null);
     const [interpretabilityChart, setInterpretabilityChart] = useState(null);
@@ -159,7 +159,7 @@ function Interpretability( { selectedKGs } ){
     return(
         <div>
         <div className='d-flex'>
-            <QualityBar selectedKGs={selectedKGs}/>
+            <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
                 {interpretabilityData && (
                     <div className='w-100 p-3'>
                         <Form.Check

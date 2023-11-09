@@ -5,7 +5,7 @@ import Table from 'react-bootstrap/Table';
 import QualityBar from '../components/QualityBar';
 
 
-function Security({ selectedKGs }){
+function Security({ selectedKGs, setSelectedKGs}){
     const [secuirityData, setSecurityData] = useState(null);
     const [securityTable, setSecurityTab] = useState(null);
     
@@ -69,7 +69,7 @@ function Security({ selectedKGs }){
     return(
         <div>
             <div className='d-flex'>
-                <QualityBar selectedKGs={selectedKGs}/>
+                <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
                 {secuirityData && (
                     <div className='w-100 p-3'>
                         {securityTable}

@@ -50,29 +50,29 @@ function App() {
     <Router>
       <NavBar quality_link={content} score_link={score_link}/>
         <Routes>
-          <Route path="/pages/QualityData" component={QualityData} element={<QualityData selectedKGs={selectedKGs}/>}/>
+          <Route path="/pages/QualityData" component={QualityData} element={<QualityData selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>
           <Route path="/pages/Search" component={Search} element={<Search searchResults={searchResults} handle_search={handle_search} selectedKGs={selectedKGs} handleSelectedDataChange={handleSelectedDataChange}/>}/>
-          <Route path="/pages/Availability" component={Availability} element={<Availability selectedKGs={selectedKGs}/>}/>
-          <Route path="/pages/Licensing" component={Licensing} element={<Licensing selectedKGs={selectedKGs}/>}/>
-          <Route path="/pages/Interlinking" component={Interlinking} element={<Interlinking selectedKGs={selectedKGs}/>}/>
-          <Route path="/pages/Security" component={Security} element={<Security selectedKGs={selectedKGs}/>}/>
-          <Route path="/pages/Performance" component={Performance} element={<Performance selectedKGs={selectedKGs}/>}/>
-          <Route path="/pages/Accuracy" component={Accuracy} element={<Accuracy selectedKGs={selectedKGs}/>}/>
-          <Route path="/pages/Consistency" component={Consistency} element={<Consistency selectedKGs={selectedKGs}/>}/>
-          <Route path="/pages/Conciseness" component={Conciseness} element={<Conciseness selectedKGs={selectedKGs}/>}/>
-          <Route path="/pages/Reputation" component={Reputation} element={<Reputation selectedKGs={selectedKGs}/>}/>
-          <Route path="/pages/Believability" component={Believability} element={<Believability selectedKGs={selectedKGs}/>}/>
-          <Route path="/pages/Verifiability" component={Verifiability} element={<Verifiability selectedKGs={selectedKGs}/>}/>
-          <Route path="/pages/Currency" component={Currency} element={<Currency selectedKGs={selectedKGs}/>}/>        
-          <Route path="/pages/Volatility" component={Volatility} element={<Volatility selectedKGs={selectedKGs}/>}/>        
-          <Route path="/pages/Completeness" component={Completeness} element={<Completeness selectedKGs={selectedKGs}/>}/>        
-          <Route path="/pages/AmountOfData" component={AmountOfData} element={<AmountOfData selectedKGs={selectedKGs}/>}/>        
-          <Route path="/pages/RepresentationalConciseness" component={RepresentationalConciseness} element={<RepresentationalConciseness selectedKGs={selectedKGs}/>}/>        
-          <Route path="/pages/RepresentationalConsistency" component={RepresentationalConsistency} element={<RepresentationalConsistency selectedKGs={selectedKGs}/>}/>        
-          <Route path="/pages/Understandability" component={Understandability} element={<Understandability selectedKGs={selectedKGs}/>}/>        
-          <Route path="/pages/Interpretability" component={Interpretability} element={<Interpretability selectedKGs={selectedKGs}/>}/>                
-          <Route path="/pages/Versatility" component={Versatility} element={<Versatility selectedKGs={selectedKGs}/>}/>                
-          <Route path="/pages/Score" component={Score} element={<Score selectedKGs={selectedKGs}/>}/>                
+          <Route path="/pages/Availability" component={Availability} element={<Availability selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>
+          <Route path="/pages/Licensing" component={Licensing} element={<Licensing selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>
+          <Route path="/pages/Interlinking" component={Interlinking} element={<Interlinking selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>
+          <Route path="/pages/Security" component={Security} element={<Security selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>
+          <Route path="/pages/Performance" component={Performance} element={<Performance selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>
+          <Route path="/pages/Accuracy" component={Accuracy} element={<Accuracy selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>
+          <Route path="/pages/Consistency" component={Consistency} element={<Consistency selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>
+          <Route path="/pages/Conciseness" component={Conciseness} element={<Conciseness selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>
+          <Route path="/pages/Reputation" component={Reputation} element={<Reputation selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>
+          <Route path="/pages/Believability" component={Believability} element={<Believability selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>
+          <Route path="/pages/Verifiability" component={Verifiability} element={<Verifiability selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>
+          <Route path="/pages/Currency" component={Currency} element={<Currency selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>        
+          <Route path="/pages/Volatility" component={Volatility} element={<Volatility selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>        
+          <Route path="/pages/Completeness" component={Completeness} element={<Completeness selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>        
+          <Route path="/pages/AmountOfData" component={AmountOfData} element={<AmountOfData selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>        
+          <Route path="/pages/RepresentationalConciseness" component={RepresentationalConciseness} element={<RepresentationalConciseness selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>        
+          <Route path="/pages/RepresentationalConsistency" component={RepresentationalConsistency} element={<RepresentationalConsistency selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>        
+          <Route path="/pages/Understandability" component={Understandability} element={<Understandability selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>        
+          <Route path="/pages/Interpretability" component={Interpretability} element={<Interpretability selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>                
+          <Route path="/pages/Versatility" component={Versatility} element={<Versatility selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>                
+          <Route path="/pages/Score" component={Score} element={<Score selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>                
        </Routes>
     </Router>
     </div>

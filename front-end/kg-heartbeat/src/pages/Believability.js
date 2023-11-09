@@ -6,7 +6,7 @@ import Table from 'react-bootstrap/esm/Table';
 
 const believability = 'Believability';
 
-function Believability({ selectedKGs }){
+function Believability({ selectedKGs, setSelectedKGs}){
     const [believabilityData, setBelievabilityData] = useState(null);
     const [believabilityChart, setBelievabilityChart] = useState(null); 
 
@@ -68,7 +68,7 @@ function Believability({ selectedKGs }){
 
     return (
         <div className='d-flex'>
-            <QualityBar selectedKGs={selectedKGs} />
+            <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
                 {believabilityData && (
                     <div className='w-100 p-3'>
                         {believabilityChart}

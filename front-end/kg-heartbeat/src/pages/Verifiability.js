@@ -9,7 +9,7 @@ import parseISO from 'date-fns/parseISO';
 
 const verifiability = 'Verifiability'
 
-function Verifiability({ selectedKGs }){
+function Verifiability({ selectedKGs, setSelectedKGs}){
     const [verifiabilityData, setVerifiabilityData] = useState(null);
     const [verifiabilityChart, setVerifiabilityChart] = useState(null);
     const [selectedDate, setSelectedDate] = useState(null);
@@ -102,7 +102,7 @@ function Verifiability({ selectedKGs }){
     return(
         <div>
             <div className='d-flex'>
-                <QualityBar selectedKGs={selectedKGs}/>
+                <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
                 {verifiabilityData && (
                     <div className='w-100 p-3'>
                         <div>

@@ -10,7 +10,7 @@ import parseISO from 'date-fns/parseISO';
 
 const rep_conciseness = 'Representational-conciseness';
 
-function RepresentationalConciseness( {selectedKGs} ){
+function RepresentationalConciseness( {selectedKGs, setSelectedKGs} ){
     const [repConcisenessData, setRepConcisenessData] = useState(null);
     const [selectedDate, setSelectedDate] = useState(null);
     const [defaultDate, setDeafaultDate] = useState(null);
@@ -86,7 +86,7 @@ function RepresentationalConciseness( {selectedKGs} ){
     return(
         <div>
             <div className='d-flex'>
-                <QualityBar selectedKGs={selectedKGs}/>
+                <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
                 {repConcisenessData && (
                     <div className='w-100 p-3'>
                         <div>

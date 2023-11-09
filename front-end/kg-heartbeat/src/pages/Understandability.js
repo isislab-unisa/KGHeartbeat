@@ -14,7 +14,7 @@ import PieChart from '../components/PieChart';
 
 const understandability = 'Understandability';
 
-function Understandability( {selectedKGs} ){
+function Understandability( {selectedKGs, setSelectedKGs} ){
     const [underData, setUnderData] = useState(null);
     const [underChart, setUnderChart] = useState(null);
     const [toggleSwitch, setToggleSwitch] = useState(null);
@@ -196,7 +196,7 @@ function Understandability( {selectedKGs} ){
     return(
         <div>
             <div className='d-flex'>
-                <QualityBar selectedKGs={selectedKGs}/>
+                <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
                     {underData && (
                         <div className='w-100 p-3'>
                             <Form.Check
