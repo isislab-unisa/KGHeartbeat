@@ -157,15 +157,20 @@ async function searchKG(keywords){
       {
         $group: {
           _id: '$kg_id',
-          kg_name: { $first: '$kg_name' }
+          kg_name: { $first: '$kg_name' },
+          Trust: { $first : '$Trust' }  
         }
       },
       {
         $project: {
           _id: 0,
           kg_id: '$_id',
-          kg_name: 1
+          kg_name: 1,
+          Believability: { $arrayElemAt: ["$Trust.Believability", 0] } 
         }
+      },
+      {
+        $limit: 50
       }
     ]).toArray();
     

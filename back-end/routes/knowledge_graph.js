@@ -16,8 +16,9 @@ router.route('/').get((req, res) => {
             $project: {
                 _id: 0,
                 kg_id: 1,
-                kg_name: 1
-            }
+                kg_name: 1,
+                Believability: { $arrayElemAt: ["$Trust.Believability", 0] }  
+             }
         }
     ];
     req.db.collection('quality_analysis_data').aggregate(pipeline).toArray().then(result => {

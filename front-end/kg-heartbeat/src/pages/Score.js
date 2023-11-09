@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import QualityBar from '../components/QualityBar';
 import { base_url } from '../api';
 import axios from 'axios';
-import { trasform_to_series, get_analysis_date, trasform_toies_stacked, score_to_series, score_series_multiple_kgs, initialize_score_map, recalculate_score} from '../utils';
+import { get_analysis_date, score_to_series, score_series_multiple_kgs, initialize_score_map, recalculate_score} from '../utils';
 import Form from 'react-bootstrap/Form';
 import CalendarPopup from '../components/CalendatPopup';
 import { find_target_analysis } from '../utils';
@@ -12,7 +12,6 @@ import SolidGauge from '../components/SolidGauge';
 import MaterialTable from '../components/MaterialTable';
 import Slider from '../components/Slider';
 import Button from 'react-bootstrap/Button';
-import { set } from 'date-fns';
 
 const score = 'Score'
 
