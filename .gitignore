@@ -166,3 +166,4 @@ manual_db_insert.py
 .vscode
 .*
 Dockerfile
+update_db.sh
