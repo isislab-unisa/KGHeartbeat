@@ -25,9 +25,9 @@ def full_csv():
             csv_reader = csv.DictReader(csv_file)
             for rows in csv_reader:
 
-                age = ''
+                age = 'Creation date'
                 try:
-                    rows['Creation date']
+                    rows[age]
                 except KeyError:
                     age = 'Age of data'
 
