@@ -25,6 +25,12 @@ def full_csv():
             csv_reader = csv.DictReader(csv_file)
             for rows in csv_reader:
 
+                age = ''
+                try:
+                    rows['Creation date']
+                except KeyError:
+                    age = 'Age of data'
+
                 kg_id = rows['KG id']
                 data = {
                     "kg_id" : kg_id,
@@ -41,7 +47,7 @@ def full_csv():
                     "Trust": [{"Reputation" : {'pageRank' : rows['PageRank']}}, 
                             {"Believability" : {'title' : rows['KG name'], 'description' : rows['Description'], 'URI' : rows['Dataset URL'], 'reliableProvider': rows['Is on a trusted provider list'],'trustValue' : rows['Trust value']}}, 
                             {"Verifiability" : {'vocabularies' : rows['Vocabularies'], 'authorQ' : rows['Author (query)'], 'authorM' : rows['Author (metadata)'], 'contributor' : rows['Contributor'], 'publisher' : rows['Publisher'], 'sources' : rows['Sources'],'sign' : rows['Signed']}}],
-                    "Dataset dynamicity" : [{"Currency" : {'creationDate' : rows['Creation date'], 'modificationDate' : rows['Modification date'], 'percentageUpData' : rows['Percentage of data updated'], 'timePassed' : rows['Time elapsed since last modification'], 'historicalUp' : rows['Historical updates']}}, 
+                    "Dataset dynamicity" : [{"Currency" : {'creationDate' : rows[age], 'modificationDate' : rows['Modification date'], 'percentageUpData' : rows['Percentage of data updated'], 'timePassed' : rows['Time elapsed since last modification'], 'historicalUp' : rows['Historical updates']}}, 
                                             {"Volatility" : {'frequency' : rows['Dataset update frequency']}}],
                     "Contextual": [{"Completeness" : {'numTriples' : rows[' Number of triples'], 'numTriplesL': rows['Number of triples linked'], 'interlinkingC' : rows['Interlinking completeness']}}, 
                                 {"Amount of data" : {'numTriplesM' : rows[' Number of triples (metadata)'], 'numTriplesQ' : rows['Number of triples (query)'], 'numEntities' : rows['Number of entities'], 'numProperty' : rows['Number of property'], 'entitiesRe' : rows['Number of entities counted with regex']}}],
