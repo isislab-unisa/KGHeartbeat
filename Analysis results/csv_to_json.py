@@ -60,7 +60,7 @@ def full_csv():
                     "Extra": {"sparql_link" : rows['SPARQL endpoint URL'], "rdf_dump_link": rows['URL for download the dataset'], "external_links": rows['External links']}
                 }
                 
-                with open(kg_id + ' ' + filename + '.json','w') as jsonFile:
+                with open('json_files/' + kg_id + ' ' + filename + '.json','w') as jsonFile:
                     jsonFile.write(json.dumps(data, indent=4))
 
 def splitted_csv():
