@@ -110,4 +110,4 @@ def splitted_csv():
                     continue
             
 
-splitted_csv()
+full_csv()

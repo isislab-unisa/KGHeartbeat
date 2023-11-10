@@ -12,3 +12,5 @@ services:
 
     ports:
      - '27017-27019:27017-27019'
+
+    restart: always
