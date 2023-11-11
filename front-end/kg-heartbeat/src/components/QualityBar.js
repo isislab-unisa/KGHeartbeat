@@ -1,6 +1,5 @@
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import ListGroup from 'react-bootstrap/ListGroup';
 import { HashLink as Link } from 'react-router-hash-link';
 import RemoveImg from '../img/remove.png'
 import { useNavigate } from 'react-router-dom';
@@ -24,20 +23,21 @@ function QualityBar({selectedKGs, setSelectedKG}) {
     <NavDropdown title="Availability" id="nav-dropdown">
         <NavDropdown.Item eventKey="4.1"><Link to="/pages/Availability#sparql" className='quality-link'>SPARQL endpoint</Link></NavDropdown.Item>
         <NavDropdown.Item eventKey="4.2"><Link to="/pages/Availability#rdfdump" className='quality-link'>RDF dump</Link></NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item eventKey="4.3">Another action</NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.2"><Link to="/pages/Availability#rdfdump" className='quality-link'>Derefereaceability of the URI</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.2"><Link to="/pages/Availability#rdfdump" className='quality-link'>Inactive links</Link></NavDropdown.Item>
     </NavDropdown>
     <NavDropdown title="Licensing" id="nav-dropdown">
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Licensing" className='quality-link'>Machine-redeable license</Link></NavDropdown.Item>
-        <NavDropdown.Item eventKey="4.6">Another action</NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Licensing" className='quality-link'>Human-redeable license</Link></NavDropdown.Item>
     </NavDropdown>
     <NavDropdown title="Interlinking" id="nav-dropdown">
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Interlinking" className='quality-link'>Degree of connection</Link></NavDropdown.Item>
-        <NavDropdown.Item eventKey="4.6">Another action</NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Interlinking" className='quality-link'>Clustering coefficient</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Interlinking" className='quality-link'>Centrality</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Interlinking" className='quality-link'>Number of same as chains</Link></NavDropdown.Item>
     </NavDropdown>
     <NavDropdown title="Security" id="nav-dropdown">
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Security" className='quality-link'>Access to data is secure</Link></NavDropdown.Item>
-        <NavDropdown.Item eventKey="4.6">Another action</NavDropdown.Item>
     </NavDropdown>
     <NavDropdown title="Performance" id="nav-dropdown">
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Performance" className='quality-link'>Low latency</Link></NavDropdown.Item>
@@ -46,17 +46,21 @@ function QualityBar({selectedKGs, setSelectedKG}) {
     <NavDropdown title="Accuracy" id="nav-dropdown">
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Accuracy" className='quality-link'>Empty annotation labels</Link></NavDropdown.Item>
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Accuracy" className='quality-link'>White space in annotation</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Accuracy" className='quality-link'>Datatype consistency</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Accuracy" className='quality-link'>Functional property violations</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Accuracy" className='quality-link'>Inverse functional violation</Link></NavDropdown.Item>
     </NavDropdown>
     <NavDropdown title="Consistency" id="nav-dropdown">
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Consistency" className='quality-link'>Entities as members of disjoint classes</Link></NavDropdown.Item>
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Consistency" className='quality-link'>Misplaced classes or properties </Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Accuracy" className='quality-link'>Use of members of deprecated classes or properties</Link></NavDropdown.Item>
     </NavDropdown>
     <NavDropdown title="Conciseness" id="nav-dropdown">
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Conciseness" className='quality-link'>Intensional conciseness</Link></NavDropdown.Item>
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Conciseness" className='quality-link'>Extensional conciseness</Link></NavDropdown.Item>
     </NavDropdown>
     <NavDropdown title="Reputation" id="nav-dropdown">
-        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Reputation" className='quality-link'>PageRank</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/Reputation" className='quality-link'>Reputation of the dataset</Link></NavDropdown.Item>
     </NavDropdown>
     <NavDropdown title="Believability" id="nav-dropdown">
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/Believability" className='quality-link'>Meta-information about the indentity of information provider</Link></NavDropdown.Item>
@@ -84,6 +88,7 @@ function QualityBar({selectedKGs, setSelectedKG}) {
     </NavDropdown>
     <NavDropdown title="Representational-conciseness" id="nav-dropdown">
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/RepresentationalConciseness" className='quality-link'>Keeping URI short</Link></NavDropdown.Item>
+        <NavDropdown.Item eventKey="4.5"><Link to="/pages/RepresentationalConciseness" className='quality-link'>Re-use of exsisting terms</Link></NavDropdown.Item>
     </NavDropdown>
     <NavDropdown title="Representational-consistency" id="nav-dropdown">
         <NavDropdown.Item eventKey="4.5"><Link to="/pages/RepresentationalConsistency" className='quality-link'>Re-use of existing vocabularies</Link></NavDropdown.Item>
