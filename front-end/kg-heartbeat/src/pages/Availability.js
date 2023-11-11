@@ -85,9 +85,7 @@ function Availability({ selectedKGs, setSelectedKGs}) {
 				<QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
 				{availabilityData && (
 				<div className='w-100 p-3'> 
-          <span id="sparql"></span>
 					{sparlq_chart}
-          <span id="rdfdump"></span>
           {rdfDumpChart}
           {/*uriDefChart*/}
           {inactiveTab}
