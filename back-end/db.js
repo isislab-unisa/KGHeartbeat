@@ -183,5 +183,27 @@ async function searchKG(keywords){
   }
 }
 
+async function find_selected_analysis(kg_ids,start_date,end_date,quality_categories){
+  if (!Array.isArray(kg_ids))
+    kg_ids = [kg_ids]
+  try{
+    const result = await dbInstance.collection('quality_analysis_data').find(
+      { 'kg_id': { $in : kg_ids},
+        'analysis_date' : {$gte: start_date, $lte: end_date}
+      },
+      {
+          sort: { kg_name: 1, analysis_date: 1}
+      },
+    ).toArray();
 
-module.exports = {connectToMongoDB, find_single_data, find_data_over_time, searchKG, find_score_over_time, find_extra_data};
+    return result
+    
+  } catch (error) {
+    console.error(error)
+
+    return []
+  }
+}
+
+
+module.exports = {connectToMongoDB, find_single_data, find_data_over_time, searchKG, find_score_over_time, find_extra_data, find_selected_analysis};
