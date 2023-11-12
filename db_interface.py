@@ -82,7 +82,11 @@ class DBinterface():
             "Extra":{"sparql_link" : kg_quality.extra.endpointUrl,"rdf_dump_link" : kg_quality.extra.downloadUrl, "external_links": ExternalLink.getListExLinks(kg_quality.interlinking.externalLinks)}
         }
         print(obj_to_store)
-        result = self.collection.insert_one(obj_to_store)
-        self.client.close()
 
-        return result
+        try:
+            result = self.collection.insert_one(obj_to_store)
+            self.client.close()
+            return result
+        except:
+            self.client.close()
+            return
