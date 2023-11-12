@@ -498,4 +498,25 @@ function recalculate_score(score_data,selectedKGs,score_weights,max_value){
     return personalized_score
 }
 
-export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data, trasform_to_series_compl, trasform_rep_conc_to_series, trasform_rep_conc_to_series_multiple, create_percentage_label_series,extract_most_recent,add_believability_and_amount,add_amount,set_message_availability,score_to_series, score_series_multiple_kgs, recalculate_score, initialize_score_map};
+function get_selected_dimension(dimensions_map){
+    let selected_dimensions = [];
+    for(let key in dimensions_map){
+        if(parseFloat(dimensions_map[key]) > 0){
+            if(key === 'repConc')
+                selected_dimensions.push('representational-conciseness');
+            else if(key === 'rep-cons')
+                selected_dimensions.push('representational-consistency');
+            else if(key === 'under')
+                selected_dimensions.push('understandability');
+            else if(key === 'interp')
+                selected_dimensions.push('interpretability');
+            else if(key === 'vers')
+                selected_dimensions.push('versatility');
+            else
+                selected_dimensions.push(key)
+        }
+    }
+    return selected_dimensions
+}
+
+export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data, trasform_to_series_compl, trasform_rep_conc_to_series, trasform_rep_conc_to_series_multiple, create_percentage_label_series,extract_most_recent,add_believability_and_amount,add_amount,set_message_availability,score_to_series, score_series_multiple_kgs, recalculate_score, initialize_score_map, get_selected_dimension};

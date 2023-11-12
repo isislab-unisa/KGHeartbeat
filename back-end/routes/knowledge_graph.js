@@ -69,7 +69,7 @@ router.route('/export_analysis').post((req,res) => {
                             for(let k = 0; k<dimension_in_category.length; k++){
                                 for(key in dimension_in_category[k]){
                                     for(let u = 0; u<quality_dimensions.length; u++){
-                                        if(key === quality_dimensions[u]){
+                                        if(key.toLowerCase() === quality_dimensions[u].toLowerCase()){
                                             new_obj[key] = dimension_in_category[k][key]
                                             new_results.push(new_obj)
                                         }

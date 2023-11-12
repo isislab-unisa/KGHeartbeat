@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import QualityBar from '../components/QualityBar';
 import { base_url } from '../api';
 import axios from 'axios';
-import { get_analysis_date, score_to_series, score_series_multiple_kgs, initialize_score_map, recalculate_score} from '../utils';
+import { get_analysis_date, score_to_series, score_series_multiple_kgs, initialize_score_map, recalculate_score, get_selected_dimension} from '../utils';
 import Form from 'react-bootstrap/Form';
 import CalendarPopup from '../components/CalendatPopup';
 import { find_target_analysis } from '../utils';
@@ -12,6 +12,8 @@ import SolidGauge from '../components/SolidGauge';
 import MaterialTable from '../components/MaterialTable';
 import Slider from '../components/Slider';
 import Button from 'react-bootstrap/Button';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const score = 'Score'
 
@@ -51,6 +53,9 @@ function Score( { selectedKGs, setSelectedKGs} ){
     const [personalizedScoreData, setPersonalizedScoreData] = useState(null);
     const [personalizedScoreChart,setPersonalizedScoreChart] = useState(null);
     const [analysisSelected,setAnalysisSelected] = useState(null)
+    const [calendarRange, setCalendarRange] = useState(null);
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(null);
 
     useEffect(() => {
         async function fetchData() {
@@ -162,6 +167,55 @@ function Score( { selectedKGs, setSelectedKGs} ){
         setSelectedDate(converted_date);
     }
 
+    const handleExportButton = async () => {
+        let arrayIDs = selectedKGs.map((item) => item.id);
+        const selected_dimensions = get_selected_dimension(score_weights);
+        console.log(selected_dimensions)
+        setCalendarRange(true)
+        
+        if(startDate !== null && endDate != null){
+            let start_date_parsed = new Date(startDate)
+            let year = start_date_parsed.getFullYear();
+            let month = (start_date_parsed.getMonth() + 1).toString().padStart(2,'0');
+            let day = start_date_parsed.getDate().toString().padStart(2,'0');
+            start_date_parsed = `${year}-${month}-${day}`;
+
+            let end_date_parsed = new Date(endDate)
+            year = end_date_parsed.getFullYear();
+            month = (end_date_parsed.getMonth() + 1).toString().padStart(2,'0');
+            day = end_date_parsed.getDate().toString().padStart(2,'0');
+            end_date_parsed = `${year}-${month}-${day}`;
+
+            const request_body = {
+                id : arrayIDs,
+                dimensions: selected_dimensions,
+                start_date: start_date_parsed,
+                end_date: end_date_parsed,
+            }
+            console.log(request_body)
+            const response = await axios.post(`${base_url}knowledge_graph/export_analysis`,request_body, {responseType: 'blob'});
+            const fileUrl = window.URL.createObjectURL(new Blob([response.data], { type: 'text/csv' }));
+            const link = document.createElement('a');
+            link.href = fileUrl;
+            link.setAttribute('download', 'analysis_data.csv'); 
+            document.body.appendChild(link);
+            link.click();
+
+            document.body.removeChild(link);
+            setCalendarRange(false)
+            setStartDate(new Date())
+            setEndDate(null)
+        }
+    }
+
+    const onChangeRange = (dates) => {
+        const [start, end] = dates;
+        setStartDate(start);
+        setEndDate(end);
+        console.log(start)
+        console.log(end)
+    };
+
     const handleSliderChange = (new_value,id) => {
         
         switch(id){
@@ -183,7 +237,7 @@ function Score( { selectedKGs, setSelectedKGs} ){
                 break;
             case 'perf':
                 setSliderPerf(new_value);
-                score_weights['preformance'] = new_value
+                score_weights['performance'] = new_value
                 break;
             case 'acc':
                 setSliderAcc(new_value);
@@ -231,19 +285,19 @@ function Score( { selectedKGs, setSelectedKGs} ){
                 break;
             case 'rep-cons':
                 setSliderRepCons(new_value);
-                score_weights['repCons'] = new_value
+                score_weights['rep-cons'] = new_value
                 break;
             case 'under':
                 setSliderUnder(new_value);
-                score_weights['underst'] = new_value
+                score_weights['under'] = new_value
                 break;
             case 'interp':
                 setSliderInterp(new_value);
-                score_weights['interpretability'] = new_value
+                score_weights['interp'] = new_value
                 break;
             case 'vers':
                 setSliderVers(new_value);
-                score_weights['versatility'] = new_value
+                score_weights['vers'] = new_value
                 break;
             default:
         }
@@ -303,6 +357,22 @@ function Score( { selectedKGs, setSelectedKGs} ){
                     {scoreData && (
                         <div className='w-100 p-3'>
                             <Button className='mb-2' variant={buttonColor} onClick={handleClickBtn}>{buttonLabel}</Button>
+                            <Button className='mb-2' variant="btn btn-outline-success" onClick={handleExportButton}>Export analysis to csv</Button>
+                            {calendarRange && (
+                                <>
+                                <p>Select the date range before, then re-click on the "Export analysis to csv" button </p>
+                            <DatePicker
+                                    selected={defaultDate}
+                                    onChange={onChangeRange}
+                                    startDate={startDate}
+                                    endDate={endDate}
+                                    includeDates={availableDates}
+                                    selectsRange
+                                    selectsDisabledDaysInRange
+                                    inline
+                                />
+                            </>
+                            )}
                             {personalizeScoreButton ? (
                                 <div className="container mt-2 mb-3">
                                     <div className="row">
