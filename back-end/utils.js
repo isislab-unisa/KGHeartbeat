@@ -1,16 +1,19 @@
 function flat_data(quality_data,quality_dimensions){
+  for(let i = 0; i<quality_dimensions.length; i++){
+    quality_dimensions[i] = quality_dimensions[i].charAt(0).toUpperCase() + quality_dimensions[i].slice(1);
+  }
     const flatData = quality_data.map(entry => {
-        const flatEntry = { ...entry }; // Copia dell'oggetto esistente
-        // Appiattire l'oggetto Availability
+        const flatEntry = { ...entry }; 
+  
         for(let i = 0; i<quality_dimensions.length; i++){
             if (flatEntry[quality_dimensions[i]]) {
                 for (const key in flatEntry[quality_dimensions[i]]) {
                     flatEntry[`${quality_dimensions[i]}_${key}`] = flatEntry[quality_dimensions[i]][key];
                 }
-                delete flatEntry[quality_dimensions[i]]; // Rimuovi l'oggetto Availability originale
+                delete flatEntry[quality_dimensions[i]]; 
             }
         }
-        // Puoi ripetere lo stesso processo per gli altri oggetti nidificati
+        
 
         return flatEntry;
     });
