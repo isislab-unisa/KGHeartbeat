@@ -963,13 +963,23 @@ def getAllProperty(url):
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
     PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    SELECT DISTINCT ?p
+    SELECT DISTINCT ?o
     WHERE {
-    { ?s ?p rdf:Property}
+    { ?o a rdf:Property}
     UNION
-    {?s ?p owl:DatatypeProperty}
+    {?o a owl:DatatypeProperty}
     UNION
-    {?s ?p skos:Property}
+    {?o a skos:Property}
+    UNION
+    {?o a owl:DatatypeProperty}
+    UNION
+    {?o a owl:AnnotationProperty}
+    UNION
+    {?o a owl:OntologyProperty}
+    UNION
+  	{?o a rdfs:subPropertyOf}
+  	UNION
+  	{?o a rdfs:Property}
     }
     ''') 
     sparql.setTimeout(300)
@@ -1357,7 +1367,7 @@ def getUris(url):
     FILTER(isIRI(?s))
     }
     ORDER BY RAND()
-    LIMIT 5000
+    LIMIT 100
     ''')
     sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
