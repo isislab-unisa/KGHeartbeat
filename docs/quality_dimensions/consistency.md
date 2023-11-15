@@ -35,20 +35,30 @@ For this metric we have to check if there is any class (declared like this in th
 ```sql
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-SELECT DISTINCT ?p
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+SELECT DISTINCT ?o
 WHERE {
-{ ?s ?p rdf:Property}
+{ ?o a rdf:Property}
 UNION
-{?s ?p owl:DatatypeProperty}
+{?o a owl:DatatypeProperty}
 UNION
-{?s ?p skos:Property}
+{?o a skos:Property}
+UNION
+{?o a owl:DatatypeProperty}
+UNION
+{?o a owl:AnnotationProperty}
+UNION
+{?o a owl:OntologyProperty}
+UNION
+{?o a rdfs:subPropertyOf}
+UNION
+{?o a rdfs:Property}
 }
 ```
 Then with the following algorithm we calculate the number of triples with this problem
 
 <p align="center">
-    <img src="../img/alg4.png" width="590">
+    <img src="../img/alg5.png" width="590">
 </p>
 
 In the end, the following formula allow us to quantize the metric:
@@ -69,7 +79,7 @@ WHERE {?s rdf:type owl:Class}
 With the following algorithm instead we count the number of triples that have this problem.
 
 <p align="center">
-    <img src="../img/alg5.png" width="590">
+    <img src="../img/alg4.png" width="590">
 </p>
 
 Finally, the following formula help us to quantize the metric (where $T_{KG}$ is the set of all triples in the KG):

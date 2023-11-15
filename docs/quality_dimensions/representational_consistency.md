@@ -19,4 +19,8 @@ SELECT DISTINCT ?o
 WHERE {?s rdf:type ?o}
 ```
 
-Then we search every term founded on the Linked Open Vocabularies, to check if is present or not (if yes this mean that is considered a standard term). At the end of the analysis of all the terms, a value of 1 will be assigned if there aren't new terms defined, 0 otherwise. Even in this case, a list of all new terms declared is still maintained
+Then we search every term founded on the Linked Open Vocabularies, to check if is present or not (if yes this mean that is considered a standard term). At the end of the analysis of all the terms, we use the following formula to quantize the metric:
+
+$$
+m_{newTerms} = 1.0 - \frac{numNewTerms}{totalTermsInTheKG}
+$$

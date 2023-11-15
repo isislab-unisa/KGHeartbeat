@@ -61,7 +61,7 @@ UNION
 Once we have obtained the $numLabel$ value we apply the following formula to quantize the metric:
 
 $$
-m_{label} = \frac{numLabel}{T_{KG}} * 100
+m_{label} = \frac{numLabel}{|T_{KG}|} * 100
 $$
 
 #### **Presence of examples**

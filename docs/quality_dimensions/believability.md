@@ -32,7 +32,7 @@ The presence in a list of reliable providers is verified by recovering the keywo
 there is also the one relating to the provider. Then, the list is traversed and each value is compared with a list of providers deemed reliable. Since there is still no a list of reliable provider in the LOD panorama, we build this list by including the most well-known providers in the panorama of LOD. The list can be seen in the following table and is not to be considered exhaustive and definitive.
 <table>
     <tr>
-        <th>Provider</td>
+        <th>Provider</th>
     </tr>
     <tr>
         <td>Wikipedia</td>
