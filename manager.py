@@ -12,7 +12,14 @@ from OutputCSV import OutputCSV
 from score import Score
 import utils
 import gc
-from db_interface import DBinterface
+
+useDB = False
+try : 
+    import pymongo
+    from db_interface import DBinterface
+    useDB = True
+except: 
+    useDB = False
 
 try: #GET THE CONFIGURATION FILE AND CHEK IF IT IS VALID
     here = os.path.dirname(os.path.abspath(__file__))
@@ -91,12 +98,10 @@ for i in range(len(toAnalyze)):
     csv = OutputCSV(kg,toAnalyze)
     csv.writeRow(filename)
     print(f"KG score: {kg.extra.score}")
-    mongo_interface = DBinterface()
-    mongo_interface.insert_quality_data(kg,score)
+    if(useDB == True):
+        mongo_interface = DBinterface()
+        mongo_interface.insert_quality_data(kg,score)
     del csv
     del kg
     gc.collect()
     #print(kg.getQualityKG()) #PRINT THE KG QUALITY ON THE COMAND LINE
-
-#CREATING NEW CSV FOR OUTPUT WITH JS
-#OutputCSV.split(toAnalyze)

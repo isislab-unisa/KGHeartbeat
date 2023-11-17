@@ -1,12 +1,20 @@
-import pymongo
 from datetime import date
 from ExternalLink import ExternalLink
 import utils
+import os
+from dotenv import load_dotenv
+
+useDB = False
+try: 
+    import pymongo
+    load_dotenv()
+    DB_CONNECTION_STRING = os.getenv("MONGO_DB_CONNECTION_STRING")
+except:
+    DB_CONNECTION_STRING = ''
 
 class DBinterface():
     def __init__(self):
-        #TODO: use environment variable to construct the connection string
-        self.client = pymongo.MongoClient("mongodb://gabrieleT:KGHeartbeat2023@host.docker.internal:27017")
+        self.client = pymongo.MongoClient(DB_CONNECTION_STRING)
         self.db = self.client["KGHeartbeatDB"]
         self.collection = self.db['quality_analysis_data'] 
     
