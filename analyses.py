@@ -1629,7 +1629,7 @@ def analyses(idKG,analysis_date):
         security = Security(errorMessage,errorMessage)
         rConciseness = RepresentationalConciseness(errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage)
         rConsistency = RepresentationalConsistency(errorMessage,errorMessage)
-        understendability = Understendability(errorMessage,'-',errorMessage,errorMessage,example)
+        understendability = Understendability(errorMessage,'-',errorMessage,errorMessage,example,nameKG,description,sourcesC.web)
         interpretability = Interpretability(errorMessage,errorMessage)
         interlinking = Interlinking(degree,clusteringCoefficient,centrality,errorMessage,exLinksObj)
         currency = Currency(errorMessage,errorMessage,'-','-','-')
@@ -1673,7 +1673,7 @@ def analyses(idKG,analysis_date):
         triplesO = []
         uriListS = []
         logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
-        extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUriCount,triplesO,0,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,0,errorMessage,offlineDump,urlV,voidStatus,errorMessage,errorMessage,errorMessage,errorMessage)
+        extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUriCount,triplesO,0,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,0,errorMessage,offlineDump,urlV,voidStatus,errorMessage,errorMessage,errorMessage,errorMessage,0)
 
     KGQ = KnowledgeGraph(availability,currency,versatility,security,rConciseness,licensing,performance,amount,volatility,interlinking,consistency,reputation,believability,verifiability,completeness,rConsistency,understendability,interpretability,conciseness,accuracy,extra)
 
