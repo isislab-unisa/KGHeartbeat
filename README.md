@@ -1,5 +1,15 @@
 # KGHeartbeat
-**Credits**: Gabriele Tuozzo, Maria Angela Pellegrino.
+KGHeartbeat is a
+- KGHeartbeat
+    - Qaulity metrics covered
+    - Examples
+    - License
+
+- How To Use KGHeartbeat?
+    - Dependencies
+    - Input configuration
+    - Results
+
 ## Introduction
 Python application that automatically analyzes the quality of Knowledge Graphs available on LODCloud and DataHUB. The **quality categories** analyzed by the application are:
 - Accessibility

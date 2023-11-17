@@ -164,3 +164,5 @@ Analysis results/json_files
 Analysis results/splitted
 manual_db_insert.py
 .vscode
+Dockerfile
+.devcontainer
