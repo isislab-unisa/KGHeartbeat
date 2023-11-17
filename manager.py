@@ -66,11 +66,6 @@ except FileNotFoundError:
     pickle.dump(graph,outfile) #STORE IT ON DISK
     outfile.close()
 
-#SAVING SUBGRAPH AS JSON TO VIEW IT IN JS
-subG = Graph.getSubgraph(graph,toAnalyze)
-Graph.storeAsJSON(subG)
-Graph.storeEdges(graph,toAnalyze)
-
 #PREPARING THE CSV FILE IN OUTPUT
 filename = date.today()
 filename = str(filename)
@@ -83,7 +78,7 @@ except ValueError:
     pass
 
 for i in range(len(toAnalyze)):
-    kg = analyses.analyses(toAnalyze[i])
+    kg = analyses.analyses(toAnalyze[i],filename)
     score = Score(kg,20)
     totalScore = score.getWeightedDimensionScore(1)
     totalScore = "%.3f"%totalScore
@@ -100,5 +95,3 @@ for i in range(len(toAnalyze)):
 #CALCULATION OF THE NORMALIZED SCORE
 OutputCSV.normalizeScore(filename)
 
-#CREATING NEW CSV FOR OUTPUT WITH JS
-OutputCSV.split(toAnalyze)

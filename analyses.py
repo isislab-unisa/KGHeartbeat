@@ -53,9 +53,11 @@ import ssl
 import score
 from score import Score
 import os
+import logging
 
-def analyses(idKG):
 
+def analyses(idKG,analysis_date):
+    
     utils.skipCheckSSL() #IGNORE THE ERROR  [SSL: CERTIFICATE_VERIFY_FAILED] 
     available = False
     isHTML = False
@@ -67,13 +69,41 @@ def analyses(idKG):
 
     metadata = Aggregator.getDataPackage(idKG)
     nameKG = Aggregator.getNameKG(metadata)
-    accessUrl = Aggregator.getSPARQLEndpoint(idKG) 
+    accessUrl = Aggregator.getSPARQLEndpoint(idKG)
 
-    print(accessUrl)
-    print('\n')
+    #Set log format
+    formatter = logging.Formatter('%(asctime)s | %(levelname)s | %(kg_id)s | %(kg_name)s | %(message)s')
+    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s | %(levelname)s | %(kg_id)s | %(kg_name)s | %(message)s')
+
+    #Set format also for the root logger, to follow the same format also for the log on console
+    root_logger = logging.getLogger()
+    root_logger.handlers[0].setFormatter(formatter) 
+    
+    #Logger configuration
+    logger = logging.getLogger('KG analysis')
+    logger.setLevel(logging.DEBUG)
+    
+    #Handler to write log on file
+    file_handler = logging.FileHandler(f'./Analysis results/{analysis_date}.log')
+    file_handler.setLevel(logging.DEBUG)
+    file_handler.setFormatter(formatter)
+
+    #Handler to write log on console
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(logging.DEBUG)
+    console_handler.setFormatter(formatter)
+    
+    logger.handlers = []
+    logger.addHandler(file_handler)
+
+    kg_info = {"kg_id": f"{idKG}", "kg_name" : f"{nameKG}" }
+    logger.info('Analysis started...',extra=kg_info)
+
+    logger.info(f"SPARQL endpoint link: {accessUrl}",extra=kg_info)
 
     if accessUrl == False: #CHECK IF THE SPARQL END POINT LINK IS IN THE METADATA
-        endpoint = 'Endpoint absent in the metadata'
+        endpoint = '-'
+        logger.warning('SPARQL endpoint missing in the metadata',extra=kg_info)
         absent = True
         available = False
     else:
@@ -84,6 +114,7 @@ def analyses(idKG):
                 result = query.checkEndPoint(newUrl)
                 if isinstance(result,bytes):
                      endpoint = 'Warning the result of endpoint is HTML'
+                     logger.warning('The result from the SPARQL endpoint is not structured data (HTML data returned)',extra=kg_info)
                      available = False
                 else:
                     endpoint = 'Available'
@@ -93,15 +124,19 @@ def analyses(idKG):
                 endpoint = 'Available'
                 available = True
         except(HTTPError,URLError,SPARQLExceptions.EndPointNotFound,socket.gaierror) as response: #IF THERE IS ONE OF THESE EXCEPTION, ENDPOINT IS OFFLINE
-            endpoint = response
+            endpoint = '-'
+            logger.warning('Availability | SPARQL endpoint availability | ' + response,extra=kg_info)
             available = False
         except SPARQLExceptions.EndPointInternalError as response: #QUERY NOT SUPPORTED
-            endpoint = response
+            endpoint = '-'
+            logger.warning('Availability | SPARQL endpoint availability | ' + response,extra=kg_info)
         except(json.JSONDecodeError, SPARQLExceptions.QueryBadFormed,expat.ExpatError) as response: # NO AUTOMATICALLY (?), Error decoding the response
-            endpoint = response
+            endpoint = '-'
+            logger.warning('Availability | SPARQL endpoint availability | ' + response,extra=kg_info)
             available = False
         except(SPARQLExceptions.Unauthorized) as response: #RESTRICTED ACCCESS TO THE ENDPOINT
-            endpoint = 'restricted access to the endpoint'
+            endpoint = 'Restricted access to the endpoint'
+            logger.warning('Availability | SPARQL endpoint availability | ' + response,extra=kg_info)
             available = False
             restricted = True
         except:
@@ -119,14 +154,18 @@ def analyses(idKG):
                     available = True
                     endpoint = 'Available'
         except(HTTPError,URLError,SPARQLExceptions.EndPointNotFound,socket.gaierror) as response: 
+            logger.warning('Availability | SPARQL endpoint availability | ' + response,extra=kg_info)
             available = False
-        except SPARQLExceptions.EndPointInternalError as response: 
-            endpoint = response
+        except SPARQLExceptions.EndPointInternalError as response:
+            logger.warning('Availability | SPARQL endpoint availability | ' + response,extra=kg_info) 
+            endpoint = '-'
         except(json.JSONDecodeError, SPARQLExceptions.QueryBadFormed,expat.ExpatError) as response:
-            endpoint = response
+            logger.warning('Availability | SPARQL endpoint availability | ' +response,extra=kg_info)
+            endpoint = '-'
             available = False
         except(SPARQLExceptions.Unauthorized) as response:
             endpoint = 'restricted access to the endpoint'
+            logger.warning('Availability | SPARQL endpoint availability | ' + response,extra=kg_info)
             available = False
             restricted = True
         except:
@@ -148,17 +187,21 @@ def analyses(idKG):
                 accessUrl = newUrl
                 available = True
                 endpoint = 'Available'
-                print(accessUrl)
+                logger.info(f"SPARQL endpoint link: {accessUrl}",extra=kg_info)
         except(HTTPError,URLError,SPARQLExceptions.EndPointNotFound,socket.gaierror) as response: #IF THERE IS ONE OF THESE EXCEPTION, ENDPOINT IS OFFLINE
-            endpoint = response
+            endpoint = '-'
+            logger.warning('Availability | SPARQL endpoint availability | ' + response,extra=kg_info)
             available = False
         except SPARQLExceptions.EndPointInternalError as response: #QUERY NOT SUPPORTED
-            endpoint = response
+            endpoint = '-'
+            logger.warning('Availability | SPARQL endpoint availability | ' + response,extra=kg_info)
         except(json.JSONDecodeError, SPARQLExceptions.QueryBadFormed,expat.ExpatError) as response: # NO AUTOMATICALLY (?), Error decoding the response
-            endpoint = response
+            endpoint = '-'
+            logger.warning('Availability | SPARQL endpoint availability | ' + response,extra=kg_info)
             available = False
         except(SPARQLExceptions.Unauthorized) as response: #RESTRICTED ACCCESS TO THE ENDPOINT
-            endpoint = 'restricted access to the endpoint'
+            endpoint = 'Restricted access to the endpoint'
+            logger.warning('Availability | SPARQL endpoint availability | ' + response,extra=kg_info)
             available = False
             restricted = True
         except:
@@ -191,7 +234,6 @@ def analyses(idKG):
     urlV = utils.getUrlVoID(otResources)
     voidStatus = ''
     if isinstance(urlV,str):
-        print(urlV)
         try:
             voidFile = VoIDAnalyses.parseVoID(urlV)
             void = True
@@ -210,19 +252,20 @@ def analyses(idKG):
             voidFile = VoIDAnalyses.parseVoID(urlV)
             void = True
             voidStatus = 'VoID file available'
-            print(urlV)
+            logger.info(f"VoID file link: {urlV}",extra=kg_info)
         except:
             try:
                 voidFile = VoIDAnalyses.parseVoIDTtl(urlV)
                 void = True
                 voidStatus = 'VoID file available'
+                logger.info(f"VoID file link: {urlV}",extra=kg_info)
             except:
                 void = False
                 voidStatus = 'VoID file offline'
     if not isinstance(urlV,str):
         voidStatus = 'VoID file absent'
     
-    print('SPARQL endpoint availability: %s'%available)
+    logger.info(f"SPARQL endpoint availability: {available}",extra=kg_info)
 
     if available == True:    #IF ENDOPOINT IS ONLINE WE GET ALL NECESSARY INFORMATION FROM THE ENDPOINT
 
@@ -231,7 +274,8 @@ def analyses(idKG):
         try:
             allTriples = query.getAllTriplesSPO(accessUrl)
         except:
-            allTriples = 'Could not process formulated query on indicated endpoint'
+            logger.warning('Impossible to recover all the triples in the KG',extra=kg_info)
+            allTriples = '-'
         
         #GET LATENCY (MIN-MAX-AVERAGE)
         try:
@@ -269,7 +313,8 @@ def analyses(idKG):
             medianL = medianL.replace('.',',')
            
         except urllib.error.HTTPError as response:
-            responseStr = str(response)
+            logger.warning(response,extra=kg_info)
+            responseStr = '-'
             av = responseStr
             minL = responseStr
             maxL = responseStr
@@ -278,7 +323,8 @@ def analyses(idKG):
             percentile75L = responseStr
             medianL = responseStr
         except SPARQLExceptions.QueryBadFormed:
-            responseStr = 'Query Not Supported'
+            logger.warning('Performance | Latency | Query bad formed',extra=kg_info)
+            responseStr = '-'
             av = responseStr
             minL = responseStr
             maxL = responseStr
@@ -287,7 +333,8 @@ def analyses(idKG):
             percentile75L = responseStr
             medianL = responseStr
         except SPARQLExceptions.EndPointInternalError:
-            responseStr = 'Endpoint internal error'
+            logger.warning('Performance | Latency | SPARQL endpoint internal error',extra=kg_info)
+            responseStr = '-'
             av = responseStr
             minL = responseStr
             maxL = responseStr
@@ -295,8 +342,9 @@ def analyses(idKG):
             percentile25L = responseStr
             percentile75L = responseStr
             medianL = responseStr
-        except:
-            responseStr = 'Could not process formulated query on indicated endpoint'
+        except Exception as error:
+            logger.error('Performance | Latency | ' + error,extra=kg_info)
+            responseStr = '-'
             av = responseStr
             minL = responseStr
             maxL = responseStr
@@ -308,14 +356,14 @@ def analyses(idKG):
         try:
             triplesQuery = query.getNumTripleQuery(accessUrl)   
         except urllib.error.HTTPError as response:
-            responseStr = str(response)
-            triplesQuery = responseStr
+            logger.warning(f'Error while counting the number of triples: {response}',extra=kg_info)
+            triplesQuery = '-'
         except(SPARQLExceptions.QueryBadFormed,SPARQLExceptions.EndPointInternalError) as response:
-            response = str(response)
-            response = response.rstrip()
-            triplesQuery = response
-        except:
-            triplesQuery = 'Could not process formulated query on indicated endpoint.'
+            logger.warning(f'Error while counting the number of triples: {response}',extra=kg_info)
+            triplesQuery = '-'
+        except Exception as error:
+            logger.warning(f'Error while counting the number of triples: {error}',extra=kg_info)
+            triplesQuery = '-'
 
         #CHECK IF RESULTS FROM SPARQL ENDPOINT IS LIMITED
         if isinstance(allTriples,list) and isinstance(triplesQuery,int):
@@ -333,8 +381,9 @@ def analyses(idKG):
             objectList = []
             triplesO = query.getAllTypeO(accessUrl)
             newTermsD = LOVAPI.searchTermsList(triplesO)
-        except:
-            newTermsD = 'Could not process formulated query on indicated endpoint'
+        except Exception as error:
+            logger.warning(f'Representational-consistency | Reuse of terms | {error}',extra=kg_info)
+            newTermsD = '-'
 
         #GET THE LANGUAGE OF KG
         try:
@@ -342,24 +391,24 @@ def analyses(idKG):
         except urllib.error.HTTPError as response:
             languages = response
         except (SPARQLExceptions.QueryBadFormed,SPARQLExceptions.EndPointNotFound) as response:
-            response = str(response)
-            response = response.rstrip()
-            languages = response
-        except:
-            languages = 'Could not process formulated query on indicated endpoint.'
+            logger.warning(f'Versatility | Languages | Query not supported or endpoint not found',extra=kg_info)
+            languages = '-'
+        except Exception as error:
+            logger.warning(f'Versatility | Languages | {error}',extra=kg_info)
+            languages = '-'
 
         #GET THE NUMBER OF THE BLANK NODE
         try:
             numBlankNode = query.numBlankNode(accessUrl)  
         except urllib.error.HTTPError as response:
-            responseStr = str(response)
-            numBlankNode = responseStr.rstrip().strip
-        except (SPARQLExceptions.QueryBadFormed,SPARQLExceptions.EndPointInternalError) as response:
-            response = str(response)
-            response = response.rstrip().strip()
-            numBlankNode = response
-        except:
-            numBlankNode = 'Could not process formulated query on indicated endpoint.'
+            logger.warning(f'Interpretability | Number of blank nodes | HTTP error',extra=kg_info)
+            numBlankNode = '-'  
+        except (SPARQLExceptions.QueryBadFormed,SPARQLExceptions.EndPointInternalError) as response:    
+            logger.warning(f'Interpretability | Number of blank nodes | {response}',extra=kg_info)
+            numBlankNode = '-'
+        except Exception as error:
+            logger.warning(f'Interpretability | Number of blank nodes | {error}',extra=kg_info)
+            numBlankNode = '-'
         
         #CHECK IF SPARQL ENDPOINT USE HTTPS
         try:
@@ -369,18 +418,20 @@ def analyses(idKG):
                 isSecure = True  
         except:  #IF WE GET A SPARQL QUERY ON URL WITH HTTPS AND GET AN EXCEPTION THEN ENDPOINT ISN'T AVAILABLE ON HTTPS
             isSecure = False
-        print(isSecure)
+
         #CHECK IF IT USES RDF STRUCTURES    
         try:
             RDFStructures = query.checkRDFDataStructures(accessUrl)
-        except:
-            RDFStructures = 'Could not process formulated query on indicated endpoint.'
+        except Exception as error:
+            logger.warning(f'Representational-conciseness | Use of RDF structures | {error}',extra=kg_info)
+            RDFStructures = '-'
         
         #CHECK IF THERE ARE DIFFERENT SERIALISATION FORMATS
         try:
             formats = query.checkSerialisationFormat(accessUrl)   #CHECK IF THE LINK IS ONLINE
-        except:
-            formats = 'Could not process formulated query on indicated endpoint.'
+        except Exception as error:
+            logger.warning(f'Versatility | Serialization formats | {error}',extra=kg_info)
+            formats = '-'
         
         #CHECK IF IN THE DATASET IS INDICATED THE LINK TO DONWLOAD THE DATASET
         try:
@@ -393,44 +444,50 @@ def analyses(idKG):
                 offlineDump = offlineDump + urlsInactive
             else:
                 availableDump = 'absent'
-        except:
-            availableDump = 'Could not process formulated query on indicated endpoint.'
+        except Exception as error:
+            logger.warning(f'Availability | RDF dump| {error}',extra=kg_info)
+            availableDump = '-'
         
         #CHEK IF THERE IS AN INDICATION OF A LICENSE MACHINE REDEABLE
         try:
             licenseMr = query.checkLicenseMR2(accessUrl)
             if isinstance(licenseMr,list):
                 licenseMr = licenseMr[0]
-        except:
-            licenseMr = 'Could not process formulated query on indicated enpdoint'
+        except Exception as error:
+            licenseMr = '-'
+            logger.warning(f'Licensing | Machine-redeable license | {error}',extra=kg_info)
         
         #CHECK IF THERE IS AN INDICATION OF A LICENSE HUMAN REDEABLE
         try:
             licenseHr = query.checkLicenseHR(accessUrl)
-        
         except (SPARQLExceptions.QueryBadFormed,SPARQLExceptions.EndPointInternalError) as response:
-            licenseHr = response
-        except:
-            licenseHr = 'Could not process formulated query on indicated enpdoint'
-        
+            licenseHr = '-'
+            logger.warning(f'Licensing | Human-redeable license | {response}',extra=kg_info)
+        except Exception as error:
+            licenseHr = '-'
+            logger.warning(f'Licensing | Human-redeable license | {error}',extra=kg_info)
+
         #CHECK NUMBER OF PROPERTY
         try:
             numProperty = query.numberOfProperty(accessUrl)
-        except:
-            numProperty = 'Could not process formulated query on indicated enpdoint'
+        except Exception as error:
+            numProperty = '-'
+            logger.warning(f'Amount of data | Number of properties | {error}',extra=kg_info)
         
         #GET NUMBER OF TRIPLES WITH LABEL
         try:
             numLabel = query.getNumLabel(accessUrl)
-        except:
-            numLabel = 'Could not process formulated query on indicated enpdoint'
+        except Exception as error:
+            numLabel = '-'
+            logger.warning(f'Amount of data | Number of labels | {error}',extra=kg_info)
         
         #GET THE REGEX OF THE URLs USED
         regex = []
         try:
             regex = query.checkUriRegex(accessUrl)
-        except:
-            regex = 'Could not process formulated query on indicated enpdoint'
+        except Exception as error:
+            logger.warning(f'Understandability | URIs regex | {error}',extra=kg_info)
+            regex = '-'
         
         #CHECK IF IS INDICATED A URI SPACE INSTEAD OF A REGEX AND WE TRAFORM IT TO REGEX
         try:    
@@ -439,26 +496,29 @@ def analyses(idKG):
                 for i in range(len(pattern)): 
                     newRegex = utils.trasforrmToRegex(pattern[i])
                     regex.append(newRegex)
-        except:
-            pattern = 'Could not process formulated query on indicated enpdoint'
+        except Exception as error:
+            logger.warning(f'Understandability | URIs regex | {error}',extra=kg_info)
+            pattern = '-'
         
         #GET THE VOCABULARIES OF THE KG
         try:
             vocabularies = query.getVocabularies(accessUrl)
-        except:
-            vocabularies = 'Could not process formulated query on indicated enpdoint'
+        except Exception as error:
+            logger.warning(f'Understandability | Vocabularies | {error}',extra=kg_info)
+            vocabularies = '-'
         
         #GET THE AUTHOR OF THE DATASET WITH A QUERY
         try:
             authorQ = query.getCreator(accessUrl)
-        except:
-            authorQ = 'Could not process formulated query on indicated enpdoint'
+        except Exception as error:
+            logger.warning(f'Verifiability | Verifiying publisher information | {error}',extra=kg_info)
+            authorQ = '-'
         
         #GET THE PUBLISHERS OF THE DATASET
         try:
             publisher = query.getPublisher(accessUrl)
-        except:
-            publisher = 'Could not process formulated query on indicated enpdoint'
+        except Exception as error:
+            logger.warning(f'Verifiability | Verifiying publisher information | {error}',extra=kg_info)
         
         #GET THE THROUGHPUT
         try:
@@ -481,8 +541,9 @@ def analyses(idKG):
             standardDeviationT = standardDeviationT.replace('.',',')
             averageThroughput = str(averageThroughput)
             averageThroughput = averageThroughput.replace('.',',')
-        except:
-            errorResponse = 'Could not process formulated query on indicated enpdoint'
+        except Exception as error:
+            logger.warning(f'Performance | High Throughput | {error}',extra=kg_info)
+            errorResponse = '-'
             minThroughput = errorResponse
             maxThroughput = errorResponse
             averageThroughput = errorResponse
@@ -503,8 +564,9 @@ def analyses(idKG):
             standardDeviationTNoOff = standardDeviationT.replace('.',',')
             averageThroughputNoOff = str(averageThroughput)
             averageThroughputNoOff = averageThroughput.replace('.',',')
-        except:
-            errorResponseNoOff = 'Could not process formulated query on indicated enpdoint'
+        except Exception as error:
+            logger.warning(f'Performance | High Throughput | {error}',extra=kg_info)
+            errorResponseNoOff = '-'
             minThroughputNoOff = errorResponseNoOff
             maxThroughputNoOff = errorResponseNoOff
             averageThroughputNoOff = errorResponseNoOff
@@ -513,8 +575,9 @@ def analyses(idKG):
        #GET NUMBER OF ENTITIES
         try:
             numEntities = query.getNumEntities(accessUrl)
-        except:
-            numEntities = 'Could not process formulated query on indicated enpdoint'
+        except Exception as error:
+            logger.warning(f'Amount of data | Scope | {error}',extra=kg_info)
+            numEntities = '-'
 
         #GET NUMBER OF ENTITIES WITH REGEX
         try:
@@ -523,9 +586,11 @@ def analyses(idKG):
                 for i in range(len(regex)):
                     entitiesRe = entitiesRe + query.getNumEntitiesRegex(accessUrl,regex[i])
             else:
-                entitiesRe = 'insufficient data'
-        except Exception as e:
-             entitiesRe = e
+                entitiesRe = '-'
+                logger.warning(f'Amount of data | Scope | Insufficient data',extra=kg_info)
+        except Exception as error:
+            logger.warning(f'Amount of data | Scope | {error}',extra=kg_info)
+            etitiesRe = '-'
         
         if not(isinstance(entitiesRe,int)) or entitiesRe == 0: #IF CONTROL WITH SPARQL ENDPOINT FAILS WE COUNT THE ENTITY BY RECOVERING ALL THE TRIPLES
             try:
@@ -542,29 +607,35 @@ def analyses(idKG):
                         entitiesRe = str(entitiesRe)
                         entitiesRe = entitiesRe + f" (out of {len(allTriples )} triples considered)"
                     else:
-                        entitiesRe = 'Insufficient data'
+                        logger.warning(f'Amount of data | Scope | Insufficient data',extra=kg_info)
+                        entitiesRe = '-'
                 else:
-                    entitiesRe = 'Insufficient data'
-            except Exception as e:
-                entitiesRe = str(e)
+                    entitiesRe = '-'
+                    logger.warning(f'Amount of data | Scope | Insufficient data',extra=kg_info)
+            except Exception as error:
+                logger.warning(f'Amount of data | Scope | {error}',extra=kg_info)
+                entitiesRe = '-'
         
         #GET THE CONTRIBUTORS OF THE DATASET
         try:
             contributors = query.getContributors(accessUrl)
-        except:
-            contributors = 'Could not process formulated query on indicated enpdoint'
+        except Exception as error:
+            logger.warning(f'Verifiability | Verifiying publisher information | {error}',extra=kg_info)
+            contributors = '-'
         
         #GET THE NUMBER OF sameAs CHAINS
         try:
             numberSameAs = query.getSameAsChains(accessUrl)
-        except:
-            numberSameAs = 'Could not process formulated query on indicated enpdoint'
+        except Exception as error:
+            logger.warning(f'Interlinking | sameAs chains | {error}',extra=kg_info)
+            numberSameAs = '-'
         
         #GET THE DATASET UPDATE FREQUENCY
         try:
             frequency = query.getFrequency(accessUrl)
-        except:
-            frequency = 'Could not process formulated query on indicated enpdoint'
+        except Exception as error:
+            logger.warning(f'Volatility | Timeliness frequency | {error}',extra=kg_info)
+            frequency = '-'
         
         #GET THE CREATION DATE
         try:
@@ -574,8 +645,9 @@ def analyses(idKG):
         except:
             try:
                 creationDate = query.getCreationDate(accessUrl)
-            except:
-                creationDate = 'Could not process formulated query on indicated endpoint'
+            except Exception as error:
+                logger.warning(f'Currency | Age of data | {error}',extra=kg_info)
+                creationDate = '-'
 
         #GET THE LAST MODIFICATION DATE OF THE DATASET
         try:
@@ -585,8 +657,9 @@ def analyses(idKG):
         except:
             try:
                 modificationDate = query.getModificationDate(accessUrl)
-            except:
-                modificationDate = 'Could not process formulated query on indicated endpoint'
+            except Exception as error:
+                logger.warning(f'Currency | Specification of the modification date of statements | {error}',extra=kg_info)
+                modificationDate = '-'
 
         #GET HISTORICAL UPDATES
         historicalUp = []
@@ -602,19 +675,21 @@ def analyses(idKG):
                     valueUp = f"{i}|{num}"
                     valueUp = valueUp.strip()
                     historicalUp.append(valueUp)                    
-        except Exception as e:
-            historicalUp = 'Could not process formulated query on indicated endpoint'
-            print(e)
+        except Exception as error:
+            logger.warning(f'Currency | Update history | {error}',extra=kg_info)
+            historicalUp = '-'
 
         #GET THE NUMBER OF TRIPLES UPDATED
         try:
             numTriplesUpdated = query.getNumUpdatedData(accessUrl,modificationDate)
-        except:
-            numTriplesUpdated = 'Could not process formulated query on indicated endpoint'
+        except Exception as error:
+            logger.warning(f'Currency | Number of triples updated | {error}',extra=kg_info)
+            numTriplesUpdated = '-'
 
         #URI LENGHT CALCULATION (SUBJECT)
         try:
             lenghtList = []
+            logger.info(f'Calculating the URIs length...',extra=kg_info)
             for i in range(len(allTriples)):
                 s = allTriples[i].get('s')
                 uri = s.get('value')
@@ -643,8 +718,9 @@ def analyses(idKG):
             medianLenghtS = medianLenghtS.replace('.',',')
             percentile25LenghtS = percentile25LenghtS.replace('.',',')
             percentile75LenghtS = percentile75LenghtS.replace('.',',')
-        except :
-            errorMessage = 'Could not process formulated query on indicated endpoint'
+        except Exception as error:
+            logger.warning(f'Representational-conciseness | Keeping URI short | {error}',extra=kg_info)
+            errorMessage = '-'
             standardDeviationL = errorMessage
             avLenghts = errorMessage
             minLenghtS = errorMessage
@@ -685,8 +761,9 @@ def analyses(idKG):
             medianLenghtO = medianLenghtO.replace('.',',')
             percentile25LenghtO = percentile25LenghtO.replace('.',',')
             percentile75LenghtO = percentile75LenghtO.replace('.',',')
-        except:
-            errorMessage = 'Could not process formulated query on indicated endpoint'
+        except Exception as error:
+            logger.warning(f'Representational-conciseness | Keeping URI short | {error}',extra=kg_info)
+            errorMessage = '-'
             uriListO = errorMessage
             avLenghtsO = errorMessage
             standardDeviationLO = errorMessage
@@ -728,8 +805,9 @@ def analyses(idKG):
             percentile25LenghtP = percentile25LenghtP.replace('.',',')
             percentile75LenghtP = percentile75LenghtP.replace('.',',')
 
-        except:
-            errorMessage = 'Could not process formulated query on indicated endpoint'
+        except Exception as error:
+            logger.warning(f'Representational-conciseness | Keeping URI short | {error}',extra=kg_info)
+            errorMessage = '-'
             uriListP = errorMessage
             avLenghtsP = errorMessage
             standardDeviationLP = errorMessage
@@ -757,14 +835,16 @@ def analyses(idKG):
                     result = LOVAPI.findVocabulary(vocab)
                     if result == False:
                         newVocab.append(vocab)
-        except:
-            newVocab = 'Could not process formulated query on indicated endpoint'
+        except Exception as error:
+            logger.warning(f'Representational-consistency | re-use of existing terms | {error}',extra=kg_info)
+            newVocab = '-'
         
         #CHECK USE OF DEPRECATED CLASSES AND PROPERTIES
         try:
             deprecated = query.getDeprecated(accessUrl)
-        except:
-            deprecated = 'Could not process formulated query on indicated endpoint'
+        except Exception as error:
+            logger.warning(f'Consistency| Use of members of deprecated classes or properties| {error}',extra=kg_info)
+            deprecated = '-'
         
         #CHECK FOR FUNCTIONAL PROPERTIES WITH INCONSISTENT VALUE
         try:
@@ -783,7 +863,8 @@ def analyses(idKG):
                     if subject1 == subject2 and obj1 != obj2:
                         violationFP.append(triple)
             FPvalue = 1.0 - (len(violationFP)/triplesQuery)
-        except:
+        except Exception as error:
+            logger.warning(f'Accuracy | Functional property violation | {error}',extra=kg_info)
             FPvalue = '-'
         
         #CHECK FOR INVALID USAGE OF INVERSE-FUNCTIONAL PROPERTIES
@@ -803,7 +884,8 @@ def analyses(idKG):
                     if obj1 == obj2 and subject1 != subject2:
                         violationIFP.append(triple)
             IFPvalue = 1.0 - (len(violationIFP)/triplesQuery)
-        except:
+        except Exception as error:
+            logger.warning(f'Accuracy | Inverse functional property violation | {error}',extra=kg_info)
             IFPvalue = '-'
         
         #CHECK IF THERE ARE EMPTY ANNOTATION AS LABEL/COMMENT
@@ -817,8 +899,9 @@ def analyses(idKG):
                     if obj == '':
                         emptyAnnotation = emptyAnnotation + 1
             emptyAnnotation = 1.0 - (emptyAnnotation/len(labels))
-        except:
-            emptyAnnotation = 'Could not process formulated query on indicated endpoint'
+        except Exception as error:
+            logger.warning(f'Accuracy | Empty annotation labels | {error}',extra=kg_info)
+            emptyAnnotation = '-'
         
         #CHECK IF TRIPLES HAVE A WHITE SPACE ANNOTATION PROBLEM
         try:
@@ -829,8 +912,9 @@ def analyses(idKG):
                     if obj != obj.strip():
                         wSP.append(obj)
             numWSP = 1.0 - (len(wSP)/len(labels))
-        except:
-            numWSP = 'Could not process formulated query on indicated endpoint'
+        except Exception as error:
+            logger.warning(f'Accuracy | White space in annotation | {error}',extra=kg_info)
+            numWSP = '-'
 
         #CHECK IF TRIPLES HAVE A MALFORMED DATA TYPE LITERALS PROBLEM
         try:
@@ -849,15 +933,18 @@ def analyses(idKG):
                                     malformedTriples.append(obj)
                 numMalformedTriples = 1.0 - (len(malformedTriples)/len(allTriples))
             else:
-                numMalformedTriples = 'Could not process formulated query on indicated endpoint'
-        except:
-            numMalformedTriples = 'Could not process formulated query on indicated endpoint'
+                logger.warning(f'Accuracy | Datatype consistency| Error executing query on SPARQL endpoint ',extra=kg_info)
+                numMalformedTriples = '-'
+        except Exception as error:
+            logger.warning(f'Accuracy | Datatype consistency| {error}',extra=kg_info)
+            numMalformedTriples = '-'
 
         #CHECK FOR ENTITIES MEMBER OF A DISJOINT CLASS
         try:
             numDisjoint = query.getDisjoint(accessUrl)
-        except:
-            numDisjoint = 'Could not process formulated query on indicated endpoint'
+        except Exception as error:
+            logger.warning(f'Consistency | Entities as members of disjoint classes | {error}',extra=kg_info)
+            numDisjoint = '-'
         
         #CHECK FOR TRIPLES WITH MISPLACED PROPERTY PROBLEM
         classes = []
@@ -877,8 +964,9 @@ def analyses(idKG):
                                 #misplacedProperty.append(p)
             else:
                 misplacedProperty = 'insufficient data'
-        except Exception as e:
-            misplacedProperty = e
+        except Exception as error:
+            logger.warning(f'Consistency | Misplaced properties | {error}',extra=kg_info)
+            misplacedProperty = '-'
 
         #CHECK FOR TRIPLES WITH MISPLACED CLASS PROBLEM
         properties = []
@@ -914,11 +1002,14 @@ def analyses(idKG):
                         misplacedClass.append(valueS)
                         found = False
             else:
-                misplacedClass = 'insufficient data'
-        except TimeoutError:
-            misplacedClass = 'Timeout'
-        except:
-            misplacedClass = 'Could not process formulated query on indicated endpoint'
+                logger.warning(f'Consistency | Misplaced classes | Impossible to recover all information to calculate this metric',extra=kg_info)
+                misplacedClass = '-'
+        except TimeoutError as error:
+            logger.warning(f'Consistency | Misplaced classes | {error}',extra=kg_info)
+            misplacedClass = '-'
+        except Exception as error:
+            logger.warning(f'Consistency | Misplaced classes | {error}',extra=kg_info)
+            misplacedClass = '-'
         
         #CHECK THE TRIPLES WITH ONTOLOGY HIJACKING PROBLEM
         allType = []
@@ -932,9 +1023,11 @@ def analyses(idKG):
                 else:
                     hijacking = False
             else:
-                hijacking = 'Impossible to retrieve the terms defined in the dataset'
-        except:
-            hijacking = 'Could not process formulated query on indicated endpoint'
+                logger.warning(f'Consistency | Ontology hijacking | Impossible to retrieve the terms defined in the dataset',extra=kg_info)
+                hijacking = '-'
+        except Exception as error:
+            logger.warning(f'Consistency | Ontology hijacking | {error}',extra=kg_info)
+            hijacking = '-'
         
         #CHECK USE OF UNDEFINED CLASS
         try:
@@ -959,8 +1052,9 @@ def analyses(idKG):
                         toSearch.append(s)
                 found = False
             undClasses = LOVAPI.searchTermsList(toSearch)
-        except:
-            undClasses = 'Could not process formulated query on indicated endpoint'
+        except Exception as error:
+            logger.warning(f'Consistency | Invalid usage of undefined classes and properties | {error}',extra=kg_info)
+            undClasses = '-'
         
         #CHECK USE OF UNDEFINED PROPERTY
         try:
@@ -983,8 +1077,9 @@ def analyses(idKG):
                         toSearch.append(predicate)
                 found = False
             undProperties = LOVAPI.searchTermsList(toSearch)
-        except :
-            undProperties = 'Could not process formulated query on indicated endpoint'
+        except Exception as error:
+            logger.warning(f'Consistency | Invalid usage of undefined classes and properties | {error}',extra=kg_info)
+            undProperties = '-'
 
                 #CALCULATION OF THE EXTENSIONAL CONCISENESS
         try:
@@ -1002,9 +1097,7 @@ def analyses(idKG):
                         triple = subject + predicate + object
                         tripleList.append(triple)
                     bloomF = BloomFilter(len(tripleList),0.05)
-                    print("Size of bit array:{}".format(bloomF.size))
-                    print("False positive Probability:{}".format(bloomF.fp_prob))
-                    print("Number of hash functions:{}".format(bloomF.hash_count))
+                    logger.info(f'Bloom filter parameter: \n -Size of bit array: {str(bloomF.size)}\n -False positive Probability:{str(bloomF.fp_prob)}\n -Number of hash functions:{str(bloomF.hash_count)}')
                     for i in range(len(tripleList)):
                         found = bloomF.check(tripleList[i])
                         if found == False:
@@ -1017,13 +1110,17 @@ def analyses(idKG):
                         exC = str(exC)
                         exC = exC + f" (out of {len(allTriples)} triples considered)"
                     else:
-                        exC = 'insufficient data'
+                        logger.warning(f'Conciseness | Extensional conciseness | Insufficient data to compute the metric',extra=kg_info)
+                        exC = '-'
                 else:
-                    exC = 'No triples retrieved from the endpoint'
+                    logger.warning(f'Consistency | Invalid usage of undefined classes and properties | No triples retrieved from the endpoint',extra=kg_info)
+                    exC = '-'
             else:
-                exC = 'insufficient data'
-        except:
-            exC = 'Could not process formulated query on indicated endpoint'
+                logger.warning(f'Conciseness | Extensional conciseness | Insufficient data to compute the metric',extra=kg_info)
+                exC = '-'
+        except Exception as error:
+            logger.warning(f'Conciseness | Extensional conciseness | {error}',extra=kg_info)
+            exC = '-'
         
         #CALCULATION OF INTENSIONAL CONCISENESS
         try:
@@ -1051,9 +1148,11 @@ def analyses(idKG):
                 intC = str(intC)
                 intC = intC + f" (out of {count} triples considered)"
             else:
-                intC = 'insufficient data'
-        except:
-            intC = 'Could not process formulated query on indicated endpoint'
+                logger.warning(f'Conciseness | Intensional conciseness | Insufficient data to compute the metric',extra=kg_info)
+                intC = '-'
+        except Exception as error:
+            logger.warning(f'Conciseness | Intensional conciseness | {error}',extra=kg_info)
+            intC = '-'
         
         #CHECK IF THERE IS A SIGNATURE ON THE KG
         try:
@@ -1065,8 +1164,9 @@ def analyses(idKG):
                     signedKG = False
             else:
                 signedKG = False
-        except:
-            signedKG = 'Could not process formulated query on indicated endpoint'
+        except Exception as error:
+            logger.warning(f'Verifiability | Verifying usage of digital signatures | {error}',extra=kg_info)
+            signedKG = '-'
 
         #CHECK THE URIs DEFERENTIABILITY (TEST MADE ON 5000 TRIPLES SELECTED RANDOMLY)
         try:
@@ -1085,7 +1185,8 @@ def analyses(idKG):
             if uriCount > 0:        
                 defValue = defCount / uriCount
             else:
-                defValue = 'No uri retrieved from the endpoint'
+                logger.warning(f'Availability | Derefereaceability of the URI | No URIs retrieved from the endpoint',extra=kg_info)
+                defValue = '-'
         except: #IF QUERY FAILS (BECUASE SPARQL 1.1 IS NOT SUPPORTED) TRY TO CHECK THE DEFERETIABILITY BY FILTERING THE TRIPLES RECOVERED FOR OTHER CALCULATION (IF THEY ARE BEEN RECOVERED)
             try:
                 uriCount = 0
@@ -1104,21 +1205,27 @@ def analyses(idKG):
                 if uriCount > 0:
                     defValue = defCount / uriCount
                 else:
-                    defValue = 'No uris found'
-            except:
-                defValue = 'Could not process formulated query on indicated endpoint'
+                    logger.warning(f'Availability | Derefereaceability of the URI | No URIs retrieved from the endpoint',extra=kg_info)
+                    defValue = '-'
+            except Exception as error:
+                logger.warning(f'Availability | Derefereaceability of the URI | {error}',extra=kg_info)
+                defValue = '-'
                 
     #IF SPARQL ENDPOINT ISN'T AVAILABLE WE SKIP ALL TEST WITH THE SPARQL QUERY
     else:
         if restricted == True:
-            errorMessage = 'Restricted access to the endpoint'
+            errorMessage = '-'
+            logger.warning(f'Availability | Accessibility of the SPARQL endpoint | Restricted access to the endpoint, only metrics that can ben calculated with the metadata will be computed',extra=kg_info)
             accessUrl = ''
         elif isHTML == True:
             errorMessage = 'Warning the result of endpoint is HTML'
+            logger.warning(f"Availability | Accessibility of the SPARQL endpoint | The result format from the SPARQL endpoint aren't structured data, only metrics that can ben calculated with the metadata will be computed",extra=kg_info)
         elif absent == True:
-            errorMessage = 'endpoint absent'
+            errorMessage = '-'
+            logger.warning(f"Availability | Accessibility of the SPARQL endpoint | No SPARQL endpoint indicated, only metrics that can ben calculated with the metadata will be computed",extra=kg_info)
         else:
-            errorMessage = 'endpoint offline'
+            logger.warning(f"Availability | Accessibility of the SPARQL endpoint | SPARQL endpoint offline, only metrics that can ben calculated with the metadata will be computed",extra=kg_info)
+            errorMessage = '-'
 
     #GET THE LICENSE 
     license = Aggregator.getLicense(metadata)
@@ -1245,14 +1352,16 @@ def analyses(idKG):
                 result = LOVAPI.findVocabulary(vocab)
                 if result == False:
                     newVocab.append(vocab)
-    except:
-        newVocab = 'Could not process formulated query on indicated endpoint'
+    except Exception as error:
+        logger.warning(f"Representational-consistency | Re-use of existing terms | Impossible to recover the vocabularies in the KG",extra=kg_info)
+        newVocab = '-'
 
     #GET THE LANGUAGE OF THE KG FROM THE METADATA
     try:
         languageM = Aggregator.getExtrasLanguage(idKG)
-    except:
-        languageM = 'absent'
+    except Exception as error:
+        logger.warning(f"Versatility | Usage of multiple languages | {error}",extra=kg_info)
+        languageM = '-'
 
     #CHECK IF THE KG IS IN A LIST OF RELIABLE PROVIDERS
     try:
@@ -1262,8 +1371,9 @@ def analyses(idKG):
             believable = True
         else:
             believable = False
-    except:
-        believable = 'absent' 
+    except Exception as error:
+        logger.warning(f"Believability | Trust value | {error}",extra=kg_info)
+        believable = '-' 
 
     if sources == False:
         sourcesC = Sources('absent','absent','absent')
@@ -1328,9 +1438,11 @@ def analyses(idKG):
                 if numEntities > 0:
                     disjointValue = numDisjoint/numEntities
                 else:
-                    disjointValue = 'insufficient data'
-            except :
-                disjointValue = 'insufficient data'
+                    logger.warning(f"Consistency | Entities as members of disjoint classes | Insufficent data to compute the metric",extra=kg_info)
+                    disjointValue = '-'
+            except Exception as error:
+                logger.warning(f"Consistency | Entities as members of disjoint classes | {error}",extra=kg_info)
+                disjointValue = '-'
             
             if isinstance(disjointValue,str):
                 try:
@@ -1338,17 +1450,21 @@ def analyses(idKG):
                     if entitiesRe > 0:
                         disjointValue = numDisjoint/entitiesRe
                     else:
-                        disjointValue = 'insufficient data'
+                        logger.warning(f"Consistency | Entities as members of disjoint classes | Insufficent data to compute the metric",extra=kg_info)
+                        disjointValue = '-'
                 except :
-                    disjointValue = 'insufficient data'
+                    logger.warning(f"Consistency | Entities as members of disjoint classes | {error}",extra=kg_info)
+                    disjointValue = '-'
 
             if isinstance(classes,list) and isinstance(properties,list):
                 if len(classes) + len(properties) > 0 :
                     deprecatedV = 1.0 - (len(deprecated)/(len(classes) + len(properties)))
                 else:
-                    deprecatedV = 'insufficient data'
+                    logger.warning(f"Consistecy | Use of members of deprecated classes or properties | Insufficient data",extra=kg_info)
+                    deprecatedV = '-'
             else:
-                deprecatedV = 'insufficient data'
+                logger.warning(f"Consistecy | Use of members of deprecated classes or properties | Insufficient data",extra=kg_info)
+                deprecatedV = '-'
             
             if isinstance(triplesQuery,int):
                 if triplesQuery > 0:
@@ -1390,19 +1506,23 @@ def analyses(idKG):
                     if isinstance(undClasses,list):
                         undefCV = 1.0 - (len(undClasses)/triplesQuery)
                     else:
-                        undefCV = 'Unable to retrieve classes from the endpoint'
+                        undefCV = '-'
+                        logger.warning(f"Consistecy | Invalid usage of undefined classes and properties | Unable to retrieve classes from the endpoint",extra=kg_info)
                     if isinstance(undProperties,list):
                         undefPV = 1.0 - (len(undProperties)/triplesQuery)
                     else:
-                        undefPV = 'Unable to retrieve properties from the endpoint'
+                        undefPV = '-'
+                        logger.warning(f"Consistecy | Invalid usage of undefined classes and properties | Unable to retrieve properties from the endpoint",extra=kg_info)
                     if isinstance(misplacedClass,list):
                         mispCV = 1.0 - (len(misplacedClass)/triplesQuery)
                     else:
-                        mispCV = 'Unable to retrieve classes from the endpoint'
+                        logger.warning(f"Consistecy | Misplaced classes or properties | Unable to retrieve classes from the endpoint",extra=kg_info)
+                        mispCV = '-'
                     if isinstance(misplacedProperty,list):
                         mispPV = 1.0 - (len(misplacedProperty)/triplesQuery)
                     else:
-                        mispPV = 'unable to retrieve properties from the endpoint'
+                        logger.warning(f"Consistecy | Misplaced classes or properties | Unable to retrieve properties from the endpoint",extra=kg_info)
+                        mispPV = '-'
                     consistency = Consistency(deprecatedV,'insufficient data',mispPV,mispCV,hijacking,undefCV,undefPV)
                 else:
                     consistency = Consistency(deprecatedV,'insufficient data','insufficient data','insufficient data',hijacking,'insufficient data','insufficient data')
@@ -1419,9 +1539,11 @@ def analyses(idKG):
                 percentageUp = str(percentageUp)
                 percentageUp = percentageUp +"%"
             else:
-                percentageUp = 'insufficient data'
+                logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
+                percentageUp = '-'
         else:
-            percentageUp = 'insufficient data'
+            logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
+            percentageUp = '-'
         if isinstance(triplesQuery,int) and isinstance(triplesL,int) and triplesQuery > 0:
             iCompleteness = (triplesL/triplesQuery)
             iCompleteness = "%.2f"%iCompleteness
@@ -1452,9 +1574,11 @@ def analyses(idKG):
                 delta = (todayDate - modificationDate).days
                 currency = Currency(creationDate,modificationDate,percentageUp,delta,historicalUp)
             except ValueError:
-                currency = Currency(creationDate,modificationDate,percentageUp,'insufficient data',historicalUp)
+                logger.warning(f"Currency | Use of dates as the point in time of the last verification of a statement represented by dcterms:modified | Insufficient data to compute this metric",extra=kg_info)
+                currency = Currency(creationDate,modificationDate,percentageUp,'-',historicalUp)
         else:
-            currency = Currency(creationDate,modificationDate,percentageUp,'insufficien data',historicalUp)
+            logger.warning(f"Currency | Use of dates as the point in time of the last verification of a statement represented by dcterms:modified | Insufficient data to compute this metric",extra=kg_info)
+            currency = Currency(creationDate,modificationDate,percentageUp,'-',historicalUp)
     elif void == True:
         availability = Availability(errorMessage,availableDownload,availableDump,inactiveLink,errorMessage)
         performance = Performance(errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage)
@@ -1466,7 +1590,7 @@ def analyses(idKG):
         security = Security(errorMessage,errorMessage)
         rConciseness = RepresentationalConciseness(errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage)
         rConsistency = RepresentationalConsistency(newVocab,errorMessage)
-        understendability = Understendability(errorMessage,'insufficient data',regex,errorMessage,example)
+        understendability = Understendability(errorMessage,'-',regex,errorMessage,example)
         interpretability = Interpretability(errorMessage,errorMessage)
         interlinking = Interlinking(degree,clusteringCoefficient,centrality,errorMessage,exLinksObj)
         if isinstance(creationDate,str) and isinstance(modificationDate,str):
@@ -1479,9 +1603,11 @@ def analyses(idKG):
                 delta = (todayDate - modificationDate).days
                 currency = Currency(creationDate,modificationDate,'insufficient data',delta,'insufficient data')
             except ValueError:
-                currency = Currency(creationDate,modificationDate,'insufficient data','insufficient data','insufficient data')
+                logger.warning(f"Currency | Use of dates as the point in time of the last verification of a statement represented by dcterms:modified | {error}",extra=kg_info)
+                currency = Currency(creationDate,modificationDate,'-','-','-')
         else:
-            currency = Currency(creationDate,modificationDate,'insufficient data','insufficien data','insufficient data')
+            logger.warning(f"Currency | Use of dates as the point in time of the last verification of a statement represented by dcterms:modified | No triples with dcterms:modified predicate",extra=kg_info)
+            currency = Currency(creationDate,modificationDate,'-','-','-')
         consistency = Consistency(errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage)
         conciseness = Conciseness(errorMessage,errorMessage)
         accuracy = Accuracy(errorMessage,errorMessage,errorMessage,errorMessage,errorMessage)
@@ -1502,10 +1628,10 @@ def analyses(idKG):
         security = Security(errorMessage,errorMessage)
         rConciseness = RepresentationalConciseness(errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage)
         rConsistency = RepresentationalConsistency(errorMessage,errorMessage)
-        understendability = Understendability(errorMessage,'insufficient data',errorMessage,errorMessage,example)
+        understendability = Understendability(errorMessage,'-',errorMessage,errorMessage,example)
         interpretability = Interpretability(errorMessage,errorMessage)
         interlinking = Interlinking(degree,clusteringCoefficient,centrality,errorMessage,exLinksObj)
-        currency = Currency(errorMessage,errorMessage,'insufficient data','insufficien data','insufficient data')
+        currency = Currency(errorMessage,errorMessage,'-','-','-')
         consistency = Consistency(errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage)
         conciseness = Conciseness(errorMessage,errorMessage)
         accuracy = Accuracy(errorMessage,errorMessage,errorMessage,errorMessage,errorMessage)
@@ -1533,17 +1659,20 @@ def analyses(idKG):
                 if isinstance(numTriplesUpdated,int):
                     extra = Extra(idKG,accessUrl,downloadUrl,numTriplesUpdated,classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff) #EXTRA OBJ CONTAINS ALL INFORMATION FOR SCORE CALCULATION AND OTHER USEFUL INFORMATION
                 else:
-                    extra = Extra(idKG,accessUrl,downloadUrl,'insufficient data',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff)
+                    logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
+                    extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff)
             else:
                 uriListS = []
-                extra = Extra(idKG,accessUrl,downloadUrl,'insufficient data',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff)
+                logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
+                extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff)
     else:
         classes = []
         properties = []
         allUriCount = 0
         triplesO = []
         uriListS = []
-        extra = Extra(idKG,accessUrl,downloadUrl,'insufficient data',classes,properties,allUriCount,triplesO,0,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,0,errorMessage,offlineDump,urlV,voidStatus,errorMessage,errorMessage,errorMessage,errorMessage)
+        logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
+        extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUriCount,triplesO,0,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,0,errorMessage,offlineDump,urlV,voidStatus,errorMessage,errorMessage,errorMessage,errorMessage)
 
     KGQ = KnowledgeGraph(availability,currency,versatility,security,rConciseness,licensing,performance,amount,volatility,interlinking,consistency,reputation,believability,verifiability,completeness,rConsistency,understendability,interpretability,conciseness,accuracy,extra)
 

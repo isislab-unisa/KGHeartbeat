@@ -805,7 +805,7 @@ def getDateUpdates(url):
             return False
     else:
         return False
-
+@log_in_out
 def getNumUpdatedData(url,date):
     if date != False:
         sparql = SPARQLWrapper(url)
@@ -1158,7 +1158,7 @@ def getSign(url):
             return False
     except Exception as e:
         return e
-
+@log_in_out
 def getDlc(url):
     sparql = SPARQLWrapper(url)
     sparql.setQuery('''
@@ -1181,7 +1181,7 @@ def getDlc(url):
             return False
     except Exception as e:
         return e
-
+@log_in_out
 def countStruct(url): 
     sparql = SPARQLWrapper(url)
     sparql.setQuery("""
@@ -1228,7 +1228,7 @@ def countStruct(url):
     else:
         return False
 
-
+@log_in_out
 def getNumDlcBN(url):
     sparql = SPARQLWrapper(url)
     sparql.setQuery('''
