@@ -106,6 +106,3 @@ for i in range(len(toAnalyze)):
     gc.collect()
     #print(kg.getQualityKG()) #PRINT THE KG QUALITY ON THE COMAND LINE
 
-#CALCULATION OF THE NORMALIZED SCORE
-OutputCSV.normalizeScore(filename)
-
