@@ -636,7 +636,7 @@ def getNumberResultsLOV(jsonFile):
 
 def checkURI(uri):
     try:
-        r = requests.head(uri)
+        r = requests.head(uri,timeout=10)
         if r.status_code == 200:
             return True
         else:
