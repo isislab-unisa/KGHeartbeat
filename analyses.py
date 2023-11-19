@@ -1594,7 +1594,7 @@ def analyses(idKG,analysis_date):
         security = Security(errorMessage,errorMessage)
         rConciseness = RepresentationalConciseness(errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage)
         rConsistency = RepresentationalConsistency(newVocab,errorMessage)
-        understendability = Understendability(errorMessage,'-',regex,errorMessage,example)
+        understendability = Understendability(errorMessage,'-',regex,errorMessage,example,nameKG,description,sourcesC.web)
         interpretability = Interpretability(errorMessage,errorMessage)
         interlinking = Interlinking(degree,clusteringCoefficient,centrality,errorMessage,exLinksObj)
         if isinstance(creationDate,str) and isinstance(modificationDate,str):
