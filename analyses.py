@@ -1455,7 +1455,7 @@ def analyses(idKG,analysis_date):
                     else:
                         logger.warning(f"Consistency | Entities as members of disjoint classes | Insufficent data to compute the metric",extra=kg_info)
                         disjointValue = '-'
-                except :
+                except Exception as error:
                     logger.warning(f"Consistency | Entities as members of disjoint classes | {str(error)}",extra=kg_info)
                     disjointValue = '-'
 
