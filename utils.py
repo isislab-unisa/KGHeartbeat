@@ -23,6 +23,7 @@ import re
 import validators
 import shutil
 import urllib.request
+from urllib.parse import urlparse
 
 #PRINT THE METADATI OF A KG
 def printMetadatiKG(metadct):
@@ -636,12 +637,20 @@ def getNumberResultsLOV(jsonFile):
 
 def checkURI(uri):
     try:
-        r = requests.head(uri,timeout=10)
+        r = requests.head(uri,timeout=1)
         if r.status_code == 200:
             return True
         else:
             return False
     except: 
+        return False
+
+def validateURI(uri):
+    try:
+        uri = uri.strip()
+        result = urlparse(uri)
+        return bool(result.scheme) and bool(result.netloc)
+    except ValueError:
         return False
 
 def xmlToDict(results):

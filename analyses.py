@@ -696,7 +696,7 @@ def analyses(idKG,analysis_date):
             for i in range(len(allTriples)):
                 s = allTriples[i].get('s')
                 uri = s.get('value')
-                if utils.checkURI(uri) == True:
+                if utils.validateURI(uri) == True:
                     lenghtList.append(len(uri))  
             sumLenghts = sum(lenghtList)
             avLenghts = sumLenghts/len(lenghtList) 
@@ -739,7 +739,7 @@ def analyses(idKG,analysis_date):
             lenghtListO = []
             for i in range(len(uriListO)):
                 uriO = uriListO[i]
-                if utils.checkURI(uriO) == True:
+                if utils.validateURI(uriO) == True:
                     lenghtListO.append(len(uriO))
             sumLenghtsO = sum(lenghtListO)
             avLenghtsO = sumLenghtsO/len(lenghtListO) 
@@ -782,7 +782,7 @@ def analyses(idKG,analysis_date):
             lenghtListP = []
             for i in range(len(uriListP)):
                 uriP = uriListP[i]
-                if utils.checkURI(uriP) == True:
+                if utils.validateURI(uriP) == True:
                     lenghtListP.append(len(uriP))
             sumLenghtsP = sum(lenghtListP)
             avLenghtsP = sumLenghtsP/len(lenghtListP) 
@@ -898,7 +898,7 @@ def analyses(idKG,analysis_date):
             emptyAnnotation = 0
             for i in range(len(labels)):
                 obj = labels[i]
-                if utils.checkURI(obj) == False:
+                if utils.validateURI(obj) == False:
                     if obj == '':
                         emptyAnnotation = emptyAnnotation + 1
             emptyAnnotation = 1.0 - (emptyAnnotation/len(labels))
@@ -911,7 +911,7 @@ def analyses(idKG,analysis_date):
             wSP = []
             for i in range(len(labels)):
                 obj = labels[i]
-                if utils.checkURI(obj) == False:
+                if utils.validateURI(obj) == False:
                     if obj != obj.strip():
                         wSP.append(obj)
             numWSP = 1.0 - (len(wSP)/len(labels))
@@ -926,7 +926,7 @@ def analyses(idKG,analysis_date):
                 for i in range(len(allTriples)):
                     obj = allTriples[i].get('o')
                     value = obj.get('value')
-                    if utils.checkURI(value) == False:
+                    if utils.validateURI(value) == False:
                         dataType = obj.get('datatype')
                         if isinstance(dataType,str):
                             regex = utils.getRegex(dataType)
@@ -956,7 +956,7 @@ def analyses(idKG,analysis_date):
             classes = query.getAllClasses(accessUrl)
             if isinstance(classes,list):
                 for predicate in query.getAllPredicate(accessUrl):
-                    result = utils.checkURI(predicate)
+                    result = utils.validateURI(predicate)
                     if result == True:
                         classes.sort()
                         r = utils.binarySearch(classes,0,len(classes)-1,predicate)
@@ -984,7 +984,7 @@ def analyses(idKG,analysis_date):
                     valueO = o.get('value')
                     s = allTriples[i].get('s')
                     valueS = s.get('value')
-                    result = utils.checkURI(valueS)
+                    result = utils.validateURI(valueS)
                     if result == True:
                         r = utils.binarySearch(properties,0,len(properties)-1,valueS)
                         if r != -1:
@@ -993,7 +993,7 @@ def analyses(idKG,analysis_date):
                             #if valueS == properties[j]:
                                 #print(properties[j])
                                 #found = True
-                    resultO = utils.checkURI(valueO)
+                    resultO = utils.validateURI(valueO)
                     if found == False and resultO == True:
                         r2 = utils.binarySearch(properties,0,len(properties)-1,valueO)
                         if r2 != -1:
@@ -1050,7 +1050,7 @@ def analyses(idKG,analysis_date):
                         #found = True
                         #break
                 if found == False:
-                    result = utils.checkURI(s)
+                    result = utils.validateURI(s)
                     if result == True:
                         toSearch.append(s)
                 found = False
@@ -1075,7 +1075,7 @@ def analyses(idKG,analysis_date):
                         #found = True
                         #break
                 if found == False:
-                    result = utils.checkURI(predicate)
+                    result = utils.validateURI(predicate)
                     if result == True:
                         toSearch.append(predicate)
                 found = False
@@ -1100,7 +1100,7 @@ def analyses(idKG,analysis_date):
                         triple = subject + predicate + object
                         tripleList.append(triple)
                     bloomF = BloomFilter(len(tripleList),0.05)
-                    logger.info(f'Bloom filter parameter: \n -Size of bit array: {str(bloomF.size)}\n -False positive Probability:{str(bloomF.fp_prob)}\n -Number of hash functions:{str(bloomF.hash_count)}')
+                    logger.info(f'Bloom filter parameter: \n -Size of bit array: {str(bloomF.size)}\n -False positive Probability:{str(bloomF.fp_prob)}\n -Number of hash functions:{str(bloomF.hash_count)}',extra=kg_info)
                     for i in range(len(tripleList)):
                         found = bloomF.check(tripleList[i])
                         if found == False:
@@ -1177,10 +1177,10 @@ def analyses(idKG,analysis_date):
             uriCount = 0
             uris = query.getUris(accessUrl) #QUERY THAT GET 5000 RANDOM URI FROM THE ENDPOINT 
             for uri in uris:
-                if utils.checkURI(uri) == True:
+                if utils.validateURI(uri) == True:
                     uriCount = uriCount + 1
                     try:
-                        response = requests.get(uri,headers={"Accept":"application/rdf+xml"},stream=True)
+                        response = requests.get(uri,headers={"Accept":"application/rdf+xml"},stream=True,timeout=2)
                         if response.status_code == 200:
                             defCount = defCount +1
                     except:
@@ -1197,7 +1197,7 @@ def analyses(idKG,analysis_date):
                 for i in range(10):
                     s = allTriples[i].get('s')
                     value = s.get('value')
-                    if utils.checkURI(value):
+                    if utils.validateURI(value):
                         uriCount = uriCount + 1
                         try:
                             response = requests.get(value,headers={"Accept":"application/rdf+xml"},stream=True)
@@ -1370,6 +1370,7 @@ def analyses(idKG,analysis_date):
     try:
         providers = ['wikipedia','government','bioportal','bio2RDF','academic']
         keywords = Aggregator.getKeywords(idKG)
+        print(f'Keyewords: {keywords}')
         if any(x in keywords for x in providers):
             believable = True
         else:

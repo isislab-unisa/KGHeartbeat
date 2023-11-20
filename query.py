@@ -24,7 +24,7 @@ def checkEndPoint(url):
     WHERE {?s ?p ?o .}
     LIMIT 1
     """)
-    sparql.setTimeout(600) #10 minutes
+    sparql.setTimeout(300) #10 minutes
     result = sparql.query().convert()
     return result
 
@@ -37,7 +37,7 @@ def TPQuery(url,offset):
     LIMIT 1
     OFFSET %d
     """%offset)
-    sparql.setTimeout(600) #10 minutes
+    sparql.setTimeout(300) #10 minutes
     result = sparql.query().convert()
     return result
 
@@ -67,7 +67,7 @@ def testLatency(url):
         WHERE {?s ?p ?o .}
         LIMIT 1
         """)
-        sparql.setTimeout(180)
+        sparql.setTimeout(300)
         start = time.time()
         sparql.query()
         latencyValue = (time.time() - start)
@@ -152,7 +152,7 @@ def checkRDFDataStructures(url):
     }
     LIMIT 1
     """)
-    sparql.setTimeout(180) #5 minutes
+    sparql.setTimeout(300) #5 minutes
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -187,7 +187,7 @@ def checkSerialisationFormat(url):
     {?s dcat:mediaType ?o}
     }
     ''')
-    sparql.setTimeout(180)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -208,7 +208,7 @@ def checkDataDump(url):
     WHERE 
     {?s void:dataDump ?o}
     ''')
-    sparql.setTimeout(180)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -237,7 +237,7 @@ def checkLicenseMR(url): #PROBLEM ON http://lod.b3kat.de/sparql
     }
     LIMIT 1
     ''')
-    sparql.setTimeout(180)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -443,7 +443,7 @@ def checkUriRegex(url):
     {?s void:uriPattern ?o}
     }
     ''')
-    sparql.setTimeout(180)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -463,7 +463,7 @@ def checkUriPattern(url):
     WHERE
     {?s void:uriSpace ?o}
     ''')
-    sparql.setTimeout(180)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -482,7 +482,7 @@ def getVocabularies(url):
     SELECT DISTINCT ?o
     WHERE{?s void:vocabulary ?o }
     ''')
-    sparql.setTimeout(180)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -509,7 +509,7 @@ def getCreator(url):
     {?s foaf:maker ?o}
     }
     ''')
-    sparql.setTimeout(180)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -528,7 +528,7 @@ def getPublisher(url):
     SELECT DISTINCT ?o
     WHERE {?s dc:publisher ?o}
     ''')
-    sparql.setTimeout(180)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -547,7 +547,7 @@ def getNumEntities(url):
     SELECT ?triples
     WHERE {?s void:entities ?triples}
     ''')
-    sparql.setTimeout(180)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -568,7 +568,7 @@ def getNumEntitiesRegex(url,entityRe):
    FILTER(regex(?s,"%s"))
    }
     '''%entityRe)
-    sparql.setTimeout(600)
+    sparql.setTimeout(200)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -587,7 +587,7 @@ def getContributors(url):
     SELECT DISTINCT ?o
     WHERE {?s dcterms:contributor ?o.}
     ''')
-    sparql.setTimeout(180)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -608,7 +608,7 @@ def getSameAsChains(url):
     ?s owl:sameAs ?o
     }
     ''')
-    sparql.setTimeout(180)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -631,7 +631,7 @@ def getFrequency(url):
     {?s dcterms:Frequency ?o}
     }
     ''')
-    sparql.setTimeout(180)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -652,7 +652,7 @@ def getCreationDate(url):
     ORDER BY ASC(?o)
     LIMIT 1
     ''')
-    sparql.setTimeout(180)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -681,7 +681,7 @@ def getCreationDateMin(url):
     {?s dcterms:issued ?o }
     }
     ''')
-    sparql.setTimeout(180)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -710,7 +710,7 @@ def getModificationDate(url):
     ORDER BY ASC(?o)
     LIMIT 1
     ''')
-    sparql.setTimeout(180)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -743,7 +743,7 @@ def getModificationDateMax(url):
     {?s dcterms:modified ?o}
     }
     ''')
-    sparql.setTimeout(180)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -777,7 +777,7 @@ def getDateUpdates(url):
     {?s dcterms:modified ?o}
     }
     ''')
-    sparql.setTimeout(180)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     modificationDate = []
@@ -817,15 +817,15 @@ def getNumUpdatedData(url,date):
         FILTER regex(?o,'%s')
         }
         '''%date)
-    sparql.setTimeout(180)
-    sparql.setReturnFormat(JSON)
-    results = sparql.query().convert()
-    if isinstance(results,dict):
-        value = utils.getResultsFromJSONCountInt(results)
-        return value
-    elif isinstance(results,Document):
-        value = utils.getResultsFromXMLCount(results)
-        return value
+        sparql.setTimeout(300)
+        sparql.setReturnFormat(JSON)
+        results = sparql.query().convert()
+        if isinstance(results,dict):
+            value = utils.getResultsFromJSONCountInt(results)
+            return value
+        elif isinstance(results,Document):
+            value = utils.getResultsFromXMLCount(results)
+            return value
     else:
         return False
 
@@ -1052,7 +1052,7 @@ def getAllPropertySP(url):
     {?s ?p skos:Property}
     }
     ''') 
-    sparql.setTimeout(600) #10 minutes
+    sparql.setTimeout(300) #10 minutes
     sparql.setReturnFormat(JSON)
     try:
         results = sparql.query().convert()
@@ -1077,7 +1077,7 @@ def getAllTriplesSPO(url):
     SELECT *
     WHERE{?s ?p ?o}
     ''')
-    sparql.setTimeout(600) #10 minutes
+    sparql.setTimeout(300) #10 minutes
     sparql.setReturnFormat(JSON)
     format = sparql.query()._get_responseFormat()
     if format == 'xml': #IF THE RETURN FORMAT IS SETTED TO JSON AND XML WAS RETURNED
@@ -1105,7 +1105,7 @@ def getAllPredicate(url):
     SELECT DISTINCT ?p
     WHERE{?s ?p ?o}
     ''')
-    sparql.setTimeout(600) #10 minutes
+    sparql.setTimeout(300) #10 minutes
     sparql.setReturnFormat(JSON)
     try:
         results = sparql.query().convert()
@@ -1143,7 +1143,7 @@ def getSign(url):
     {?s swp:assertedBy ?o}
     }
     ''')
-    sparql.setTimeout(600) #10 minutes
+    sparql.setTimeout(300) #10 minutes
     sparql.setReturnFormat(JSON)
     try:
         results = sparql.query().convert()
@@ -1167,7 +1167,7 @@ def getDlc(url):
     FILTER(?p NOT IN (rdf:type))
     }
     ''')
-    sparql.setTimeout(600)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     try:
@@ -1216,7 +1216,7 @@ def countStruct(url):
     {?s rdf:_'[0-9]+'}
     }
     """)
-    sparql.setTimeout(180) #5 minutes
+    sparql.setTimeout(300) #5 minutes
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     if isinstance(results,dict):
@@ -1367,7 +1367,7 @@ def getUris(url):
     FILTER(isIRI(?s))
     }
     ORDER BY RAND()
-    LIMIT 100
+    LIMIT 5000
     ''')
     sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
@@ -1385,6 +1385,6 @@ def getUris(url):
 def queryWithSingleAcceptFromat(url,query):
     sparql = SPARQLWrapper(url)
     sparql.setQuery(query)
-    sparql.setTimeout(600) #10 minutes
+    sparql.setTimeout(300) #10 minutes
     sparql.addCustomHttpHeader('Accept','application/sparql-results+json') #SOME ENDPOINT DOESN'T SUPPORT MULTIPLE ACCEPT FORMAT
     return sparql.query().convert()
