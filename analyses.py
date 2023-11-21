@@ -1665,11 +1665,11 @@ def analyses(idKG,analysis_date):
                     extra = Extra(idKG,accessUrl,downloadUrl,numTriplesUpdated,classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0) #EXTRA OBJ CONTAINS ALL INFORMATION FOR SCORE CALCULATION AND OTHER USEFUL INFORMATION
                 else:
                     logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
-                    extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff)
+                    extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0)
             else:
                 uriListS = []
                 logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
-                extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff)
+                extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0)
     else:
         classes = []
         properties = []
