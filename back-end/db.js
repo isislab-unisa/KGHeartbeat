@@ -169,8 +169,55 @@ async function searchKG(keywords){
           Believability: { $arrayElemAt: ["$Trust.Believability", 0] } 
         }
       },
+    ]).toArray();
+    
+    return result
+
+  } catch (error) {
+    console.error(error)
+
+    return false
+  }
+}
+
+async function searchActiveKG(keywords,recent_analysis){
+  try{
+    const result = await dbInstance.collection('quality_analysis_data').aggregate([
       {
-        $limit: 50
+        $match: {
+          $and: [
+            {
+              'kg_name': { $regex: `${keywords}`, $options: 'i' }
+            },
+            {
+              'analysis_date': {$eq : recent_analysis}
+            },
+            {
+              'Accessibility': {
+                $elemMatch: {
+                  'Availability.sparqlEndpoint': { $in: ["1", "Available"] }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        $group: {
+          _id: '$kg_id',
+          kg_name: { $first: '$kg_name' },
+          Trust: { $first : '$Trust' },
+          Accessibility: {$first : '$Availability'},
+          analysis_date: { $first: '$analysis_date' }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          kg_id: '$_id',
+          kg_name: 1,
+          Believability: { $arrayElemAt: ["$Trust.Believability", 0] } ,
+        }
       }
     ]).toArray();
     
@@ -205,5 +252,18 @@ async function find_selected_analysis(kg_ids,start_date,end_date,quality_categor
   }
 }
 
+async function find_most_recent_analysis_date(){
+  try{
+    const result = await dbInstance.collection('quality_analysis_data').find({},{"analysis_date" : 1}).sort("analysis_date", -1).limit(1).toArray();
 
-module.exports = {connectToMongoDB, find_single_data, find_data_over_time, searchKG, find_score_over_time, find_extra_data, find_selected_analysis};
+    return(result[0]['analysis_date'])
+
+  } catch (error){
+    console.error(error)
+    
+    return [] 
+  } 
+}
+
+
+module.exports = {connectToMongoDB, find_single_data, find_data_over_time, searchKG, find_score_over_time, find_extra_data, find_selected_analysis, searchActiveKG, find_most_recent_analysis_date};

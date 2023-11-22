@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { searchKG, find_selected_analysis } = require('../db');
+const { searchKG, find_selected_analysis, searchActiveKG, find_most_recent_analysis_date } = require('../db');
 const { parse, unparse } = require('papaparse');
 const { flat_data, filterUniqueObjects } = require('../utils');
 
@@ -35,16 +35,32 @@ router.route('/').get((req, res) => {
 
 router.route('/search').get((req, res) => {
     const keywords = req.query.q;
-    searchKG(keywords).then(result => {
-        if(result.length > 0)
-            res.json(result);
-        else
-            res.status(404).json({ error: 'No data found' });
-    })
-    .catch(err => {
-        console.error(err);
-        res.status(500).send('Error during the aggregation: ' + err);
-    });
+    const sparql = req.query.sparql;
+    if(!sparql){
+        searchKG(keywords).then(result => {
+            if(result)
+                res.json(result);
+            else
+                res.status(404).json({ error: 'No data found' });
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).send('Error during the aggregation: ' + err);
+        });
+    } else if(sparql === 'online'){
+        find_most_recent_analysis_date().then(most_recent_analysis =>{
+            searchActiveKG(keywords,most_recent_analysis).then(result => {
+                if(result)
+                    res.json(result);
+                else
+                    res.status(404).json({ error: 'No data found' });
+            })
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).send('Error during the aggregation: ' + err);
+        });
+    }
 })
 
 router.route('/export_analysis').post((req,res) => {

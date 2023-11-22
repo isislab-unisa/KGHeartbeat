@@ -51,7 +51,7 @@ const MaterialTable = ({columns_value, data_table}) => {
     )
   });
 
-  return <MaterialReactTable table={table} />;
+  return <MaterialReactTable table={table}/>;
 };
 
 export default MaterialTable;

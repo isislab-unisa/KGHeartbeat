@@ -56,6 +56,7 @@ function SearchResults({ results, selected, onCheckboxChange }) {
       setSelectedCheckboxes(newSelection);
       onCheckboxChange(newSelection.map((id) => ({ id }))); // Send data to App.js
     };
+    console.log(results)
     if(results){
       let data = []
       for(let i = 0; i < results.length; i++){
@@ -90,7 +91,7 @@ function SearchResults({ results, selected, onCheckboxChange }) {
             }
           data.push(row_data)
       }
-      if(results.length > 0)
+      if(results)
         setKGsTable(<MaterialTable columns_value={columns} data_table={data}/>)
     }
   },[results,selectedCheckboxes,onCheckboxChange])
