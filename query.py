@@ -817,7 +817,7 @@ def getNumUpdatedData(url,date):
         FILTER regex(?o,'%s')
         }
         '''%date)
-        sparql.setTimeout(300)
+        sparql.setTimeout(150)
         sparql.setReturnFormat(JSON)
         results = sparql.query().convert()
         if isinstance(results,dict):

@@ -95,6 +95,7 @@ for i in range(len(toAnalyze)):
     normalizedScore = float(normalizedScore)
     kg.extra.score = totalScore
     kg.extra.normalizedScore = normalizedScore
+    kg.extra.scoreObj = score
     csv = OutputCSV(kg,toAnalyze)
     csv.writeRow(filename)
     print(f"KG score: {kg.extra.score}")

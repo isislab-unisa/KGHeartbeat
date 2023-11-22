@@ -1602,11 +1602,12 @@ def analyses(idKG,analysis_date):
             try:
                 creationDate = datetime.datetime.strptime(creationDate, "%Y-%m-%d").date()
                 today = datetime.date.today()
+                ageOfData = (today - creationDate).days
                 todayFormatted = today.strftime("%Y-%m-%d")
                 todayDate =  datetime.datetime.strptime(todayFormatted, "%Y-%m-%d").date()
                 modificationDate = datetime.datetime.strptime(modificationDate, "%Y-%m-%d").date()
                 delta = (todayDate - modificationDate).days
-                currency = Currency(creationDate,modificationDate,'insufficient data',delta,'insufficient data')
+                currency = Currency(ageOfData,modificationDate,'insufficient data',delta,'insufficient data')
             except ValueError:
                 logger.warning(f"Currency | Use of dates as the point in time of the last verification of a statement represented by dcterms:modified | {str(error)}",extra=kg_info)
                 currency = Currency(creationDate,modificationDate,'-','-','-')
@@ -1662,14 +1663,14 @@ def analyses(idKG,analysis_date):
                         value = s.get('value')
                         uriListS.append(value)
                 if isinstance(numTriplesUpdated,int):
-                    extra = Extra(idKG,accessUrl,downloadUrl,numTriplesUpdated,classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0) #EXTRA OBJ CONTAINS ALL INFORMATION FOR SCORE CALCULATION AND OTHER USEFUL INFORMATION
+                    extra = Extra(idKG,accessUrl,downloadUrl,numTriplesUpdated,classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0,None) #EXTRA OBJ CONTAINS ALL INFORMATION FOR SCORE CALCULATION AND OTHER USEFUL INFORMATION
                 else:
                     logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
-                    extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0)
+                    extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0,None)
             else:
                 uriListS = []
                 logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
-                extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0)
+                extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0,None)
     else:
         classes = []
         properties = []
@@ -1677,7 +1678,7 @@ def analyses(idKG,analysis_date):
         triplesO = []
         uriListS = []
         logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
-        extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUriCount,triplesO,0,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,0,errorMessage,offlineDump,urlV,voidStatus,errorMessage,errorMessage,errorMessage,errorMessage,0)
+        extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUriCount,triplesO,0,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,0,errorMessage,offlineDump,urlV,voidStatus,errorMessage,errorMessage,errorMessage,errorMessage,0,None)
 
     KGQ = KnowledgeGraph(availability,currency,versatility,security,rConciseness,licensing,performance,amount,volatility,interlinking,consistency,reputation,believability,verifiability,completeness,rConsistency,understendability,interpretability,conciseness,accuracy,extra)
 

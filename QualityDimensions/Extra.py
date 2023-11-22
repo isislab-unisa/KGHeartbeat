@@ -1,5 +1,5 @@
 class Extra:
-    def __init__(self,KGid,endpointUrl,downloadUrl,numTriplesUpdated,classes,properties,uriList,allTerms,subjectLi,undefinedProperties,undefinedClass,triplesMC,triplesMP,deprecated,score,limited,offlineDumps,urlVoid,voidAvailability,minTPNoOff,meanTPNoOff,maxTPNoOff,devSNoOff,normalizedScore):
+    def __init__(self,KGid,endpointUrl,downloadUrl,numTriplesUpdated,classes,properties,uriList,allTerms,subjectLi,undefinedProperties,undefinedClass,triplesMC,triplesMP,deprecated,score,limited,offlineDumps,urlVoid,voidAvailability,minTPNoOff,meanTPNoOff,maxTPNoOff,devSNoOff,normalizedScore,scoreObj):
         self.KGid = KGid
         self.endpointUrl = endpointUrl
         self.downloadUrl = downloadUrl
@@ -24,6 +24,7 @@ class Extra:
         self.maxTPNoOff = maxTPNoOff
         self.devSNoOff = devSNoOff
         self.normalizedScore = normalizedScore
+        self.scoreObj = scoreObj
     
     def getExtra(self):
         return f"-Extra:\n   Knowledge Graph ID:{self.KGid}\n   SPARQL endpoint URL:{self.endpointUrl}\n   Links for download dataset:{self.downloadUrl}\n   Number of triples updated:{self.numTriplesUpdated}\n   Score:{self.score}\n   Limited:{self.limited}\n"
