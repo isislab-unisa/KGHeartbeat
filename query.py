@@ -1076,7 +1076,7 @@ def getAllTriplesSPO(url):
     sparql.setQuery('''
     SELECT *
     WHERE{?s ?p ?o}
-    ''')
+    ''') 
     sparql.setTimeout(300) #10 minutes
     sparql.setReturnFormat(JSON)
     format = sparql.query()._get_responseFormat()

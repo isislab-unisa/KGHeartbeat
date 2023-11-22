@@ -372,6 +372,7 @@ def analyses(idKG,analysis_date):
         if isinstance(allTriples,list) and isinstance(triplesQuery,int):
             if len(allTriples) < triplesQuery:
                 limited = True
+                logger.warning(f'The number of triples that can be retrieved from the sparql endpoint is limited',extra=kg_info)
             else:
                 limited = False
         else:

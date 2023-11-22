@@ -990,21 +990,13 @@ def getNormalizedScore(min,max,score):
         return score
 
 def removeProblematicEndpoint(kgs):
-    kgs.remove('b3kat')
-    kgs.remove('lotico')
-    kgs.remove('UniProt')
-    kgs.remove('uniprot')
-    kgs.remove('uniprot-citations')
-    kgs.remove('uniprot-databases')
-    kgs.remove('uniprot-metadata')
-    kgs.remove('uniprot-taxonomy')
-    kgs.remove('uniprot-uniparc')
-    kgs.remove('uniprot-unipathway')
-    kgs.remove('uniprotkb')
-    kgs.remove('uniref')
-    kgs.remove('data-open-ac-uk')
-    kgs.remove('isocat')
-    kgs.remove('allie-abbreviation-and-long-form-database-in-life-science')
+    to_remove = ['b3kat','lotico','UniProt','uniprot','uniprot-citations','uniprot-databases',
+                 'uniprot-metadata','uniprot-taxonomy','uniprot-uniparc','uniprot-unipathway','uniprotkb','uniref'
+                 'data-open-ac-uk','isocat','allie-abbreviation-and-long-form-database-in-life-science']
+    for kg_to_remove in to_remove:
+        if kg_to_remove in kgs:
+            kgs.remove(kg_to_remove)
+
 
 def enableForDownload(filename):
     here = os.path.dirname(os.path.abspath(__file__))
