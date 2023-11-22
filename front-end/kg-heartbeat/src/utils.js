@@ -440,6 +440,41 @@ function score_series_multiple_kgs(quality_data,selectedKGs,max_score){
     return data
 }
 
+function score_for_dimension_kgs(score_data,max_score){
+    let data = [];
+    for(let i = 0; i<score_data.length; i++){
+        const score_value = parseFloat(score_data[i]['Score']['totalScore'])
+        const normalized_score = parseFloat(((score_value/max_score) * 100).toFixed(2));
+        const row_data = {
+            kgname : score_data[i].kg_name,
+            score : normalized_score,
+            availability : score_data[i]['Score']['availabilityScoreValue'],
+            licensing : score_data[i]['Score']['availabilityScoreValue'],
+            interlinking : score_data[i]['Score']['interlinkingScoreValue'],
+            performance : score_data[i]['Score']['performanceScoreValue'],
+            accuracy : score_data[i]['Score']['accuracyScoreValue'],
+            consistency : score_data[i]['Score']['consistencyScoreValue'],
+            conciseness : score_data[i]['Score']['concisenessScoreValue'],
+            verifiability : score_data[i]['Score']['verifiabilityScoreValue'],
+            reputation : score_data[i]['Score']['reputationScoreValue'],
+            believability : score_data[i]['Score']['believabilityScoreValue'],
+            currency : score_data[i]['Score']['currencyScoreValue'],
+            volatility : score_data[i]['Score']['volatilityScoreValue'],
+            completeness : score_data[i]['Score']['completenessScoreValue'],
+            amount : score_data[i]['Score']['amountScoreValue'],
+            repCons : score_data[i]['Score']['repConsScoreValue'],
+            repConc : score_data[i]['Score']['repConcScoreValue'],
+            understandability : score_data[i]['Score']['understScoreValue'],
+            interpretability : score_data[i]['Score']['interpretabilityScoreValue'],
+            versatility : score_data[i]['Score']['versatilityScoreValue'],
+            security : score_data[i]['Score']['securityScoreValue'],
+        }
+        data.push(row_data);
+ 
+    }
+    return data
+}
+
 function initialize_score_map(){
     let score_map = {
         'availability' : "1",
@@ -519,4 +554,4 @@ function get_selected_dimension(dimensions_map){
     return selected_dimensions
 }
 
-export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data, trasform_to_series_compl, trasform_rep_conc_to_series, trasform_rep_conc_to_series_multiple, create_percentage_label_series,extract_most_recent,add_believability_and_amount,add_amount,set_message_availability,score_to_series, score_series_multiple_kgs, recalculate_score, initialize_score_map, get_selected_dimension};
+export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data, trasform_to_series_compl, trasform_rep_conc_to_series, trasform_rep_conc_to_series_multiple, create_percentage_label_series,extract_most_recent,add_believability_and_amount,add_amount,set_message_availability,score_to_series, score_series_multiple_kgs, recalculate_score, initialize_score_map, get_selected_dimension,score_for_dimension_kgs};

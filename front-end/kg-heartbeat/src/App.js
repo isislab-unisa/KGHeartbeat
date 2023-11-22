@@ -26,6 +26,7 @@ import Understandability from './pages/Understandability';
 import Interpretability from './pages/Interpretability';
 import Versatility from './pages/Versatility';
 import Score from './pages/Score';
+import Ranking from './pages/Ranking';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -72,7 +73,8 @@ function App() {
           <Route path="/pages/Understandability" component={Understandability} element={<Understandability selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>        
           <Route path="/pages/Interpretability" component={Interpretability} element={<Interpretability selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>                
           <Route path="/pages/Versatility" component={Versatility} element={<Versatility selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>                
-          <Route path="/pages/Score" component={Score} element={<Score selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>                
+          <Route path="/pages/Score" component={Score} element={<Score selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>   
+          <Route path='/pages/Ranking' component={Ranking} element={<Ranking />}/>             
        </Routes>
     </Router>
     </div>

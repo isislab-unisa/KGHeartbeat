@@ -119,6 +119,45 @@ async function find_score_over_time(kg_ids,quality_category){
   }
 }
 
+async function find_all_score() {
+    try {
+      const pipeline = [
+        {
+          $sort: {
+            'analysis_date': -1, // Sort based on the analysis data
+            'kg_name': -1 // Sort based on the name
+          }
+        },
+        {
+          $group: {
+            _id: '$kg_id', // group by id
+            document: { $first: '$$ROOT' } // Get first document for every group
+          }
+        },
+        {
+          $replaceRoot: { newRoot: '$document' } // Substitute the root with the obtained document
+        },
+        {
+          $project: {
+            _id: 0,
+            kg_id: 1,
+            kg_name: 1,
+            analysis_date: 1,
+            Score: 1,
+          }
+        }
+      ];
+      const result = await dbInstance.collection('quality_analysis_data').aggregate(pipeline).toArray();
+      
+      return result;
+  
+    } catch (error) {
+      console.error(error);
+      
+      return [];
+    }
+}
+
 async function find_extra_data(kg_ids){
   if (!Array.isArray(kg_ids))
     kg_ids = [kg_ids]
@@ -266,4 +305,4 @@ async function find_most_recent_analysis_date(){
 }
 
 
-module.exports = {connectToMongoDB, find_single_data, find_data_over_time, searchKG, find_score_over_time, find_extra_data, find_selected_analysis, searchActiveKG, find_most_recent_analysis_date};
+module.exports = {connectToMongoDB, find_single_data, find_data_over_time, searchKG, find_score_over_time, find_extra_data, find_selected_analysis, searchActiveKG, find_most_recent_analysis_date, find_all_score};
