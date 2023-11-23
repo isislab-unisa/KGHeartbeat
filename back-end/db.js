@@ -304,5 +304,40 @@ async function find_most_recent_analysis_date(){
   } 
 }
 
+async function find_analysis_date(){
+  try {
+    const pipeline = [
+      {
+        $sort: {
+          'analysis_date': -1, // Sort based on the analysis data
+        }
+      },
+      {
+        $group: {
+          _id: '$analysis_date', // group by id
+          document: { $first: '$$ROOT' } // Get first document for every group
+        }
+      },
+      {
+        $replaceRoot: { newRoot: '$document' } // Substitute the root with the obtained document
+      },
+      {
+        $project: {
+          _id: 0,
+          analysis_date: 1,
+        }
+      }
+    ];
+    const result = await dbInstance.collection('quality_analysis_data').aggregate(pipeline).toArray();
+    
+    return result;
 
-module.exports = {connectToMongoDB, find_single_data, find_data_over_time, searchKG, find_score_over_time, find_extra_data, find_selected_analysis, searchActiveKG, find_most_recent_analysis_date, find_all_score};
+  } catch (error) {
+    console.error(error);
+    
+    return [];
+  }
+}
+
+
+module.exports = {connectToMongoDB, find_single_data, find_data_over_time, searchKG, find_score_over_time, find_extra_data, find_selected_analysis, searchActiveKG, find_most_recent_analysis_date, find_all_score, find_analysis_date};

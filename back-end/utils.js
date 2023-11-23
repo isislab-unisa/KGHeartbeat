@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 function flat_data(quality_data,quality_dimensions){
   for(let i = 0; i<quality_dimensions.length; i++){
     quality_dimensions[i] = quality_dimensions[i].charAt(0).toUpperCase() + quality_dimensions[i].slice(1);
@@ -38,4 +40,14 @@ function filterUniqueObjects(list) {
     return uniqueObjects;
   }
 
-module.exports = {flat_data, filterUniqueObjects}
+  function readFileContent(filePath, callback){
+    fs.readFile(filePath, 'utf8', function (err, data) {
+        if (err) {
+            callback(err, null);
+        } else {
+            callback(null, data);
+        }
+    });
+}
+
+module.exports = {flat_data, filterUniqueObjects, readFileContent}

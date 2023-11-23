@@ -554,4 +554,14 @@ function get_selected_dimension(dimensions_map){
     return selected_dimensions
 }
 
-export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data, trasform_to_series_compl, trasform_rep_conc_to_series, trasform_rep_conc_to_series_multiple, create_percentage_label_series,extract_most_recent,add_believability_and_amount,add_amount,set_message_availability,score_to_series, score_series_multiple_kgs, recalculate_score, initialize_score_map, get_selected_dimension,score_for_dimension_kgs};
+function convert_analysis_date(analysis_date_obj){
+    const date_list = analysis_date_obj.map(obj => obj.analysis_date);
+    const date_list_sorted = [...date_list].sort()
+    let parsed_date = []
+    for(let i = 0; i<date_list_sorted.length; i++){
+        parsed_date.push(parseISO(date_list_sorted[i]))
+    }   
+    return parsed_date
+}
+
+export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data, trasform_to_series_compl, trasform_rep_conc_to_series, trasform_rep_conc_to_series_multiple, create_percentage_label_series,extract_most_recent,add_believability_and_amount,add_amount,set_message_availability,score_to_series, score_series_multiple_kgs, recalculate_score, initialize_score_map, get_selected_dimension,score_for_dimension_kgs, convert_analysis_date};

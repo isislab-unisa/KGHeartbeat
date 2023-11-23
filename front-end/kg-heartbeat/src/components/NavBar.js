@@ -14,6 +14,7 @@ function BasicExample({quality_link, score_link}) {
           <Nav className="me-auto">
           <Nav.Link><Link to="/pages/Search">Search</Link></Nav.Link>
           <Nav.Link><Link to="/pages/Ranking">KGs ranking</Link></Nav.Link>
+          <Nav.Link><Link to="/pages/Download">Download analysis data </Link></Nav.Link>
           <Nav.Link>{quality_link}</Nav.Link>
           <Nav.Link>{score_link}</Nav.Link>
           

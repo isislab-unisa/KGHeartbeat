@@ -23,7 +23,6 @@ function Ranking(){
     },[]);
     
     useEffect(() => {
-        console.log(kgsData)
         if(kgsData){
             const columns = [
                 {

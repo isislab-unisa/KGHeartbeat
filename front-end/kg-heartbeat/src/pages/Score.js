@@ -212,8 +212,6 @@ function Score( { selectedKGs, setSelectedKGs} ){
         const [start, end] = dates;
         setStartDate(start);
         setEndDate(end);
-        console.log(start)
-        console.log(end)
     };
 
     const handleSliderChange = (new_value,id) => {

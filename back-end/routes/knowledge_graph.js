@@ -1,7 +1,11 @@
 const router = require('express').Router();
-const { searchKG, find_selected_analysis, searchActiveKG, find_most_recent_analysis_date } = require('../db');
+const { searchKG, find_selected_analysis, searchActiveKG, find_most_recent_analysis_date, find_analysis_date } = require('../db');
 const { parse, unparse } = require('papaparse');
-const { flat_data, filterUniqueObjects } = require('../utils');
+const fs = require('fs');
+const path = require('path');
+const { flat_data, filterUniqueObjects,readFileContent } = require('../utils');
+const archiver = require('archiver');
+const { json } = require('express');
 
 router.route('/').get((req, res) => {
     const pipeline = [
@@ -112,6 +116,62 @@ router.route('/export_analysis').post((req,res) => {
         console.error(err);
         res.status(500).send('Error during the aggregation: ' + err);
     });
+})
+
+router.route('/get_analysis_date').get((req,res) => {
+    find_analysis_date().then(result => {
+        if(result.length > 0)
+            res.json(result);
+        else
+            res.status(404).json({ error: 'No data found' });
+    })
+    .catch(err => {
+        console.error(err);
+        res.status(500).send('Error during the aggregation: ' + err);
+    });
+})
+
+router.route('/download').post((req,res) => {
+    const body = req.body;   
+    const analysis_date = body.analysis_date;
+    find_analysis_date().then(result => {
+        if(result.length > 0){
+            const date_list = result.map(obj => obj.analysis_date);
+            const start_date = analysis_date[0];
+            const end_date = analysis_date[1];
+            const filtered_list = date_list.filter(date => date >= start_date && date <= end_date);
+            const archive = archiver('zip', { zlib: { level: 9 } });
+            let file_to_zip = []
+            for(let i = 0; i<filtered_list.length; i++){
+                filename_csv = `${filtered_list[i]}.csv`
+                filename_log = `${filtered_list[i]}.log`
+                file_to_zip.push(filename_csv)
+                file_to_zip.push(filename_log)
+            }
+            if(file_to_zip.length > 0){
+                try{
+                    file_to_zip.forEach((file) => {
+                        const file_path = path.join(__dirname, '../analysis_data', file);
+                        if(fs.existsSync(file_path)){
+                            archive.append(fs.createReadStream(file_path), {name: file});
+                        }
+                    })
+        
+                    archive.pipe(res)
+        
+                    archive.finalize();
+                } catch {
+                    console.error(err);
+                    res.status(500).send('Error during the archive creation: ' + err);
+                }
+            } else {
+                res.status(404).json({ error: 'No data found' });
+            }
+        }else{
+            es.status(404).json({ error: 'No data found' });
+        }
+    })
+
 })
 
 module.exports = router;

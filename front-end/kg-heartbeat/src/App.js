@@ -27,6 +27,7 @@ import Interpretability from './pages/Interpretability';
 import Versatility from './pages/Versatility';
 import Score from './pages/Score';
 import Ranking from './pages/Ranking';
+import Download from './pages/Download';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -74,7 +75,8 @@ function App() {
           <Route path="/pages/Interpretability" component={Interpretability} element={<Interpretability selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>                
           <Route path="/pages/Versatility" component={Versatility} element={<Versatility selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>                
           <Route path="/pages/Score" component={Score} element={<Score selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>   
-          <Route path='/pages/Ranking' component={Ranking} element={<Ranking />}/>             
+          <Route path='/pages/Ranking' component={Ranking} element={<Ranking />}/>  
+          <Route path='/pages/Download' component={Download} element={<Download />} />           
        </Routes>
     </Router>
     </div>
