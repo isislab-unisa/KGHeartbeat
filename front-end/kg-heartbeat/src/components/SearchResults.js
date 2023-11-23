@@ -82,10 +82,16 @@ function SearchResults({ results, selected, onCheckboxChange }) {
             url = <a href={results[i].Believability.URI}>{results[i].Believability.URI}</a>
           else
             url = '-'
+          let sparql_link = results[i]['Extra']['sparql_link'];
+          if (sparql_link === 'nan')
+            sparql_link = '-'
+          else
+            sparql_link = <a href={sparql_link}>{sparql_link}</a>
 
           const row_data = {
               select: checkbox,
               kgname: results[i].kg_name,
+              sparql: sparql_link,
               website: url,
               description: description,
             }
