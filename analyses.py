@@ -990,18 +990,11 @@ def analyses(idKG,analysis_date):
                         r = utils.binarySearch(properties,0,len(properties)-1,valueS)
                         if r != -1:
                             found = True
-                        #for j in range(len(properties)):
-                            #if valueS == properties[j]:
-                                #print(properties[j])
-                                #found = True
                     resultO = utils.validateURI(valueO)
                     if found == False and resultO == True:
                         r2 = utils.binarySearch(properties,0,len(properties)-1,valueO)
                         if r2 != -1:
                             found = True
-                        #for k in range(len(properties)):
-                            #if valueS == properties[k]:
-                                #found = True
                     if found == True:
                         misplacedClass.append(valueS)
                         found = False
@@ -1371,7 +1364,6 @@ def analyses(idKG,analysis_date):
     try:
         providers = ['wikipedia','government','bioportal','bio2RDF','academic']
         keywords = Aggregator.getKeywords(idKG)
-        print(f'Keyewords: {keywords}')
         if any(x in keywords for x in providers):
             believable = True
         else:
@@ -1579,7 +1571,7 @@ def analyses(idKG,analysis_date):
                 modificationDate = datetime.datetime.strptime(modificationDate, "%Y-%m-%d").date()
                 delta = (todayDate - modificationDate).days
                 currency = Currency(ageOfData,modificationDate,percentageUp,delta,historicalUp)
-            except ValueError:
+            except:
                 logger.warning(f"Currency | Use of dates as the point in time of the last verification of a statement represented by dcterms:modified | Insufficient data to compute this metric",extra=kg_info)
                 currency = Currency(creationDate,modificationDate,percentageUp,'-',historicalUp)
         else:
@@ -1609,7 +1601,7 @@ def analyses(idKG,analysis_date):
                 modificationDate = datetime.datetime.strptime(modificationDate, "%Y-%m-%d").date()
                 delta = (todayDate - modificationDate).days
                 currency = Currency(ageOfData,modificationDate,'insufficient data',delta,'insufficient data')
-            except ValueError:
+            except Exception as error:
                 logger.warning(f"Currency | Use of dates as the point in time of the last verification of a statement represented by dcterms:modified | {str(error)}",extra=kg_info)
                 currency = Currency(creationDate,modificationDate,'-','-','-')
         else:
