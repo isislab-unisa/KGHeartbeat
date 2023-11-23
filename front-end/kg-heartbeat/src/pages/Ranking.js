@@ -3,6 +3,9 @@ import axios from 'axios';
 import { base_url } from '../api';
 import { score_for_dimension_kgs } from '../utils';
 import MaterialTable from '../components/MaterialTable';
+import { css } from '@emotion/react'
+import { ClipLoader } from 'react-spinners';
+
 
 const MAX_SCORE = 54
 
@@ -145,8 +148,12 @@ function Ranking(){
     return(
         <div>
             <div className='d-flex'>
-                <div className='w-100 p-4'>
-                    {kgsData && KGsRanking}
+                <div className='w-100 p-4 text-center'>
+                    { kgsData !== null ?(
+                        KGsRanking
+                    ):(
+                        <ClipLoader color="#87B8EA" size={150}/>
+                    )}
                 </div>
             </div>
         </div>

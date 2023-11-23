@@ -5,6 +5,9 @@ import { base_url } from '../api';
 import axios from 'axios';
 import { convert_analysis_date } from '../utils';
 import Button from 'react-bootstrap/Button';
+import { css } from '@emotion/react'
+import { ClipLoader } from 'react-spinners';
+
 
 function Download(){
     const [analysisDate, setAnalysisDate] = useState(null);
@@ -94,7 +97,7 @@ function Download(){
                         {calendar}
                         </>
                         ):(
-                            <p>Loading analysis dates...</p>
+                            <ClipLoader color="#87B8EA" size={150}/>
                         )}
                         {startDate !== null && endDate !== null && (
                             <Button className='mb-2 mt-3' variant="btn btn-outline-success" onClick={handleExportButton}>
