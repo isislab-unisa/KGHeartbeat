@@ -197,7 +197,8 @@ async function searchKG(keywords){
         $group: {
           _id: '$kg_id',
           kg_name: { $first: '$kg_name' },
-          Trust: { $first : '$Trust' }  
+          Trust: { $first : '$Trust' },
+          Extra: {$first : '$Extra'}
         }
       },
       {
@@ -205,7 +206,8 @@ async function searchKG(keywords){
           _id: 0,
           kg_id: '$_id',
           kg_name: 1,
-          Believability: { $arrayElemAt: ["$Trust.Believability", 0] } 
+          Believability: { $arrayElemAt: ["$Trust.Believability", 0] },
+          Extra: 1 
         }
       },
     ]).toArray();
@@ -247,7 +249,8 @@ async function searchActiveKG(keywords,recent_analysis){
           kg_name: { $first: '$kg_name' },
           Trust: { $first : '$Trust' },
           Accessibility: {$first : '$Availability'},
-          analysis_date: { $first: '$analysis_date' }
+          analysis_date: { $first: '$analysis_date' },
+          Extra: {$first : '$Extra'}
         }
       },
       {
@@ -256,6 +259,7 @@ async function searchActiveKG(keywords,recent_analysis){
           kg_id: '$_id',
           kg_name: 1,
           Believability: { $arrayElemAt: ["$Trust.Believability", 0] } ,
+          Extra: 1
         }
       }
     ]).toArray();
