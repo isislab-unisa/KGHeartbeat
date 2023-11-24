@@ -9,7 +9,7 @@ function SearchResults({ results, selected, onCheckboxChange }) {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
   const [KGsTable,setKGsTable] = useState(null);
   const [selectAll, setSelectAll] = useState(false);
-  const [selectButtonLabel, setSelectButtonLabel] = useState('Seleziona Tutti');
+  const [selectButtonLabel, setSelectButtonLabel] = useState('Select all');
 
   // Effect to edit the status of chechkbox when the the results is changed
   useEffect(() => {
