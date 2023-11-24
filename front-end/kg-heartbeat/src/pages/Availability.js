@@ -3,9 +3,11 @@ import QualityBar from '../components/QualityBar';
 import { base_url } from '../api';
 import axios from 'axios';
 import LineChart from '../components/LineChart';
-import {trasform_to_series, compact_temporal_data} from '../utils';
+import {trasform_to_series, compact_temporal_data, trasform_to_series_sparql_av, trasform_to_series_dump} from '../utils';
 import Table from '../components/PersonalTable';
 import TableBoot from 'react-bootstrap/Table';
+import SPARQLAvailabilityChart from '../components/AvailabilityChart';
+import RDFDumpAvChart from '../components/RDFDumpAvChart';
 
 const availability = 'Availability'
 
@@ -40,12 +42,13 @@ function Availability({ selectedKGs, setSelectedKGs}) {
 
   useEffect(() => { //everytime that availability data change, we create series and redraw the chart
     if (availabilityData) {
-      const sparql_series = trasform_to_series(availabilityData, selectedKGs,availability,'sparqlEndpoint');
-      const rdfD_series = trasform_to_series(availabilityData,selectedKGs,availability,'RDFDump_merged');
+      const sparql_series = trasform_to_series_sparql_av(availabilityData, selectedKGs,availability,'sparqlEndpoint');
+      //TODO: change here when new json file are generated
+      const rdfD_series = trasform_to_series_sparql_av(availabilityData,selectedKGs,availability,'RDFDump_merged');
       //const uridef_series = trasform_to_series(availabilityData,selectedKGs,availability,'uris_def')
       if(selectedKGs.length === 1){
-        setSparqlChart(<LineChart chart_title={'SPARQL endpoint availability'} series={sparql_series} y_min={-1} y_max={1}/>);
-        setRDFDumpC(<LineChart chart_title={'RDF dump availability'} series={rdfD_series} y_min={-1} y_max={1} />);
+        setSparqlChart(<SPARQLAvailabilityChart chart_title={'SPARQL endpoint availability'} series={sparql_series} y_min={-1} y_max={1}/>);
+        setRDFDumpC(<RDFDumpAvChart chart_title={'RDF dump availability'} series={rdfD_series} y_min={-1} y_max={1} />);
         const inactive_tab = (
           <TableBoot striped bordered hover>
             <tr><th>Inactive links</th></tr>
