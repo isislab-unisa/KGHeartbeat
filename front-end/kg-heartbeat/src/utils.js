@@ -28,6 +28,49 @@ function trasform_to_series(quality_data,selectedKGs,quality_dimension,quality_m
     return series
 }
 
+function trasform_to_series_sparql_av(quality_data,selectedKGs,quality_dimension,quality_metric,custom_series_name){
+    let series = []
+    for(let i = 0; i< selectedKGs.length; i++){
+        let serie = {
+            id : selectedKGs[i].id,
+            name: custom_series_name,
+            data : [],
+            lineWidth: 3,
+            zones:[{
+                value: 0.95,
+                color: '#fd5e53'
+            },
+            { color: '#90ed7d'
+            }
+            ], 
+        }
+        series.push(serie)
+    }
+    for(let i = 0; i < quality_data.length; i++){
+        for(let j = 0; j<selectedKGs.length; j++){
+            if (series[j].id === quality_data[i].kg_id){
+                const tab_date = quality_data[i].analysis_date.split('-');
+                const date_utc = Date.UTC(parseInt(tab_date[0]),parseInt(tab_date[1])-1,parseInt(tab_date[2]));
+                let availability = quality_data[i].Quality_category_array[quality_dimension][quality_metric]
+                if(availability === 'Available' || availability === '1')
+                    series[j].data.push([date_utc,1])
+                else if(availability === 'offline' || availability === '0')
+                    series[j].data.push([date_utc,0])
+                else if(availability === '-' || availability === '-1')
+                    series[j].data.push([date_utc,-1])
+                else
+                    series[j].data.push([date_utc,-1])
+                if(series[j].stack === '')
+                    series[j].stack = quality_data[i].kg_name;
+                if(series[j].name === '' || series[j].name === undefined)
+                    series[j].name = quality_data[i].kg_name;
+            }
+        }
+    }
+    return series
+}
+
+
 /*This function is useful when we have analysis data over different time from the db, and we want to compact in an array with a number of values equal to the number of kg  */
 function compact_temporal_data(quality_data,selectedKGs,quality_dimension,quality_metric){
     let series = []
@@ -564,4 +607,4 @@ function convert_analysis_date(analysis_date_obj){
     return parsed_date
 }
 
-export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data, trasform_to_series_compl, trasform_rep_conc_to_series, trasform_rep_conc_to_series_multiple, create_percentage_label_series,extract_most_recent,add_believability_and_amount,add_amount,set_message_availability,score_to_series, score_series_multiple_kgs, recalculate_score, initialize_score_map, get_selected_dimension,score_for_dimension_kgs, convert_analysis_date};
+export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data, trasform_to_series_compl, trasform_rep_conc_to_series, trasform_rep_conc_to_series_multiple, create_percentage_label_series,extract_most_recent,add_believability_and_amount,add_amount,set_message_availability,score_to_series, score_series_multiple_kgs, recalculate_score, initialize_score_map, get_selected_dimension,score_for_dimension_kgs, convert_analysis_date,trasform_to_series_sparql_av};

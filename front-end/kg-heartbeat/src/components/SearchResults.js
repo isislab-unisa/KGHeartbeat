@@ -8,6 +8,8 @@ import RemoveImg from '../img/remove.png'
 function SearchResults({ results, selected, onCheckboxChange }) {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
   const [KGsTable,setKGsTable] = useState(null);
+  const [selectAll, setSelectAll] = useState(false);
+  const [selectButtonLabel, setSelectButtonLabel] = useState('Seleziona Tutti');
 
   // Effect to edit the status of chechkbox when the the results is changed
   useEffect(() => {
@@ -18,7 +20,8 @@ function SearchResults({ results, selected, onCheckboxChange }) {
     const columns = [
       {
         accessorKey: 'select',
-        header: 'Select',
+        header: <button type="button" class="btn btn-success btn-sm" onClick={handleSelectAll}>{selectButtonLabel}</button>,
+        enableSorting: false,
         size: 1,
       },
       {
@@ -117,6 +120,22 @@ function SearchResults({ results, selected, onCheckboxChange }) {
     setSelectedCheckboxes(newSelection);
     onCheckboxChange(newSelection.map((id) => ({ id }))); // Send data to App.js
   }
+  };
+
+  const handleSelectAll = () => {
+    const allCheckboxIds = results.map((item) => item.kg_id);
+  
+    if (!selectAll) {
+      setSelectedCheckboxes(allCheckboxIds);
+      setSelectButtonLabel('Deseleziona tutti')
+      onCheckboxChange(allCheckboxIds.map((id) => ({ id }))); // Send data to App.js
+    } else {
+      setSelectedCheckboxes([]);
+      setSelectButtonLabel('Seleziona tutti')
+      onCheckboxChange([])
+    }
+    
+    setSelectAll(!selectAll);
   };
 
   return (
