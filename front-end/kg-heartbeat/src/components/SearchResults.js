@@ -56,7 +56,7 @@ function SearchResults({ results, selected, onCheckboxChange }) {
       setSelectedCheckboxes(newSelection);
       onCheckboxChange(newSelection.map((id) => ({ id }))); // Send data to App.js
     };
-    console.log(results)
+
     if(results){
       let data = []
       for(let i = 0; i < results.length; i++){
@@ -122,7 +122,7 @@ function SearchResults({ results, selected, onCheckboxChange }) {
   return (
     <Container>
       <Row>
-        <Col md="2">
+        <Col lg="2">
           <div id="selectedKG" className='selectedKGs-tab'>
             {selectedCheckboxes.map((item) => (
               <>
@@ -142,7 +142,7 @@ function SearchResults({ results, selected, onCheckboxChange }) {
             ))}
           </div>
         </Col>
-        <Col md="10">
+        <Col lg="10">
           {KGsTable}
         </Col>
       </Row>

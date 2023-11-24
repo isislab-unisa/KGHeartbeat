@@ -8,11 +8,13 @@ function Search({searchResults, handle_search, selectedKGs, handleSelectedDataCh
     
     return(
 
-        <Container fluid="md">
+        <Container className='w-100 p-3'>
             <Row>
                 <Col md="12">
+                <div className='text-center'>
                 <h2>Search the KGs</h2>
                 <SearchBar onSearch={handle_search} />
+                </div>
                 </Col>
                 </Row>
                 <Row>
