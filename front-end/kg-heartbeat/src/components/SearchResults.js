@@ -127,11 +127,11 @@ function SearchResults({ results, selected, onCheckboxChange }) {
   
     if (!selectAll) {
       setSelectedCheckboxes(allCheckboxIds);
-      setSelectButtonLabel('Deseleziona tutti')
+      setSelectButtonLabel('Deselect all')
       onCheckboxChange(allCheckboxIds.map((id) => ({ id }))); // Send data to App.js
     } else {
       setSelectedCheckboxes([]);
-      setSelectButtonLabel('Seleziona tutti')
+      setSelectButtonLabel('Select all')
       onCheckboxChange([])
     }
     
