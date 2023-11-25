@@ -114,7 +114,7 @@ def splitted_csv():
                         "kg_id" : kg_id,
                         "kg_name" : rows['KG name'],
                         "analysis_date" : rows['Date'],
-                        "Accessibility": [{"Availability" : {"sparqlEndpoint" : rows['SPARQL endpoint'] , 'RDFDump_merged': rows['RDF dump'], 'inactiveLinks' : rows['Inactive links']}},
+                        "Accessibility": [{"Availability" : {"sparqlEndpoint" : rows['SPARQL endpoint'] , 'RDFDumpM': rows['RDF dump'], 'inactiveLinks' : rows['Inactive links']}},
                                         {"Licensing" : {"licenseMetadata" : rows['License Machine-Redeable'],"licenseQuery" : rows['License MR'],'licenseHR' : rows['License Human-Redeable']}}, 
                                         {"Interlinking" :{'degreeConnection' : rows['Degree of connection'], 'clustering' : rows['Clustring coefficient'], 'centrality' : rows['Centrality'],'sameAs' : rows['Number of sameAs chains']}}, 
                                         {"Security" : {'useHTTPS' : rows['Use HTTPS'], 'requiresAuth' : rows['Requires auth']}}, 
