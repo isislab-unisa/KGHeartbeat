@@ -1390,6 +1390,7 @@ def analyses(idKG,analysis_date):
     if isinstance(sourcesC.web,str):
         if sourcesC.web != '' and sourcesC.web !='Absent' and sourcesC.web != 'absent':
             valueUrl = 1
+
     if believable == True:
         valuePr = 1
     
