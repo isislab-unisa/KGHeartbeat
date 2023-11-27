@@ -522,6 +522,7 @@ def analyses(idKG,analysis_date):
         try:
             publisher = query.getPublisher(accessUrl)
         except Exception as error:
+            publisher = '-'
             logger.warning(f'Verifiability | Verifiying publisher information | {str(error)}',extra=kg_info)
         
         #GET THE THROUGHPUT
