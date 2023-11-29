@@ -98,12 +98,7 @@ class Score:
         except (ValueError,TypeError):
             centratility = 0
         
-        try:
-            exLinks = float(self.kg.completeness.interlinkingC)
-        except (ValueError,TypeError):
-            exLinks = 0
-        
-        return ((sameAsV + clustering + centratility + exLinks) * weight) / self.dimensionNumber
+        return ((sameAsV + clustering + centratility) * weight) / self.dimensionNumber
 
     def securityScore(self,weigth):
         https = self.kg.security.useHTTPS
