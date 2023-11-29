@@ -167,3 +167,4 @@ manual_db_insert.py
 .*
 Dockerfile
 update_db.sh
+.DS_Store
