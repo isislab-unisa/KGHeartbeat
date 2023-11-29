@@ -98,7 +98,15 @@ class Score:
         except (ValueError,TypeError):
             centratility = 0
         
-        return ((sameAsV + clustering + centratility) * weight) / self.dimensionNumber
+        try:
+            if(int(self.kg.amountOfData.numTriplesQ) > int(self.kg.completeness.interlinkingC)):
+                exLinks = float(self.kg.completeness.interlinkingC)
+            else:
+                exLinks = 0
+        except (ValueError,TypeError):
+            exLinks = 0
+        
+        return ((sameAsV + clustering + centratility + exLinks) * weight) / self.dimensionNumber
 
     def securityScore(self,weigth):
         https = self.kg.security.useHTTPS
@@ -228,8 +236,8 @@ class Score:
         classes = self.kg.extra.classes
         properties = self.kg.extra.properties
         if isinstance(undefC,list) and isinstance(classes,list) and isinstance(undefP,list) and isinstance(properties,list):
-            if len(classes) + len(properties) > 0:
-                undefV = 1.0 - ((len(undefC) + len(undefP)/(len(classes) + len(properties))))
+            if len(classes) + len(properties) > 0 and ((len(classes) + len(properties)) > (len(undefC) + len(undefP))):
+                undefV = 1.0 - (((len(undefC) + len(undefP))/(len(classes) + len(properties))))
             else:
                 undefV = 0
         else:
@@ -239,7 +247,7 @@ class Score:
         mispP = self.kg.extra.triplesMP
         triples = self.kg.amountOfData.numTriplesQ
         if isinstance(mispC,list) and isinstance(mispP,list) and isinstance(triples,int):
-            if triples > 0:
+            if triples > 0 and (triples > (len(mispC) + len(mispP))):
                 mispV = 1.0 - ((len(mispC) + len(mispP)) / triples)
             else:
                 mispV = 0
@@ -374,10 +382,14 @@ class Score:
         return (freqV * weight) / self.dimensionNumber
     
     def completenessScore(self,weight):
+
         try:
-            interC = float(self.kg.interlinkingC)
-        except:
-            interC = 0
+            if(int(self.kg.amountOfData.numTriplesQ) > int(self.kg.completeness.interlinkingC)):
+                interC = float(self.kg.completeness.interlinkingC)
+            else:
+                interC = 0
+        except (ValueError,TypeError):
+                interC = 0
         
         return (interC * weight) /self.dimensionNumber
     
