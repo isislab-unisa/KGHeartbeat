@@ -10,6 +10,7 @@ const contextual = require('./routes/contextual');
 const representational = require('./routes/representational');
 const score = require('./routes/score');
 const extra = require('./routes/extra');
+const upload = require('express-fileupload');
 
 require('dotenv').config();
 
@@ -18,6 +19,7 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use(upload());
 
 //TODO: is possible to limitate the use of a middleware only for a specific path request
 app.use(async (req, res, next) => {

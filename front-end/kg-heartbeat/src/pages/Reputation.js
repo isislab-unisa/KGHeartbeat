@@ -18,6 +18,7 @@ function Reputation({ selectedKGs, setSelectedKGs}){
     const [availableDates, setAvailableDate] = useState(null);
     const [defaultDate, setDeafaultDate] = useState(null);
     const [toggleSwitch, setToggleSwitch] = useState(null);
+    const [switchComponent, setSwitchComponent] = useState(null);
 
     useEffect(() => {
         async function fetchData() {
@@ -47,6 +48,7 @@ function Reputation({ selectedKGs, setSelectedKGs}){
             if(selectedDate == null)
                 setDeafaultDate(parseISO(reputationData[reputationData.length-1].analysis_date))
             if(selectedKGs.length === 1){   
+                setSwitchComponent(<Form.Check type="switch" id="custom-switch" label='Switch to chage view' checked={toggleSwitch} onChange={() => setToggleSwitch(!toggleSwitch)}/>)
                 if(!toggleSwitch){
                     const series = trasform_to_series(reputationData,selectedKGs,reputation,'pageRank','PageRank');
                     setReputationChart(<LineChart chart_title={'Reputation'} y_min={0} y_max={10} series={series}/>)
@@ -71,6 +73,7 @@ function Reputation({ selectedKGs, setSelectedKGs}){
                     setReputationChart(reputation_table)
                 }   
             }else if(selectedKGs.length >= 1){
+                setSwitchComponent(null);
                 setToggleSwitch(true) //with this, we have always the toggle switch checked, this mean that we display only data over time if the data is selected from the calendar
                 let analysis_selected;
                     if(selectedDate == null || selectedDate === '1970-01-01')
@@ -108,13 +111,7 @@ function Reputation({ selectedKGs, setSelectedKGs}){
             <QualityBar selectedKGs={selectedKGs} setSelectedKG={setSelectedKGs}/>
             {reputationData && (
                 <div className='w-100 p-3'>
-                    <Form.Check
-                        type="switch"
-                        id="custom-switch"
-                        label='Switch to chage view'
-                        checked={toggleSwitch}
-                        onChange={() => setToggleSwitch(!toggleSwitch)}
-                    />
+                    {switchComponent}
                 {toggleSwitch ? (
                     <div>
                         <CalendarPopup selectableDates={availableDates} onDateSelect={handleDateSelect} defaultDate={defaultDate}/>

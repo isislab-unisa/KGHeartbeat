@@ -20,8 +20,9 @@ function BasicExample({quality_link, score_link}) {
           <Nav.Link>{score_link}</Nav.Link>
           </Nav>
           <Nav className='ml-auto'>
-          <Nav.Link as={"a"}><a href="https://github.com/isislab-unisa/KGHeartbeat" target='blank'><img src={GitHubImg} alt="GitHub" width="30" height="30" /></a></Nav.Link>
-          <Nav.Link as={"a"}><a href="https://isislab-unisa.github.io/KGHeartbeat/" target='blank'>How are the metrics calculated?</a></Nav.Link>
+            <Nav.Link><Link to="/pages/UploadAnalysis">Upload your analysis </Link></Nav.Link>
+            <Nav.Link as={"a"}><a href="https://isislab-unisa.github.io/KGHeartbeat/" target='blank'>How are the metrics calculated?</a></Nav.Link>
+            <Nav.Link as={"a"}><a href="https://github.com/isislab-unisa/KGHeartbeat" target='blank'><img src={GitHubImg} alt="GitHub" width="30" height="30" /></a></Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

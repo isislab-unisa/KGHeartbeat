@@ -513,7 +513,6 @@ function score_for_dimension_kgs(score_data,max_score){
             security : score_data[i]['Score']['securityScoreValue'],
         }
         data.push(row_data);
- 
     }
     return data
 }
@@ -536,7 +535,7 @@ function initialize_score_map(){
         'completeness' :"1",
         'amount' : "1",
         'repConc' : "1",
-        'rep-cons' : "1",
+        'repCons' : "1",
         'under' : "1",
         'interp' : "1",
         'vers': "1"

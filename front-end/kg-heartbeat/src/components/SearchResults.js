@@ -156,7 +156,7 @@ function SearchResults({ results, selected, onCheckboxChange }) {
                 onClick={() => handleOnChangeRemove(item)}
                 checked={selectedCheckboxes.includes(item)}
               />
-              <span className='btn-text'>{item}</span><br/>
+              <span className='btn-text'>{item && item.includes('|') ? item.split('|')[1] : item}</span><br/>
               </>
             ))}
           </div>

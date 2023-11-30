@@ -9,7 +9,6 @@ import Form from 'react-bootstrap/Form';
 import { find_target_analysis, get_analysis_date, trasform_to_series_conc, trasform_to_series_stacked } from '../utils';
 import ConcisenessChart from '../components/ConcisenessChart';
 import ColumnChart from '../components/ColumnChart';
-import Table from 'react-bootstrap/esm/Table';
 import StackedChart from '../components/StackedChart';
 
 const conciseness = 'Conciseness'

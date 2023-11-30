@@ -28,6 +28,7 @@ import Versatility from './pages/Versatility';
 import Score from './pages/Score';
 import Ranking from './pages/Ranking';
 import Download from './pages/Download';
+import UploadAnalysis from './pages/UploadAnalysis';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -77,6 +78,7 @@ function App() {
           <Route path="/pages/Score" component={Score} element={<Score selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>   
           <Route path='/pages/Ranking' component={Ranking} element={<Ranking />}/>  
           <Route path='/pages/Download' component={Download} element={<Download />} />           
+          <Route path='/pages/UploadAnalysis' component={UploadAnalysis} element={<UploadAnalysis selectedKGs={selectedKGs} setSelectedKGs={setKG} />} />  
        </Routes>
     </Router>
     </div>

@@ -190,7 +190,8 @@ async function searchKG(keywords){
     const result = await dbInstance.collection('quality_analysis_data').aggregate([
       {
         $match: {
-          'kg_name': { $regex: `${keywords}`, $options: 'i' }
+          'kg_name': { $regex: `${keywords}`, $options: 'i' },
+          'user_uploaded': { $ne: true }
         }
       },
       {
@@ -228,7 +229,8 @@ async function searchActiveKG(keywords,recent_analysis){
         $match: {
           $and: [
             {
-              'kg_name': { $regex: `${keywords}`, $options: 'i' }
+              'kg_name': { $regex: `${keywords}`, $options: 'i' },
+              'user_uploaded': { $ne: true }
             },
             {
               'analysis_date': {$eq : recent_analysis}
@@ -297,8 +299,7 @@ async function find_selected_analysis(kg_ids,start_date,end_date,quality_categor
 
 async function find_most_recent_analysis_date(){
   try{
-    const result = await dbInstance.collection('quality_analysis_data').find({},{"analysis_date" : 1}).sort("analysis_date", -1).limit(1).toArray();
-
+    const result = await dbInstance.collection('quality_analysis_data').find({ 'user_uploaded': { $ne: true }}).sort("analysis_date", -1).limit(1).project({ '_id': 0, 'analysis_date': 1 }).toArray();
     return(result[0]['analysis_date'])
 
   } catch (error){
@@ -311,6 +312,11 @@ async function find_most_recent_analysis_date(){
 async function find_analysis_date(){
   try {
     const pipeline = [
+      {
+        $match: {
+          'user_uploaded': { $ne: true }
+        }
+      },
       {
         $sort: {
           'analysis_date': -1, // Sort based on the analysis data
@@ -343,5 +349,20 @@ async function find_analysis_date(){
   }
 }
 
+async function insert_kgs_quality(quality_data){
+  try{
+    const result = await dbInstance.collection('quality_analysis_data').insertMany(quality_data);
+    if(result.acknowledged == true){
+      return true
+    } else {
+      return false
+    }
+  } catch (error){
+    console.error(error);
 
-module.exports = {connectToMongoDB, find_single_data, find_data_over_time, searchKG, find_score_over_time, find_extra_data, find_selected_analysis, searchActiveKG, find_most_recent_analysis_date, find_all_score, find_analysis_date};
+    return []
+  }
+}
+
+
+module.exports = {connectToMongoDB, find_single_data, find_data_over_time, searchKG, find_score_over_time, find_extra_data, find_selected_analysis, searchActiveKG, find_most_recent_analysis_date, find_all_score, find_analysis_date, insert_kgs_quality};

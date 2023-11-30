@@ -43,7 +43,7 @@ function Availability({ selectedKGs, setSelectedKGs}) {
     if (availabilityData) {
       const sparql_series = trasform_to_series_sparql_av(availabilityData, selectedKGs,availability,'sparqlEndpoint');
       //TODO: change here when new json file are generated
-      const rdfD_series = trasform_to_series_sparql_av(availabilityData,selectedKGs,availability,'RDFDump_merged');
+      const rdfD_series = trasform_to_series_sparql_av(availabilityData,selectedKGs,availability,'RDFDumpM');
       //const uridef_series = trasform_to_series(availabilityData,selectedKGs,availability,'uris_def')
       if(selectedKGs.length === 1){
         setSparqlChart(<SPARQLAvailabilityChart chart_title={'SPARQL endpoint availability'} series={sparql_series} y_min={-1} y_max={1}/>);

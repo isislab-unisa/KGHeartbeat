@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import QualityBar from '../components/QualityBar';
 import { base_url } from '../api';
 import axios from 'axios';
-import { get_analysis_date, score_to_series, score_series_multiple_kgs, initialize_score_map, recalculate_score, get_selected_dimension} from '../utils';
+import { get_analysis_date, score_to_series, score_series_multiple_kgs, initialize_score_map, recalculate_score, get_selected_dimension, score_for_dimension_kgs} from '../utils';
 import Form from 'react-bootstrap/Form';
 import CalendarPopup from '../components/CalendatPopup';
 import { find_target_analysis } from '../utils';
@@ -123,9 +123,109 @@ function Score( { selectedKGs, setSelectedKGs} ){
                         accessorKey: 'score',
                         header: 'Score',
                         size: 5,
+                    },
+                    {
+                        accessorKey: 'availability',
+                        header: 'Availability score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'licensing',
+                        header: 'Licensing score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'interlinking',
+                        header: 'Interlinking score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'performance',
+                        header: 'Performance score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'accuracy',
+                        header: 'Accuracy score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'consistency',
+                        header: 'Consistency score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'conciseness',
+                        header: 'Conciseness score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'verifiability',
+                        header: 'Verifiability score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'reputation',
+                        header: 'Reputation score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'believability',
+                        header: 'Believability score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'currency',
+                        header: 'Currency score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'volatility',
+                        header: 'Volatility score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'completeness',
+                        header: 'Completeness score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'amount',
+                        header: 'Amount of data score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'repCons',
+                        header: 'Representational-Consistency score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'repConc',
+                        header: 'Representational-Conciseness score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'understandability',
+                        header: 'Understandability score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'interpretability',
+                        header: 'Interpretability score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'versatility',
+                        header: 'Versatility score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'security',
+                        header: 'Security score',
+                        size: 5,
                     }
                 ]
-                const data = score_series_multiple_kgs(analysis_selected,selectedKGs,54);
+                const data = score_for_dimension_kgs(analysis_selected,54);
                 setScoreChart(<MaterialTable columns_value={columns} data_table={data} key={selectedDate + 'score'}/>)
             }
         }
@@ -148,11 +248,111 @@ function Score( { selectedKGs, setSelectedKGs} ){
                     },
                     {
                         accessorKey: 'score',
-                        header: 'Personalized score',
+                        header: 'Score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'availability',
+                        header: 'Availability score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'licensing',
+                        header: 'Licensing score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'interlinking',
+                        header: 'Interlinking score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'performance',
+                        header: 'Performance score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'accuracy',
+                        header: 'Accuracy score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'consistency',
+                        header: 'Consistency score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'conciseness',
+                        header: 'Conciseness score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'verifiability',
+                        header: 'Verifiability score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'reputation',
+                        header: 'Reputation score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'believability',
+                        header: 'Believability score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'currency',
+                        header: 'Currency score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'volatility',
+                        header: 'Volatility score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'completeness',
+                        header: 'Completeness score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'amount',
+                        header: 'Amount of data score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'repCons',
+                        header: 'Representational-Consistency score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'repConc',
+                        header: 'Representational-Conciseness score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'understandability',
+                        header: 'Understandability score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'interpretability',
+                        header: 'Interpretability score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'versatility',
+                        header: 'Versatility score',
+                        size: 5,
+                    },
+                    {
+                        accessorKey: 'security',
+                        header: 'Security score',
                         size: 5,
                     }
                 ]
-                const data = score_series_multiple_kgs(personalizedScoreData,selectedKGs,54);
+                const data = score_for_dimension_kgs(personalizedScoreData,54);
                 setPersonalizedScoreChart(<MaterialTable columns_value={columns} data_table={data} key={selectedDate + 'score personalized'}/>)
             }
         }
@@ -283,7 +483,7 @@ function Score( { selectedKGs, setSelectedKGs} ){
                 break;
             case 'rep-cons':
                 setSliderRepCons(new_value);
-                score_weights['rep-cons'] = new_value
+                score_weights['repCons'] = new_value
                 break;
             case 'under':
                 setSliderUnder(new_value);
