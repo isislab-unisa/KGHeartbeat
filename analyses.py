@@ -84,7 +84,10 @@ def analyses(idKG,analysis_date):
     logger.setLevel(logging.DEBUG)
     
     #Handler to write log on file
-    file_handler = logging.FileHandler(f'./Analysis results/{analysis_date}.log')
+    here = os.path.dirname(os.path.abspath(__file__))
+    save_path = os.path.join(here,'./Analysis results')
+    save_path = os.path.join(save_path, analysis_date+".log")
+    file_handler = logging.FileHandler(save_path)
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(formatter)
 
