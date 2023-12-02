@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import os
 import sys
+import re
 
 maxInt = sys.maxsize
 while True:
@@ -93,7 +94,11 @@ def full_csv():
                         "Extra": {"sparql_link" : rows['SPARQL endpoint URL'], "rdf_dump_link": rows['URL for download the dataset'], "external_links": rows['External links']}
                     }
                 
-                with open('json_files/' + kg_id + ' ' + filename + '.json','w') as jsonFile:
+                base_name = os.path.basename(kg_id)
+                valid_chars = re.compile(r'[^A-Za-z0-9._-]')
+                kg_id = valid_chars.sub('', base_name)
+
+                with open('json_files/' + kg_id + ' ' + filename + '.json','w',encoding='utf-8') as jsonFile:
                     jsonFile.write(json.dumps(data, indent=4))
 
 def splitted_csv():
@@ -137,7 +142,7 @@ def splitted_csv():
                         "Score": {"totalScore" : rows['Score']},
                         "Extra":{"sparql_link" : rows['Link SPARQL endpoint'],"rdf_dump_link" : rows['Link for download the dataset']}
                     }
-                    with open('json_files/' + kg_id + rows['Date'] + '.json','w') as jsonFile:
+                    with open('json_files/' + kg_id + rows['Date'] + '.json','w',encoding='utf-8') as jsonFile:
                         jsonFile.write(json.dumps(data, indent=4))
                 except:
                     continue
