@@ -79,12 +79,6 @@ filename = date.today()
 filename = str(filename)
 OutputCSV.writeHeader(filename)
 
-#REMOVING KGs THAT SENDS IN LOOP THE SCRIPT
-try:
-    utils.removeProblematicEndpoint(toAnalyze)
-except ValueError:
-    pass
-
 for i in range(len(toAnalyze)):
     kg = analyses.analyses(toAnalyze[i],filename)
     score = Score(kg,20)
