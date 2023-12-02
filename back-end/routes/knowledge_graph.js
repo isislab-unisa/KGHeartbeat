@@ -55,7 +55,6 @@ router.route('/search').get((req, res) => {
         });
     } else if(sparql === 'online'){
         find_most_recent_analysis_date().then(most_recent_analysis =>{
-            console.log(most_recent_analysis)
             searchActiveKG(keywords,most_recent_analysis).then(result => {
                 if(result)
                     res.json(result);

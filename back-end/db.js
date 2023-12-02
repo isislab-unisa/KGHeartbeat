@@ -123,6 +123,11 @@ async function find_all_score() {
     try {
       const pipeline = [
         {
+          $match: {
+            'user_uploaded': { $ne: true }
+          }
+        },
+        {
           $sort: {
             'analysis_date': -1, // Sort based on the analysis data
             'kg_name': -1 // Sort based on the name
