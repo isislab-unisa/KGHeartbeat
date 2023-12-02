@@ -9,7 +9,7 @@ function SearchBar({onSearch}) {
 
     useEffect(() => {
         handleSearch();
-      }, [])
+      }, [toggleSwitchSPARQL])
 
     const handleSearch = async () => {
         try {

@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import QualityBar from '../components/QualityBar';
 import { base_url } from '../api';
 import axios from 'axios';
-import {compact_temporal_data, trasform_to_series_sparql_av} from '../utils';
+import {compact_string_temporal_data, compact_temporal_data, trasform_to_series, trasform_to_series_sparql_av} from '../utils';
 import Table from '../components/PersonalTable';
 import TableBoot from 'react-bootstrap/Table';
 import SPARQLAvailabilityChart from '../components/AvailabilityChart';
 import RDFDumpAvChart from '../components/RDFDumpAvChart';
+import LineChart from '../components/LineChart';
 
 const availability = 'Availability'
 
@@ -15,7 +16,7 @@ function Availability({ selectedKGs, setSelectedKGs}) {
   const [sparlq_chart,setSparqlChart] = useState(null);
   const [rdfDumpChart,setRDFDumpC] = useState(null);
   const [inactiveTab,setInactiveTab] = useState(null);
-  //const [uriDefChart,setDefChart] = useState(null);
+  const [uriDefChart,setDefChart] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -42,12 +43,13 @@ function Availability({ selectedKGs, setSelectedKGs}) {
   useEffect(() => { //everytime that availability data change, we create series and redraw the chart
     if (availabilityData) {
       const sparql_series = trasform_to_series_sparql_av(availabilityData, selectedKGs,availability,'sparqlEndpoint');
-      //TODO: change here when new json file are generated
       const rdfD_series = trasform_to_series_sparql_av(availabilityData,selectedKGs,availability,'RDFDumpM');
-      //const uridef_series = trasform_to_series(availabilityData,selectedKGs,availability,'uris_def')
+      const uridef_series = trasform_to_series(availabilityData,selectedKGs,availability,'uriDef');
       if(selectedKGs.length === 1){
+        console.log(availabilityData)
         setSparqlChart(<SPARQLAvailabilityChart chart_title={'SPARQL endpoint availability'} series={sparql_series} y_min={-1} y_max={1}/>);
         setRDFDumpC(<RDFDumpAvChart chart_title={'RDF dump availability'} series={rdfD_series} y_min={-1} y_max={1} />);
+        setDefChart(<LineChart chart_title={'URIs Deferenceability'} series={uridef_series} y_min={0} y_max={1}/>);
         const inactive_tab = (
           <TableBoot striped bordered hover>
             <tr><th>Inactive links</th></tr>
@@ -57,11 +59,11 @@ function Availability({ selectedKGs, setSelectedKGs}) {
           </TableBoot>
         );
         setInactiveTab(inactive_tab);
-        //setDefChart(<LineChart chart_title={'URIs dereferenziability'} series={uridef_series} y_min={-1} y_max={1} />);
       }else if (selectedKGs.length >= 1){
         setSparqlChart(<Table series={sparql_series} title={'SPARQL endpoint availability'}/>);
         setRDFDumpC(<Table series={rdfD_series} title={'RDF dump availability'}/>);
-        const inactive_l_series = compact_temporal_data(availabilityData,selectedKGs,availability,'inactiveLinks')
+        const inactive_l_series = compact_string_temporal_data(availabilityData,selectedKGs,availability,'inactiveLinks')
+        const def_value_series = compact_temporal_data(availabilityData,selectedKGs,availability,'uriDef')
         const inactive_tab = (
           <TableBoot striped bordered hover >
             <tr>
@@ -76,7 +78,20 @@ function Availability({ selectedKGs, setSelectedKGs}) {
           </TableBoot>
         );
         setInactiveTab(inactive_tab);
-        //setDefChart(<Table series={uridef_series} title={'URIs dereferenziability'}/>)
+        const uri_def_tab = (
+          <TableBoot striped bordered hover >
+            <tr>
+              <th>KG name</th><th>URIs Deferenceability</th>
+            </tr>
+            {def_value_series.map((item) => (
+              <tr>
+                <td className='cell' key={item.kg_id} style={{fontSize: '18px'}}>{item.name}</td>
+                <td className='cell' style={{fontSize: '18px'}}>{item.data.length > 0 ? item.data[item.data.length -1][1] : '-'}</td>
+              </tr>
+            ))}
+          </TableBoot>
+        )
+        setDefChart(uri_def_tab)
       }
     }
   }, [availabilityData, selectedKGs]);
@@ -89,7 +104,7 @@ function Availability({ selectedKGs, setSelectedKGs}) {
 				<div className='w-100 p-3'> 
 					{sparlq_chart}
           {rdfDumpChart}
-          {/*uriDefChart*/}
+          {uriDefChart}
           {inactiveTab}
 				</div>    
 		)}
