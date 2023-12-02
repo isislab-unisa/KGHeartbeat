@@ -77,7 +77,7 @@ class DBinterface():
                               {"Security" : kg_quality.security.__dict__}, {"Performance" : kg_quality.performance.__dict__}],
             "Intrinsic": [{"Accuracy" : kg_quality.accuracy.__dict__}, {"Consistency" : kg_quality.consistency.__dict__}, {"Conciseness" : kg_quality.conciseness.__dict__}],
             "Trust": [{"Reputation" : kg_quality.reputation.to_dict()}, {"Believability" : kg_quality.believability.__dict__}, {"Verifiability" : kg_quality.verifiability.to_dict()}],
-            "Dataset dynamicity" : [{"Currency" : kg_quality.currency.__dict__}, {"Volatility" : kg_quality.volatility.__dict__}],
+            "Dataset dynamicity" : [{"Currency" : kg_quality.currency.to_dict()}, {"Volatility" : kg_quality.volatility.to_dict()}],
             "Contextual": [{"Completeness" : kg_quality.completeness.__dict__}, {"Amount of data" : kg_quality.amountOfData.__dict__}],
             "Representational" : [{"Representational-conciseness" : kg_quality.rConciseness.__dict__}, {"Representational-consistency" : kg_quality.rConsistency.__dict__}, {"Understandability" : kg_quality.understendability.__dict__}, 
                                   {"Interpretability" : kg_quality.interpretability.__dict__}, {"Versatility" : kg_quality.versatility.__dict__}],
