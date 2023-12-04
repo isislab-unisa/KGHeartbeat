@@ -69,6 +69,7 @@ function trasform_to_series_sparql_av(quality_data,selectedKGs,quality_dimension
             }
         }
     }
+    series[0].data.sort()
     return series
 }
 
@@ -578,7 +579,7 @@ function initialize_score_map(){
     return score_map
 }
 
-function recalculate_score(score_data,selectedKGs,score_weights,max_value){
+function recalculate_score(score_data,selectedKGs,score_weights,dimension_number){
     const personalized_score = JSON.parse(JSON.stringify(score_data));
     
     for(let i = 0; i<selectedKGs.length; i++){
@@ -603,8 +604,8 @@ function recalculate_score(score_data,selectedKGs,score_weights,max_value){
                 sum_score += personalized_score[i]['Score'][key];
         }
         //for old data we have 0 because we doesn't have the single score from every quality dimension
-        personalized_score[i]['Score']['normalizedScore'] = (sum_score/max_value) * 100;
-        personalized_score[i]['Score']['totalScore'] = sum_score;
+        personalized_score[i]['Score']['normalizedScore'] = (sum_score / dimension_number) * 100;
+        personalized_score[i]['Score']['totalScore'] = sum_score / dimension_number;
     }
 
     return personalized_score
@@ -641,4 +642,12 @@ function convert_analysis_date(analysis_date_obj){
     return parsed_date
 }
 
-export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data, trasform_to_series_compl, trasform_rep_conc_to_series, trasform_rep_conc_to_series_multiple, create_percentage_label_series,extract_most_recent,add_believability_and_amount,add_amount,set_message_availability,score_to_series, score_series_multiple_kgs, recalculate_score, initialize_score_map, get_selected_dimension,score_for_dimension_kgs, convert_analysis_date,trasform_to_series_sparql_av,compact_string_temporal_data};
+function compare_date(date_a, date_b){
+    return new Date(date_a.analysis_date) - new Date(date_b.analysis_date);
+}
+
+function compare_date_array(date_a, date_b){
+    return date_b[0] - date_b[0];
+}
+
+export {trasform_to_series,compact_temporal_data, trasform_latency_to_series, trasform_throughput_to_series, get_analysis_date, find_target_analysis,trasform_to_series_stacked, remove_duplicates, series_for_polar_chart, trasform_to_series_conc, trasform_history_data, trasform_to_series_compl, trasform_rep_conc_to_series, trasform_rep_conc_to_series_multiple, create_percentage_label_series,extract_most_recent,add_believability_and_amount,add_amount,set_message_availability,score_to_series, score_series_multiple_kgs, recalculate_score, initialize_score_map, get_selected_dimension,score_for_dimension_kgs, convert_analysis_date,trasform_to_series_sparql_av,compact_string_temporal_data, compare_date, compare_date_array};

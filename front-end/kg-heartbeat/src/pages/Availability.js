@@ -17,6 +17,7 @@ function Availability({ selectedKGs, setSelectedKGs}) {
   const [rdfDumpChart,setRDFDumpC] = useState(null);
   const [inactiveTab,setInactiveTab] = useState(null);
   const [uriDefChart,setDefChart] = useState(null);
+  const [analysisDate, setAnalysisDate] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -31,7 +32,9 @@ function Availability({ selectedKGs, setSelectedKGs}) {
               id : arrayIDs
             }
             const response = await axios.post(`${base_url}accessibility/availability`,arrayIDs);
+            const response2 = await axios.get(`${base_url}knowledge_graph/get_analysis_date`);
             setAvailabilityData(response.data);
+            setAnalysisDate(response2.data);
           }
         } catch (error) {
           console.error('Error during the search', error);
@@ -46,7 +49,6 @@ function Availability({ selectedKGs, setSelectedKGs}) {
       const rdfD_series = trasform_to_series_sparql_av(availabilityData,selectedKGs,availability,'RDFDumpM');
       const uridef_series = trasform_to_series(availabilityData,selectedKGs,availability,'uriDef');
       if(selectedKGs.length === 1){
-        console.log(availabilityData)
         setSparqlChart(<SPARQLAvailabilityChart chart_title={'SPARQL endpoint availability'} series={sparql_series} y_min={-1} y_max={1}/>);
         setRDFDumpC(<RDFDumpAvChart chart_title={'RDF dump availability'} series={rdfD_series} y_min={-1} y_max={1} />);
         setDefChart(<LineChart chart_title={'URIs Deferenceability'} series={uridef_series} y_min={0} y_max={1}/>);
@@ -60,8 +62,9 @@ function Availability({ selectedKGs, setSelectedKGs}) {
         );
         setInactiveTab(inactive_tab);
       }else if (selectedKGs.length >= 1){
-        setSparqlChart(<Table series={sparql_series} title={'SPARQL endpoint availability'}/>);
-        setRDFDumpC(<Table series={rdfD_series} title={'RDF dump availability'}/>);
+        console.log(analysisDate)
+        setSparqlChart(<Table series={sparql_series} title={'SPARQL endpoint availability'} analysis_date={analysisDate}/>);
+        setRDFDumpC(<Table series={rdfD_series} title={'RDF dump availability'} analysis_date={analysisDate}/>);
         const inactive_l_series = compact_string_temporal_data(availabilityData,selectedKGs,availability,'inactiveLinks')
         const def_value_series = compact_temporal_data(availabilityData,selectedKGs,availability,'uriDef')
         const inactive_tab = (
@@ -94,7 +97,7 @@ function Availability({ selectedKGs, setSelectedKGs}) {
         setDefChart(uri_def_tab)
       }
     }
-  }, [availabilityData, selectedKGs]);
+  }, [availabilityData, selectedKGs, analysisDate]);
 
     return(
 		<div>
