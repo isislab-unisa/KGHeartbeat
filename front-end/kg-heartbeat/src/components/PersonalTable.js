@@ -1,15 +1,20 @@
 import Table from 'react-bootstrap/Table';
+import { compare_date, compare_date_array } from '../utils';
 
-function PersonalTable({series,title}){
-    const serie = series[0]
+function PersonalTable({series,title, analysis_date}){
+    console.log(series)
+    for(let i = 0; i < series.length; i++){
+        series[i].data.sort(compare_date_array)
+    }
+    analysis_date.sort(compare_date)
     return(
         <div>
             <p>{title}</p>
             <Table striped bordered hover>
                 <tr>
                     <td className='cell' style={{fontSize: '18px'}}>KG name</td>
-                    {serie.data.map((item) => {
-                        const data = new Date(item[0])
+                    {analysis_date.map((item) => {
+                        const data = new Date(item.analysis_date)
                         const year = data.getFullYear();
                         const month = (data.getMonth() + 1).toString().padStart(2,'0');
                         const day = data.getDate().toString().padStart(2,'0');
