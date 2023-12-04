@@ -501,9 +501,9 @@ function Score( { selectedKGs, setSelectedKGs} ){
         }
         setPersonalizedScoreChart(null)
         if(selectedKGs.length === 1)
-            setPersonalizedScoreData(recalculate_score(scoreData,selectedKGs,score_weights,54))
+            setPersonalizedScoreData(recalculate_score(scoreData,selectedKGs,score_weights,20))
         else if(selectedKGs.length !== 1)
-            setPersonalizedScoreData(recalculate_score(analysisSelected,selectedKGs,score_weights,54))
+            setPersonalizedScoreData(recalculate_score(analysisSelected,selectedKGs,score_weights,20))
     }
 
     const handleClickBtn = (click) =>{
