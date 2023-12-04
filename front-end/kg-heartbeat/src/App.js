@@ -29,6 +29,7 @@ import Score from './pages/Score';
 import Ranking from './pages/Ranking';
 import Download from './pages/Download';
 import UploadAnalysis from './pages/UploadAnalysis';
+import Homepage from './pages/Homepage';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -53,6 +54,7 @@ function App() {
     <Router>
       <NavBar quality_link={content} score_link={score_link}/>
         <Routes>
+          <Route path="/pages/Homepage" component={Homepage} element={<Homepage/>}/>
           <Route path="/pages/QualityData" component={QualityData} element={<QualityData selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>
           <Route path="/pages/Search" component={Search} element={<Search searchResults={searchResults} handle_search={handle_search} selectedKGs={selectedKGs} handleSelectedDataChange={handleSelectedDataChange}/>}/>
           <Route path="/pages/Availability" component={Availability} element={<Availability selectedKGs={selectedKGs} setSelectedKGs={setKG}/>}/>
