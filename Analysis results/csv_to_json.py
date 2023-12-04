@@ -4,6 +4,7 @@ from pathlib import Path
 import os
 import sys
 import re
+import string
 
 maxInt = sys.maxsize
 while True:
@@ -32,8 +33,16 @@ def full_csv():
                     rows['Age of data']
                 except KeyError:
                     old_analysis = True
-
+        
                 kg_id = rows['KG id']
+
+                kg_id = re.sub(r'[\\/*?:"<>|]',"",kg_id)
+                remove_punctuation_map = dict((ord(char), None) for char in '\/*?:"<>|')
+                kg_id = kg_id.translate(remove_punctuation_map)
+                remove_punctuation_map = dict((ord(char), None) for char in string.punctuation)
+                kg_id = kg_id.translate(remove_punctuation_map)
+                kg_id = kg_id.replace(" ","")
+
                 if(old_analysis == False):
                     data = {
                         "kg_id" : kg_id,
@@ -93,10 +102,6 @@ def full_csv():
                         "Score": {"totalScore" : rows['Score']},
                         "Extra": {"sparql_link" : rows['SPARQL endpoint URL'], "rdf_dump_link": rows['URL for download the dataset'], "external_links": rows['External links']}
                     }
-                
-                base_name = os.path.basename(kg_id)
-                valid_chars = re.compile(r'[^A-Za-z0-9._-]')
-                kg_id = valid_chars.sub('', base_name)
 
                 with open('json_files/' + kg_id + ' ' + filename + '.json','w',encoding='utf-8') as jsonFile:
                     jsonFile.write(json.dumps(data, indent=4))
@@ -147,5 +152,5 @@ def splitted_csv():
                 except:
                     continue
             
-
+splitted_csv()
 full_csv()
