@@ -1035,5 +1035,5 @@ def to_list(old_values):
     
     return old_values
 
-def normalize_score(score,max_value):
-    return (score)/(max_value) * 100
+def normalize_score(score):
+    return (score) * 100

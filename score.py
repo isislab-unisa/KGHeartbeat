@@ -5,7 +5,28 @@ from string import whitespace
 import time
 import query
 
-#Total score = 54
+AVAILABILITY_METRICS = 4
+LICENSING_METRICS = 2
+INTERLINKING_METRICS = 4
+SECURITY_METRICS = 2
+PERFORMANCE_METRICS = 2
+ACCURACY_METRICS = 5
+CONSISTENCY_METRICS = 5
+CONCISENESS_METRICS = 2
+VERIFIABILITY_METRICS = 6
+REPUTATION_METRICS = 1
+BELIEVABILITY_METRICS = 2
+CURRENCY_METRICS = 2
+VOLATILITY_METRICS = 1
+COMPLETENESS_METRICS = 1
+AMOUNT_METRICS = 3
+REP_CONS_METRICS = 2
+REP_CONC_METRICS = 2
+UNDERSTANDABILITY_METRICS = 4
+INTERPRETABILITY_METRICS = 2
+VERSATILITY_METRICS = 3
+DIMENSION_NUMER = 20
+
 class Score:
     def __init__(self,kg,dimensionNumber):
         self.kg = kg
@@ -51,7 +72,7 @@ class Score:
         except:
             defValue = 0
 
-        return ((url + dump + inactive + defValue) * weight) / self.dimensionNumber
+        return ((url + dump + inactive + defValue) * weight) / AVAILABILITY_METRICS
     
     def licensingScore(self,weight):
         if isinstance(self.kg.licensing.licenseQuery,list):
@@ -75,7 +96,7 @@ class Score:
         else:
             hrV = 0
 
-        return ((mr+hrV) * weight ) / self.dimensionNumber
+        return ((mr+hrV) * weight ) / LICENSING_METRICS
     
     def interlinkingScore(self,weight):
         try:
@@ -106,7 +127,7 @@ class Score:
         except (ValueError,TypeError):
             exLinks = 0
         
-        return ((sameAsV + clustering + centratility + exLinks) * weight) / self.dimensionNumber
+        return ((sameAsV + clustering + centratility + exLinks) * weight) / INTERLINKING_METRICS
 
     def securityScore(self,weigth):
         https = self.kg.security.useHTTPS
@@ -127,7 +148,7 @@ class Score:
         else:
             authV = 0
         
-        return ((secure + authV) * weigth) / self.dimensionNumber
+        return ((secure + authV) * weigth) / SECURITY_METRICS
 
 
     def performanceScore(self,weight):
@@ -161,7 +182,7 @@ class Score:
             except:
                 latencyV = 0.0
             
-            return ((tp + latencyV) * weight) / self.dimensionNumber
+            return ((tp + latencyV) * weight) / PERFORMANCE_METRICS
         else:
             return 0
     
@@ -203,7 +224,7 @@ class Score:
         except ValueError:
             IFPValue = 0
 
-        return ((voidLabelV + wsV + malformedV + FPValue + IFPValue) * weight) / self.dimensionNumber
+        return ((voidLabelV + wsV + malformedV + FPValue + IFPValue) * weight) / ACCURACY_METRICS
 
 
     def concisenessScore(self,weight):
@@ -222,7 +243,7 @@ class Score:
         except ValueError:
             exC = 0
         
-        return ((intC + exC) * weight) / self.dimensionNumber
+        return ((intC + exC) * weight) / CONCISENESS_METRICS
     
     def consistencyScore(self,weight):
         try:
@@ -272,7 +293,7 @@ class Score:
         else:
             ohValue = 0
         
-        return ((disjV + undefV + mispV + depValue +  ohValue) * weight) / self.dimensionNumber
+        return ((disjV + undefV + mispV + depValue +  ohValue) * weight) / CONSISTENCY_METRICS
         
     def verifiabilityScore(self,weight):
         vocabs = self.kg.verifiability.vocabularies
@@ -336,7 +357,7 @@ class Score:
         else:
             signV = 0
         
-        return ((vocabsV + authV + pubV + contribsV + srcV + signV) * weight) / self.dimensionNumber
+        return ((vocabsV + authV + pubV + contribsV + srcV + signV) * weight) / VERIFIABILITY_METRICS
     
     def reputationScore(self,weight):
         try:
@@ -346,13 +367,13 @@ class Score:
         except:
             prV = 0
         
-        return (prV * weight) / self.dimensionNumber
+        return (prV * weight) / REPUTATION_METRICS
     
     def believabilityScore(self,weight):
         trustV = self.kg.believability.trustValue.replace(',','.')
         trustV = float(trustV)
 
-        return (trustV * weight) / self.dimensionNumber
+        return (trustV * weight) / BELIEVABILITY_METRICS
     
 
     def currencyScore(self,weight):
@@ -367,7 +388,7 @@ class Score:
         else:
             mV = 0
         
-        return ((cV + mV) * weight) /self.dimensionNumber
+        return ((cV + mV) * weight) / CURRENCY_METRICS
 
     def volatilityScore(self,weight):
         frequency = self.kg.volatility.frequency
@@ -379,7 +400,7 @@ class Score:
         else:
             freqV = 0
         
-        return (freqV * weight) / self.dimensionNumber
+        return (freqV * weight) / VOLATILITY_METRICS
     
     def completenessScore(self,weight):
 
@@ -391,7 +412,7 @@ class Score:
         except (ValueError,TypeError):
                 interC = 0
         
-        return (interC * weight) /self.dimensionNumber
+        return (interC * weight) / COMPLETENESS_METRICS
     
     def amountScore(self,weigth):
         try:
@@ -420,7 +441,7 @@ class Score:
         except (ValueError,TypeError):
             numPropV = 0
         
-        return ((triplesV + entitiesV + numPropV ) * weigth) / self.dimensionNumber
+        return ((triplesV + entitiesV + numPropV ) * weigth) / AMOUNT_METRICS
 
     def repConcScore(self,weight):
         allUri = self.kg.extra.uriList
@@ -433,7 +454,7 @@ class Score:
             try:
                 dlc = query.getDlc(sparqlUrl)
                 if isinstance(dlc,int):
-                    if dlc > 0:
+                    if dlc > 0 and dlc > len(urlApproved):
                         uriV = len(urlApproved) / dlc
                     else:
                         uriV = 0
@@ -446,7 +467,10 @@ class Score:
                 rcc = query.countStruct(sparqlUrl)
                 if isinstance(rcc,int):
                     triples = int(self.kg.amountOfData.numTriplesQ)
-                    rdfV = 1.0 - (rcc/triples)
+                    if(triples > rcc):
+                        rdfV = 1.0 - (rcc/triples)
+                    else:
+                        rdfV = 0
                 else:
                     rdfV = 0
             except:
@@ -454,14 +478,17 @@ class Score:
         else:
             rdfV = 0
             uriV = 0
-        return ((uriV + rdfV) * weight) /self.dimensionNumber
+        return ((uriV + rdfV) * weight) / REP_CONC_METRICS
     
     def repConsScore(self,weight):
         allTerms = self.kg.extra.allTerms
         newTerms = self.kg.rConsistency.useNewTerms
         if isinstance(allTerms,list) and isinstance(newTerms,list):
             if len(allTerms) > 0:
-                repConsV = 1.0 - (len(newTerms)/len(allTerms))
+                if(len(allTerms) > len(newTerms)):
+                    repConsV = 1.0 - (len(newTerms)/len(allTerms))
+                else:
+                    repConsV = 0
             else:
                 repConsV = 0
         else:
@@ -476,7 +503,7 @@ class Score:
         else:
             newVocabsV = 0
 
-        return ((repConsV + newVocabsV) * weight) / self.dimensionNumber
+        return ((repConsV + newVocabsV) * weight) / REP_CONS_METRICS
     
     def understScore(self,weight):
         sparqlUrl = self.kg.extra.endpointUrl
@@ -522,7 +549,7 @@ class Score:
         else:
             vocabsV = 0
 
-        return ((labelV + regexV + exampleV + vocabsV)  * weight) / self.dimensionNumber
+        return ((labelV + regexV + exampleV + vocabsV)  * weight) / UNDERSTANDABILITY_METRICS
     
     def interpretabilityScore(self,weight):
         sparqlUrl = self.kg.extra.endpointUrl
@@ -551,7 +578,7 @@ class Score:
             bnValue = 0
             rdfV = 0
         
-        return ((bnValue + rdfV) * weight) /self.dimensionNumber
+        return ((bnValue + rdfV) * weight) /INTERPRETABILITY_METRICS
     
     def versatilityScore(self,weight):
         serializationF = self.kg.versatility.serializationFormats
@@ -581,7 +608,7 @@ class Score:
         if self.kg.availability.sparqlEndpoint == 'Available' and (self.kg.availability.RDFDumpM == True or self.kg.availability.RDFDumpQ):
             accessibilityV = accessibilityV + 1 
         
-        return ((seriValue + langsV + accessibilityV) * weight) / self.dimensionNumber
+        return ((seriValue + langsV + accessibilityV) * weight) / VERSATILITY_METRICS
     
     def getWeightedDimensionScore(self,weight):
         self.availabilityScoreValue = self.availabilityScore(weight)
@@ -604,9 +631,9 @@ class Score:
         self.understScoreValue = self.understScore(weight)
         self.interpretabilityScoreValue = self.interpretabilityScore(weight)
         self.versatilityScoreValue = self.versatilityScore(weight)
-        score = self.availabilityScoreValue + self.licensingScoreValue + self.interlinkingScoreValue + self.securityScoreValue + self.performanceScoreValue + self.accuracyScoreValue + self.consistencyScoreValue + self.concisenessScoreValue + self.reputationScoreValue + self.believabilityScoreValue + self.verifiabilityScoreValue + self.currencyScoreValue + self.volatilityScoreValue + self.completenessScoreValue + self.amountScoreValue + self.repConcScoreValue + self.repConsScoreValue + self.understScoreValue +  self.interpretabilityScoreValue + self.versatilityScoreValue
+        score = (self.availabilityScoreValue + self.licensingScoreValue + self.interlinkingScoreValue + self.securityScoreValue + self.performanceScoreValue + self.accuracyScoreValue + self.consistencyScoreValue + self.concisenessScoreValue + self.reputationScoreValue + self.believabilityScoreValue + self.verifiabilityScoreValue + self.currencyScoreValue + self.volatilityScoreValue + self.completenessScoreValue + self.amountScoreValue + self.repConcScoreValue + self.repConsScoreValue + self.understScoreValue +  self.interpretabilityScoreValue + self.versatilityScoreValue) / DIMENSION_NUMER
         if score > 0:
-            normalized_score = utils.normalize_score(score,54)
+            normalized_score = utils.normalize_score(score)
             self.totalScore = score
             self.normalizedScore = normalized_score
             return score,normalized_score
