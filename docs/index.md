@@ -8,7 +8,6 @@
 layout: home
 ---
 <table>
-    <thead>
         <tr>
         <th colspan="5" style="text-align: center;">Accessibility</th>
         </tr>
@@ -19,7 +18,6 @@ layout: home
         <tr>
             <th colspan="5" style="text-align: center;">Availability</th>
         </tr>
-    </thead>
         <tr>
             <td rowspan="8">Accessibility of the SPARQL endpoint</td>
             <td rowspan="8"><a href="https://bit.ly/4a4xRA6">https://bit.ly/4a4xRA6</a></td>
