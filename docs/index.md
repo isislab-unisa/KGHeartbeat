@@ -17,13 +17,13 @@ layout: home
             <th colspan="1" style="text-align: center;">Ref</th>
         </tr>
         <tr>
-            <th colspan="5" style="text-align: center;">Interlinking</th>
+            <th colspan="5" style="text-align: center;">Availability</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td rowspan="8">Availability</td>
-            <td rowspan="8"></td>
+            <td rowspan="8">Accessibility of the SPARQL endpoint</td>
+            <td rowspan="8"><a href=https://bit.ly/4a4xRA6>https://bit.ly/4a4xRA6</a></td>
             <td colspan="4"><i>Checking whether the server responds to a SPARQL query</td>
         </tr>
         <tr>
@@ -32,15 +32,17 @@ layout: home
         </tr>
         <tr>
             <td rowspan="1">Algorithm</td>
-            <td colspan="3">[query SPARQL](./quality_dimensions/availability.md#sparql-endpoint)</td>
+            <td colspan="3">
+            <a href="https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/availability#sparql-endpoint">Availability/SPARQL-endpoint</a>
+            </td>
         <tr>
             <td rowspan="3">Output</td>
             <td>0</td>
-            <td colspan="3">The SPARQL endpoint is offline</td>
+            <td colspan="3">The SPARQL endpoint is offline.</td>
         </tr>
         <tr>
             <td>1</td>
-            <td colspan="3">The SPARQL endpoint is online</td>
+            <td colspan="3">The SPARQL endpoint is online.</td>
         </tr>
         <tr>
             <td>-1</td>
