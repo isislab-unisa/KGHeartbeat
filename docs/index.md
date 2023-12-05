@@ -20,11 +20,10 @@ layout: home
             <th colspan="5" style="text-align: center;">Availability</th>
         </tr>
     </thead>
-    <tbody>
         <tr>
             <td rowspan="8">Accessibility of the SPARQL endpoint</td>
-            <td rowspan="8"><a href=https://bit.ly/4a4xRA6>https://bit.ly/4a4xRA6</a></td>
-            <td colspan="4"><i>Checking whether the server responds to a SPARQL query</td>
+            <td rowspan="8"><a href="https://bit.ly/4a4xRA6">https://bit.ly/4a4xRA6</a></td>
+            <td colspan="4"><i>Checking whether the server responds to a SPARQL query</i></td>
         </tr>
         <tr>
             <td>Input</td>
@@ -48,5 +47,4 @@ layout: home
             <td>-1</td>
             <td colspan="3">The SPARQL endpoint is missing.</td>
         </tr>
-    </tbody>
 </table>
