@@ -167,4 +167,11 @@ manual_db_insert.py
 .*
 Dockerfile
 update_db.sh
-.DS_Store
+.DS_Storeback-end/node_modules
+back-end/.env
+back-end/kg-heartbeat/node_modules
+.devcontainer
+Dockerfile
+node_modules
+.*
+yarn.lock
