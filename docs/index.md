@@ -45,4 +45,3 @@ layout: home
             <td>-1</td>
             <td colspan="3">The SPARQL endpoint is missing.</td>
         </tr>
-</table>
