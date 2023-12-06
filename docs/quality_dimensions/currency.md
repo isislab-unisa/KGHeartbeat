@@ -3,12 +3,12 @@ title: Dataset dynamicity category
 ---
 
 ## Currency
-1. [Creation date](#creation-date)
-2. [Modification date](#modification-date)
+1. [Age of data](#age-of-data)
+2. [Specification of the modification date of statements](#specification-of-the-modification-date-of-statements)
 3. [Time since last modification](#time-since-last-modification)
 4. [History of changes made](#history-of-changes-made)
 
-#### **Creation date**
+#### **Age of data**
 The value regarding the KG creation date can be obtained from the VoID file or by executing a query on the SPARQL endpoint. In the VoID file we look for a triple having $dcterms:created$ as predicate. Instead the query for the endpoint should be of the type:
 
 ```sql
@@ -25,7 +25,7 @@ with that predicate. To quantize the metric, if the creation date is indicated, 
 
 ---
 
-#### **Modification date**
+#### **Specification of the modification date of statements**
 This value can also be obtained either from the file
 VoID or by executing a query. In the VoID file we look for the triple with predicate $dcterms:modified$, while on the SPARQL endpoint we execute the following query:
 

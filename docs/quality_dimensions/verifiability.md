@@ -1,16 +1,13 @@
----
+verifying authenticity of the dataset---
 title: Trust category
 ---
 
 ## Verifiability
-1. [Vocabularies](#vocabularies)
-2. [Authors](#authors)
-3. [Contributors](#contributors)
-4. [Publishers](#publishers)
-5. [Sources](#sources)
-6. [Signature](#signature)
+1. [Verifying authenticity of the dataset](#verifying-authenticity-of-the-dataset)
+2. [Verifying publisher information](#verifying-publisher-information)
+3. [Verifying usage of digital signatures](#verifying-usage-of-digital-signatures)
 
-#### **Vocabularies**
+#### **Verifying authenticity of the dataset**
 For recover the vocabularies used in the KG we can use two different approach. The first is try to parse the VoID file if available and we have to search the triples with the $void:vocabulary$ triples. The second method is to use the following query on the SPARQL endpoint.
 
 ```sql
@@ -25,6 +22,8 @@ m_{vocabs} = \frac{vocabs}{namespace}
 $$
 
 ---
+
+### Verifying publisher information
 
 #### **Authors**
 Also the authors can be recovered via the VoID file or the SPARQL endpoint. In the VoID file we have to search the triples with the predicate equals to $dcterms:creator$. As alternative, we execute the following query on the SPARQL endpoint.
@@ -76,7 +75,7 @@ To quantize this metric, we assign 1 if sources is indicated, 0 otherwise.
 
 ---
 
-### **Signature**
+### **Verifying usage of digital signatures**
 To check and retrieve the signature on the KG if present, the following query is executed:
 
 ```sql

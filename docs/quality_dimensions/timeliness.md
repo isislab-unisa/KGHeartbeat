@@ -2,9 +2,9 @@
 title: Dataset dynamicity category
 ---
 ## Volatility
-1. [Update frequency](#update-frequency)
+1. [Stating the recency and frequency of data validation](#stating-the-recency-and-frequency-of-data-validation)
 
-#### **Update frequency**
+#### **Stating the recency and frequency of data validation**
 For the calculation of this metric we use this query:
 ```sql
 PREFIX dcterms:<http://purl.org/dc/terms/>

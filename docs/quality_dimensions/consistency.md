@@ -3,17 +3,17 @@ title: Intrinsic category
 ---
 
 ## Consistency
-1. [Number of entities defined as member of disjoint class](#number-of-entities-defined-as-member-of-disjoint-class)
+1. [Entities as members of disjoint classes](#entities-as-members-of-disjoint-classes)
 2. [Misplaced classes](#misplaced-class)
 3. [Misplaced properties](#misplaced-properties)
-4. [Deprecated classe and properties](#deprecated-classes-and-deprecated-properties)
+4. [Use of members of deprecated classes or properties](#use-of-members-of-deprecated-classes-or-properties)
 5. [Undefined classes](#undefined-classes)
 6. [Undefined properties](#undefined-properties)
 7. [Ontology Hijacking](#ontology-hijacking)
 
 ### **Consistency**
 
-#### **Number of entities defined as member of disjoint class**
+#### **Entities as members of disjoint classes**
 For the calculation of this metric we first execute the following query on the SPARQL endpoint for recover all the triples with the $owl:disjointWith$ predicate:
 ```sql
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
@@ -91,7 +91,7 @@ $$
 
 ---
 
-#### **Deprecated classes and deprecated properties**
+#### **Use of members of deprecated classes or properties**
 For the calculation of this metric, we execute the following query that count the number of triples in the KG with the predicate ```owl:DeprecatedClass``` and ```owl:DeprecatedProperty```. Note that we rely on the fact that whoever created the dataset knows that that class or property is deprecated, but uses it by reporting it.
 
 ```sql

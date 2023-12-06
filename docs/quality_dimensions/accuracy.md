@@ -3,13 +3,13 @@ title: Intrinsic category
 ---
 
 ## Accuracy
-1. [Empty label](#empty-label)
-2. [Whitespace at the beginnig or end of the label](#whitespace-at-the-beginnig-or-end-of-the-label)
-3. [Wrong datatype](#wrong-datatype)
+1. [Empty annotation labels](#empty-annotation-labels)
+2. [White space in annotation](#white-space-in-annotation)
+3. [Datatype consistency](#datatype-consistency)
 4. [Functional property violation](#functional-property-violation)
 5. [Inverse functional property violation](#inverse-functional-property-violation)
 
-#### **Empty label**
+#### **Empty annotation labels**
 For the calculation of this metric, we first recover the label in the KG with the follow query:
 ```sql
 PREFIX skosxl:<http://www.w3.org/2008/05/skos-xl#>
@@ -66,7 +66,7 @@ $$
 
 ---
 
-#### **Whitespace at the beginnig or end of the label**
+#### **White space in annotation**
 Always using the query to retrieve all the labels on the triples (which we saw [here](#empty-label)), but this time scrolling through the different labels we go to apply the strip() function on each of the labels, Then, the string obtained is compared with the one before applying the function and if they are the same, it means that the label did not present the problem of spaces, otherwise a $wSP$ counter is incremented. At the end of the process, the following formula is applied to obtain the value of the data, where $L_{KG}$ is the number of KG labels.
 
 $$
@@ -75,7 +75,7 @@ $$
 
 ---
 
-#### **Wrong datatype**
+#### **Datatype consistency**
 In this case we used the W3C documentation available [here](https://www.w3.org/TR/xmlschema11-2/). From this document, in addition to the data types, for each of them the regex has also been indicated which defines the range of values that it can take on. In our application an hash table was therefore created, where each entry is made up of a key, which is one of the data types, while the value is the corresponding regex which determines the domain. At this point we just have to catch up
 all triples from the KG and filter out those that contain a literal to perform the type checking (the check can also be done directly with a query on the SPARQL endpoint, but this often leads to overloading and the query might fail). The value calculation mechanism is given by the following pseudo code.
 

@@ -4,8 +4,8 @@ title: Contextual category
 
 ## Amount of data
 1. [Number of triples](#number-of-triples)
-2. [Number of properties](#number-of-properties)
-3. [Number of entities](#number-of-entities)
+2. [Level of detail](#level-of-detail)
+3. [Scope](#scope)
 
 #### **Number of triples**
 To calculate the number of triples in the KG we can proceed in two ways. The first consists in recovering the data through the metadata, in particular the *triples* key. This method is only applied when actual triples cannot be counted by accessing the SPARQL endpoint. Because the metadata is not updated along with the content of the KG. The following query is used for count the number of triples: 
@@ -16,7 +16,7 @@ WHERE { ?s ?p ?o }
 
 To quantize the metric, if we can count the number of triples in the KG, we assign 1 to the metric, 0 otherwise.
 
-#### **Number of properties**
+#### **Level of detail**
 We can only obtain this type of value by executing a SPARQL query. In particular, the number of properties is given to us by this query:
 
 ```sql
@@ -44,7 +44,7 @@ UNION
 ```
 To quantize the metric, if we can count the number of properties in the KG, we assign 1 to the metric, 0 otherwise.
 
-#### **Number of entities**
+#### **Scope**
 In this case we simply recover it by searching for the triple with $void:entities$ predicate inside the VoID file. As an alternative if there isn't a VoID file available, we execute the following query on the SPARQL endpoint. 
 
 ```sql

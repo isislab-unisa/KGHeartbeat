@@ -4,11 +4,9 @@ title: Trust category
 
 ## Believability
 
-1. [Title](#title)
-2. [Description](#description)
-3. [Sources](#sources)
-4. [Reliable provider](#reliable-provider)
-5. [Trust value](#trust-value)
+1. [meta-information about the identity of information provider](#meta-information-about-the-identity-of-information-provider)
+
+### Meta-information about the identity of information provider
 
 #### **Title**
 To recover the title, we simply analyze the KG metadata, in
