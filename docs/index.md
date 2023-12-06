@@ -30,7 +30,7 @@ layout: home
         <tr>
             <td rowspan="1">Algorithm</td>
             <td colspan="3">
-            <a href="https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/availability#sparql-endpoint">Availability/SPARQL-endpoint</a>
+            <a href="https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/availability#accessibility-of-the-sparql-endpoint">Availability/SPARQL-endpoint</a>
             </td>
         </tr>
         <tr>
@@ -59,7 +59,7 @@ layout: home
         <tr>
             <td rowspan="1">Algorithm</td>
             <td colspan="3">
-            <a href="https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/availability#rdf-dump">Availability/RDF-Dump</a>
+            <a href="https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/availability#accessibility-of-the-rdf-dump">Availability/RDF-Dump</a>
             </td>
         </tr>
         <tr>
@@ -88,7 +88,7 @@ layout: home
         <tr>
             <td rowspan="1">Algorithm</td>
             <td colspan="3">
-            <a href="https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/availability#uris-dereferenciability">Availability/URIs-dereferenciability</a>
+            <a href="https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/availability#derefereaceability-of-the-uri">Availability/URIs-dereferenciability</a>
             </td>
         </tr>
         <tr>
@@ -233,7 +233,7 @@ richness through sameAs by using network measures</i></td>
         <tr>
             <td rowspan="1">Algorithm</td>
             <td colspan="3">
-            <a href="https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/interlinking#number-of-same-as-chains">Interlinking/sameAs</a>
+            <a href="https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/interlinking#sameas-chains">Interlinking/sameAs</a>
             </td>
         </tr>
         <tr>
@@ -310,7 +310,7 @@ richness through sameAs by using network measures</i></td>
         <tr>
             <td rowspan="1">Algorithm</td>
             <td colspan="3">
-            <a href="https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/performance">Performance/Latency</a>
+            <a href="https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/performance#low-latency">Performance/Latency</a>
             </td>
         </tr>
         <tr>
@@ -331,7 +331,7 @@ richness through sameAs by using network measures</i></td>
         <tr>
             <td rowspan="1">Algorithm</td>
             <td colspan="3">
-            <a href="https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/performance#throughput">Performance/Throughput</a>
+            <a href="https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/performance#high-throughput">Performance/Throughput</a>
             </td>
         </tr>
         <tr>
@@ -622,7 +622,7 @@ richness through sameAs by using network measures</i></td>
         <tr>
             <td rowspan="1">Algorithm</td>
             <td colspan="3">
-            <a href="https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/reputation#pagerank">Reputation/PageRank</a>
+            <a href="https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/reputation#reputation-of-the-dataset">Reputation/PageRank</a>
             </td>
         </tr>
         <tr>
@@ -650,9 +650,13 @@ richness through sameAs by using network measures</i></td>
             </td>
         </tr>
         <tr>
-            <td>Output</td>
-            <td>[0,1]</td>
-            <td>Best value: 1</td>
+            <td rowspan="2">Output</td>
+            <td>0</td>
+            <td>if the provider isn't in the list of trusted providers</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>if the provider isn't in the list of trusted provider</td>
         </tr>
         <tr><tr><tr><tr></tr></tr></tr></tr>
                  <tr>
@@ -1027,7 +1031,7 @@ richness through sameAs by using network measures</i></td>
             <th colspan="5" style="text-align: center;">Understandability</th>
         </tr>
         <tr>
-            <td rowspan="8">human-readable labelling of classes, properties and entities by providing rdfs:label</td>
+            <td rowspan="8">Human-readable labelling of classes, properties and entities by providing rdfs:label</td>
             <td rowspan="8"><a href="https://bit.ly/3RtIeWV">bit.ly/3RtIeWV</a></td>
             <td colspan="4"><i>no. of entities described by stating an rdfs:label or rdfs:comment in the dataset / total no. of entities described in the data</i></td>
         </tr>
@@ -1098,7 +1102,7 @@ richness through sameAs by using network measures</i></td>
         </tr>
  <tr><tr><tr><tr></tr></tr></tr></tr>
         <tr>
-            <td rowspan="8">indication of a regular expression that matches the URIs of a dataset</td>
+            <td rowspan="8">Indication of a regular expression that matches the URIs of a dataset</td>
             <td rowspan="8"><a href="https://bit.ly/3RtIeWV">bit.ly/3RtIeWV</a></td>
             <td colspan="4"><i>detecting whether a regular expression that matches the
 URIs is present </i></td>
@@ -1124,7 +1128,7 @@ URIs is present </i></td>
         </tr>
  <tr><tr><tr><tr></tr></tr></tr></tr>
         <tr>
-            <td rowspan="8">indication of the vocabularies used in the dataset</td>
+            <td rowspan="8">Indication of the vocabularies used in the dataset</td>
             <td rowspan="8"><a href="https://bit.ly/3RtIeWV">bit.ly/3RtIeWV</a></td>
             <td colspan="4"><i>checking whether a list of vocabularies used in the dataset is provided</i></td>
         </tr>
@@ -1148,7 +1152,7 @@ URIs is present </i></td>
             <th colspan="5" style="text-align: center;">Interpretability</th>
         </tr>
         <tr>
-            <td rowspan="8">no misinterpretation of missing values</td>
+            <td rowspan="8">No misinterpretation of missing values</td>
             <td rowspan="8"><a href="https://bit.ly/3RtIeWV">bit.ly/3RtIeWV</a></td>
             <td colspan="4"><i>detecting the use of blank nodes</i></td>
         </tr>
@@ -1169,7 +1173,7 @@ URIs is present </i></td>
         </tr>
  <tr><tr><tr><tr></tr></tr></tr></tr>
         <tr>
-            <td rowspan="8">atypical use of collections containers and reification</td>
+            <td rowspan="8">Atypical use of collections containers and reification</td>
             <td rowspan="8"><a href="https://bit.ly/3RtIeWV">bit.ly/3RtIeWV</a></td>
             <td colspan="4"><i>detection of the non-standard usage of collections, containers and reification</i></td>
         </tr>

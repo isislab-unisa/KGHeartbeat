@@ -3,12 +3,11 @@ title: Accessibility category
 ---
 
 ## Availability
-1. [SPARQL endpoint](#sparql-endpoint)
-2. [RDF Dump](#rdf-dump)
-3. [URIs dereferenciability](#uris-dereferenciability)
-4. [Inactive links](#inactive-links)
+1. [Accessibility of the SPARQL endpoint](#accessibility-of-the-sparql-endpoint)
+2. [Accessibility of the RDF dump](#accessibility-of-the-rdf-dump)
+3. [Derefereaceability of the URI](#derefereaceability-of-the-uri)
 
-#### **SPARQL endpoint**
+#### **Accessibility of the SPARQL endpoint**
 First of we need to check that it is present
 for the KG we are considering. The SPARQL endpoint link can be recovered in three different ways:
 1. The first (easiest) is to analyze the metadata and search for the resource with the tag in the resources field api/sparql or whose key is sparql.
@@ -32,7 +31,7 @@ offline and given value 0.
 
 ---
 
-#### **RDF dump**
+#### **Accessibility of the RDF dump**
 To check for the presence of the RDF dump we have three possible approaches:
 1. We can analyze the metadata and check if in the resources field there are one or more resources with one of the following tags: ```application/rdf+xml```, ```text/turtle```, ```application/x-ntriples```, ```application/x-nquads```, ```text/n3```, ```rdf```,```text/rdf+n3```, ```rdf/turtle```.
 2. Another method is to check inside the VoID file (if available). In this case we search for the triple having ```void:dataDump``` as its predicate.
@@ -49,7 +48,7 @@ Once the dump link has been retrieved, a simple HEAD request is made on the URL,
 
 ---
 
-#### **URIs dereferenciability**
+#### **Derefereaceability of the URI**
 5000 triples (which contain URIs) are randomly retrieved with this query:
 
 ```sql
@@ -74,6 +73,3 @@ m_{def} = \frac{|Dereferencable(U_g)|}{|U_g|}
 $$
 
 ---
-
-#### **Inactive links**
-All links present in the "resources" field in the metadata are recovered for the KG selected and a HEAD request is performed on each of this links. If there are links that are not active, the data is given a value of 0, otherwise 1.
