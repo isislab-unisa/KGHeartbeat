@@ -188,7 +188,7 @@ class Score:
     
     def accuracyScore(self,weight):
         try:
-            voidLabel = int(self.kg.accuracy.emptyAnn)
+            voidLabel = float(self.kg.accuracy.emptyAnn)
             if voidLabel > 0:
                 voidLabelV = 0
             else:
@@ -197,7 +197,7 @@ class Score:
             voidLabelV = 0
         
         try:
-            whitespace = int(self.kg.accuracy.wSA)
+            whitespace = float(self.kg.accuracy.wSA)
             if whitespace > 0:
                 wsV = 0
             else:
@@ -206,7 +206,7 @@ class Score:
             wsV = 0
         
         try:
-            malformedDT = int(self.kg.accuracy.malformedDataType)
+            malformedDT = float(self.kg.accuracy.malformedDataType)
             if malformedDT > 0:
                 malformedV = 0
             else:
@@ -403,14 +403,13 @@ class Score:
         return (freqV * weight) / VOLATILITY_METRICS
     
     def completenessScore(self,weight):
-
         try:
-            if(int(self.kg.amountOfData.numTriplesQ) > int(self.kg.completeness.interlinkingC)):
+            if(int(self.kg.amountOfData.numTriplesQ) > float(self.kg.completeness.interlinkingC)):
                 interC = float(self.kg.completeness.interlinkingC)
             else:
                 interC = 0
-        except (ValueError,TypeError):
-                interC = 0
+        except:
+            interC = 0
         
         return (interC * weight) / COMPLETENESS_METRICS
     
@@ -558,8 +557,8 @@ class Score:
                 bnNumber = query.getNumDlcBN(sparqlUrl)
                 numDlc = query.getDlc(sparqlUrl)
                 if isinstance(bnNumber,int) and isinstance(numDlc,int):
-                    if numDlc > 0:
-                        bnValue = bnNumber/numDlc
+                    if numDlc > 0 and numDlc > bnNumber:
+                        bnValue = 1 - (bnNumber/numDlc)
                     else:
                         bnValue = 0
                 else:
@@ -597,16 +596,13 @@ class Score:
                 langsV = 0
         else:
             langsV = 0
-        accessibility = self.kg.extra.downloadUrl
-        if isinstance(accessibility,list):
-            if len(accessibility) > 0:
+        try:
+            if self.kg.availability.sparqlEndpoint == 'Available' and (self.kg.availability.RDFDumpM == True or self.kg.availability.RDFDumpQ == True):
                 accessibilityV = 1
-            else:
+            else : 
                 accessibilityV = 0
-        else:
+        except:
             accessibilityV = 0
-        if self.kg.availability.sparqlEndpoint == 'Available' and (self.kg.availability.RDFDumpM == True or self.kg.availability.RDFDumpQ):
-            accessibilityV = accessibilityV + 1 
         
         return ((seriValue + langsV + accessibilityV) * weight) / VERSATILITY_METRICS
     

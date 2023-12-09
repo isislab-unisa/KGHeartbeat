@@ -1428,11 +1428,6 @@ def analyses(idKG,analysis_date):
         interpretability = Interpretability(numBlankNode,RDFStructures)
         interlinking = Interlinking(degree,clusteringCoefficient,centrality,numberSameAs,exLinksObj)
         conciseness = Conciseness(exC,intC)
-        FPvalue = (str(FPvalue)).replace('.',',')
-        IFPvalue = (str(IFPvalue)).replace('.',',')
-        emptyAnnotation = (str(emptyAnnotation)).replace('.',',')
-        numWSP = (str(numWSP)).replace('.',',') 
-        numMalformedTriples = (str(numMalformedTriples)).replace('.',',')
         accuracy = Accuracy(emptyAnnotation,numWSP,numMalformedTriples,FPvalue,IFPvalue)
         if isinstance(numDisjoint,int):
             try:
