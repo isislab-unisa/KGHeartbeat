@@ -17,37 +17,10 @@ Below is a graph showing the quality dimensions covered by KGHeartbeat and the p
 ![Quality metrics covered by KGHeartbeat](quality_metrics.png)
 
 ## Examples
-1. [How to choose the right KG to create an application that uses Cultural Heritage data.](#1-how-to-choose-the-right-kg-to-create-an-application-that-uses-cultural-heritage-data)
-2. [What are the best 10 KGs in terms of Trust and Dataset dynamicity?](#2-what-are-the-best-10-kgs-in-terms-of-trust-and-dataset-dynamicity)
-3. [What are the best KGs for automatic consumption?](#3-what-are-the-best-kgs-for-automatic-consumption)
+1. [What are the best KGs for automatic consumption in the context of cultural heritage?](./examples/README.md#1-what-are-the-best-kgs-for-automatic-consumption-in-the-context-of-cultural-heritage)
+2. [What are the best 10 KGs in terms of Trust and Dataset dynamicity?](./examples/README.md#2-what-are-the-best-10-kgs-in-terms-of-trust-and-dataset-dynamicity)
+3. [What are the best KGs in the context of Linguistic Linked Open Data?](./examples/README.md#3-what-are-the-best-kgs-in-the-context-of-linguistic-linked-open-data)
 
-### 1. How to choose the right KG to create an application that uses Cultural Heritage data.
-We can filter the Knowledge Graphs to analyze using appropriate keywords to exclude those that do not interest us. For example we can use the following keywords: museum, library, archive, cultur, heritage, bibliotec, natural, biodiversity, geodiversity. Then the configuration.json file will be configured as follows:
-```
-{"name": ["museum", "library", "archive", "cultur", "heritage", "bibliotec" "natural", "biodiversity", "geodiversity"], "id": []}
-```
-Our tool in this case give us the following output:
-```
-Number of KG found with keyword cultur:118
-Connection to API successful and data recovered
-Number of KG found with keyword heritage:50
-Connection to API successful and data recovered
-Number of KG found with keyword bibliotec:18
-Connection to API successful and data recovered
-Number of KG found with keyword natural:67
-Connection to API successful and data recovered
-Number of KG found with keyword biodiversity:11
-Connection to API successful and data recovered
-Number of KG found with keyword geodiversity:0
-```
-And then the analysis phase begins (Be careful, given the large number of KGs, this may take a long time to complete, depending on the load of the servers hosting the KG and your internet connection). At the end of the analysis we will be able to visualize the quality of the KGs analyzed through the csv file produced in the [Analysis results](/Analysis%20results/) folder, having as its name the date of execution of the analysis.
-
-
-### 2. What are the best 10 KGs in terms of Trust and Dataset dynamicity?
-
-
-
-### 3. What are the best KGs for automatic consumption?
 
 ## License
 KGHeartbeat is licensed under the [MIT License](https://opensource.org/license/mit/).
@@ -74,6 +47,7 @@ Or, by a list of ids like this:
 {"name": [], "id": ["dbpedia","taxref-ld"]}
 ```
 If instead, you want to analyze all the Knowledge Graphs automatically discoverable from [LODCloud](https://lod-cloud.net/) and [DataHub](https://old.datahub.io/):
+<a name="all-kgs-conf"></a>
 ```
 {"name": [], "id": []}
 ```
