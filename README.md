@@ -83,6 +83,15 @@ git clone https://github.com/isislab-unisa/KGHeartbeat.git
 ```
 
 ## Dependencies
+For the execution of the project it is recommended to create a Python Virtual Environment, so from the project root directory run the following commands:
+```
+pip install virtualenv
+python<version> -m venv <virtual-environment-name>
+source env/bin/activate 
+or for Windows users
+env/Scripts/activate.bat //In CMD
+env/Scripts/Activate.ps1 //In Powershel
+```
 First of all, install all dependencies from the project root:
 ```
 pip install -r requirements.txt

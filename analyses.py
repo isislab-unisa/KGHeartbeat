@@ -237,6 +237,7 @@ def analyses(idKG,analysis_date):
     otResources = utils.toObjectResources(resourcesDH) #CREATING A LIST OF RESOURCES OBJECT
 
     #CHECK THE AVAILABILITY OF VOID FILE
+    start_analysis = time.time()
     urlV = utils.getUrlVoID(otResources)
     voidStatus = ''
     if isinstance(urlV,str):
@@ -271,10 +272,14 @@ def analyses(idKG,analysis_date):
     if not isinstance(urlV,str):
         voidStatus = 'VoID file absent'
     
+    end_analysis = time.time()
+    utils.write_time(nameKG,end_analysis-start_analysis,'VoID file availability check')
+
     logger.info(f"SPARQL endpoint availability: {available}",extra=kg_info)
 
     if available == True:    #IF ENDOPOINT IS ONLINE WE GET ALL NECESSARY INFORMATION FROM THE ENDPOINT
 
+        start_analysis = time.time()
          #TRY TO GET ALL TRIPLES (IMPORTANT FOR CALCULATING VARIOUS METRICS)
         allTriples = []
         try:
@@ -282,9 +287,12 @@ def analyses(idKG,analysis_date):
         except:
             logger.warning('Impossible to recover all the triples in the KG',extra=kg_info)
             allTriples = '-'
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Recovery of all triples')
         
         #GET LATENCY (MIN-MAX-AVERAGE)
         try:
+            start_analysis = time.time()
             latency = query.testLatency(accessUrl)     
             sumLatency = sum(latency)
             av = sumLatency/len(latency)
@@ -317,6 +325,8 @@ def analyses(idKG,analysis_date):
             percentile25L = percentile25L.replace('.',',')
             percentile75L = percentile75L.replace('.',',')
             medianL = medianL.replace('.',',')
+            end_analysis = time.time()
+            utils.write_time(nameKG,end_analysis-start_analysis,'Total latancy measurement')
            
         except urllib.error.HTTPError as response:
             logger.warning(f'Performance | Latency | {str(response)}',extra=kg_info)
@@ -358,6 +368,7 @@ def analyses(idKG,analysis_date):
             percentile25L = responseStr
             percentile75L = responseStr
             medianL = responseStr
+
         #GET THE TRIPLES WITH A QUERY
         try:
             triplesQuery = query.getNumTripleQuery(accessUrl)   
@@ -385,9 +396,12 @@ def analyses(idKG,analysis_date):
         newTermsD = []
         triplesO = []
         try:
+            start_analysis = time.time()
             objectList = []
             triplesO = query.getAllTypeO(accessUrl)
             newTermsD = LOVAPI.searchTermsList(triplesO)
+            end_analysis = time.time()
+            utils.write_time(nameKG,end_analysis-start_analysis,'New terms check')
         except Exception as error:
             logger.warning(f'Representational-consistency | Reuse of terms | {str(error)}',extra=kg_info)
             newTermsD = '-'
@@ -419,8 +433,11 @@ def analyses(idKG,analysis_date):
         
         #CHECK IF SPARQL ENDPOINT USE HTTPS
         try:
+            start_analysis = time.time()
             sec_access_url = accessUrl.replace('http','https')
             isSecure = query.checkEndPoint(sec_access_url)
+            end_analysis = time.time()
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for the use of HTTPS')
             if isinstance(isSecure,Document) or isinstance(isSecure,dict):
                 isSecure = True  
         except:  #IF WE GET A SPARQL QUERY ON URL WITH HTTPS AND GET AN EXCEPTION THEN ENDPOINT ISN'T AVAILABLE ON HTTPS
@@ -530,6 +547,7 @@ def analyses(idKG,analysis_date):
         
         #GET THE THROUGHPUT
         try:
+            start_analysis = time.time()
             countList = utils.getThroughput(accessUrl)
             minThroughput = min(countList)
             maxThroughput = max(countList)
@@ -549,6 +567,8 @@ def analyses(idKG,analysis_date):
             standardDeviationT = standardDeviationT.replace('.',',')
             averageThroughput = str(averageThroughput)
             averageThroughput = averageThroughput.replace('.',',')
+            end_analysis = time.time()
+            utils.write_time(nameKG,end_analysis-start_analysis,'Throughput check')
         except Exception as error:
             logger.warning(f'Performance | High Throughput | {str(error)}',extra=kg_info)
             errorResponse = '-'
@@ -602,6 +622,7 @@ def analyses(idKG,analysis_date):
         
         if not(isinstance(entitiesRe,int)) or entitiesRe == 0: #IF CONTROL WITH SPARQL ENDPOINT FAILS WE COUNT THE ENTITY BY RECOVERING ALL THE TRIPLES
             try:
+                start_analysis = time.time()
                 if isinstance(allTriples,list) and isinstance(regex,list):
                     if len(regex) > 0:
                         entitiesRe = 0
@@ -620,6 +641,8 @@ def analyses(idKG,analysis_date):
                 else:
                     entitiesRe = '-'
                     logger.warning(f'Amount of data | Scope | Insufficient data',extra=kg_info)
+                end_analysis = time.time()
+                utils.write_time(nameKG,end_analysis-start_analysis,'Check for the number of entities')
             except Exception as error:
                 logger.warning(f'Amount of data | Scope | {str(error)}',extra=kg_info)
                 entitiesRe = '-'
@@ -695,6 +718,7 @@ def analyses(idKG,analysis_date):
             numTriplesUpdated = '-'
 
         #URI LENGHT CALCULATION (SUBJECT)
+        start_analysis = time.time()
         try:
             lenghtList = []
             logger.info(f'Calculating the URIs length...',extra=kg_info)
@@ -824,6 +848,8 @@ def analyses(idKG,analysis_date):
             medianLenghtP = errorMessage
             percentile25LenghtP = errorMessage
             percentile75LenghtP = errorMessage
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'URIs length')
 
         #A LIST OF ALL URIs IS REQUIRED TO CALCULATE THE SCORE
         if isinstance(allTriples,list) and isinstance(uriListP,list) and isinstance(uriListO,list):
@@ -836,6 +862,7 @@ def analyses(idKG,analysis_date):
         
         #CHECK IF EXISTING VOCABULARIES ARE RE-USED IN THE DATASET
         try:
+            start_analysis = time.time()
             newVocab = []
             if isinstance(vocabularies,list):
                 for i in range(len(vocabularies)):
@@ -843,6 +870,8 @@ def analyses(idKG,analysis_date):
                     result = LOVAPI.findVocabulary(vocab)
                     if result == False:
                         newVocab.append(vocab)
+            end_analysis = time.time()
+            utils.write_time(nameKG,end_analysis-start_analysis,'New vocabularies check')
         except Exception as error:
             logger.warning(f'Representational-consistency | re-use of existing terms | {str(error)}',extra=kg_info)
             newVocab = '-'
@@ -856,6 +885,7 @@ def analyses(idKG,analysis_date):
         
         #CHECK FOR FUNCTIONAL PROPERTIES WITH INCONSISTENT VALUE
         try:
+            start_analysis = time.time()
             violationFP = []
             triplesFP = query.getFP(accessUrl)
             for triple in triplesFP:
@@ -871,12 +901,15 @@ def analyses(idKG,analysis_date):
                     if subject1 == subject2 and obj1 != obj2:
                         violationFP.append(triple)
             FPvalue = 1.0 - (len(violationFP)/triplesQuery)
+            end_analysis = time.time()
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Functional Property')
         except Exception as error:
             logger.warning(f'Accuracy | Functional property violation | {str(error)}',extra=kg_info)
             FPvalue = '-'
         
         #CHECK FOR INVALID USAGE OF INVERSE-FUNCTIONAL PROPERTIES
         try:
+            start_analysis = time.time()
             violationIFP = []
             triplesIFP = query.getIFP(accessUrl)
             for triple in triplesIFP:
@@ -892,6 +925,8 @@ def analyses(idKG,analysis_date):
                     if obj1 == obj2 and subject1 != subject2:
                         violationIFP.append(triple)
             IFPvalue = 1.0 - (len(violationIFP)/triplesQuery)
+            end_analysis = time.time()
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Inverse Functional Property')
         except Exception as error:
             logger.warning(f'Accuracy | Inverse functional property violation | {str(error)}',extra=kg_info)
             IFPvalue = '-'
@@ -899,6 +934,7 @@ def analyses(idKG,analysis_date):
         #CHECK IF THERE ARE EMPTY ANNOTATION AS LABEL/COMMENT
         labels = []
         try:
+            start_analysis = time.time()
             labels = query.getLabel(accessUrl)
             emptyAnnotation = 0
             for i in range(len(labels)):
@@ -907,12 +943,15 @@ def analyses(idKG,analysis_date):
                     if obj == '':
                         emptyAnnotation = emptyAnnotation + 1
             emptyAnnotation = 1.0 - (emptyAnnotation/len(labels))
+            end_analysis = time.time()
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Empty annotation labels')
         except Exception as error:
             logger.warning(f'Accuracy | Empty annotation labels | {str(error)}',extra=kg_info)
             emptyAnnotation = '-'
         
         #CHECK IF TRIPLES HAVE A WHITE SPACE ANNOTATION PROBLEM
         try:
+            start_analysis = time.time()
             wSP = []
             for i in range(len(labels)):
                 obj = labels[i]
@@ -920,12 +959,15 @@ def analyses(idKG,analysis_date):
                     if obj != obj.strip():
                         wSP.append(obj)
             numWSP = 1.0 - (len(wSP)/len(labels))
+            end_analysis = time.time()
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for White space in annotation')
         except Exception as error:
             logger.warning(f'Accuracy | White space in annotation | {str(error)}',extra=kg_info)
             numWSP = '-'
 
         #CHECK IF TRIPLES HAVE A MALFORMED DATA TYPE LITERALS PROBLEM
         try:
+            start_analysis = time.time()
             malformedTriples = []
             if isinstance(allTriples,list):
                 for i in range(len(allTriples)):
@@ -940,6 +982,8 @@ def analyses(idKG,analysis_date):
                                 if result == False:
                                     malformedTriples.append(obj)
                 numMalformedTriples = 1.0 - (len(malformedTriples)/len(allTriples))
+                end_analysis = time.time()
+                utils.write_time(nameKG,end_analysis-start_analysis,'Check for Datatype consistency')
             else:
                 logger.warning(f'Accuracy | Datatype consistency| Error executing query on SPARQL endpoint ',extra=kg_info)
                 numMalformedTriples = '-'
@@ -957,6 +1001,7 @@ def analyses(idKG,analysis_date):
         #CHECK FOR TRIPLES WITH MISPLACED PROPERTY PROBLEM
         classes = []
         try:
+            start_analysis = time.time()
             misplacedProperty = []
             classes = query.getAllClasses(accessUrl)
             if isinstance(classes,list):
@@ -972,6 +1017,8 @@ def analyses(idKG,analysis_date):
                                 #misplacedProperty.append(p)
             else:
                 misplacedProperty = 'insufficient data'
+            end_analysis = time.time()
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Misplaced properties')
         except Exception as error:
             logger.warning(f'Consistency | Misplaced properties | {str(error)}',extra=kg_info)
             misplacedProperty = '-'
@@ -979,6 +1026,7 @@ def analyses(idKG,analysis_date):
         #CHECK FOR TRIPLES WITH MISPLACED CLASS PROBLEM
         properties = []
         try:
+            start_analysis = time.time()
             misplacedClass = []
             properties = query.getAllProperty(accessUrl)
             found = False
@@ -1005,6 +1053,8 @@ def analyses(idKG,analysis_date):
             else:
                 logger.warning(f'Consistency | Misplaced classes | Impossible to recover all information to calculate this metric',extra=kg_info)
                 misplacedClass = '-'
+            end_analysis = time.time()
+            utils.write_time(nameKG,end_analysis-start_analysis,'Misplaced classes')
         except TimeoutError as error:
             logger.warning(f'Consistency | Misplaced classes | {str(error)}',extra=kg_info)
             misplacedClass = '-'
@@ -1015,6 +1065,7 @@ def analyses(idKG,analysis_date):
         #CHECK THE TRIPLES WITH ONTOLOGY HIJACKING PROBLEM
         allType = []
         try:
+            start_analysis = time.time()
             allType = query.getAllType(accessUrl)
             triplesOH = False
             if isinstance(allType,list):
@@ -1026,12 +1077,15 @@ def analyses(idKG,analysis_date):
             else:
                 logger.warning(f'Consistency | Ontology hijacking | Impossible to retrieve the terms defined in the dataset',extra=kg_info)
                 hijacking = '-'
+            end_analysis = time.time()
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Ontology hijacking')
         except Exception as error:
             logger.warning(f'Consistency | Ontology hijacking | {str(error)}',extra=kg_info)
             hijacking = '-'
         
         #CHECK USE OF UNDEFINED CLASS
         try:
+            start_analysis = time.time()
             toSearch = []
             found = False
             for i in range(len(allTriples)):
@@ -1053,12 +1107,15 @@ def analyses(idKG,analysis_date):
                         toSearch.append(s)
                 found = False
             undClasses = LOVAPI.searchTermsList(toSearch)
+            end_analysis = time.time()
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Invalid usage of undefined classes')
         except Exception as error:
             logger.warning(f'Consistency | Invalid usage of undefined classes and properties | {str(error)}',extra=kg_info)
             undClasses = '-'
         
         #CHECK USE OF UNDEFINED PROPERTY
         try:
+            start_analysis = time.time()
             toSearch = []
             found = False
             for predicate in query.getAllPredicate(accessUrl):
@@ -1078,12 +1135,15 @@ def analyses(idKG,analysis_date):
                         toSearch.append(predicate)
                 found = False
             undProperties = LOVAPI.searchTermsList(toSearch)
+            end_analysis = time.time()
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Invalid usage of undefined properties')
         except Exception as error:
             logger.warning(f'Consistency | Invalid usage of undefined classes and properties | {str(error)}',extra=kg_info)
             undProperties = '-'
 
-                #CALCULATION OF THE EXTENSIONAL CONCISENESS
+        #CALCULATION OF THE EXTENSIONAL CONCISENESS
         try:
+            start_analysis = time.time()
             tripleList = []
             duplicate = []
             if isinstance(allTriples,list):
@@ -1119,12 +1179,15 @@ def analyses(idKG,analysis_date):
             else:
                 logger.warning(f'Conciseness | Extensional conciseness | Insufficient data to compute the metric',extra=kg_info)
                 exC = '-'
+            end_analysis = time.time()
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Extensional conciseness')
         except Exception as error:
             logger.warning(f'Conciseness | Extensional conciseness | {str(error)}',extra=kg_info)
             exC = '-'
         
         #CALCULATION OF INTENSIONAL CONCISENESS
         try:
+            start_analysis = time.time()
             triplePropList = []
             duplicateP = []
             count = 0
@@ -1151,6 +1214,8 @@ def analyses(idKG,analysis_date):
             else:
                 logger.warning(f'Conciseness | Intensional conciseness | Insufficient data to compute the metric',extra=kg_info)
                 intC = '-'
+            end_analysis = time.time()
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Intensional conciseness')
         except Exception as error:
             logger.warning(f'Conciseness | Intensional conciseness | {str(error)}',extra=kg_info)
             intC = '-'
@@ -1171,6 +1236,7 @@ def analyses(idKG,analysis_date):
 
         #CHECK THE URIs DEFERENTIABILITY (TEST MADE ON 5000 TRIPLES SELECTED RANDOMLY)
         try:
+            start_analysis = time.time()
             defCount = 0
             uriCount = 0
             uris = query.getUris(accessUrl) #QUERY THAT GET 5000 RANDOM URI FROM THE ENDPOINT 
@@ -1188,8 +1254,11 @@ def analyses(idKG,analysis_date):
             else:
                 logger.warning(f'Availability | Derefereaceability of the URI | No URIs retrieved from the endpoint',extra=kg_info)
                 defValue = '-'
+            end_analysis = time.time()
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for URIs Dereferenciability')
         except: #IF QUERY FAILS (BECUASE SPARQL 1.1 IS NOT SUPPORTED) TRY TO CHECK THE DEFERETIABILITY BY FILTERING THE TRIPLES RECOVERED FOR OTHER CALCULATION (IF THEY ARE BEEN RECOVERED)
             try:
+                start_analysis = time.time()
                 uriCount = 0
                 defCount = 0
                 for i in range(10):
@@ -1208,6 +1277,8 @@ def analyses(idKG,analysis_date):
                 else:
                     logger.warning(f'Availability | Derefereaceability of the URI | No URIs retrieved from the endpoint',extra=kg_info)
                     defValue = '-'
+                end_analysis = time.time()
+                utils.write_time(nameKG,end_analysis-start_analysis,'Check for URIs Dereferenciability')
             except Exception as error:
                 logger.warning(f'Availability | Derefereaceability of the URI | {str(error)}',extra=kg_info)
                 defValue = '-'
@@ -1272,28 +1343,40 @@ def analyses(idKG,analysis_date):
     graph = nx.read_gpickle(gFile)
 
     #PAGERANK CALCULATION
+    start_analysis = time.time()
     pageRank = Graph.getPageRank(graph,idKG)
     pageRank = str(pageRank)
     pageRank = pageRank.replace('.',',')
+    end_analysis = time.time()
+    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of the PageRank')
+
 
     #CALCULATION OF THE DEGREE OF CONNECTION
+    start_analysis = time.time()
     degree = Graph.getDegreeOfConnection(graph,idKG)
+    end_analysis = time.time()
+    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of Degree of Connection')
     
     #CALCULATION OF THE CENTRALITY
+    start_analysis = time.time()
     centrality = Graph.getCentrality(graph,idKG)
     if isinstance(centrality,float):
         centrality = "%.3f"%centrality
         centrality = str(centrality)
         centrality = centrality.replace('.',',')
-
+    end_analysis = time.time()
+    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of Centrality')
 
     #CALCULATION OF CLUSTERING COEFFICIENT
+    start_analysis = time.time()
     clusteringCoefficient = Graph.getClusteringCoefficient(graph,idKG)
     if isinstance(clusteringCoefficient,float):
         clusteringCoefficient = "%.3f"%clusteringCoefficient
         clusteringCoefficient = str(clusteringCoefficient)
         clusteringCoefficient = clusteringCoefficient.replace('.',',')
-    
+    end_analysis = time.time()
+    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of Clustering coefficient')
+
     #GET THE DESCRIPTION OF THE CONTENT OF KG
     description = Aggregator.getDescription(metadata)    
     if available != True:  #IF ENDPOINT ISN'T AVAILABLE, WE TRY TO OBTAIN SOME INFO FROM THE VoID FILE IF IS INDICATED IN THE METADATA AND IS ONLINE
@@ -1346,6 +1429,7 @@ def analyses(idKG,analysis_date):
     
     #CHECK IF EXISTING VOCABULARIES ARE RE-USED IN THE DATASET
     try:
+        start_analysis = time.time()
         newVocab = []
         if isinstance(vocabularies,list):
             for i in range(len(vocabularies)):
@@ -1353,6 +1437,8 @@ def analyses(idKG,analysis_date):
                 result = LOVAPI.findVocabulary(vocab)
                 if result == False:
                     newVocab.append(vocab)
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Check for the re-using of existing vocabs')
     except Exception as error:
         logger.warning(f"Representational-consistency | Re-use of existing terms | Impossible to recover the vocabularies in the KG",extra=kg_info)
         newVocab = '-'

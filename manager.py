@@ -12,6 +12,7 @@ from OutputCSV import OutputCSV
 from score import Score
 import utils
 import gc
+import time
 
 useDB = False
 try : 
@@ -43,6 +44,13 @@ except  FileNotFoundError:
     except:
         print('Error')
         quit()
+
+try:
+    os.remove('performance.txt')
+except:
+    pass
+
+start = time.time()
 
 toAnalyze = []
 id = input.get('id')
@@ -80,6 +88,7 @@ filename = str(filename)
 OutputCSV.writeHeader(filename)
 
 for i in range(len(toAnalyze)):
+    start_analysis = time.time()
     kg = analyses.analyses(toAnalyze[i],filename)
     score = Score(kg,20)
     totalScore,normalizedScore = score.getWeightedDimensionScore(1)
@@ -90,6 +99,8 @@ for i in range(len(toAnalyze)):
     kg.extra.score = totalScore
     kg.extra.normalizedScore = normalizedScore
     kg.extra.scoreObj = score
+    end_analysis = time.time()
+    utils.write_time(kg.believability.title,end_analysis-start_analysis,'--- Analysis')
     csv = OutputCSV(kg,toAnalyze)
     csv.writeRow(filename)
     print(f"KG score: {kg.extra.score}")
@@ -101,3 +112,7 @@ for i in range(len(toAnalyze)):
     gc.collect()
     #print(kg.getQualityKG()) #PRINT THE KG QUALITY ON THE COMAND LINE
 
+end = time.time()
+with open('performance.txt','a') as file:
+        file.write(f'\n--- Total time for analysis:{end-start}s ---')
+        file.write(f'\n--- Total time for analysis:{end-start / 3600} hours ---')

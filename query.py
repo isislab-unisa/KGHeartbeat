@@ -8,14 +8,21 @@ import utils
 import warnings
 
 def log_in_out(func):
-
+    from time import perf_counter
     def decorated_func(*args, **kwargs):
+        start_time = perf_counter()
         print("Doing ", func.__name__)
         result = func(*args, **kwargs)
-        print("Done ")
+        end_time = perf_counter()
+        execution_time = end_time - start_time
+        log_text = '{0} took {1:.8f}s to execute\n'.format(func.__name__, execution_time)
+        print(log_text)
+        with open('performance.txt','a') as file:
+            file.write(log_text)
         return result
 
     return decorated_func
+
 @log_in_out
 def checkEndPoint(url): 
     sparql = SPARQLWrapper(url) 

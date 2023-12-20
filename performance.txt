@@ -1,0 +1,8 @@
+VoID file availability check for VIAF: The Virtual International Authority File took 3.7553653717041016s
+Calculation of the PageRank for VIAF: The Virtual International Authority File took 0.10511493682861328s
+Calculation of Degree of Connection for VIAF: The Virtual International Authority File took 8.106231689453125e-06s
+Calculation of Centrality for VIAF: The Virtual International Authority File took 0.0003199577331542969s
+Calculation of Clustering coefficient for VIAF: The Virtual International Authority File took 0.0002586841583251953s
+--- Analysis for VIAF: The Virtual International Authority File took 467.7390606403351s
+
+--- Total time for analysis:1702623038.2556503 hours ---
