@@ -18,11 +18,16 @@ class AnalysesTestCase(unittest.TestCase):
     '''
     def test_sparql_av(self):
         print(self.kg_url)
-        kgh_result = query.checkEndPoint(self.kg_url)
-        if isinstance(kgh_result,Document):
-            kgh_result = True
-        else:
+        utils.skipCheckSSL() #IGNORE THE ERROR  [SSL: CERTIFICATE_VERIFY_FAILED] 
+        try:
+            kgh_result = query.checkEndPoint(self.kg_url)
+            if isinstance(kgh_result,Document):
+                kgh_result = True
+            else:
+                kgh_result = False
+        except:
             kgh_result = False
+
         sparqles_result = SPARQLES_APIS.get_endpoint_info(self.kg_url)
 
         self.assertEqual(kgh_result, sparqles_result)
