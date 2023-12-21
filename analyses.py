@@ -1518,7 +1518,7 @@ def analyses(idKG,analysis_date):
         if isinstance(numDisjoint,int):
             try:
                 numEntities = int(numEntities)
-                if numEntities > 0:
+                if numEntities > 0 and numEntities > numDisjoint:
                     disjointValue = numDisjoint/numEntities
                 else:
                     logger.warning(f"Consistency | Entities as members of disjoint classes | Insufficent data to compute the metric",extra=kg_info)
@@ -1530,7 +1530,7 @@ def analyses(idKG,analysis_date):
             if isinstance(disjointValue,str):
                 try:
                     entitiesRe = int(entitiesRe)
-                    if entitiesRe > 0:
+                    if entitiesRe > 0 and entitiesRe > numDisjoint:
                         disjointValue = numDisjoint/entitiesRe
                     else:
                         logger.warning(f"Consistency | Entities as members of disjoint classes | Insufficent data to compute the metric",extra=kg_info)
@@ -1696,7 +1696,7 @@ def analyses(idKG,analysis_date):
         consistency = Consistency(errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage)
         conciseness = Conciseness(errorMessage,errorMessage)
         accuracy = Accuracy(errorMessage,errorMessage,errorMessage,errorMessage,errorMessage)
-        if isinstance(triplesM,int) and isinstance(triplesL,int) and triplesM > 0:
+        if isinstance(triplesM,int) and isinstance(triplesL,int) and triplesM > 0 and triplesM >= triplesL:
             iCompleteness = (triplesL/triplesM)
             iCompleteness = "%.2f"%iCompleteness
             completeness = Completeness(triplesM,triplesL,iCompleteness)
@@ -1720,7 +1720,7 @@ def analyses(idKG,analysis_date):
         consistency = Consistency(errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage)
         conciseness = Conciseness(errorMessage,errorMessage)
         accuracy = Accuracy(errorMessage,errorMessage,errorMessage,errorMessage,errorMessage)
-        if isinstance(triplesM,int) and isinstance(triplesL,int) and triplesM > 0:
+        if isinstance(triplesM,int) and isinstance(triplesL,int) and triplesM > 0 and triplesM >= triplesM:
             iCompleteness = (triplesL/triplesM)
             iCompleteness = "%.2f"%iCompleteness
             completeness = Completeness(triplesM,triplesL,iCompleteness)
