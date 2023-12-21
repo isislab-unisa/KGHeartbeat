@@ -88,7 +88,7 @@ For the execution of the project it is recommended to create a Python Virtual En
 pip install virtualenv
 python<version> -m venv <virtual-environment-name>
 source env/bin/activate 
-or for Windows users
+// or for Windows users
 env/Scripts/activate.bat //In CMD
 env/Scripts/Activate.ps1 //In Powershel
 ```
