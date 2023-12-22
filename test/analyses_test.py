@@ -8,6 +8,7 @@ import SPARQLES_APIS
 from xml.dom.minidom import Document
 import json
 import VoIDAnalyses
+from SPARQLWrapper import SPARQLExceptions
 
 class AnalysesTestCase(unittest.TestCase):
     '''
@@ -23,12 +24,19 @@ class AnalysesTestCase(unittest.TestCase):
             kgh_result = query.checkEndPoint(self.kg_url)
             if isinstance(kgh_result,Document):
                 kgh_result = True
+            elif isinstance(kgh_result,dict):
+                kgh_result = True
+            elif isinstance(kgh_result,bytes):
+                kgh_result = False
+                print("Unknown response content type 'text/html'")
             else:
                 kgh_result = False
         except:
             kgh_result = False
 
         sparqles_result = SPARQLES_APIS.get_endpoint_info(self.kg_url)
+        print(f"KGHeartBeat results: {kgh_result}")
+        print(f"SPARQLES result: {sparqles_result}")
 
         self.assertEqual(kgh_result, sparqles_result)
 
