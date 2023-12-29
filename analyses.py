@@ -1627,7 +1627,7 @@ def analyses(idKG,analysis_date):
         else:
             logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
             percentageUp = '-'
-        if isinstance(triplesQuery,int) and isinstance(triplesL,int) and triplesQuery > 0:
+        if isinstance(triplesQuery,int) and isinstance(triplesL,int) and triplesQuery > 0 and triplesQuery >= triplesL:
             iCompleteness = (triplesL/triplesQuery)
             iCompleteness = "%.2f"%iCompleteness
             completeness = Completeness(triplesQuery,triplesL,iCompleteness)
