@@ -1,0 +1,2704 @@
+--- Testing http://ndc.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 2.241s
+
+FAILED (failures=1)
+--- Testing http://semanticweb.cs.vu.nl/iati/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.922s
+
+OK
+--- Testing http://id.ndl.go.jp/auth/ndla/ ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 1.688s
+
+FAILED (failures=1)
+--- Testing http://aemet.linkeddata.es/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.494s
+
+OK
+--- Testing http://oecd.270a.info/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.468s
+
+OK
+--- Testing http://genage.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.848s
+
+OK
+--- Testing http://data.utpl.edu.ec/utpl/lod/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.570s
+
+OK
+--- Testing http://www4.wiwiss.fu-berlin.de/eurostat/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.650s
+
+OK
+--- Testing http://api.talis.com/stores/eutc-productions/services/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.257s
+
+OK
+--- Testing http://soa4all.isoco.net/luf/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.391s
+
+OK
+--- Testing http://collection.britishmuseum.org/Sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.323s
+
+OK
+--- Testing http://pharmgkb.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.749s
+
+FAILED (failures=1)
+--- Testing http://vocabulary.wolterskluwer.de/PoolParty/sparql/arbeitsrecht ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.325s
+
+OK
+--- Testing http://resex.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.241s
+
+OK
+--- Testing http://www4.wiwiss.fu-berlin.de/gutendata/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.523s
+
+OK
+--- Testing https://dbmi-icode-01.dbmi.pitt.edu/dikb/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.905s
+
+OK
+--- Testing http://hunter-cuny.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.233s
+
+OK
+--- Testing http://tsu.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 0.625s
+
+FAILED (failures=1)
+--- Testing http://biopax.biomodels.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.375s
+
+OK
+--- Testing http://www.lotico.com:3030/lotico/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.487s
+
+OK
+--- Testing http://cordis.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.237s
+
+OK
+--- Testing http://dati.isprambiente.it/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.420s
+
+OK
+--- Testing http://202.45.139.84:10035/catalogs/fao/repositories/agris ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 130.152s
+
+OK
+--- Testing http://psm.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 0.643s
+
+FAILED (failures=1)
+--- Testing http://kegg.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.720s
+
+FAILED (failures=1)
+--- Testing http://smartlink.open.ac.uk/smartlink/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.972s
+
+OK
+--- Testing http://hcls.deri.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.517s
+
+OK
+--- Testing http://api.talis.com/stores/bbc-backstage/services/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.212s
+
+OK
+--- Testing http://iserve.kmi.open.ac.uk/iserve/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.638s
+
+OK
+--- Testing http://oai.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.260s
+
+OK
+--- Testing http://commons.dbpedia.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.787s
+
+OK
+--- Testing http://el-devtc01.tugraz.at/~ldv/interlinking/endpoint_handler.php ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.680s
+
+OK
+--- Testing http://wikidata.dbpedia.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.388s
+
+OK
+--- Testing http://identifiers.org/services/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.720s
+
+OK
+--- Testing http://newcastle.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.254s
+
+OK
+--- Testing http://dotac.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.257s
+
+OK
+--- Testing http://pid.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.347s
+
+OK
+--- Testing http://abs.270a.info/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.394s
+
+OK
+--- Testing http://sparql.data.southampton.ac.uk/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.869s
+
+OK
+--- Testing http://geografia.ideca.gov.co/fuseki/dataset.html?tab=query&ds=/inf ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != 'KG not found on SPARQLES'
+
+----------------------------------------------------------------------
+Ran 1 test in 10.533s
+
+FAILED (failures=1)
+--- Testing http://webenemasuno.linkeddata.es/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.491s
+
+OK
+--- Testing http://id.ndl.go.jp/auth/ndlsh/ ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 1.647s
+
+FAILED (failures=1)
+--- Testing http://gov.tso.co.uk/dclg/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.243s
+
+OK
+--- Testing http://southampton.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.256s
+
+OK
+--- Testing http://revyu.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.529s
+
+OK
+--- Testing http://enipedia.tudelft.nl/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.814s
+
+OK
+--- Testing http://pisa.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.244s
+
+OK
+--- Testing http://services.data.gov/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.277s
+
+OK
+--- Testing http://wordnet.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.292s
+
+OK
+--- Testing http://biopax.pharmgkb.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.405s
+
+OK
+--- Testing http://photos.rkbexplorer.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.282s
+
+OK
+--- Testing http://afcsid.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.382s
+
+OK
+--- Testing http://data.nature.com/query ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.187s
+
+OK
+--- Testing http://lov.okfn.org/endpoint/lov ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.167s
+
+OK
+--- Testing http://dbtune.org/musicbrainz/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.641s
+
+OK
+--- Testing http://data.globalchange.gov/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.455s
+
+OK
+--- Testing http://orphanet.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.819s
+
+FAILED (failures=1)
+--- Testing http://affymetrix.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.550s
+
+OK
+--- Testing http://ulm.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.308s
+
+OK
+--- Testing http://opendata.ccd.uniroma2.it/LMF/sparql/select ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.324s
+
+OK
+--- Testing http://hawaii.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 0.591s
+
+FAILED (failures=1)
+--- Testing http://services.data.gov.uk/reference/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.274s
+
+OK
+--- Testing http://howard.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.342s
+
+OK
+--- Testing http://libver.math.auth.gr/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.327s
+
+OK
+--- Testing http://lod.b3kat.de/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.472s
+
+OK
+--- Testing http://homologene.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.757s
+
+FAILED (failures=1)
+--- Testing http://wiki.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.250s
+
+OK
+--- Testing http://tkm.kiom.re.kr/ontology/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.810s
+
+OK
+--- Testing http://digitaleconomy.rkbexplorer.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.292s
+
+OK
+--- Testing http://wikipathways.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.373s
+
+OK
+--- Testing http://sparql.reegle.info/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.422s
+
+OK
+--- Testing http://data.linkededucation.org/request/lak-conference/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.361s
+
+OK
+--- Testing http://virtuoso-eurosentiment.paradigmatecnologico.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.248s
+
+OK
+--- Testing http://taxonomy.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 1.559s
+
+FAILED (failures=1)
+--- Testing http://data.lenka.no/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.376s
+
+OK
+--- Testing http://data.duraark.eu/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.949s
+
+OK
+--- Testing http://mesh.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.810s
+
+FAILED (failures=1)
+--- Testing http://www4.wiwiss.fu-berlin.de/diseasome/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.481s
+
+OK
+--- Testing http://www.opmw.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.413s
+
+OK
+--- Testing http://catalogus-professorum.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.404s
+
+OK
+--- Testing http://webconf.rkbexplorer.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.270s
+
+OK
+--- Testing http://lod.kaist.ac.kr/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.484s
+
+OK
+--- Testing http://api.talis.com/stores/musicbrainz/services/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.214s
+
+OK
+--- Testing http://famu.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.337s
+
+OK
+--- Testing http://eu.dbpedia.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.800s
+
+OK
+--- Testing http://id.sgcb.mcu.es/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 18.228s
+
+FAILED (failures=1)
+--- Testing http://www4.wiwiss.fu-berlin.de/dailymed/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.452s
+
+OK
+--- Testing http://www4.wiwiss.fu-berlin.de/sider/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.487s
+
+OK
+--- Testing http://www4.wiwiss.fu-berlin.de/medicare/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.384s
+
+OK
+--- Testing http://core.kmi.open.ac.uk/squery ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.780s
+
+OK
+--- Testing http://data-gov.ie/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.302s
+
+OK
+--- Testing http://data.linkedmdb.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.810s
+
+OK
+--- Testing http://en.openei.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 62.757s
+
+OK
+--- Testing http://ibm.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.286s
+
+OK
+--- Testing http://dewey.info/sparql.php ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.394s
+
+OK
+--- Testing http://visualdataweb.infor.uva.es/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.456s
+
+OK
+--- Testing http://idi.fundacionctic.org/classifications_endpoint/eurovoc ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.400s
+
+OK
+--- Testing http://iproclass.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.588s
+
+OK
+--- Testing http://api.talis.com/stores/schemapedia/services/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.207s
+
+OK
+--- Testing http://sparql.linkedopendata.it/musei ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.312s
+
+OK
+--- Testing http://linkeddata.es/resource/ldqm/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 13.498s
+
+OK
+--- Testing http://sparql.msc2010.org ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.431s
+
+OK
+--- Testing http://data.ege.edu.tr/ep/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 11.974s
+
+OK
+--- Testing https://www.ebi.ac.uk/rdf/services/biosamples/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.689s
+
+OK
+--- Testing http://miuras.inf.um.es/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.351s
+
+OK
+--- Testing http://bnb.data.bl.uk/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.377s
+
+OK
+--- Testing http://api.talis.com/stores/massobservation/services/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.240s
+
+OK
+--- Testing http://semanticweb.cs.vu.nl/verrijktkoninkrijk/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 0.622s
+
+FAILED (failures=1)
+--- Testing http://www.eclap.eu/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.379s
+
+OK
+--- Testing http://linkedu.eu/catalogue/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.586s
+
+OK
+--- Testing http://sparql.openmobilenetwork.org ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.297s
+
+OK
+--- Testing http://agrinepaldata.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.266s
+
+OK
+--- Testing http://dacura.cs.tcd.ie/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.502s
+
+OK
+--- Testing http://clinicaltrials.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.810s
+
+FAILED (failures=1)
+--- Testing http://lofd.tw.rpi.edu/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.379s
+
+OK
+--- Testing http://crm.rkbexplorer.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.253s
+
+OK
+--- Testing http://data.utpl.edu.ec/ecuadorresearch/lod/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 2.561s
+
+OK
+--- Testing http://agalpha.mathbiol.org/repositories/tcga ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.406s
+
+OK
+--- Testing http://laas.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.249s
+
+OK
+--- Testing http://courseware.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.224s
+
+OK
+--- Testing http://api.talis.com/stores/bbc-wildlife/services/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.257s
+
+OK
+--- Testing http://alaska.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 0.567s
+
+FAILED (failures=1)
+--- Testing http://genbank.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.387s
+
+OK
+--- Testing http://vocabulary.semantic-web.at/PoolParty/sparql/semweb ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.496s
+
+OK
+--- Testing http://ncbigene.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.767s
+
+FAILED (failures=1)
+--- Testing http://wordnet.okfn.gr:8890/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.371s
+
+OK
+--- Testing http://api.talis.com/stores/eupmedia/services/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.204s
+
+OK
+--- Testing http://cau.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.278s
+
+OK
+--- Testing https://datagraft.io/prodatamarket_publisher/sparql_endpoints/norwegian-state-of-estate-report-04693e1f-4060-48c1-8ab9-888a6c95f6d6 ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.923s
+
+OK
+--- Testing http://digitale.bncf.firenze.sbn.it/openrdf-workbench/repositories/NS/query ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.705s
+
+FAILED (failures=1)
+--- Testing http://sgd.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.751s
+
+FAILED (failures=1)
+--- Testing http://api.talis.com/stores/gunnbib-digitalmanuskripter/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.243s
+
+OK
+--- Testing http://omim.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.731s
+
+FAILED (failures=1)
+--- Testing http://api.kasabi.com/dataset/un-hazardous-material-numbers/apis/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.609s
+
+OK
+--- Testing http://deploy.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.505s
+
+OK
+--- Testing http://lisbon.rkbexplorer.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.289s
+
+OK
+--- Testing http://data.oceandrilling.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.906s
+
+OK
+--- Testing http://dbsnp.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.789s
+
+FAILED (failures=1)
+--- Testing http://ieee.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.269s
+
+OK
+--- Testing http://doc.metalex.eu:8000/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 130.293s
+
+OK
+--- Testing http://www4.wiwiss.fu-berlin.de/stitch/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.502s
+
+OK
+--- Testing http://sparql.cwrc.ca/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.585s
+
+OK
+--- Testing http://dati.camera.it/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.470s
+
+OK
+--- Testing http://www4.wiwiss.fu-berlin.de/drugbank/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.522s
+
+OK
+--- Testing http://data.szepmuveszeti.hu/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.792s
+
+OK
+--- Testing http://ft.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.380s
+
+OK
+--- Testing http://eprints.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.245s
+
+OK
+--- Testing http://lod.apc.gov.tw/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.658s
+
+OK
+--- Testing http://pathwaycommons.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.376s
+
+OK
+--- Testing http://sparql.uniprot.org ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.130s
+
+OK
+--- Testing http://nl.dbpedia.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.367s
+
+OK
+--- Testing http://twarql.org:8890/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.425s
+
+OK
+--- Testing https://eagle-i.ea.vanderbilt.edu/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.420s
+
+OK
+--- Testing http://193.145.57.56:8890/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 129.745s
+
+OK
+--- Testing http://dbtune.org/bbc/peel/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 0.427s
+
+FAILED (failures=1)
+--- Testing http://eculture2.cs.vu.nl:5020/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.305s
+
+OK
+--- Testing http://biolit.rkbexplorer.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.249s
+
+OK
+--- Testing http://linked.opendata.cz/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.430s
+
+OK
+--- Testing http://biordf.net/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 16.092s
+
+OK
+--- Testing http://services.data.gov.uk/transport/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.204s
+
+OK
+--- Testing http://www.auth.gr/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.643s
+
+OK
+--- Testing http://deepblue.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.298s
+
+OK
+--- Testing http://seek.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.251s
+
+OK
+--- Testing http://sonicbanana.cs.wright.edu:8890/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.351s
+
+OK
+--- Testing https://nkod.opendata.cz/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.270s
+
+OK
+--- Testing http://cultura.linkeddata.es/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.495s
+
+OK
+--- Testing http://data.organic-edunet.eu/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.272s
+
+OK
+--- Testing http://cb.semsol.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.345s
+
+OK
+--- Testing http://linkedspl.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.570s
+
+OK
+--- Testing http://os.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.255s
+
+OK
+--- Testing http://montana.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.427s
+
+OK
+--- Testing http://lsr.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.946s
+
+FAILED (failures=1)
+--- Testing http://jsu.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 0.655s
+
+FAILED (failures=1)
+--- Testing http://chembl.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.386s
+
+OK
+--- Testing http://datos.artium.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.642s
+
+OK
+--- Testing http://greek-lod.math.auth.gr/kalikratis/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.379s
+
+OK
+--- Testing http://linkedopencommerce.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 2.533s
+
+OK
+--- Testing http://goa.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.875s
+
+FAILED (failures=1)
+--- Testing http://www.rechercheisidore.fr/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.734s
+
+OK
+--- Testing http://asev.l3s.uni-hannover.de:8085/openrdf-sesame/repositories/TERENCE_STORY ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.337s
+
+OK
+--- Testing http://ohsu.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 0.622s
+
+FAILED (failures=1)
+--- Testing http://data.linkedu.eu/prod/query ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.662s
+
+OK
+--- Testing http://sparql-procomun.educalab.es/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.469s
+
+OK
+--- Testing http://www4.wiwiss.fu-berlin.de/cordis/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.444s
+
+OK
+--- Testing http://ecb.270a.info/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.287s
+
+OK
+--- Testing http://bis.270a.info/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.266s
+
+OK
+--- Testing http://upr.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 0.673s
+
+FAILED (failures=1)
+--- Testing http://adl-gazetteer.geog.ucsb.edu:8080/sparql/select ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 131.549s
+
+OK
+--- Testing http://roni.rkbexplorer.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.258s
+
+OK
+--- Testing http://data.bibsys.no/data/query_authority.html ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.357s
+
+OK
+--- Testing http://setaria.oszk.hu/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.450s
+
+OK
+--- Testing http://de.dbpedia.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.496s
+
+OK
+--- Testing http://api.talis.com/stores/productdb/services/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.260s
+
+OK
+--- Testing http://webscience.rkbexplorer.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.254s
+
+OK
+--- Testing http://notube.rkbexplorer.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.264s
+
+OK
+--- Testing http://api.talis.com/stores/airports/services/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.238s
+
+OK
+--- Testing http://bioportal.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.884s
+
+FAILED (failures=1)
+--- Testing http://sparql.yovisto.com/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.240s
+
+OK
+--- Testing http://pubmed.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.877s
+
+FAILED (failures=1)
+--- Testing http://reactome.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.373s
+
+OK
+--- Testing http://purl.org/twc/arrayexpress/virtuoso/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 13.669s
+
+OK
+--- Testing http://dbtune.org/classical/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 0.336s
+
+FAILED (failures=1)
+--- Testing http://zhishi.me/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 2.606s
+
+OK
+--- Testing http://apps.morelab.deusto.es/labman/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.455s
+
+OK
+--- Testing https://linked.opendata.cz/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.405s
+
+FAILED (failures=1)
+--- Testing http://epo.publicdata.eu/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.340s
+
+OK
+--- Testing http://irit.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.246s
+
+OK
+--- Testing http://geo.linkeddata.es/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.437s
+
+OK
+--- Testing http://eurostat.linked-statistics.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.308s
+
+OK
+--- Testing http://gendr.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.862s
+
+FAILED (failures=1)
+--- Testing http://data.logainm.ie/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.528s
+
+OK
+--- Testing http://ldf.fi/warsa/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.662s
+
+OK
+--- Testing http://data.noticias.universia.net/d2r-server/snorql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.282s
+
+OK
+--- Testing https://www.ebi.ac.uk/rdf/services/reactome/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.509s
+
+OK
+--- Testing http://prelex.publicdata.eu/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.151s
+
+OK
+--- Testing http://www4.wiwiss.fu-berlin.de/dblp/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.443s
+
+OK
+--- Testing http://curriculum.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.258s
+
+OK
+--- Testing http://interpro.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.883s
+
+FAILED (failures=1)
+--- Testing http://www4.wiwiss.fu-berlin.de/eures/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.479s
+
+OK
+--- Testing http://data.dive.beeldengeluid.nl/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.339s
+
+OK
+--- Testing http://enaktingpsi.rkbexplorer.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.251s
+
+OK
+--- Testing https://www.ebi.ac.uk/rdf/services/biomodels/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.465s
+
+OK
+--- Testing http://factforge.net/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.589s
+
+OK
+--- Testing http://linguistic.linkeddata.es/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.425s
+
+OK
+--- Testing http://meharry.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.345s
+
+OK
+--- Testing http://gov.tso.co.uk/transport/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.241s
+
+OK
+--- Testing http://data.ox.ac.uk/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.840s
+
+OK
+--- Testing http://nsf.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.270s
+
+OK
+--- Testing http://fintrans.publicdata.eu/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 2.459s
+
+OK
+--- Testing http://data.bib.uni-mannheim.de/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.724s
+
+OK
+--- Testing http://ontology.irstea.fr/weather/snorql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 4.718s
+
+OK
+--- Testing http://services.insemtives.eu/forest/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.289s
+
+OK
+--- Testing http://rdf.farmbio.uu.se/chembl/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.622s
+
+OK
+--- Testing http://91.239.64.176:8890/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.302s
+
+OK
+--- Testing http://unlocode.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.234s
+
+OK
+--- Testing http://inoh.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.383s
+
+OK
+--- Testing http://ldf.fi/ww1lod/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.466s
+
+OK
+--- Testing http://ld.panlex.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.520s
+
+OK
+--- Testing http://worldbank.270a.info/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.313s
+
+OK
+--- Testing http://www.inertia-linkeddata.iti.gr:9090/inertia-endpoint/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.479s
+
+OK
+--- Testing http://darmstadt.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.230s
+
+OK
+--- Testing http://www.ics.forth.gr/isl/LODsyndesis/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.539s
+
+OK
+--- Testing http://sparql.linkedopendata.it/loc ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.251s
+
+OK
+--- Testing http://linkeddata.uriburner.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.762s
+
+OK
+--- Testing http://lod.my-eventos.com/en/services/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 2.403s
+
+OK
+--- Testing https://ruian.linked.opendata.cz/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.521s
+
+FAILED (failures=1)
+--- Testing http://unodc.publicdata.eu/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.258s
+
+OK
+--- Testing http://vocabulary.semantic-web.at/PoolParty/sparql/OpenData ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.452s
+
+OK
+--- Testing http://publicspending.medialab.ntua.gr/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.561s
+
+OK
+--- Testing http://vocabulary.wolterskluwer.de/PoolParty/sparql/court ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.410s
+
+OK
+--- Testing http://api.talis.com/stores/eurobarometer/services/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.214s
+
+OK
+--- Testing http://lod.openlinksw.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.928s
+
+OK
+--- Testing https://data.gov.cz/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.559s
+
+FAILED (failures=1)
+--- Testing http://apps.ideaconsult.net:8080/ontology ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.324s
+
+OK
+--- Testing http://rhea.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.366s
+
+OK
+--- Testing http://linkedlifedata.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 80.190s
+
+OK
+--- Testing http://fao.270a.info/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.426s
+
+OK
+--- Testing http://www.ebi.ac.uk/rdf/services/atlas/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.578s
+
+OK
+--- Testing http://140.109.28.64:2020/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 130.520s
+
+OK
+--- Testing http://ctd.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 1.941s
+
+FAILED (failures=1)
+--- Testing http://skos.um.es/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.875s
+
+FAILED (failures=1)
+--- Testing http://hcls.deri.org:8080/openrdf-sesame/repositories/tcga ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 130.215s
+
+OK
+--- Testing http://transparency.270a.info/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.315s
+
+OK
+--- Testing http://es.dbpedia.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.753s
+
+FAILED (failures=1)
+--- Testing http://kisti.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.276s
+
+OK
+--- Testing http://roma.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.276s
+
+OK
+--- Testing http://data.linkededucation.org/request/ted/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.343s
+
+OK
+--- Testing http://spike.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.379s
+
+OK
+--- Testing http://vocabulary.semantic-web.at/PoolParty/sparql/AustrianSkiTeam ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.431s
+
+OK
+--- Testing http://fr.dbpedia.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.425s
+
+OK
+--- Testing http://sparql.linkedopendata.it/los ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.219s
+
+OK
+--- Testing http://data.linkedu.eu/kis/query ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.599s
+
+OK
+--- Testing http://greek-lod.math.auth.gr/intervalue/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.360s
+
+OK
+--- Testing http://rae2001.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.259s
+
+OK
+--- Testing http://gov.tso.co.uk/coins/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.287s
+
+OK
+--- Testing http://europeana.ontotext.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.471s
+
+OK
+--- Testing http://harvard.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.677s
+
+OK
+--- Testing http://opendata.aragon.es/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.913s
+
+OK
+--- Testing http://n-lex.publicdata.eu/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.299s
+
+OK
+--- Testing http://tuskegee.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 0.656s
+
+FAILED (failures=1)
+--- Testing http://api.talis.com/stores/smcjournals/services/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.242s
+
+OK
+--- Testing http://sider.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.918s
+
+FAILED (failures=1)
+--- Testing http://xula.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 0.701s
+
+FAILED (failures=1)
+--- Testing http://api.kasabi.com/dataset/sanskrit-english-lexicon/apis/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.623s
+
+OK
+--- Testing http://epsrc.rkbexplorer.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.256s
+
+OK
+--- Testing http://semantic-web-journal.com:3030/sparql.tpl ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 130.862s
+
+OK
+--- Testing http://api.kasabi.com/dataset/federal-reserve-economic-data/apis/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 15.916s
+
+OK
+--- Testing http://www4.wiwiss.fu-berlin.de/factbook/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.452s
+
+OK
+--- Testing http://kwijibo.talis.com/latc-linksets/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.266s
+
+OK
+--- Testing http://gdlc.rkbexplorer.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.275s
+
+OK
+--- Testing http://data.persee.fr/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.742s
+
+OK
+--- Testing http://ecs.rkbexplorer.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.272s
+
+OK
+--- Testing http://pt.dbpedia.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.693s
+
+OK
+--- Testing http://data.open.ac.uk/query ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.535s
+
+OK
+--- Testing http://wormbase.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.984s
+
+FAILED (failures=1)
+--- Testing http://data.linkedu.eu/don/query ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.334s
+
+OK
+--- Testing http://rdf.muninn-project.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 1.678s
+
+FAILED (failures=1)
+--- Testing https://www.ebi.ac.uk/rdf/services/chembl/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.532s
+
+OK
+--- Testing http://cdrewu.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.321s
+
+OK
+--- Testing http://aliada.scanbit.net:8891/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 131.241s
+
+OK
+--- Testing http://api.talis.com/stores/rsinger-dev4/services/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.237s
+
+OK
+--- Testing http://neuroweb.med.yale.edu:8890/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 130.643s
+
+OK
+--- Testing https://hdt.lod.labs.vu.nl/?g=LOD-a-lot ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.738s
+
+OK
+--- Testing http://dbtune.org/jamendo/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 0.446s
+
+FAILED (failures=1)
+--- Testing http://frb.270a.info/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.403s
+
+OK
+--- Testing http://meducator.open.ac.uk/resourcesrestapi/rest/meducator/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.936s
+
+OK
+--- Testing http://wiktionary.dbpedia.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.385s
+
+OK
+--- Testing http://linguistic.linkeddata.es/terminesp/sparql-editor ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.625s
+
+OK
+--- Testing http://drugbank.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 1.109s
+
+FAILED (failures=1)
+--- Testing http://datos.bne.es/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.701s
+
+OK
+--- Testing http://data.linkedu.eu/forge/query ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.614s
+
+OK
+--- Testing http://irefindex.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.875s
+
+FAILED (failures=1)
+--- Testing http://data.linkedu.eu/slidewiki/query ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.425s
+
+OK
+--- Testing http://www.ss-framework.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.439s
+
+OK
+--- Testing http://sabiork.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.383s
+
+OK
+--- Testing http://nlg.okfn.gr/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.087s
+
+OK
+--- Testing http://onto.mondis.cz/openrdf-sesame/repositories/mondis-record-owlim ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.426s
+
+OK
+--- Testing http://ecowlim.tfri.gov.tw/sparql/query ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.298s
+
+OK
+--- Testing http://kent.zpr.fer.hr:8080/educationalProgram/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 131.514s
+
+OK
+--- Testing http://apps.morelab.deusto.es/teseo/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.460s
+
+OK
+--- Testing http://lod.xdams.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.407s
+
+OK
+--- Testing http://citeseer.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.219s
+
+OK
+--- Testing http://healthdata.tw.rpi.edu/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.347s
+
+OK
+--- Testing http://api.talis.com/stores/pokedex/services/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.275s
+
+OK
+--- Testing http://jisc.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.265s
+
+OK
+--- Testing http://api.aucklandmuseum.com ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.745s
+
+OK
+--- Testing http://api.talis.com/stores/moseley/services/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.253s
+
+OK
+--- Testing http://era.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.242s
+
+OK
+--- Testing http://uccaribe.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 0.640s
+
+FAILED (failures=1)
+--- Testing http://pubchem.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.372s
+
+OK
+--- Testing http://eris.okfn.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.256s
+
+OK
+--- Testing http://api.talis.com/stores/openlibrary/services/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.269s
+
+OK
+--- Testing https://data.ox.ac.uk/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.697s
+
+OK
+--- Testing http://modip.aueb.gr/d2rq/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.628s
+
+OK
+--- Testing http://risks.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.252s
+
+OK
+--- Testing http://ccny-cuny.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.301s
+
+OK
+--- Testing http://lod.sztaki.hu/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.527s
+
+FAILED (failures=1)
+--- Testing http://msm.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 0.634s
+
+FAILED (failures=1)
+--- Testing http://foodpedia.tk/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.428s
+
+OK
+--- Testing http://helheim.deusto.es/linkedstats/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.363s
+
+OK
+--- Testing http://utsa.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.341s
+
+OK
+--- Testing http://semanticweb.cs.vu.nl/dss/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 0.779s
+
+FAILED (failures=1)
+--- Testing http://dartmouth.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.364s
+
+OK
+--- Testing http://data.archiveshub.ac.uk/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.381s
+
+OK
+--- Testing http://www4.wiwiss.fu-berlin.de/euraxess/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.495s
+
+OK
+--- Testing http://biomodels.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.931s
+
+FAILED (failures=1)
+--- Testing http://data.aalto.fi/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 4.499s
+
+OK
+--- Testing http://dbtune.org/magnatune/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.405s
+
+OK
+--- Testing http://eurecom.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.245s
+
+OK
+--- Testing http://api.talis.com/stores/whoiswho/services/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.232s
+
+OK
+--- Testing http://services.data.gov.uk/statistics/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.239s
+
+OK
+--- Testing http://zaire.dimis.fim.uni-passau.de:8890/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 131.159s
+
+OK
+--- Testing http://dblp.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.302s
+
+OK
+--- Testing http://acm.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.275s
+
+OK
+--- Testing http://budapest.rkbexplorer.com/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.285s
+
+OK
+--- Testing http://greek-lod.auth.gr/police/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.357s
+
+OK
+--- Testing http://data.linkedu.eu/ocw/query ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.558s
+
+OK
+--- Testing http://dbtune.org/myspace/sparql/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.410s
+
+OK
+--- Testing http://ckan.eurohelp.es:8890/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.576s
+
+OK
+--- Testing http://api.talis.com/stores/ordnance-survey/services/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.213s
+
+OK
+--- Testing http://eur-lex.publicdata.eu/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 2.359s
+
+OK
+--- Testing http://italy.rkbexplorer.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.294s
+
+OK
+--- Testing http://lod.gesis.org/thesoz/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.890s
+
+OK
+--- Testing http://fun.rkbexplorer.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.268s
+
+OK
+--- Testing http://resrev.ilrt.bris.ac.uk/data-server-workshop/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.528s
+
+OK
+--- Testing http://kaunas.rkbexplorer.com/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.266s
+
+OK
+--- Testing http://lod.euscreen.eu/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.488s
+
+OK
+--- Testing http://serendipity.utpl.edu.ec/lod/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.173s
+
+OK
+--- Testing http://www4.wiwiss.fu-berlin.de/eccompetition/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 10.436s
+
+OK
+--- Testing http://agencies.publicdata.eu/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.034s
+
+OK
+--- Testing http://hgnc.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.886s
+
+FAILED (failures=1)
+--- Testing http://www.linklion.org:8890/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.265s
+
+OK
+--- Testing http://mgi.bio2rdf.org/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.875s
+
+FAILED (failures=1)
+--- Testing http://data.uni-muenster.de/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.321s
+
+OK
+--- Testing http://labs.mondeca.com/endpoint/ends ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.923s
+
+OK
+--- Testing http://utep.eagle-i.net/sparqler/sparql ---test_sparql_av (__main__.AnalysesTestCase) ... FAIL
+
+======================================================================
+FAIL: test_sparql_av (__main__.AnalysesTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/screenia/KGHeartbeat-test/KGHeartbeat/test/analyses_test.py", line 41, in test_sparql_av
+    self.assertEqual(kgh_result, sparqles_result)
+AssertionError: False != True
+
+----------------------------------------------------------------------
+Ran 1 test in 0.617s
+
+FAILED (failures=1)
+--- Testing http://ontology.irstea.fr/bsv/ ---test_sparql_av (__main__.AnalysesTestCase) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.523s
+
+OK
+Failures: 55
+Total KGs tested: 377

@@ -4,6 +4,7 @@ KGHeartBeat is a tool that can help you to analyze the quality of all Knowledge 
     - [Repository structure](#repository-structure)
     - [Quality metrics covered](#quality-metrics-covered)
     - [Examples](#examples)
+    - [Test](#test)
     - [License](#license)
 
 - [How To Use KGHeartbeat?](#how-to-use-kgheartbeat)
@@ -36,7 +37,11 @@ KG-HeartBeat
         ...
         ...
         ...
-    | - WebApp/                 Directory that contains all the files needed to boot locally KGHeartBeat Web-App
+    | - test/                   Folder containing files and scripts relating to the test
+        |- analyses_test.py     Script to run the test 
+        |- SPARQLES_APIS.py     Module used as interface to the SPARQLES API.
+        |- test_output.txt      File containing the result of the test performed.
+    | - WebApp/                 Directory that contains all the files needed to boot locally KGHeartBeat Web-App.
     | - analyses.py             Module that calculates all quality metrics.
     | - bloomfilter.py          Class used to istantiate the Bloom-Filter structure.
     | - Configuration.py        Module used to create the configration.json file if isn't available.
@@ -71,6 +76,8 @@ Below is a graph showing the quality dimensions covered by KGHeartbeat and the p
 2. [What are the best 10 KGs in terms of Trust and Dataset dynamicity?](./examples/README.md#2-what-are-the-best-10-kgs-in-terms-of-trust-and-dataset-dynamicity)
 3. [What are the best KGs in the context of Linguistic Linked Open Data?](./examples/README.md#3-what-are-the-best-kgs-in-the-context-of-linguistic-linked-open-data)
 
+## Test
+The test was performed by comparing KGHeartBeat with [SPARQLES](https://sparqles.demo.openlinksw.com/). For more info about the test and the result go to the [test readme](./test/README.md).
 
 ## License
 KGHeartbeat is licensed under the [MIT License](https://opensource.org/license/mit/).
