@@ -1720,7 +1720,7 @@ def analyses(idKG,analysis_date):
         consistency = Consistency(errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage)
         conciseness = Conciseness(errorMessage,errorMessage)
         accuracy = Accuracy(errorMessage,errorMessage,errorMessage,errorMessage,errorMessage)
-        if isinstance(triplesM,int) and isinstance(triplesL,int) and triplesM > 0 and triplesM >= triplesM:
+        if isinstance(triplesM,int) and isinstance(triplesL,int) and triplesM > 0 and triplesM >= triplesL:
             iCompleteness = (triplesL/triplesM)
             iCompleteness = "%.2f"%iCompleteness
             completeness = Completeness(triplesM,triplesL,iCompleteness)
