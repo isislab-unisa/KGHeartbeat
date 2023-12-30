@@ -9,7 +9,7 @@ Given the scarcity of working tools to be able to compare the result of our anal
 The test may take a few minutes to run as to check the availability of the SPARQL endpoint with the SPARQLES API we need the SPARQL endpoint link of the KG. When our tool analyzes all the KGs automatically discoverable, it recovers them by obtaining only the IDs and not directly the SPARQL endpoint link (this is done in another phase during the analysis), therefore an initial phase is necessary where for each ID we must execute a query on Datahub and LODCloud to obtain the corresponding link to the SPARQL endpoint, only at the end of this phase we can proceed with the test, therefore the time of the initial phase can be influenced by the rate limit imposed on GET requests on DataHub and LODCloud.
 
 ## How to reproduce the test
-To reproduce the test simply run the ``` analyses_test.py``` script:
+To reproduce the test simply run the ```analyses_test.py``` script:
 ```
 python analyses_test.py > output.txt
 ```

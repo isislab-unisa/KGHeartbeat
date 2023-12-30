@@ -5,6 +5,7 @@ KGHeartBeat is a tool that can help you to analyze the quality of all Knowledge 
     - [Quality metrics covered](#quality-metrics-covered)
     - [Examples](#examples)
     - [Test](#test)
+    - [Performance](#performance)
     - [License](#license)
 
 - [How To Use KGHeartbeat?](#how-to-use-kgheartbeat)
@@ -77,7 +78,17 @@ Below is a graph showing the quality dimensions covered by KGHeartbeat and the p
 3. [What are the best KGs in the context of Linguistic Linked Open Data?](./examples/README.md#3-what-are-the-best-kgs-in-the-context-of-linguistic-linked-open-data)
 
 ## Test
-The test was performed by comparing KGHeartBeat with [SPARQLES](https://sparqles.demo.openlinksw.com/). For more info about the test and the result go to the [test readme](./test/README.md).
+The test was performed by comparing KGHeartBeat with [SPARQLES](https://sparqles.demo.openlinksw.com/). For more info about the test and the result go to the [test readme](./test/).
+
+## Performance
+At the end of the analysis execution, in the root directory of the project there will be a [performance.txt](./performance.txt) file, which will contain various information on the time taken for the analysis of each KG (with the time for the calculation of each metric) and the time of the analysis in total. The performance data that we illustrate below, and the file provided in the repository, refer to the analysis of all the KGs automatically discoverable carried out on 2023/12/24.
+
+|Total KGs analyzed|Total time (hours)| Average time for the analysis of one KGs (minutes)|
+|---|---|---|
+|1882|89.40 ~ 4 days|2.82
+
+The KG that required the longest time for analysis was **B3Kat - Library Union Catalogues of Bavaria, Berlin and Brandenburg**, the total time was: ~6.77 hours. The quality metric that took the longest time to analyze was *Intrinsic Category -> Consistency -> Undefined classes*, with ~5 hours to complete the calculation, this is mainly due to the large amount of triples that are present in this KG (1.022.898.443 of triples).
+
 
 ## License
 KGHeartbeat is licensed under the [MIT License](https://opensource.org/license/mit/).
@@ -88,7 +99,7 @@ To follow the next steps, clone the project with the following command
 ```
 git clone https://github.com/isislab-unisa/KGHeartbeat.git
 ```
-
+20807.114743709564s
 ## Dependencies
 For the execution of the project it is recommended to create a Python Virtual Environment, so from the project root directory run the following commands:
 ```
