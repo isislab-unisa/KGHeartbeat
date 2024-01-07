@@ -1,13 +1,9 @@
 import sys
 sys.path.append('../')
-import query
 import utils
 from API import Aggregator, AGAPI
 import SPARQLES_APIS
-from xml.dom.minidom import Document
-import json
 import VoIDAnalyses
-from SPARQLWrapper import SPARQLExceptions
 
 if __name__ == '__main__':
     sparqles_kgs = SPARQLES_APIS.get_all_sparql_link()
@@ -22,8 +18,8 @@ if __name__ == '__main__':
             metadata = Aggregator.getDataPackage(id)
             kg_resources = utils.toObjectResources(utils.insertAvailability(Aggregator.getOtherResources(id)))
             sparql_url = Aggregator.getSPARQLEndpoint(id)
-
-            file.write(f"--- Testing {sparql_url} ---\n")
+            if(sparql_url == 'False' or sparql_url == False):
+                continue
 
             #SPARQLES Test
             sparqles_void_result = SPARQLES_APIS.get_void_availability(sparql_url)
@@ -46,19 +42,22 @@ if __name__ == '__main__':
                         kgh_result = False
             else:
                 continue
-            
+
+            file.write(f"--- Testing {sparql_url} ---\n")
             if kgh_result == sparqles_void_result:
                 passed += 1
+                file.write(f"Passed\n")
             else:
+                file.write(f"Failed\n")
                 file.write(f"KGHeartBeat results: {kgh_result}\n")
-                file.write(f"SPARQLES result: {sparqles_void_result}")
+                file.write(f"SPARQLES result: {sparqles_void_result}\n")
                 failed += 1
 
             file.flush()
     
-        file.write(f"Failures: {failed}")
-        file.write(f"Passed: {passed}")
-        file.write(f"Total KGs tested: {failed + passed}")
+        file.write(f"Failures: {failed}\n")
+        file.write(f"Passed: {passed}\n")
+        file.write(f"Total KGs tested: {failed + passed}\n")
         
 
 
