@@ -2,3 +2,168 @@
 --- Testing http://aemet.linkeddata.es/sparql ---
 KGHeartBeat results: True
 SPARQLES result: False
+--- Testing http://lab.environment.data.gov.au/sparql ---
+Passed
+--- Testing http://aemet.linkeddata.es/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://202.45.139.84:10035/catalogs/fao/repositories/agris ---
+Passed
+--- Testing https://www.ebi.ac.uk/rdf/services/biomodels/sparql ---
+Passed
+--- Testing https://www.ebi.ac.uk/rdf/services/biosamples/sparql ---
+Passed
+--- Testing http://canlink.library.ualberta.ca/sparql ---
+Passed
+--- Testing https://www.ebi.ac.uk/rdf/services/chembl/sparql ---
+Passed
+--- Testing https://linked.opendata.cz/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing https://linked.opendata.cz/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing https://linked.opendata.cz/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://data.cnr.it/sparql-proxy/ ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://dbpedia.org/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://ja.dbpedia.org/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://services.data.gov.uk/education/sparql ---
+Passed
+--- Testing http://cr.eionet.europa.eu/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://heritagedata.org/live/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://environment.data.gov.uk/sparql/bwq/query ---
+Passed
+--- Testing http://linkeddata.ge.imati.cnr.it:8890/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://api.talis.com/stores/eupmedia/services/sparql ---
+Passed
+--- Testing http://api.talis.com/stores/whoiswho/services/sparql ---
+Passed
+--- Testing http://api.talis.com/stores/eumida/services/sparql ---
+Passed
+--- Testing http://semantic.eea.europa.eu/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://api.talis.com/stores/eurobarometer/services/sparql ---
+Passed
+--- Testing http://api.talis.com/stores/elections/services/sparql ---
+Passed
+--- Testing http://europeana.ontotext.com/sparql ---
+Passed
+--- Testing http://cr3.eionet.europa.eu/sparql ---
+Passed
+--- Testing http://www.ebi.ac.uk/rdf/services/atlas/sparql ---
+Passed
+--- Testing http://resource.geolba.ac.at/PoolParty/sparql/GeologicUnit ---
+Passed
+--- Testing http://lsd.taxonconcept.org/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://vocab.getty.edu/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://greek-lod.auth.gr/fire-brigade/sparql ---
+Passed
+--- Testing http://greek-lod.auth.gr/police/sparql ---
+Passed
+--- Testing http://ichoose.tw.rpi.edu/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://identifiers.org/services/sparql ---
+Passed
+--- Testing http://www.imagesnippets.com/sparql/images ---
+Passed
+--- Testing http://iserve.kmi.open.ac.uk/iserve/sparql ---
+Passed
+--- Testing http://202.73.13.50:55824/catalogs/performance/repositories/jita ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://api.talis.com/stores/jgoodwin-genealogy/services/sparql ---
+Passed
+--- Testing http://lod.ac/bdls/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://rdf.muninn-project.org/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://data.nobelprize.org/sparql ---
+Passed
+--- Testing http://vocab.nerc.ac.uk/sparql/ ---
+Failed
+KGHeartBeat results: False
+SPARQLES result: True
+--- Testing http://data.oceandrilling.org/sparql ---
+Passed
+--- Testing http://sparql.openmobilenetwork.org ---
+Passed
+--- Testing http://api.talis.com/stores/ordnance-survey/services/sparql ---
+Passed
+--- Testing http://provenanceweb.org/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing https://www.ebi.ac.uk/rdf/services/reactome/sparql ---
+Passed
+--- Testing http://lod.xdams.org/sparql ---
+Passed
+--- Testing http://zbw.eu/beta/sparql/stw/query ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing https://taxref.mnhn.fr/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://linkeddata.ge.imati.cnr.it:8890/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://tour-pedia.org/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://purl.org/twc/hub/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://ieeevis.tw.rpi.edu/nosparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+--- Testing http://opendap.tw.rpi.edu/sparql ---
+Failed
+KGHeartBeat results: True
+SPARQLES result: False
+Failures: 26
+Passed: 29
+Total KGs tested: 55

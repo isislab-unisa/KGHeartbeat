@@ -5,17 +5,20 @@
 
 
 ## How the test was performed
-Given the scarcity of working tools to be able to compare the result of our analyses, we used [SPARQLES](https://sparqles.demo.openlinksw.com) which is a tool used to verify the availability of the SPARQL endpoint. We found it particularly useful to use it as the quality of a KG is strongly influenced by the availability of the SPARQL endpoint, because almost all quality metrics are calculated by recovering data present in the KG, which are therefore accessible by executing appropriate SPARQL queries. The test was therefore performed by comparing the state of the SPARQL endpoint measured by KGHeartBeat and SPARQLES. The two output files that you can consult to verify the outcome of the test are [test_output.txt](./test_output.txt) (contains the total number of KGs for which the test was passed and failed) and [test_console_output.txt](./test_console_output.txt) (contains the test result obtained from KGHeartBeat and SPARQLES for every KG tested).
-The test may take a few minutes to run as to check the availability of the SPARQL endpoint with the SPARQLES API we need the SPARQL endpoint link of the KG. When our tool analyzes all the KGs automatically discoverable, it recovers them by obtaining only the IDs and not directly the SPARQL endpoint link (this is done in another phase during the analysis), therefore an initial phase is necessary where for each ID we must execute a query on Datahub and LODCloud to obtain the corresponding link to the SPARQL endpoint, only at the end of this phase we can proceed with the test, therefore the time of the initial phase can be influenced by the rate limit imposed on GET requests on DataHub and LODCloud.
+Given the scarcity of working tools to be able to compare the result of our analyses, we used [SPARQLES](https://sparqles.demo.openlinksw.com) which is a tool used to verify the availability of the SPARQL endpoint and the VoID file. We found it particularly useful to use it as the quality of a KG is strongly influenced by the availability of the SPARQL endpoint and the VoID file, because almost all quality metrics are calculated by recovering data present in the KG and the related metadata, which are therefore accessible by executing appropriate SPARQL queries. The test was therefore performed by comparing the state of the SPARQL endpoint. The three output files that you can consult to verify the outcome of the test are [test_output.txt](./test_output.txt) (contains the total number of KGs for which the test for the SPARQL endpoint availability was passed and failed), [test_console_output.txt](./test_console_output.txt) (contains the test result obtained from KGHeartBeat and SPARQLES for every KG tested) and lastley [void_file_test_output](./void_file_test_output.txt) contains the total number of KGs for which the test for the VoID file availability was passed and failed.
+The test may take a few minutes to run as to check the availability of the SPARQL endpoint with the SPARQLES API we need the SPARQL endpoint link of the KG (also for the VoID file availability). When our tool analyzes all the KGs automatically discoverable, it recovers them by obtaining only the IDs and not directly the SPARQL endpoint link (this is done in another phase during the analysis), therefore an initial phase is necessary where for each ID we must execute a query on Datahub and LODCloud to obtain the corresponding link to the SPARQL endpoint, only at the end of this phase we can proceed with the test, therefore the time of the initial phase can be influenced by the rate limit imposed on GET requests on DataHub and LODCloud.
 
 ## How to reproduce the test
 To reproduce the test simply run the ```analyses_test.py``` script:
 ```
 python analyses_test.py > output.txt
+python void_availability_test.py
 ```
 Saving the output to a file is useful for checking the result obtained for each tested KG.
 
 ## Test results
+
+### SPARQL endpoint availability
 
 |Total KGs Tested|Passed|Failures|
 |---|---|---|
@@ -68,3 +71,22 @@ In the following table for **Total KGs manually checked** we mean only those tha
 |5|0|55|
 
 As future work we will improve the tool to adjust the result on these 5 KGs and we will plan a new execution of the test to verify the result obtained.
+
+### VoID file availability
+
+For the test only KG that are measured by both applications are considered.
+
+|Total KGs Tested|Passed|Failures|
+|---|---|---|
+|55|29|26|
+
+Failures means that the result between SPARQLES and KG Heartbeat is different.
+For the 26 KGs for which the result was different, we analyzed the result in depth and we obtained that:
+
+- For 26 KGs, the result from KGHeartBeat is that the VoID file is **online** and for SPARQLES **offline**. By manual check we found that the VoID file is **online** and our tool correctly recover it and parse it to extract the metadata about the KG.
+
+- For 1 KG, the result from KGHeartBeat is that the VoID file is **offline** and for SPARQLES **online**. The only one case is for the following KG: http://vocab.nerc.ac.uk/sparql/
+
+|False Negatives|False Positive|Total KGs manually checked |
+|---|---|---|
+|1|0|27|
