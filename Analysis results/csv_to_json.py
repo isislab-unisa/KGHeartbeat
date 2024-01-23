@@ -35,7 +35,8 @@ def full_csv():
                     old_analysis = True
         
                 kg_id = rows['KG id']
-
+                if kg_id == 'dbpedia_':
+                    continue
                 kg_id = re.sub(r'[\\/*?:"<>|]',"",kg_id)
                 remove_punctuation_map = dict((ord(char), None) for char in '\/*?:"<>|')
                 kg_id = kg_id.translate(remove_punctuation_map)
