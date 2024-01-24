@@ -120,6 +120,8 @@ def splitted_csv():
             csv_reader = csv.DictReader(csv_file)
             for rows in csv_reader:
                 kg_id = filename
+                if kg_id == 'dbpedia_':
+                    continue
                 try: 
                     data = {
                         "kg_id" : kg_id,
