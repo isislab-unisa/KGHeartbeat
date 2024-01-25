@@ -35,7 +35,7 @@ def full_csv():
                     old_analysis = True
         
                 kg_id = rows['KG id']
-                if kg_id == 'dbpedia_':
+                if kg_id == 'dbpedia_' or kg_id == 'santillanaguidedataset_':
                     continue
                 kg_id = re.sub(r'[\\/*?:"<>|]',"",kg_id)
                 remove_punctuation_map = dict((ord(char), None) for char in '\/*?:"<>|')
@@ -120,7 +120,7 @@ def splitted_csv():
             csv_reader = csv.DictReader(csv_file)
             for rows in csv_reader:
                 kg_id = filename
-                if kg_id == 'dbpedia_':
+                if kg_id == 'dbpedia_' or kg_id == 'santillanaguidedataset_':
                     continue
                 try: 
                     data = {
