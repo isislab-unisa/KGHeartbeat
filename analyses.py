@@ -725,6 +725,13 @@ def analyses(idKG,analysis_date,nameKG):
         end_analysis = time.time()
         utils.write_time(nameKG,end_analysis-start_analysis,'skos check', 'Interlinking')
         
+        #GET THE NUMBER OF SKOS-Mapping properties
+        try:
+            numberSkosMapping = query.getSkosMapping(accessUrl)
+        except Exception as error:
+            logger.warning(f'Interlinking | SKOS Mapping properties | {str(error)}',extra=kg_info)
+            numberSkosMapping = '-'
+        
         #GET THE DATASET UPDATE FREQUENCY
         start_analysis = time.time()
         try:
