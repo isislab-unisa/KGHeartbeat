@@ -7,7 +7,7 @@ import query
 
 AVAILABILITY_METRICS = 4
 LICENSING_METRICS = 2
-INTERLINKING_METRICS = 4
+INTERLINKING_METRICS = 5
 SECURITY_METRICS = 2
 PERFORMANCE_METRICS = 2
 ACCURACY_METRICS = 5
@@ -108,6 +108,16 @@ class Score:
                 sameAsV = 0
         except (ValueError,TypeError):
             sameAsV = 0
+
+        try:
+            skosMapping = int(self.kg.interlinking.skosMapping)
+            triples = int(self.kg.amountOfData.numTriplesQ)
+            if triples > 0:
+                skosMappingV = skosMapping/triples
+            else:
+                skosMappingV = 0
+        except (ValueError,TypeError):
+            skosMappingV = 0
         
         try:
             clustering = float(self.kg.interlinking.clustering)
@@ -127,7 +137,7 @@ class Score:
         except (ValueError,TypeError):
             exLinks = 0
         
-        return ((sameAsV + clustering + centratility + exLinks) * weight) / INTERLINKING_METRICS
+        return ((sameAsV + clustering + centratility + exLinks + skosMappingV) * weight) / INTERLINKING_METRICS
 
     def securityScore(self,weigth):
         https = self.kg.security.useHTTPS

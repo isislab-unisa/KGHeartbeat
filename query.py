@@ -626,6 +626,37 @@ def getSameAsChains(url):
         return value
     else:
         return False
+    
+@log_in_out
+def getSkosMapping(url):
+    sparql = SPARQLWrapper(url)
+    sparql.setQuery('''
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    SELECT (COUNT(?o) AS ?triples)
+    WHERE {
+        {?s skos:closeMatch ?o}
+        UNION   
+        {?s skos:exactMatch ?o}
+        UNION   
+        {?s skos:broadMatch ?o}
+        UNION   
+        {?s skos:narrowMatch ?o}
+        UNION   
+        {?s skos:relatedMatch ?o}
+    }
+    ''')
+    sparql.setTimeout(300)
+    sparql.setReturnFormat(JSON)
+    results = sparql.query().convert()
+    if isinstance(results,dict):
+        value = utils.getResultsFromJSONCountInt(results)
+        return value
+    elif isinstance(results,Document):
+        value = utils.getResultsFromXMLCount(results)
+        return value
+    else:
+        return False
+
 @log_in_out
 def getFrequency(url):
     sparql = SPARQLWrapper(url)
