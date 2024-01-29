@@ -661,6 +661,13 @@ def analyses(idKG,analysis_date):
             logger.warning(f'Interlinking | sameAs chains | {str(error)}',extra=kg_info)
             numberSameAs = '-'
         
+        #GET THE NUMBER OF SKOS-Mapping properties
+        try:
+            numberSkosMapping = query.getSkosMapping(accessUrl)
+        except Exception as error:
+            logger.warning(f'Interlinking | SKOS Mapping properties | {str(error)}',extra=kg_info)
+            numberSkosMapping = '-'
+        
         #GET THE DATASET UPDATE FREQUENCY
         try:
             frequency = query.getFrequency(accessUrl)
@@ -1512,7 +1519,7 @@ def analyses(idKG,analysis_date):
         rConciseness = RepresentationalConciseness(avLenghts,standardDeviationL,minLenghtS,percentile25LenghtS,medianLenghtS,percentile75LenghtS,maxLenghtS,avLenghtsO,standardDeviationLO,minLenghtO,percentile25LenghtO,medianLenghtO,percentile75LenghtO,maxLenghtO,avLenghtsP,standardDeviationLP,minLenghtP,percentile25LenghtP,medianLenghtP,percentile75LenghtP,maxLenghtP,RDFStructures)
         rConsistency = RepresentationalConsistency(newVocab,newTermsD)
         interpretability = Interpretability(numBlankNode,RDFStructures)
-        interlinking = Interlinking(degree,clusteringCoefficient,centrality,numberSameAs,exLinksObj)
+        interlinking = Interlinking(degree,clusteringCoefficient,centrality,numberSameAs,exLinksObj,numberSkosMapping)
         conciseness = Conciseness(exC,intC)
         accuracy = Accuracy(emptyAnnotation,numWSP,numMalformedTriples,FPvalue,IFPvalue)
         if isinstance(numDisjoint,int):
@@ -1676,7 +1683,7 @@ def analyses(idKG,analysis_date):
         rConsistency = RepresentationalConsistency(newVocab,errorMessage)
         understendability = Understendability(errorMessage,'-',regex,errorMessage,example,nameKG,description,sourcesC.web)
         interpretability = Interpretability(errorMessage,errorMessage)
-        interlinking = Interlinking(degree,clusteringCoefficient,centrality,errorMessage,exLinksObj)
+        interlinking = Interlinking(degree,clusteringCoefficient,centrality,errorMessage,exLinksObj,errorMessage)
         if isinstance(creationDate,str) and isinstance(modificationDate,str):
             try:
                 creationDate = datetime.datetime.strptime(creationDate, "%Y-%m-%d").date()
@@ -1715,7 +1722,7 @@ def analyses(idKG,analysis_date):
         rConsistency = RepresentationalConsistency(errorMessage,errorMessage)
         understendability = Understendability(errorMessage,'-',errorMessage,errorMessage,example,nameKG,description,sourcesC.web)
         interpretability = Interpretability(errorMessage,errorMessage)
-        interlinking = Interlinking(degree,clusteringCoefficient,centrality,errorMessage,exLinksObj)
+        interlinking = Interlinking(degree,clusteringCoefficient,centrality,errorMessage,exLinksObj,errorMessage)
         currency = Currency(errorMessage,errorMessage,'-','-','-')
         consistency = Consistency(errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage)
         conciseness = Conciseness(errorMessage,errorMessage)
