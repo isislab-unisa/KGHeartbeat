@@ -102,7 +102,7 @@ class Score:
         try:
             sameAs = int(self.kg.interlinking.sameAs)
             triples = int(self.kg.amountOfData.numTriplesQ)
-            if triples > 0:
+            if triples > 0 and triples > sameAs:
                 sameAsV = sameAs/triples
             else:
                 sameAsV = 0
@@ -112,7 +112,7 @@ class Score:
         try:
             skosMapping = int(self.kg.interlinking.skosMapping)
             triples = int(self.kg.amountOfData.numTriplesQ)
-            if triples > 0:
+            if triples > 0 and triples >= skosMapping:
                 skosMappingV = skosMapping/triples
             else:
                 skosMappingV = 0
@@ -521,7 +521,10 @@ class Score:
                 allSubject = query.getNumS(sparqlUrl)
                 numLabel = self.kg.understendability.numLabel
                 if allSubject > 0 and isinstance(numLabel,int):
-                    labelV = numLabel/allSubject
+                    if allSubject >= numLabel:
+                        labelV = numLabel/allSubject
+                    else:
+                        labelV = 0
                 else:
                     labelV = 0
             except:
@@ -551,7 +554,7 @@ class Score:
         allTerms = self.kg.extra.allTerms
         if isinstance(vocabs,list) and isinstance(allTerms,list):
             namespaces = utils.getURINamespace(allTerms)
-            if len(namespaces) > 0:
+            if len(namespaces) > 0 and namespaces >= vocabs:
                 vocabsV = len(vocabs) / len(namespaces)
             else:
                 vocabsV = 0
