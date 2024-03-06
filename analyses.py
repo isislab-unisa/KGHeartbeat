@@ -103,7 +103,7 @@ def analyses(idKG,analysis_date):
     logger.info('Analysis started...',extra=kg_info)
 
     logger.info(f"SPARQL endpoint link: {accessUrl}",extra=kg_info)
-
+    endpoint = ''
     if accessUrl == False: #CHECK IF THE SPARQL END POINT LINK IS IN THE METADATA
         endpoint = '-'
         logger.warning('SPARQL endpoint missing in the metadata',extra=kg_info)
@@ -116,7 +116,7 @@ def analyses(idKG,analysis_date):
                 newUrl = utils.checkRedirect(accessUrl) #IF WE GET HTML IN THE RESPONSE, CHECK IF THE ENDPOINT IS NOW AT ANOTHER ADDRESS
                 result = query.checkEndPoint(newUrl)
                 if isinstance(result,bytes):
-                     endpoint = 'Warning the result of endpoint is HTML'
+                     endpoint = '-'
                      logger.warning('The result from the SPARQL endpoint is not structured data (HTML data returned)',extra=kg_info)
                      available = False
                 else:
@@ -1671,7 +1671,7 @@ def analyses(idKG,analysis_date):
             logger.warning(f"Currency | Use of dates as the point in time of the last verification of a statement represented by dcterms:modified | Insufficient data to compute this metric",extra=kg_info)
             currency = Currency(creationDate,modificationDate,percentageUp,'-',historicalUp)
     elif void == True:
-        availability = Availability(errorMessage,availableDownload,availableDump,inactiveLink,errorMessage)
+        availability = Availability(endpoint,availableDownload,availableDump,inactiveLink,errorMessage)
         performance = Performance(errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage)
         amount = QualityDimensions.AmountOfData.AmountOfData(triplesM,errorMessage,numEntities,errorMessage,errorMessage)
         volatility = Volatility(frequency)
@@ -1710,7 +1710,7 @@ def analyses(idKG,analysis_date):
         else:
             completeness = Completeness(triplesM,triplesL,0)
     else:
-        availability = Availability(errorMessage,availableDownload,errorMessage,inactiveLink,errorMessage)
+        availability = Availability(endpoint,availableDownload,errorMessage,inactiveLink,errorMessage)
         performance = Performance(errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage)
         amount = QualityDimensions.AmountOfData.AmountOfData(triplesM,errorMessage,errorMessage,errorMessage,errorMessage)
         volatility = Volatility(errorMessage)
