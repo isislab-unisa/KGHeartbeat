@@ -58,7 +58,8 @@ def getIdByName(keyword):
             for i in range(len(results)):
                 d = results[i]
                 id = d.get('id')
-                kgfound.append(id)
+                name = d.get('title')
+                kgfound.append((id,name))
             return kgfound
         else:
             print("Connection failed")
