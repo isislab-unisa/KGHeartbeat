@@ -54,6 +54,11 @@ start = time.time()
 
 toAnalyze = []
 id = input.get('id')
+tuple_id = []
+
+for input_id in id:
+    tuple_id.append((input_id,''))
+
 name = input.get('name')
 for i in range(len(name)): #IF NAME IS INDICATED WE RECOVER THE ID OF ALL KG FOUND
     kgFound = AGAPI.getIdByName(name[i])
@@ -65,7 +70,7 @@ if (len(id) == 0) and (len(name) == 0): #SPECIAL INPUT, WE ANALYZE ALL KG DISCOV
     print(f"Number of KG found: {len(kgFound)}")
     toAnalyze = toAnalyze + kgFound
 
-toAnalyze = toAnalyze + id
+toAnalyze = toAnalyze + tuple_id
 toAnalyze = list(dict.fromkeys(toAnalyze)) #CLEAN THE LIST FROM DUPLICATES
 
 try: #CHECK IF THE FILE WITH THE GRAPH OF KNOWLEDGE GRAPH IS PRESENT
@@ -89,7 +94,7 @@ OutputCSV.writeHeader(filename)
 
 for i in range(len(toAnalyze)):
     start_analysis = time.time()
-    kg = analyses.analyses(toAnalyze[i],filename)
+    kg = analyses.analyses(toAnalyze[i][0],filename,toAnalyze[i][1])
     score = Score(kg,20)
     totalScore,normalizedScore = score.getWeightedDimensionScore(1)
     totalScore = "%.3f"%totalScore

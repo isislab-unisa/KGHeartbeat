@@ -56,7 +56,7 @@ import os
 import logging
 
 
-def analyses(idKG,analysis_date):
+def analyses(idKG,analysis_date,nameKG):
     
     utils.skipCheckSSL() #IGNORE THE ERROR  [SSL: CERTIFICATE_VERIFY_FAILED] 
     available = False
@@ -68,7 +68,8 @@ def analyses(idKG,analysis_date):
     queryNotSupported = False
 
     metadata = Aggregator.getDataPackage(idKG)
-    nameKG = Aggregator.getNameKG(metadata)
+    if nameKG == '':
+        nameKG = Aggregator.getNameKG(metadata)
     accessUrl = Aggregator.getSPARQLEndpoint(idKG)
 
     #Set log format
