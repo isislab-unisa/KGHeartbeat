@@ -12,7 +12,9 @@ KGHeartBeat is a tool that can help you to analyze the quality of all Knowledge 
     - [Dependencies](#dependencies)
     - [Input configuration](#input-configuration)
     - [Results](#results)
-    -  [Look directly the quality](#look-directly-the-quality)
+    - [Look directly the quality](#look-directly-the-quality)
+- [How include a new quality metric?](#how-include-a-new-quality-metric)
+- [How can I get quality data as a Knowledge Graph?](./From%20csv%20to%20KG/README.md)
 
 ## Repository structure
 ```
@@ -140,3 +142,5 @@ An analysis of all automatically discoverable Knowledge Graphs is done weekly by
 
 ## How include a new quality metric?
 If you want to include a new quality metric, you need to include the calculation inside the [analyses.py](analyses.py) module. If this new metric requires the use of a new query on the SPARQL endpoint, you can add a new query in the [query.py](query.py) module and call it from the [analyses.py](analyses.py) module .Then, based on the quality dimension to which it belongs, modify the related class in the [QualityDimensions](/QualityDimensions/) folder, or create a new class if this belongs to a new dimension. If you created a new dimension for the new metric, it must be included in the [KnowledgeGraph.py](KnowledgeGraph.py) class. Then instantiate the classes in the [analyses.py](analyses.py) to assign the value obtained from the new quality metric. If you want also to see this new metric in the csv file given in output, you need to edit the [OutputCSV.py](OutputCSV.py) module appropriately. Essentially you have to include a new header, having as name the nameof the new metric and then recall the value of the metric from the [KnowledgeGraph.py](KnowledgeGraph.py) object appropriately constructed in the [analyses.py](analyses.py) module.
+
+## How can I get quality data as a Knowledge Graph?

@@ -1,0 +1,11 @@
+kg_name,kg_id,analysis_date,Availability_sparqlEndpoint,Availability_RDFDumpM,Availability_RDFDumpQ,Availability_inactiveLinks,Availability_uriDef,Availability_voidAvailability,totalScore,normalizedScore,availabilityScoreValue,licensingScoreValue,interlinkingScoreValue,performanceScoreValue,accuracyScoreValue,consistencyScoreValue,concisenessScoreValue,verifiabilityScoreValue,reputationScoreValue,believabilityScoreValue,currencyScoreValue,volatilityScoreValue,completenessScoreValue,amountScoreValue,repConsScoreValue,repConcScoreValue,understScoreValue,interpretabilityScoreValue,versatilityScoreValue,securityScoreValue
+Czech statistical classification of economic activities in the European Community (CZ-NACE),cznace,2024-01-28,Available,-1,True,True,0.0992,VoID file available,0.026240000000000003,2.624,0.5248,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+DBpedia in French,dbpediafr,2024-01-28,Available,1,True,False,0.66,VoID file offline,0.04575,4.575,0.915,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+EEA Reporting Obligations Database,eearod,2024-01-28,-,-1,http://rod.eionet.europa.eu/issues/rdf,True,-,VoID file available,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Institutions of public power of the Czech Republic,czovm,2024-01-28,Available,-1,True,False,0.1046,VoID file available,0.0388075,3.8807500000000004,0.77615,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+List of Czech data boxes,czlistofdataboxes,2024-01-28,Available,-1,True,False,0.101,VoID file available,0.0387625,3.8762499999999998,0.77525,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Open Data from the Italian National Research Council,datacnrit,2024-01-28,-,0,absent,True,-,VoID file available,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+TAXREF-LD: Linked Data French Taxonomic Register,taxrefld,2024-01-28,Available,1,True,True,0.9655525938076687,VoID file available,0.03706940742259586,3.706940742259586,0.7413881484519171,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Tourpedia,tourpedia,2024-01-28,-,-1,http://tour-pedia.org/download/tourpedia.rdf,True,-,VoID file available,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+URIBurner,uriburner,2024-01-28,Available,-1,True,True,-,VoID file offline,0.025,2.5,0.5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+tags2con delicious,tags2condelicious,2024-01-28,-,-1,absent,False,-,VoID file available,0.0125,1.25,0.25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
