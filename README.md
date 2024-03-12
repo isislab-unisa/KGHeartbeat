@@ -14,7 +14,7 @@ KGHeartBeat is a tool that can help you to analyze the quality of all Knowledge 
     - [Results](#results)
     - [Look directly the quality](#look-directly-the-quality)
 - [How include a new quality metric?](#how-include-a-new-quality-metric)
-- [How can I get quality data as a Knowledge Graph?](./From%20csv%20to%20KG/README.md)
+- [How can I get quality data as a Knowledge Graph?](./From%20csv%20to%20KG/)
 
 ## Repository structure
 ```
