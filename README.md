@@ -101,7 +101,7 @@ To follow the next steps, clone the project with the following command
 ```
 git clone https://github.com/isislab-unisa/KGHeartbeat.git
 ```
-20807.114743709564s
+
 ## Dependencies
 For the execution of the project it is recommended to create a Python Virtual Environment, so from the project root directory run the following commands:
 ```
