@@ -245,7 +245,7 @@ richness through sameAs by using network measures</i></td>
                           <tr></tr><tr></tr><tr></tr><tr>
             <tr>
         <td rowspan="8">skos:*Match</td>
-        <td rowspan="8"><a href="https://bit.ly/4a4xRA6" target="_blank">bit.ly/4a4xRA6</a></td>
+        <td rowspan="8"><a href="https://bit.ly/skosPr" target="_blank">bit.ly/skosPr</a></td>
         <td colspan="4"><i>skos:closeMatch | skos:exactMatch | skos:broadMatch | skos:narrowMatch | skos:relatedMatch</i></td>
     </tr>
     <tr>
@@ -255,7 +255,7 @@ richness through sameAs by using network measures</i></td>
     <tr>
         <td rowspan="1">Algorithm</td>
         <td colspan="3">
-        <a href="https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/interlinking#skos" target="_blank">Interlinking/skos:*Match</a>
+        <a href="https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/interlinking##skos-mapping-properties" target="_blank">Interlinking/skos:*Match</a>
         </td>
     </tr>
     <tr>
