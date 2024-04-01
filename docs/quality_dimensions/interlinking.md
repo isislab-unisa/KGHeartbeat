@@ -37,3 +37,32 @@ WHERE {
 To quantize this metric we use the following formula where $|T_{KG}|$ is the number of triples in the KG and nSameAs is the output of the previous query:
 
 $$ m_{sameAS} = \frac{nSameAs}{T_{KG}} $$
+
+---
+
+#### **Skos mapping properties**
+In this case we use the following query which counts the number of triples that have the following ```owl:sameAs``` predicates:
+- ```skos:closeMatch```
+- ```skos:exactMatch```
+- ```skos:broadMatch```
+- ```skos:narrowMatch```
+- ```skos:relatedMatch```
+
+```sql
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT (COUNT(?o) AS ?triples)
+WHERE {
+        {?s skos:closeMatch ?o}
+        UNION   
+        {?s skos:exactMatch ?o}
+        UNION   
+        {?s skos:broadMatch ?o}
+        UNION   
+        {?s skos:narrowMatch ?o}
+        UNION   
+        {?s skos:relatedMatch ?o}
+}
+```
+To quantize this metric we use the following formula where $|T_{KG}|$ is the number of triples in the KG and nSkosPr is the output of the previous query:
+
+$$ m_{skosValue} = \frac{nSkosPr}{T_{KG}} $$

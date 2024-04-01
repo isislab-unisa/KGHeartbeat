@@ -228,7 +228,7 @@ richness through sameAs by using network measures</i></td>
         </tr>
         <tr>
             <td>Input</td>
-            <td colspan="3">Metadata</td>
+            <td colspan="3">(working) SPARQL endpoint</td>
         </tr>
         <tr>
             <td rowspan="1">Algorithm</td>
@@ -241,6 +241,28 @@ richness through sameAs by using network measures</i></td>
             <td>[0,1] </td>
             <td>Best value: 1</td>
         </tr>
+                        <tr></tr><tr></tr><tr></tr>
+                          <tr></tr><tr></tr><tr></tr><tr>
+            <tr>
+        <td rowspan="8">skos:*Match</td>
+        <td rowspan="8"><a href="https://bit.ly/4a4xRA6" target="_blank">bit.ly/4a4xRA6</a></td>
+        <td colspan="4"><i>skos:closeMatch | skos:exactMatch | skos:broadMatch | skos:narrowMatch | skos:relatedMatch</i></td>
+    </tr>
+    <tr>
+        <td>Input</td>
+        <td colspan="3">(working) SPARQL endpoint</td>
+    </tr>
+    <tr>
+        <td rowspan="1">Algorithm</td>
+        <td colspan="3">
+        <a href="https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/interlinking#skos" target="_blank">Interlinking/skos:*Match</a>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="1">Output</td>
+        <td>[0,1] </td>
+        <td>Best value: 1</td>
+    </tr>
                 <tr></tr><tr></tr><tr></tr><tr></tr>
             <tr>
             <th colspan="5" style="text-align: center;">Security</th>
