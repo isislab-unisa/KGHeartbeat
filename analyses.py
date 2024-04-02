@@ -105,6 +105,7 @@ def analyses(idKG,analysis_date,nameKG):
 
     logger.info(f"SPARQL endpoint link: {accessUrl}",extra=kg_info)
     endpoint = ''
+    start_analysis = time.time()
     if accessUrl == False: #CHECK IF THE SPARQL END POINT LINK IS IN THE METADATA
         endpoint = '-'
         logger.warning('SPARQL endpoint missing in the metadata',extra=kg_info)
@@ -214,6 +215,8 @@ def analyses(idKG,analysis_date,nameKG):
             logger.warning('Availability | SPARQL endpoint availability | ' + str(error),extra=kg_info)
             endpoint = 'offline'
             available = False
+    end_analysis = time.time()
+    utils.write_time(nameKG,end_analysis-start_analysis,'SPARQL endpoint availability check','Availability')
     
     #GET NUMBERS OF TRIPLES FROM METADATA
     triplesM = Aggregator.getTriples(metadata)
@@ -274,7 +277,7 @@ def analyses(idKG,analysis_date,nameKG):
         voidStatus = 'VoID file absent'
     
     end_analysis = time.time()
-    utils.write_time(nameKG,end_analysis-start_analysis,'VoID file availability check')
+    utils.write_time(nameKG,end_analysis-start_analysis,'VoID file availability check', 'Availability')
 
     logger.info(f"SPARQL endpoint availability: {available}",extra=kg_info)
 
@@ -289,7 +292,7 @@ def analyses(idKG,analysis_date,nameKG):
             logger.warning('Impossible to recover all the triples in the KG',extra=kg_info)
             allTriples = '-'
         end_analysis = time.time()
-        utils.write_time(nameKG,end_analysis-start_analysis,'Recovery of all triples')
+        utils.write_time(nameKG,end_analysis-start_analysis,'Recovery of all triples', 'Extra')
         
         #GET LATENCY (MIN-MAX-AVERAGE)
         try:
@@ -327,7 +330,7 @@ def analyses(idKG,analysis_date,nameKG):
             percentile75L = percentile75L.replace('.',',')
             medianL = medianL.replace('.',',')
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Total latancy measurement')
+            utils.write_time(nameKG,end_analysis-start_analysis,'Total latancy measurement', 'Performance')
            
         except urllib.error.HTTPError as response:
             logger.warning(f'Performance | Latency | {str(response)}',extra=kg_info)
@@ -371,6 +374,7 @@ def analyses(idKG,analysis_date,nameKG):
             medianL = responseStr
 
         #GET THE TRIPLES WITH A QUERY
+        start_analysis = time.time()
         try:
             triplesQuery = query.getNumTripleQuery(accessUrl)   
         except urllib.error.HTTPError as response:
@@ -382,6 +386,8 @@ def analyses(idKG,analysis_date,nameKG):
         except Exception as error:
             logger.warning(f'Error while counting the number of triples: {str(error)}',extra=kg_info)
             triplesQuery = '-'
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Number of triples check', 'Amount of data')
 
         #CHECK IF RESULTS FROM SPARQL ENDPOINT IS LIMITED
         if isinstance(allTriples,list) and isinstance(triplesQuery,int):
@@ -402,12 +408,13 @@ def analyses(idKG,analysis_date,nameKG):
             triplesO = query.getAllTypeO(accessUrl)
             newTermsD = LOVAPI.searchTermsList(triplesO)
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'New terms check')
+            utils.write_time(nameKG,end_analysis-start_analysis,'New terms check', 'Interoperability')
         except Exception as error:
             logger.warning(f'Representational-consistency | Reuse of terms | {str(error)}',extra=kg_info)
             newTermsD = '-'
 
         #GET THE LANGUAGE OF KG
+        start_analysis = time.time()
         try:
             languages = query.getLangugeSupported(accessUrl)  
         except urllib.error.HTTPError as response:
@@ -418,8 +425,11 @@ def analyses(idKG,analysis_date,nameKG):
         except Exception as error:
             logger.warning(f'Versatility | Languages | {str(error)}',extra=kg_info)
             languages = '-'
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Languages check','Versatility')
 
         #GET THE NUMBER OF THE BLANK NODE
+        start_analysis = time.time()
         try:
             numBlankNode = query.numBlankNode(accessUrl)  
         except urllib.error.HTTPError as response:
@@ -431,6 +441,8 @@ def analyses(idKG,analysis_date,nameKG):
         except Exception as error:
             logger.warning(f'Interpretability | Number of blank nodes | {str(error)}',extra=kg_info)
             numBlankNode = '-'
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Number of blank nodes check', 'Interpretability')
         
         #CHECK IF SPARQL ENDPOINT USE HTTPS
         try:
@@ -438,27 +450,34 @@ def analyses(idKG,analysis_date,nameKG):
             sec_access_url = accessUrl.replace('http','https')
             isSecure = query.checkEndPoint(sec_access_url)
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for the use of HTTPS')
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for the use of HTTPS', 'Security')
             if isinstance(isSecure,Document) or isinstance(isSecure,dict):
                 isSecure = True  
         except:  #IF WE GET A SPARQL QUERY ON URL WITH HTTPS AND GET AN EXCEPTION THEN ENDPOINT ISN'T AVAILABLE ON HTTPS
             isSecure = False
 
-        #CHECK IF IT USES RDF STRUCTURES    
+        #CHECK IF IT USES RDF STRUCTURES   
+        start_analysis = time.time()
         try:
             RDFStructures = query.checkRDFDataStructures(accessUrl)
         except Exception as error:
             logger.warning(f'Representational-conciseness | Use of RDF structures | {str(error)}',extra=kg_info)
             RDFStructures = '-'
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'RDF structures check','Interpretability') 
         
         #CHECK IF THERE ARE DIFFERENT SERIALISATION FORMATS
+        start_analysis = time.time()
         try:
             formats = query.checkSerialisationFormat(accessUrl)   #CHECK IF THE LINK IS ONLINE
         except Exception as error:
             logger.warning(f'Versatility | Serialization formats | {str(error)}',extra=kg_info)
             formats = '-'
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Serialization formats check', 'Versatility') 
         
         #CHECK IF IN THE DATASET IS INDICATED THE LINK TO DONWLOAD THE DATASET
+        start_analysis = time.time()
         try:
             urlList = query.checkDataDump(accessUrl)
             if isinstance(urlList,list):
@@ -472,8 +491,11 @@ def analyses(idKG,analysis_date,nameKG):
         except Exception as error:
             logger.warning(f'Availability | RDF dump| {str(error)}',extra=kg_info)
             availableDump = '-'
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'RDF dump link check','Availability') 
         
         #CHEK IF THERE IS AN INDICATION OF A LICENSE MACHINE REDEABLE
+        start_analysis = time.time()
         try:
             licenseMr = query.checkLicenseMR2(accessUrl)
             if isinstance(licenseMr,list):
@@ -481,8 +503,11 @@ def analyses(idKG,analysis_date,nameKG):
         except Exception as error:
             licenseMr = '-'
             logger.warning(f'Licensing | Machine-redeable license | {str(error)}',extra=kg_info)
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'MR license check','License') 
         
         #CHECK IF THERE IS AN INDICATION OF A LICENSE HUMAN REDEABLE
+        start_analysis = time.time()
         try:
             licenseHr = query.checkLicenseHR(accessUrl)
         except (SPARQLExceptions.QueryBadFormed,SPARQLExceptions.EndPointInternalError) as response:
@@ -491,22 +516,31 @@ def analyses(idKG,analysis_date,nameKG):
         except Exception as error:
             licenseHr = '-'
             logger.warning(f'Licensing | Human-redeable license | {str(error)}',extra=kg_info)
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'HR license check', 'License') 
 
         #CHECK NUMBER OF PROPERTY
+        start_analysis = time.time()
         try:
             numProperty = query.numberOfProperty(accessUrl)
         except Exception as error:
             numProperty = '-'
             logger.warning(f'Amount of data | Number of properties | {str(error)}',extra=kg_info)
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Number of property check','Amount of data') 
         
         #GET NUMBER OF TRIPLES WITH LABEL
+        start_analysis = time.time()
         try:
             numLabel = query.getNumLabel(accessUrl)
         except Exception as error:
             numLabel = '-'
             logger.warning(f'Amount of data | Number of labels | {str(error)}',extra=kg_info)
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Number of label check','Understandability') 
         
         #GET THE REGEX OF THE URLs USED
+        start_analysis = time.time()
         regex = []
         try:
             regex = query.checkUriRegex(accessUrl)
@@ -524,28 +558,39 @@ def analyses(idKG,analysis_date,nameKG):
         except Exception as error:
             logger.warning(f'Understandability | URIs regex | {str(error)}',extra=kg_info)
             pattern = '-'
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'URI regex check', 'Understandability') 
         
         #GET THE VOCABULARIES OF THE KG
+        start_analysis = time.time()
         try:
             vocabularies = query.getVocabularies(accessUrl)
         except Exception as error:
             logger.warning(f'Understandability | Vocabularies | {str(error)}',extra=kg_info)
             vocabularies = '-'
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Vocabs check', 'Understandability') 
         
         #GET THE AUTHOR OF THE DATASET WITH A QUERY
+        start_analysis = time.time()
         try:
             authorQ = query.getCreator(accessUrl)
         except Exception as error:
             logger.warning(f'Verifiability | Verifiying publisher information | {str(error)}',extra=kg_info)
             authorQ = '-'
-        
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Authors check', 'Verifiability') 
+
         #GET THE PUBLISHERS OF THE DATASET
+        start_analysis = time.time()
         try:
             publisher = query.getPublisher(accessUrl)
         except Exception as error:
             publisher = '-'
             logger.warning(f'Verifiability | Verifiying publisher information | {str(error)}',extra=kg_info)
-        
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Publishers check', 'Verifiability')
+
         #GET THE THROUGHPUT
         try:
             start_analysis = time.time()
@@ -569,7 +614,7 @@ def analyses(idKG,analysis_date,nameKG):
             averageThroughput = str(averageThroughput)
             averageThroughput = averageThroughput.replace('.',',')
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Throughput check')
+            utils.write_time(nameKG,end_analysis-start_analysis,'Throughput check', 'Performance')
         except Exception as error:
             logger.warning(f'Performance | High Throughput | {str(error)}',extra=kg_info)
             errorResponse = '-'
@@ -601,7 +646,9 @@ def analyses(idKG,analysis_date,nameKG):
             averageThroughputNoOff = errorResponseNoOff
             standardDeviationTNoOff = errorResponseNoOff
 
+
        #GET NUMBER OF ENTITIES
+        start_analysis = time.time()
         try:
             numEntities = query.getNumEntities(accessUrl)
         except Exception as error:
@@ -643,40 +690,53 @@ def analyses(idKG,analysis_date,nameKG):
                     entitiesRe = '-'
                     logger.warning(f'Amount of data | Scope | Insufficient data',extra=kg_info)
                 end_analysis = time.time()
-                utils.write_time(nameKG,end_analysis-start_analysis,'Check for the number of entities')
+                utils.write_time(nameKG,end_analysis-start_analysis,'Check for the number of entities', 'Amount of data')
             except Exception as error:
                 logger.warning(f'Amount of data | Scope | {str(error)}',extra=kg_info)
                 entitiesRe = '-'
-        
+    
         #GET THE CONTRIBUTORS OF THE DATASET
+        start_analysis = time.time()
         try:
             contributors = query.getContributors(accessUrl)
         except Exception as error:
             logger.warning(f'Verifiability | Verifiying publisher information | {str(error)}',extra=kg_info)
             contributors = '-'
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Contribs. check', 'Verifiability')
         
         #GET THE NUMBER OF sameAs CHAINS
+        start_analysis = time.time()
         try:
             numberSameAs = query.getSameAsChains(accessUrl)
         except Exception as error:
             logger.warning(f'Interlinking | sameAs chains | {str(error)}',extra=kg_info)
             numberSameAs = '-'
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'sameAs chians check', 'Interlinking')
         
         #GET THE NUMBER OF SKOS-Mapping properties
+        start_analysis = time.time()
         try:
             numberSkosMapping = query.getSkosMapping(accessUrl)
         except Exception as error:
             logger.warning(f'Interlinking | SKOS Mapping properties | {str(error)}',extra=kg_info)
             numberSkosMapping = '-'
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'skos check', 'Interlinking')
         
         #GET THE DATASET UPDATE FREQUENCY
+        start_analysis = time.time()
         try:
             frequency = query.getFrequency(accessUrl)
         except Exception as error:
             logger.warning(f'Volatility | Timeliness frequency | {str(error)}',extra=kg_info)
             frequency = '-'
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'dataset update frequency check', 'Timeliness')
         
         #GET THE CREATION DATE
+        start_analysis = time.time()
         try:
             creationDate = query.getCreationDateMin(accessUrl)
             if creationDate == False or creationDate == '':
@@ -687,8 +747,11 @@ def analyses(idKG,analysis_date,nameKG):
             except Exception as error:
                 logger.warning(f'Currency | Age of data | {str(error)}',extra=kg_info)
                 creationDate = '-'
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Creation date check', 'Currency')
 
         #GET THE LAST MODIFICATION DATE OF THE DATASET
+        start_analysis = time.time()
         try:
             modificationDate = query.getModificationDateMax(accessUrl)
             if modificationDate == False or modificationDate == '':
@@ -699,6 +762,8 @@ def analyses(idKG,analysis_date,nameKG):
             except Exception as error:
                 logger.warning(f'Currency | Specification of the modification date of statements | {error}',extra=kg_info)
                 modificationDate = '-'
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Modification date check', 'Currency')
 
         #GET HISTORICAL UPDATES
         historicalUp = []
@@ -857,7 +922,7 @@ def analyses(idKG,analysis_date,nameKG):
             percentile25LenghtP = errorMessage
             percentile75LenghtP = errorMessage
         end_analysis = time.time()
-        utils.write_time(nameKG,end_analysis-start_analysis,'URIs length')
+        utils.write_time(nameKG,end_analysis-start_analysis,'URIs length', 'Rep.Conc.')
 
         #A LIST OF ALL URIs IS REQUIRED TO CALCULATE THE SCORE
         if isinstance(allTriples,list) and isinstance(uriListP,list) and isinstance(uriListO,list):
@@ -879,18 +944,21 @@ def analyses(idKG,analysis_date,nameKG):
                     if result == False:
                         newVocab.append(vocab)
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'New vocabularies check')
+            utils.write_time(nameKG,end_analysis-start_analysis,'New vocabularies check','Interoperability')
         except Exception as error:
             logger.warning(f'Representational-consistency | re-use of existing terms | {str(error)}',extra=kg_info)
             newVocab = '-'
         
         #CHECK USE OF DEPRECATED CLASSES AND PROPERTIES
+        start_analysis = time.time()
         try:
             deprecated = query.getDeprecated(accessUrl)
         except Exception as error:
             logger.warning(f'Consistency| Use of members of deprecated classes or properties| {str(error)}',extra=kg_info)
             deprecated = '-'
-        
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Deprecated classes/propertiers check', 'Consistency')
+
         #CHECK FOR FUNCTIONAL PROPERTIES WITH INCONSISTENT VALUE
         try:
             start_analysis = time.time()
@@ -910,7 +978,7 @@ def analyses(idKG,analysis_date,nameKG):
                         violationFP.append(triple)
             FPvalue = 1.0 - (len(violationFP)/triplesQuery)
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Functional Property')
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Functional Property','Accuracy')
         except Exception as error:
             logger.warning(f'Accuracy | Functional property violation | {str(error)}',extra=kg_info)
             FPvalue = '-'
@@ -934,7 +1002,7 @@ def analyses(idKG,analysis_date,nameKG):
                         violationIFP.append(triple)
             IFPvalue = 1.0 - (len(violationIFP)/triplesQuery)
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Inverse Functional Property')
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Inverse Functional Property', 'Accuracy')
         except Exception as error:
             logger.warning(f'Accuracy | Inverse functional property violation | {str(error)}',extra=kg_info)
             IFPvalue = '-'
@@ -952,7 +1020,7 @@ def analyses(idKG,analysis_date,nameKG):
                         emptyAnnotation = emptyAnnotation + 1
             emptyAnnotation = 1.0 - (emptyAnnotation/len(labels))
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Empty annotation labels')
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Empty annotation labels', 'Accuracy')
         except Exception as error:
             logger.warning(f'Accuracy | Empty annotation labels | {str(error)}',extra=kg_info)
             emptyAnnotation = '-'
@@ -968,7 +1036,7 @@ def analyses(idKG,analysis_date,nameKG):
                         wSP.append(obj)
             numWSP = 1.0 - (len(wSP)/len(labels))
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for White space in annotation')
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for White space in annotation', 'Accuracy')
         except Exception as error:
             logger.warning(f'Accuracy | White space in annotation | {str(error)}',extra=kg_info)
             numWSP = '-'
@@ -991,7 +1059,7 @@ def analyses(idKG,analysis_date,nameKG):
                                     malformedTriples.append(obj)
                 numMalformedTriples = 1.0 - (len(malformedTriples)/len(allTriples))
                 end_analysis = time.time()
-                utils.write_time(nameKG,end_analysis-start_analysis,'Check for Datatype consistency')
+                utils.write_time(nameKG,end_analysis-start_analysis,'Check for Datatype consistency', 'Accuracy')
             else:
                 logger.warning(f'Accuracy | Datatype consistency| Error executing query on SPARQL endpoint ',extra=kg_info)
                 numMalformedTriples = '-'
@@ -1000,11 +1068,14 @@ def analyses(idKG,analysis_date,nameKG):
             numMalformedTriples = '-'
 
         #CHECK FOR ENTITIES MEMBER OF A DISJOINT CLASS
+        start_analysis = time.time()
         try:
             numDisjoint = query.getDisjoint(accessUrl)
         except Exception as error:
             logger.warning(f'Consistency | Entities as members of disjoint classes | {str(error)}',extra=kg_info)
             numDisjoint = '-'
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Disjoint class check','Consistency')
         
         #CHECK FOR TRIPLES WITH MISPLACED PROPERTY PROBLEM
         classes = []
@@ -1026,7 +1097,7 @@ def analyses(idKG,analysis_date,nameKG):
             else:
                 misplacedProperty = 'insufficient data'
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Misplaced properties')
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Misplaced properties','Consistency')
         except Exception as error:
             logger.warning(f'Consistency | Misplaced properties | {str(error)}',extra=kg_info)
             misplacedProperty = '-'
@@ -1062,7 +1133,7 @@ def analyses(idKG,analysis_date,nameKG):
                 logger.warning(f'Consistency | Misplaced classes | Impossible to recover all information to calculate this metric',extra=kg_info)
                 misplacedClass = '-'
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Misplaced classes')
+            utils.write_time(nameKG,end_analysis-start_analysis,'Misplaced classes', 'Consistency')
         except TimeoutError as error:
             logger.warning(f'Consistency | Misplaced classes | {str(error)}',extra=kg_info)
             misplacedClass = '-'
@@ -1086,7 +1157,7 @@ def analyses(idKG,analysis_date,nameKG):
                 logger.warning(f'Consistency | Ontology hijacking | Impossible to retrieve the terms defined in the dataset',extra=kg_info)
                 hijacking = '-'
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Ontology hijacking')
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Ontology hijacking', 'Consistency')
         except Exception as error:
             logger.warning(f'Consistency | Ontology hijacking | {str(error)}',extra=kg_info)
             hijacking = '-'
@@ -1116,7 +1187,7 @@ def analyses(idKG,analysis_date,nameKG):
                 found = False
             undClasses = LOVAPI.searchTermsList(toSearch)
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Invalid usage of undefined classes')
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Invalid usage of undefined classes', 'Consistency')
         except Exception as error:
             logger.warning(f'Consistency | Invalid usage of undefined classes and properties | {str(error)}',extra=kg_info)
             undClasses = '-'
@@ -1144,7 +1215,7 @@ def analyses(idKG,analysis_date,nameKG):
                 found = False
             undProperties = LOVAPI.searchTermsList(toSearch)
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Invalid usage of undefined properties')
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Invalid usage of undefined properties','Consistency')
         except Exception as error:
             logger.warning(f'Consistency | Invalid usage of undefined classes and properties | {str(error)}',extra=kg_info)
             undProperties = '-'
@@ -1188,7 +1259,7 @@ def analyses(idKG,analysis_date,nameKG):
                 logger.warning(f'Conciseness | Extensional conciseness | Insufficient data to compute the metric',extra=kg_info)
                 exC = '-'
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Extensional conciseness')
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Extensional conciseness', 'Conciseness')
         except Exception as error:
             logger.warning(f'Conciseness | Extensional conciseness | {str(error)}',extra=kg_info)
             exC = '-'
@@ -1223,13 +1294,14 @@ def analyses(idKG,analysis_date,nameKG):
                 logger.warning(f'Conciseness | Intensional conciseness | Insufficient data to compute the metric',extra=kg_info)
                 intC = '-'
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Intensional conciseness')
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Intensional conciseness', 'Conciseness')
         except Exception as error:
             logger.warning(f'Conciseness | Intensional conciseness | {str(error)}',extra=kg_info)
             intC = '-'
         
         #CHECK IF THERE IS A SIGNATURE ON THE KG
         try:
+            start_analysis = time.time()
             sign = query.getSign(accessUrl)
             if isinstance(sign,int):
                 if sign > 0:
@@ -1241,6 +1313,8 @@ def analyses(idKG,analysis_date,nameKG):
         except Exception as error:
             logger.warning(f'Verifiability | Verifying usage of digital signatures | {str(error)}',extra=kg_info)
             signedKG = '-'
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Sign check', 'Security')
 
         #CHECK THE URIs DEFERENTIABILITY (TEST MADE ON 5000 TRIPLES SELECTED RANDOMLY)
         try:
@@ -1263,7 +1337,7 @@ def analyses(idKG,analysis_date,nameKG):
                 logger.warning(f'Availability | Derefereaceability of the URI | No URIs retrieved from the endpoint',extra=kg_info)
                 defValue = '-'
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for URIs Dereferenciability')
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check for URIs Dereferenciability', 'Availability')
         except: #IF QUERY FAILS (BECUASE SPARQL 1.1 IS NOT SUPPORTED) TRY TO CHECK THE DEFERETIABILITY BY FILTERING THE TRIPLES RECOVERED FOR OTHER CALCULATION (IF THEY ARE BEEN RECOVERED)
             try:
                 start_analysis = time.time()
@@ -1286,7 +1360,7 @@ def analyses(idKG,analysis_date,nameKG):
                     logger.warning(f'Availability | Derefereaceability of the URI | No URIs retrieved from the endpoint',extra=kg_info)
                     defValue = '-'
                 end_analysis = time.time()
-                utils.write_time(nameKG,end_analysis-start_analysis,'Check for URIs Dereferenciability')
+                utils.write_time(nameKG,end_analysis-start_analysis,'Check for URIs Dereferenciability','Availability')
             except Exception as error:
                 logger.warning(f'Availability | Derefereaceability of the URI | {str(error)}',extra=kg_info)
                 defValue = '-'
@@ -1356,14 +1430,14 @@ def analyses(idKG,analysis_date,nameKG):
     pageRank = str(pageRank)
     pageRank = pageRank.replace('.',',')
     end_analysis = time.time()
-    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of the PageRank')
+    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of the PageRank', 'Interlinking')
 
 
     #CALCULATION OF THE DEGREE OF CONNECTION
     start_analysis = time.time()
     degree = Graph.getDegreeOfConnection(graph,idKG)
     end_analysis = time.time()
-    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of Degree of Connection')
+    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of Degree of Connection', 'Interlinking')
     
     #CALCULATION OF THE CENTRALITY
     start_analysis = time.time()
@@ -1373,7 +1447,7 @@ def analyses(idKG,analysis_date,nameKG):
         centrality = str(centrality)
         centrality = centrality.replace('.',',')
     end_analysis = time.time()
-    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of Centrality')
+    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of Centrality', 'Interlinking')
 
     #CALCULATION OF CLUSTERING COEFFICIENT
     start_analysis = time.time()
@@ -1383,7 +1457,7 @@ def analyses(idKG,analysis_date,nameKG):
         clusteringCoefficient = str(clusteringCoefficient)
         clusteringCoefficient = clusteringCoefficient.replace('.',',')
     end_analysis = time.time()
-    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of Clustering coefficient')
+    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of Clustering coefficient', 'Interlinking')
 
     #GET THE DESCRIPTION OF THE CONTENT OF KG
     description = Aggregator.getDescription(metadata)    
@@ -1446,7 +1520,7 @@ def analyses(idKG,analysis_date,nameKG):
                 if result == False:
                     newVocab.append(vocab)
         end_analysis = time.time()
-        utils.write_time(nameKG,end_analysis-start_analysis,'Check for the re-using of existing vocabs')
+        utils.write_time(nameKG,end_analysis-start_analysis,'Check for the re-using of existing vocabs', 'Interoperability ')
     except Exception as error:
         logger.warning(f"Representational-consistency | Re-use of existing terms | Impossible to recover the vocabularies in the KG",extra=kg_info)
         newVocab = '-'

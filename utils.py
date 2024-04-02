@@ -1038,6 +1038,6 @@ def to_list(old_values):
 def normalize_score(score):
     return (score) * 100
 
-def write_time(kg,time,metric):
+def write_time(kg,time,metric,dimension):
     with open('performance.txt','a') as file:
-            file.write(f'{metric} for {kg} took {time}s\n')
+            file.write(f'{dimension} | {metric} for {kg} took {time}s\n')
