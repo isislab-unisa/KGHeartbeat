@@ -1426,3 +1426,41 @@ def queryWithSingleAcceptFromat(url,query):
     sparql.setTimeout(300) #10 minutes
     sparql.addCustomHttpHeader('Accept','application/sparql-results+json') #SOME ENDPOINT DOESN'T SUPPORT MULTIPLE ACCEPT FORMAT
     return sparql.query().convert()
+
+@log_in_out
+def dcat_query(url,predicate):
+    sparql = SPARQLWrapper(url)
+    sparql.setQuery('''
+    PREFIX dcat: <http://www.w3.org/ns/dcat#>
+    PREFIX dct: <http://purl.org/dc/terms/>
+    SELECT ?title ?language ?contact ?modified ?issued ?pub ?per ?res ?key ?creator ?temp ?tempRes ?spatial ?dist
+    WHERE {
+        ?s dcat:dataset ?o .
+        ?o dct:title ?title .
+        OPTIONAL { ?o dct:language ?language . }
+        OPTIONAL { ?o dcat:contactPoint ?contact . }
+        OPTIONAL { ?o dct:modified ?modified .}
+        OPTIONAL { ?o dct:issued ?issued .}  
+        OPTIONAL { ?o dct:publisher ?pub .}
+        OPTIONAL { ?o dct:accrualPeriodicity ?per .}
+        OPTIONAL { ?o dcat:spatialResolutionInMeters ?res .}
+        OPTIONAL { ?o dcat:keyword ?key .}
+        OPTIONAL { ?o dct:creator ?creator .}
+        OPTIONAL { ?o dct:temporal ?temp .}
+        OPTIONAL { ?o dcat:temporalResolution ?tempRes .}
+        OPTIONAL { ?o dct:spatial ?spatial .}
+        OPTIONAL { ?o  dcat:distribution ?dist .}
+    }
+
+    ''')
+    sparql.setTimeout(300)
+    sparql.setReturnFormat(JSON)
+    results = sparql.query().convert()
+    if isinstance(results,dict):
+        result = utils.getResultsFromJSON(results)
+        return result
+    elif isinstance(results,Document):
+        result = utils.getResultsFromXML(results)
+        return result
+    else:
+        return False

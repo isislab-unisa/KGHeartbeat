@@ -1,7 +1,7 @@
 ---
 title: Dataset dynamicity category
 ---
-## Volatility
+## Timeliness
 1. [Stating the recency and frequency of data validation](#stating-the-recency-and-frequency-of-data-validation)
 
 #### **Stating the recency and frequency of data validation**
