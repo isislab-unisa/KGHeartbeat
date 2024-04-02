@@ -106,6 +106,7 @@ def analyses(idKG,analysis_date,nameKG):
     logger.info(f"SPARQL endpoint link: {accessUrl}",extra=kg_info)
     endpoint = ''
     start_analysis = time.time()
+    start_analysis = time.time()
     if accessUrl == False: #CHECK IF THE SPARQL END POINT LINK IS IN THE METADATA
         endpoint = '-'
         logger.warning('SPARQL endpoint missing in the metadata',extra=kg_info)
@@ -737,11 +738,14 @@ def analyses(idKG,analysis_date,nameKG):
         utils.write_time(nameKG,end_analysis-start_analysis,'skos check', 'Interlinking',analysis_date)
         
         #GET THE NUMBER OF SKOS-Mapping properties
+        start_analysis = time.time()
         try:
             numberSkosMapping = query.getSkosMapping(accessUrl)
         except Exception as error:
             logger.warning(f'Interlinking | SKOS Mapping properties | {str(error)}',extra=kg_info)
             numberSkosMapping = '-'
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'skos check', 'Interlinking')
         
         #GET THE DATASET UPDATE FREQUENCY
         start_analysis = time.time()
