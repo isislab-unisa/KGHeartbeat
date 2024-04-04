@@ -234,6 +234,13 @@ def analyses(idKG,analysis_date,nameKG):
     #CHECK AVAILABILITY FOR DOWNLOAD OF THE DATASET
     downloadUrl = [] 
     offlineDump = []
+    dcat_links = []
+    other_download_links = query.get_download_link(accessUrl)
+    for link in other_download_links:
+        status = utils.checkAvailabilityResource(link)
+        if status == True:
+            dcat_links.append(link)
+
     availableDownload = utils.checkAvailabilityForDownload(resourcesDH)
     downloadUrl = downloadUrl + utils.getLinkDownload(resourcesDH)
     offlineDump = offlineDump + utils.getLinkOfflineDump(resourcesDH)
@@ -1826,6 +1833,7 @@ def analyses(idKG,analysis_date,nameKG):
     
     #PREPARING DATA FOR SCORE CALCULATION
     if available == True:
+            downloadUrl = downloadUrl + dcat_links
             if isinstance(allTriples,list):
                 uriListS = []
                 for triple in allTriples:
