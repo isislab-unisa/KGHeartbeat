@@ -507,6 +507,7 @@ def getCreator(url):
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
     PREFIX dcterms: <http://purl.org/dc/terms/>
     PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+    PREFIX dct: <http://purl.org/dc/terms/>
     SELECT DISTINCT ?o 
     WHERE{ 
     {?s dc:creator ?o }
@@ -514,6 +515,8 @@ def getCreator(url):
     {?s dcterms:creator ?o}
     UNION
     {?s foaf:maker ?o}
+    UNION
+    {?s dct:creator ?o}
     }
     ''')
     sparql.setTimeout(300)
@@ -532,8 +535,13 @@ def getPublisher(url):
     sparql = SPARQLWrapper(url)
     sparql.setQuery('''
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
+    PREFIX dct: <http://purl.org/dc/terms/>
     SELECT DISTINCT ?o
-    WHERE {?s dc:publisher ?o}
+    WHERE {
+        {?s dc:publisher ?o}
+    UNION
+        {?s dct:publisher ?o}
+    }
     ''')
     sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
@@ -1462,5 +1470,25 @@ def dcat_query(url,predicate):
     elif isinstance(results,Document):
         result = utils.getResultsFromXML(results)
         return result
+    else:
+        return False
+    
+@log_in_out
+def get_download_link(url):
+    sparql = SPARQLWrapper(url)
+    sparql.setQuery('''
+    PREFIX dcat: <http://www.w3.org/ns/dcat#>
+    SELECT DISTINCT ?o
+    WHERE {?s dcat:downloadURL ?o.}
+    ''')
+    sparql.setTimeout(300)
+    sparql.setReturnFormat(JSON)
+    results = sparql.query().convert()
+    if isinstance(results,dict):
+        urls = utils.getResultsFromJSON(results)
+        return urls
+    elif isinstance(results,Document):
+        urls = utils.getResultsFromXML(results)
+        return urls
     else:
         return False
