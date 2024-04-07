@@ -218,6 +218,7 @@ def analyses(idKG,analysis_date,nameKG):
             available = False
     end_analysis = time.time()
     utils.write_time(nameKG,end_analysis-start_analysis,'SPARQL endpoint availability check','Availability',analysis_date)
+    utils.write_time(nameKG,end_analysis-start_analysis,'SPARQL endpoint availability check','Availability',analysis_date)
     
     #GET NUMBERS OF TRIPLES FROM METADATA
     triplesM = Aggregator.getTriples(metadata)
@@ -235,13 +236,6 @@ def analyses(idKG,analysis_date,nameKG):
     #CHECK AVAILABILITY FOR DOWNLOAD OF THE DATASET
     downloadUrl = [] 
     offlineDump = []
-    dcat_links = []
-    other_download_links = query.get_download_link(accessUrl)
-    for link in other_download_links:
-        status = utils.checkAvailabilityResource(link)
-        if status == True:
-            dcat_links.append(link)
-
     availableDownload = utils.checkAvailabilityForDownload(resourcesDH)
     downloadUrl = downloadUrl + utils.getLinkDownload(resourcesDH)
     offlineDump = offlineDump + utils.getLinkOfflineDump(resourcesDH)
@@ -752,7 +746,7 @@ def analyses(idKG,analysis_date,nameKG):
             logger.warning(f'Interlinking | SKOS Mapping properties | {str(error)}',extra=kg_info)
             numberSkosMapping = '-'
         end_analysis = time.time()
-        utils.write_time(nameKG,end_analysis-start_analysis,'skos check', 'Interlinking')
+        utils.write_time(nameKG,end_analysis-start_analysis,'skos check', 'Interlinking',analysis_date)
         
         #GET THE NUMBER OF SKOS-Mapping properties
         start_analysis = time.time()
