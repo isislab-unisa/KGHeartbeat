@@ -450,7 +450,7 @@ def analyses(idKG,analysis_date,nameKG):
             sec_access_url = accessUrl.replace('http','https')
             isSecure = query.checkEndPoint(sec_access_url)
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for the use of HTTPS', 'Security',analysis_date)
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check HTTPS', 'Security',analysis_date)
             if isinstance(isSecure,Document) or isinstance(isSecure,dict):
                 isSecure = True  
         except:  #IF WE GET A SPARQL QUERY ON URL WITH HTTPS AND GET AN EXCEPTION THEN ENDPOINT ISN'T AVAILABLE ON HTTPS
@@ -701,7 +701,7 @@ def analyses(idKG,analysis_date,nameKG):
                     entitiesRe = '-'
                     logger.warning(f'Amount of data | Scope | Insufficient data',extra=kg_info)
                 end_analysis = time.time()
-                utils.write_time(nameKG,end_analysis-start_analysis,'Check for the number of entities', 'Amount of data',analysis_date)
+                utils.write_time(nameKG,end_analysis-start_analysis,'Check the number of entities', 'Amount of data',analysis_date)
             except Exception as error:
                 logger.warning(f'Amount of data | Scope | {str(error)}',extra=kg_info)
                 entitiesRe = '-'
@@ -999,7 +999,7 @@ def analyses(idKG,analysis_date,nameKG):
                         violationFP.append(triple)
             FPvalue = 1.0 - (len(violationFP)/triplesQuery)
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Functional Property','Accuracy',analysis_date)
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check Functional Property','Accuracy',analysis_date)
         except Exception as error:
             logger.warning(f'Accuracy | Functional property violation | {str(error)}',extra=kg_info)
             FPvalue = '-'
@@ -1023,7 +1023,7 @@ def analyses(idKG,analysis_date,nameKG):
                         violationIFP.append(triple)
             IFPvalue = 1.0 - (len(violationIFP)/triplesQuery)
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Inverse Functional Property', 'Accuracy',analysis_date)
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check Inverse Functional Property', 'Accuracy',analysis_date)
         except Exception as error:
             logger.warning(f'Accuracy | Inverse functional property violation | {str(error)}',extra=kg_info)
             IFPvalue = '-'
@@ -1041,7 +1041,7 @@ def analyses(idKG,analysis_date,nameKG):
                         emptyAnnotation = emptyAnnotation + 1
             emptyAnnotation = 1.0 - (emptyAnnotation/len(labels))
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Empty annotation labels', 'Accuracy',analysis_date)
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check Empty annotation labels', 'Accuracy',analysis_date)
         except Exception as error:
             logger.warning(f'Accuracy | Empty annotation labels | {str(error)}',extra=kg_info)
             emptyAnnotation = '-'
@@ -1057,7 +1057,7 @@ def analyses(idKG,analysis_date,nameKG):
                         wSP.append(obj)
             numWSP = 1.0 - (len(wSP)/len(labels))
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for White space in annotation', 'Accuracy',analysis_date)
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check White space in annotation', 'Accuracy',analysis_date)
         except Exception as error:
             logger.warning(f'Accuracy | White space in annotation | {str(error)}',extra=kg_info)
             numWSP = '-'
@@ -1080,7 +1080,7 @@ def analyses(idKG,analysis_date,nameKG):
                                     malformedTriples.append(obj)
                 numMalformedTriples = 1.0 - (len(malformedTriples)/len(allTriples))
                 end_analysis = time.time()
-                utils.write_time(nameKG,end_analysis-start_analysis,'Check for Datatype consistency', 'Accuracy',analysis_date)
+                utils.write_time(nameKG,end_analysis-start_analysis,'Check Datatype consistency', 'Accuracy',analysis_date)
             else:
                 logger.warning(f'Accuracy | Datatype consistency| Error executing query on SPARQL endpoint ',extra=kg_info)
                 numMalformedTriples = '-'
@@ -1118,7 +1118,7 @@ def analyses(idKG,analysis_date,nameKG):
             else:
                 misplacedProperty = 'insufficient data'
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Misplaced properties','Consistency',analysis_date)
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check Misplaced properties','Consistency',analysis_date)
         except Exception as error:
             logger.warning(f'Consistency | Misplaced properties | {str(error)}',extra=kg_info)
             misplacedProperty = '-'
@@ -1178,7 +1178,7 @@ def analyses(idKG,analysis_date,nameKG):
                 logger.warning(f'Consistency | Ontology hijacking | Impossible to retrieve the terms defined in the dataset',extra=kg_info)
                 hijacking = '-'
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Ontology hijacking', 'Consistency',analysis_date)
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check Ontology hijacking', 'Consistency',analysis_date)
         except Exception as error:
             logger.warning(f'Consistency | Ontology hijacking | {str(error)}',extra=kg_info)
             hijacking = '-'
@@ -1208,7 +1208,7 @@ def analyses(idKG,analysis_date,nameKG):
                 found = False
             undClasses = LOVAPI.searchTermsList(toSearch)
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Invalid usage of undefined classes', 'Consistency',analysis_date)
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check Invalid usage of undefined classes', 'Consistency',analysis_date)
         except Exception as error:
             logger.warning(f'Consistency | Invalid usage of undefined classes and properties | {str(error)}',extra=kg_info)
             undClasses = '-'
@@ -1236,7 +1236,7 @@ def analyses(idKG,analysis_date,nameKG):
                 found = False
             undProperties = LOVAPI.searchTermsList(toSearch)
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Invalid usage of undefined properties','Consistency',analysis_date)
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check Invalid usage of undefined properties','Consistency',analysis_date)
         except Exception as error:
             logger.warning(f'Consistency | Invalid usage of undefined classes and properties | {str(error)}',extra=kg_info)
             undProperties = '-'
@@ -1280,7 +1280,7 @@ def analyses(idKG,analysis_date,nameKG):
                 logger.warning(f'Conciseness | Extensional conciseness | Insufficient data to compute the metric',extra=kg_info)
                 exC = '-'
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Extensional conciseness', 'Conciseness',analysis_date)
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check Extensional conciseness', 'Conciseness',analysis_date)
         except Exception as error:
             logger.warning(f'Conciseness | Extensional conciseness | {str(error)}',extra=kg_info)
             exC = '-'
@@ -1315,7 +1315,7 @@ def analyses(idKG,analysis_date,nameKG):
                 logger.warning(f'Conciseness | Intensional conciseness | Insufficient data to compute the metric',extra=kg_info)
                 intC = '-'
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for Intensional conciseness', 'Conciseness',analysis_date)
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check Intensional conciseness', 'Conciseness',analysis_date)
         except Exception as error:
             logger.warning(f'Conciseness | Intensional conciseness | {str(error)}',extra=kg_info)
             intC = '-'
@@ -1358,7 +1358,7 @@ def analyses(idKG,analysis_date,nameKG):
                 logger.warning(f'Availability | Derefereaceability of the URI | No URIs retrieved from the endpoint',extra=kg_info)
                 defValue = '-'
             end_analysis = time.time()
-            utils.write_time(nameKG,end_analysis-start_analysis,'Check for URIs Dereferenciability', 'Availability',analysis_date)
+            utils.write_time(nameKG,end_analysis-start_analysis,'Check URIs Dereferenciability', 'Availability',analysis_date)
         except: #IF QUERY FAILS (BECUASE SPARQL 1.1 IS NOT SUPPORTED) TRY TO CHECK THE DEFERETIABILITY BY FILTERING THE TRIPLES RECOVERED FOR OTHER CALCULATION (IF THEY ARE BEEN RECOVERED)
             try:
                 start_analysis = time.time()
@@ -1381,7 +1381,7 @@ def analyses(idKG,analysis_date,nameKG):
                     logger.warning(f'Availability | Derefereaceability of the URI | No URIs retrieved from the endpoint',extra=kg_info)
                     defValue = '-'
                 end_analysis = time.time()
-                utils.write_time(nameKG,end_analysis-start_analysis,'Check for URIs Dereferenciability','Availability',analysis_date)
+                utils.write_time(nameKG,end_analysis-start_analysis,'Check URIs Dereferenciability','Availability',analysis_date)
             except Exception as error:
                 logger.warning(f'Availability | Derefereaceability of the URI | {str(error)}',extra=kg_info)
                 defValue = '-'
@@ -1425,6 +1425,7 @@ def analyses(idKG,analysis_date,nameKG):
                 example = True
 
     #GET EXTERNAL LINKS OF THE DATASET
+    start_analysis = time.time()
     externalLinks = Aggregator.getExternalLinks(idKG)
     exLinksObj = utils.toObjectExternalLinks(externalLinks)
     triplesL = 0
@@ -1438,7 +1439,8 @@ def analyses(idKG,analysis_date,nameKG):
             triplesL = triplesL + value
         except:
             continue
-        
+    end_analysis = time.time()
+    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of interlinking completeness', 'Completeness',analysis_date)
     
     #READIUNG THE GRAPH OF KG 
     here = os.path.dirname(os.path.abspath(__file__))
@@ -1451,7 +1453,7 @@ def analyses(idKG,analysis_date,nameKG):
     pageRank = str(pageRank)
     pageRank = pageRank.replace('.',',')
     end_analysis = time.time()
-    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of the PageRank', 'Interlinking',analysis_date)
+    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of the PageRank', 'Reputation',analysis_date)
 
 
     #CALCULATION OF THE DEGREE OF CONNECTION
@@ -1541,7 +1543,7 @@ def analyses(idKG,analysis_date,nameKG):
                 if result == False:
                     newVocab.append(vocab)
         end_analysis = time.time()
-        utils.write_time(nameKG,end_analysis-start_analysis,'Check for the re-using of existing vocabs', 'Interoperability',analysis_date)
+        utils.write_time(nameKG,end_analysis-start_analysis,'Check the re-using of existing vocabs', 'Interoperability',analysis_date)
     except Exception as error:
         logger.warning(f"Representational-consistency | Re-use of existing terms | Impossible to recover the vocabularies in the KG",extra=kg_info)
         newVocab = '-'
@@ -1570,6 +1572,7 @@ def analyses(idKG,analysis_date,nameKG):
     else:
         sourcesC = Sources(sources.get('web','Absent'),sources.get('name','Absent'),sources.get('email','Absent'))
 
+    start_analysis = time.time()
     valueN = 0
     valueD = 0
     valueUrl = 0
@@ -1593,8 +1596,6 @@ def analyses(idKG,analysis_date,nameKG):
     trustValue = (valueN+valueD+valueUrl+valuePr)/4
     trustValue = str(trustValue)
     trustValue = trustValue.replace('.',',')
-
-        
     
     if idKG == False:
         idKG = ''
@@ -1602,6 +1603,9 @@ def analyses(idKG,analysis_date,nameKG):
         accessUrl = ''
     if nameKG == False:
         nameKG = ''
+    
+    end_analysis = time.time()
+    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of trust value', 'Believability',analysis_date)
     
     if available == True:
         availability = Availability(endpoint,availableDownload,availableDump,inactiveLink,defValue)
