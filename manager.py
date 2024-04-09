@@ -105,7 +105,7 @@ for i in range(len(toAnalyze)):
     kg.extra.normalizedScore = normalizedScore
     kg.extra.scoreObj = score
     end_analysis = time.time()
-    utils.write_time(kg.believability.title,end_analysis-start_analysis,'--- Analysis','INFO',filename)
+    utils.write_time(toAnalyze[i][1],end_analysis-start_analysis,'--- Analysis','INFO',filename)
     csv = OutputCSV(kg,toAnalyze)
     csv.writeRow(filename)
     print(f"KG score: {kg.extra.score}")
