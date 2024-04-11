@@ -555,13 +555,12 @@ class Score:
         allTerms = self.kg.extra.allTerms
         if isinstance(vocabs,list) and isinstance(allTerms,list):
             namespaces = utils.getURINamespace(allTerms)
-            if len(namespaces) > 0 and namespaces >= vocabs:
+            if len(namespaces) > 0 and len(namespaces) >= len(vocabs):
                 vocabsV = len(vocabs) / len(namespaces)
             else:
                 vocabsV = 0
         else:
             vocabsV = 0
-
         return ((labelV + regexV + exampleV + vocabsV)  * weight) / UNDERSTANDABILITY_METRICS
     
     def interpretabilityScore(self,weight):
