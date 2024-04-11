@@ -32,6 +32,7 @@ Also the authors can be recovered via the VoID file or the SPARQL endpoint. In t
 PREFIX dc: <http://purl.org/dc/elements/1.1/>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX dct: <http://purl.org/dc/terms/>
 SELECT DISTINCT ?o
 WHERE{
 {?s dc:creator ?o }
@@ -39,6 +40,8 @@ UNION
 {?s dcterms:creator ?o}
 UNION
 {?s foaf:maker ?o}
+UNION
+{?s dct:creator ?o}
 }
 ```
 To quantize this metric, we assign 1 if authors are indicated, 0 otherwise.
@@ -62,8 +65,13 @@ The metric is calculated by searching the $dcterms:publisher$ predicate in the V
 
 ```sql
 PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dct: <http://purl.org/dc/terms/>
 SELECT DISTINCT ?o
-WHERE {?s dc:publisher ?o}
+WHERE {
+{?s dc:publisher ?o}
+UNION
+{?s dct:publisher ?o}
+}
 ```
 To quantize this metric, we assign 1 if publichers are indicated, 0 otherwise.
 

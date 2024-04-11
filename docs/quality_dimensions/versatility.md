@@ -39,4 +39,11 @@ To quantize this metric, we assign 1 if we have indication about the serializati
 ---
 
 #### **Accessing of data in different ways**
-In this metric we insert the available links to access to the KG, only if this links are online. The metric is then quantized by giving value 1 in the case we can access at the KG both throught the SPARQL endpoint or by downloading the RDF dump.
+In this metric we insert the available links to access the KG, only if this links are online. 
+To recover the links to access the KG, we use the metadata returned by DataHub and LODCloud, and if we have a working SPARQL endpoint we also run the following query to get them:
+```sql
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+SELECT DISTINCT ?o
+WHERE {?s dcat:downloadURL ?o.}
+```
+The metric is then quantized by giving value 1 in the case we can access at the KG both throught the SPARQL endpoint or by downloading the RDF dump.
