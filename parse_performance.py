@@ -1,5 +1,6 @@
 import re
 import numpy as np
+import json
 
 def extract_time_for_kg(file_path):
     max_time = 0
@@ -48,10 +49,115 @@ def parse_time_for_dimensions(file_path, metric):
 
     return metric_times,metric_times_list
 
+def time_for_dimensions(file_path):
+    # Definire il dizionario per memorizzare i tempi per ogni KG e dimensione
+    kg_analysis_info = {}
+    # Aprire il file e leggere le righe
+    with open(file_path, 'r') as file:
+        for riga in file:
+            try:
+            # Estrarre il nome del KG
+                kg_name = riga.split('for ')[1].split('took')[0].strip()
+                parti = riga.strip().split('|')
+                dimension = parti[0]
+                dimension = dimension.strip()
+                analysis_time_metric = parti[1].split('took')[1].strip()
+                time_str = analysis_time_metric.split('s')[0]
+                time_seconds = float(time_str)
+                if not kg_name in kg_analysis_info:
+                    kg_analysis_info[kg_name] = {}
+                if dimension == '':
+                    kg_analysis_info[kg_name]['total_analysis_time'] = time_seconds
+                else:
+                    if dimension in kg_analysis_info[kg_name]:
+                        kg_analysis_info[kg_name][dimension] += time_seconds
+                    else:
+                        kg_analysis_info[kg_name][dimension] = time_seconds
+            except Exception as e:
+                pass
+
+        with open('output.json', 'w',encoding='utf-8') as outfile:
+            json.dump(kg_analysis_info, outfile, indent=4)
+
+
+def dimension_statistic(file_path):
+    availability_values = []
+    interlinking_values = []
+    license_values = []
+    security_values = []
+    performance_values = []
+    accuracy_values = []
+    consistency_values = []
+    conciseness_values = []
+    reputation_values = []
+    believability_values = []
+    verifiability_values = []
+    currency_values = []
+    timeliness_values = []
+    completeness_values = []
+    amount_values = []
+    rep_conc_values = []
+    interop_values = []
+    under_values = []
+    interp_values = []
+    versatility_values = []
+    with open(file_path, "r") as file:
+        kgh_performance = json.load(file)
+        for key, value in kgh_performance.items():
+            if 'Availability' in value:
+                availability_values.append(value.get('Availability'))
+            if 'Interlinking' in value:
+                interlinking_values.append(value.get('Interlinking'))
+            if 'License' in value:
+                license_values.append(value.get('License'))
+            if 'Security' in value:
+                security_values.append(value.get('Security'))
+            if 'Performance' in value:
+                performance_values.append(value.get('Performance'))
+            if 'Accuracy' in  value:
+                accuracy_values.append(value.get('Accuracy'))
+            if 'Consistency' in value:
+                consistency_values.append(value.get('Consistency'))
+            if 'Conciseness' in value:
+                conciseness_values.append(value.get('Conciseness'))
+            if 'Verifiability' in value:
+                verifiability_values.append(value.get('Verifiability'))
+            if 'Currency' in value:
+                currency_values.append(value.get('Currency'))
+            if 'Timeliness' in value:
+                timeliness_values.append(value.get('Timeliness'))
+            if 'Amount of data' in value:
+                amount_values.append(value.get('Amount of data'))
+            if 'Rep.Conc.' in value:
+                rep_conc_values.append(value.get('Rep.Conc.'))
+            if 'Interpretability' in value:
+                interp_values.append(value.get('Interpretability'))
+            if 'Understandability' in value:
+                under_values.append(value.get('Understandability'))
+            if 'Interoperability' in value:
+                interop_values.append(value.get('Interoperability'))
+            if 'Versatility' in value:
+                versatility_values.append(value.get('Versatility'))
+
+    minimum = float(min(interp_values))
+    q1 = np.percentile(interp_values,25)
+    q2 = np.percentile(interp_values,50)
+    q3 = np.percentile(interp_values, 75)
+    maximum = max(interp_values)
+    mean = sum(interp_values) / len(interp_values)
+
+    print(f"min:{minimum}, lower_quartile:{q1}, mean:{mean}, median: {q2}, upper_quartile: {q3}, max: {maximum}")
+
 
 file_path = "performance.txt" 
-print(parse_time_for_dimensions(file_path,'PageRank'))
 '''
+time_for_dimensions(file_path)
+file_path = 'output.json'
+dimension_statistic(file_path)
+'''
+
+#print(parse_time_for_dimensions(file_path,'PageRank'))
+
 time_data = extract_time_for_kg(file_path)
 
 min = min(time_data)
@@ -59,7 +165,7 @@ q1 = np.percentile(time_data,25)
 q2 = np.percentile(time_data,50)
 q3 = np.percentile(time_data, 75)
 max = max(time_data)
+mean = sum(time_data) / len(time_data)
 
-print(min,q1,q2,q3,max)
-'''
+print(f"min:{min}, q1:{q1}, mean: {mean}, median:{q2}, q3:{q3}, max:{max}")
 
