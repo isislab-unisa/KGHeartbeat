@@ -185,11 +185,15 @@ def category_statistic(file_path):
 
 
 file_path = "performance.txt" 
-print(parse_time_for_dimensions(file_path,'PageRank'))
+'''
+time_for_dimensions(file_path)
+file_path = 'output.json'
+dimension_statistic(file_path)
 '''
 
 #print(parse_time_for_dimensions(file_path,'PageRank'))
 
+'''
 time_data = extract_time_for_kg(file_path)
 
 min = min(time_data)
