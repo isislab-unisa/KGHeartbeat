@@ -139,25 +139,61 @@ def dimension_statistic(file_path):
             if 'Versatility' in value:
                 versatility_values.append(value.get('Versatility'))
 
-    minimum = float(min(interp_values))
-    q1 = np.percentile(interp_values,25)
-    q2 = np.percentile(interp_values,50)
-    q3 = np.percentile(interp_values, 75)
-    maximum = max(interp_values)
-    mean = sum(interp_values) / len(interp_values)
+    minimum = float(min(interlinking_values))
+    q1 = np.percentile(interlinking_values,25)
+    q2 = np.percentile(interlinking_values,50)
+    q3 = np.percentile(interlinking_values, 75)
+    maximum = max(interlinking_values)
+    mean = sum(interlinking_values) / len(interlinking_values)
 
-    print(f"min:{minimum}, lower_quartile:{q1}, mean:{mean}, median: {q2}, upper_quartile: {q3}, max: {maximum}")
+    print(f"min:{minimum:.2f}, lower_quartile:{q1:.2f}, mean:{mean:.2f}, median: {q2:.2f}, upper_quartile: {q3:.2f}, max: {maximum:.2f}")
+
+
+
+def category_statistic(file_path):
+    accessibility_values = []
+    intrinsic_values = []
+    trust_values = []
+    dataset_dym_values = []
+    contextual_values = []
+    representatioanl_values = []
+    with open(file_path, "r") as file:
+        kgh_performance = json.load(file)
+        for key, value in kgh_performance.items():
+            if 'Accessibility' in value:
+                accessibility_values.append(value.get('Accessibility'))
+            if 'Intrinsic' in value:
+                intrinsic_values.append(value.get('Intrinsic'))
+            if 'Trust' in value:
+                trust_values.append(value.get('Trust'))
+            if 'DatasetDym' in value:
+                dataset_dym_values.append(value.get('DatasetDym'))
+            if 'Contextual' in value:
+                contextual_values.append(value.get('Contextual'))
+            if 'Representational' in  value:
+                representatioanl_values.append(value.get('Representational'))
+
+    minimum = float(min(representatioanl_values))
+    q1 = np.percentile(representatioanl_values,25)
+    q2 = np.percentile(representatioanl_values,50)
+    q3 = np.percentile(representatioanl_values, 75)
+    maximum = max(representatioanl_values)
+    mean = sum(representatioanl_values) / len(representatioanl_values)
+
+    print(f"min:{minimum:.2f}, lower_quartile:{q1:.2f}, median:{q2:.2f}, upper_quartile: {q3:.2f}, max: {maximum:.2f}")
+
 
 
 file_path = "performance.txt" 
-'''
-time_for_dimensions(file_path)
-file_path = 'output.json'
-dimension_statistic(file_path)
-'''
+
+#time_for_dimensions(file_path)
+file_path = 'output_category.json'
+category_statistic(file_path)
+
 
 #print(parse_time_for_dimensions(file_path,'PageRank'))
 
+'''
 time_data = extract_time_for_kg(file_path)
 
 min = min(time_data)
@@ -168,4 +204,4 @@ max = max(time_data)
 mean = sum(time_data) / len(time_data)
 
 print(f"min:{min}, q1:{q1}, mean: {mean}, median:{q2}, q3:{q3}, max:{max}")
-
+'''
