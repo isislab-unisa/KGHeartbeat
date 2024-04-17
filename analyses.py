@@ -223,7 +223,6 @@ def analyses(idKG,analysis_date,nameKG):
             available = False
     end_analysis = time.time()
     utils.write_time(nameKG,end_analysis-start_analysis,'SPARQL endpoint availability check','Availability',analysis_date)
-    utils.write_time(nameKG,end_analysis-start_analysis,'SPARQL endpoint availability check','Availability')
     
     #GET NUMBERS OF TRIPLES FROM METADATA
     triplesM = Aggregator.getTriples(metadata)
