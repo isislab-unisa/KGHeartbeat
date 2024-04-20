@@ -672,13 +672,9 @@ richness through sameAs by using network measures</i></td>
             </td>
         </tr>
         <tr>
-            <td rowspan="2">Output</td>
-            <td>0</td>
-            <td>if the provider isn't in the list of trusted providers</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>if the provider isn't in the list of trusted provider</td>
+            <td>Output</td>
+            <td>[0,1]</td>
+            <td>Best value: 1</td>
         </tr>
         <tr><tr><tr><tr></tr></tr></tr></tr>
                  <tr>
