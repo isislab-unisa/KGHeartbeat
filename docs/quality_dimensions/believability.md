@@ -39,5 +39,6 @@ there is also the one relating to the provider. Then, the list is traversed and 
     </tr>
 </table>
 The 4 key values are added together and then divided by 4, so the value assigned to this metric will be in the range [0,1].
+
 ---
 
