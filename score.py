@@ -113,7 +113,6 @@ class Score:
             skosMapping = int(self.kg.interlinking.skosMapping)
             triples = int(self.kg.amountOfData.numTriplesQ)
             if triples > 0 and triples >= skosMapping:
-            if triples > 0 and triples >= skosMapping:
                 skosMappingV = skosMapping/triples
             else:
                 skosMappingV = 0
