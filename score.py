@@ -103,7 +103,6 @@ class Score:
             sameAs = int(self.kg.interlinking.sameAs)
             triples = int(self.kg.amountOfData.numTriplesQ)
             if triples > 0 and triples > sameAs:
-            if triples > 0 and triples > sameAs:
                 sameAsV = sameAs/triples
             else:
                 sameAsV = 0
