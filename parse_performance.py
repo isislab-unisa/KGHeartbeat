@@ -193,7 +193,7 @@ dimension_statistic(file_path)
 
 #print(parse_time_for_dimensions(file_path,'PageRank'))
 
-'''
+
 time_data = extract_time_for_kg(file_path)
 
 min = min(time_data)
@@ -202,6 +202,5 @@ q2 = np.percentile(time_data,50)
 q3 = np.percentile(time_data, 75)
 max = max(time_data)
 mean = sum(time_data) / len(time_data)
-
-print(f"min:{min}, q1:{q1}, mean: {mean}, median:{q2}, q3:{q3}, max:{max}")
-'''
+dev_std = np.std(time_data)
+print(f"min:{min}, q1:{q1}, mean: {mean}, median:{q2}, q3:{q3}, max:{max}, dev_std: {dev_std}")

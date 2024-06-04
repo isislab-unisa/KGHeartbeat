@@ -1,0 +1,143 @@
+KG id,KG name,luzzu_sparql,kghb_sparql,luzzu_triples,kghb_triples,luzzu_license,kghb_license,luzzu_interlinking_completeness,kghb_interlinking_completeness
+wiktionary-dbpedia-org,wiktionary.dbpedia.org,False,False,0,False,http://www.opendefinition.org/licenses/cc-by-sa,Creative Commons Attribution Share-Alike - cc-by-sa -,-,-
+linked-hypernyms,linked hypernyms,False,False,73000000,73000000,http://www.opendefinition.org/licenses/cc-by-sa,Creative Commons Attribution Share-Alike - cc-by-sa -,0.0,-
+cornetto,Cornetto1.2,False,False,792747,792747,-,Other (Non-Commercial) - other-nc -,0.2139257543705621,-
+emn,EMN,False,False,117115,117115,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.028647056312171796,-
+apertium-rdf-eo-fr,Apertium RDF EO-FR,False,True,726281,10664488,-,Other (Open) - other-open -,0.0880678415103796,0.01
+ietflang,ietflang,False,False,100000,100000,http://www.opendefinition.org/licenses/cc-zero,Creative Commons CCZero - cc-zero -,0.4,-
+0080-3626,Korespondencja Emila Szramka z Janem Kuderą,False,False,8939,8939,http://www.opendefinition.org/licenses/odc-by,http://www.opendefinition.org/licenses/odc-by,0.0,-
+omwn-als,Albanet WordNet (as part of Open Multilingual WordNet),False,False,61243,61243,https://creativecommons.org/licenses/by/3.0/,https://creativecommons.org/licenses/by/3.0/,0.15673628006466045,0.16
+omwn-eng,Princeton WordNet (as part of Open Multilingual WordNet),False,False,1403855,1403855,https://wordnet.princeton.edu/license-and-commercial-use,https://wordnet.princeton.edu/license-and-commercial-use,0.147435454516314,0.15
+ssf,Lexicon of Syntactic and Semantic Framework,OK,True,70366,5611,https://creativecommons.org/licenses/by/3.0/,https://creativecommons.org/licenses/by/3.0/,1.7602251087172782,22.07
+omwn-heb,Hebrew WordNet (as part of Open Multilingual WordNet),False,False,47512,47512,https://wordnet.princeton.edu/license-and-commercial-use,https://wordnet.princeton.edu/license-and-commercial-use,0.14463714430038727,0.14
+news-100-nif-ner-corpus,News-100 NIF NER Corpus,False,False,12289,12289,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.12588493774920662,-
+apertium-rdf-eu-es,Apertium RDF EU-ES,False,True,262336,10664488,-,Other (Open) - other-open -,0.11538637472554282,0.0
+omwn-swe,Swedish WordNet (as part of Open Multilingual WordNet),False,False,50073,50073,https://creativecommons.org/licenses/by/3.0/,https://creativecommons.org/licenses/by/3.0/,0.13787869710223075,0.14
+lexvo,Lexvo,False,False,353815,353815,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.015833133134547716,-
+brown-corpus-in-rdf-nif,Brown Corpus in RDF/NIF,False,False,14335131,14335131,http://www.opendefinition.org/licenses/cc-by-sa,Creative Commons Attribution Share-Alike - cc-by-sa -,0.08099179561037845,-
+omwn-tha,Thai WordNet (as part of Open Multilingual WordNet),False,False,703957,703957,https://wordnet.princeton.edu/license-and-commercial-use,https://wordnet.princeton.edu/license-and-commercial-use,0.1356858444478853,0.14
+reuters-128-nif-ner-corpus,Reuters-128 NIF NER Corpus,False,False,6967,6967,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.09329697143677336,-
+apertium-rdf-es-an,Apertium RDF ES-AN,False,True,71997,10664488,-,Other (Open) - other-open -,0.08230898509660124,0.0
+omwn-ita,MultiWordNet WordNet (as part of Open Multilingual WordNet),False,False,468044,468044,https://creativecommons.org/licenses/by/3.0/,https://creativecommons.org/licenses/by/3.0/,0.16087376400509354,0.16
+apertium-rdf-eo-ca,Apertium RDF EO-CA,False,True,426301,10664488,-,Other (Open) - other-open -,0.0924558000098522,0.0
+gemet-annotated,gemet-annotated,False,False,231297,231297,http://www.opendefinition.org/licenses/odc-odbl,Open Data Commons Open Database License (ODbL) - odc-odbl -,0.44777493871515844,-
+apertium-rdf-oc-es,Apertium RDF OC-ES,False,True,317162,10664488,-,Other (Open) - other-open -,0.08650784141858105,0.0
+getty-aat,Art & Architecture Thesaurus,False,False,0,False,http://www.opendefinition.org/licenses/odc-by,Open Data Commons Attribution License - odc-by -,-,-
+swefn-rdf,SweFN-RDF,OK,False,339385,,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.00020330892644047322,-
+glottolog,Glottolog,False,False,10000000,10000000,http://www.opendefinition.org/licenses/cc-by-sa,Creative Commons Attribution Share-Alike - cc-by-sa -,0.0007,-
+parole-simple-lexinfo-ontology-lexicons,Parole/Simple 'lexinfo' Ontology & lexicons,False,False,10279,10279,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.03833057690436813,-
+kore-50-nif-ner-corpus,KORE 50 NIF NER Corpus,False,False,1410,1410,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.10212765957446808,-
+gwa-ili,Global WordNet Association Interlingual Index,False,False,352995,352995,https://wordnet.princeton.edu/license-and-commercial-use,https://wordnet.princeton.edu/license-and-commercial-use,0.0,-
+omwn-fin,FinnWordNet WordNet (as part of Open Multilingual WordNet),False,False,1221878,1221878,https://creativecommons.org/licenses/by/3.0/,https://creativecommons.org/licenses/by/3.0/,0.15493281653323818,0.15
+apertium-rdf-pt-gl,Apertium RDF PT-GL,False,True,234065,10664488,-,Other (Open) - other-open -,0.09972443552004785,0.0
+dbnary,dbnary,OK,True,194822148,516675564,http://www.opendefinition.org/licenses/cc-by-sa,Creative Commons Attribution Share-Alike - cc-by-sa -,0.29639955514708727,0.18
+apertium-rdf-es-ast,Apertium RDF ES-AST,False,True,825540,10664488,-,Other (Open) - other-open -,0.08377789083508975,0.01
+clld-phoible,CLLD-PHOIBLE,False,False,1664872,1664872,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.04023312302687534,-
+wn-wiki-instances,Wordnet-Wikipedia/DBpedia instance mapping,False,False,7702,7702,http://www.opendefinition.org/licenses/cc-zero,http://www.opendefinition.org/licenses/cc-zero,2.0,-
+lemonuby,lemonUby,False,False,32916476,32916476,http://www.opendefinition.org/licenses/cc-by-sa,Creative Commons Attribution Share-Alike - cc-by-sa -,0.05584719943896789,-
+isocat,ISOcat,False,False,25000,25000,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.02012,-
+omwn-arb,Arabic WordNet (as part of Open Multilingual WordNet),False,False,202006,202006,https://creativecommons.org/licenses/by-sa/3.0/,https://creativecommons.org/licenses/by-sa/3.0/,0.1848212429333782,0.18
+rss-500-nif-ner-corpus,RSS-500 NIF NER CORPUS,False,False,10038,10038,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.05220163379159195,-
+omwn-jpn,Japanese WordNet (as part of Open Multilingual WordNet),False,False,1007643,1007643,https://wordnet.princeton.edu/license-and-commercial-use,https://wordnet.princeton.edu/license-and-commercial-use,0.16795035543342235,0.17
+clld-wals,CLLD-WALS,False,False,1478985,1478985,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.005602490897473605,-
+asit,Atlante Sintattico d'Italia (ASIt),False,False,420000,420000,http://www.opendefinition.org/licenses/cc-by-sa,http://www.opendefinition.org/licenses/cc-by-sa,0.0003095238095238095,-
+omwn-slk,Slovak WordNet (as part of Open Multilingual WordNet),False,False,280726,280726,https://creativecommons.org/licenses/by-sa/3.0/,https://creativecommons.org/licenses/by-sa/3.0/,0.15684332765757358,0.16
+wold,World Loanword Database,False,False,1000000,1000000,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.016808,0.02
+tds,TDS,False,False,3135,3135,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.0,-
+iate-rdf,IATE RDF,False,False,8081142,8081142,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.0,-
+omwn-cwn,Chinese WordNet (as part of Open Multilingual WordNet),False,False,45753,45753,http://compling.hss.ntu.edu.sg/omw/wns/qcn/LICENSE,http://compling.hss.ntu.edu.sg/omw/wns/qcn/LICENSE,0.17636002010797105,0.18
+chat-game-corpus,Chat Game corpus,False,False,15750,15750,http://www.opendefinition.org/licenses/odc-by,Open Data Commons Attribution License - odc-by -,0.266031746031746,-
+mexico,MExiCo,False,False,305,305,http://www.opendefinition.org/licenses/cc-by-sa,Creative Commons Attribution Share-Alike - cc-by-sa -,0.07540983606557378,-
+masc,Manually Annotated Sub-Corpus (MASC) of the Open American National Corpus,False,False,1000000,1000000,-,Other (Open) - other-open -,0.067,-
+ids,Intercontinental Dictionary Series,False,False,2000000,2000000,http://www.opendefinition.org/licenses/cc-by-sa,Creative Commons Attribution Share-Alike - cc-by-sa -,0.0012405,0.0
+isocat-metadata,ISOcat-metadata,False,False,830,830,-,Other (Non-Commercial) - other-nc -,0.0783132530120482,-
+omwn-cow,Chinese WordNet (as part of Open Multilingual WordNet),False,False,677855,677855,http://compling.hss.ntu.edu.sg/omw/wns/cmn/LICENSE,http://compling.hss.ntu.edu.sg/omw/wns/cmn/LICENSE,0.1440912879598144,0.14
+iso-639-oasis,Published subjects for languages in ISO 639,False,False,2546,2546,-,License not specified - notspecified -,0.0,-
+apertium-rdf-eo-en,Apertium RDF EO-EN,False,True,617772,10664488,-,Other (Open) - other-open -,0.0823507701870593,0.0
+multext-east,Multext-East,False,False,127651,127651,-,Other (Not Open) - other-closed -,0.12028891273863894,-
+omwn-iwn,ItalWordnet WordNet (as part of Open Multilingual WordNet),False,False,468044,468044,https://opendatacommons.org/licenses/by/1-0/,https://opendatacommons.org/licenses/by/1-0/,0.16087376400509354,0.16
+babelnet,BabelNet,OK,False,1971744856,1971744856,-,Other (Non-Commercial) - other-nc -,0.10022877270283088,0.1
+galician-eurowordnet-lemon-lexicon-3-0,Galician EuroWordNet-lemon lexicon (3.0),False,False,734979,734979,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.09661228416049983,-
+apertium-rdf-pt-ca,Apertium RDF PT-CA,False,True,163149,10664488,-,Other (Open) - other-open -,0.1720329269563405,0.0
+apertium-rdf-fr-ca,Apertium RDF FR-CA,False,True,152002,10664488,-,Other (Open) - other-open -,0.16918198444757307,0.0
+omwn-ell,Greek WordNet (as part of Open Multilingual WordNet),False,False,163659,163659,https://www.apache.org/licenses/LICENSE-2.0,https://www.apache.org/licenses/LICENSE-2.0,0.14729406876493195,0.15
+omwn-por,OpenWN-PT WordNet (as part of Open Multilingual WordNet),False,False,496697,496697,https://creativecommons.org/licenses/by-sa/3.0/,https://creativecommons.org/licenses/by-sa/3.0/,0.14900834915451472,0.15
+apertium-rdf-es-ca,Apertium RDF ES-CA,False,True,730501,10664488,-,Other (Open) - other-open -,0.12978353212384378,0.01
+vu-wordnet,WordNet 3.0 (VU Amsterdam),False,False,4573749,4573749,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.06885380024133375,0.07
+w3c-wordnet,WordNet 2.0 (W3C),False,False,710000,710000,-,License not specified - notspecified -,0.0,-
+wikilinks-rdf-nif,Wikilinks RDF/NIF,False,False,533016300,533016300,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.059177304709068,-
+semanticquran,Semantic Quran,False,False,15741399,15741399,https://creativecommons.org/licenses/by-nc-sa/3.0/de/,Creative Commons Non-Commercial (Any) - cc-nc -,0.0016753911135852664,0.0
+omwn-isl,IceWordNet WordNet (as part of Open Multilingual WordNet),False,False,106288,106288,https://creativecommons.org/licenses/by/3.0/,https://creativecommons.org/licenses/by/3.0/,0.150572030709017,0.15
+greek-wordnet,Greek Wordnet,False,False,356595,356595,http://www.opendefinition.org/licenses/cc-by-sa,Creative Commons Attribution Share-Alike - cc-by-sa -,0.09864131577840407,0.1
+apertium-rdf-es-pt,Apertium RDF ES-PT,False,True,279245,10664488,-,Other (Open) - other-open -,0.150387652419918,0.0
+gold,General Ontology of Linguistic Description,False,False,3000,3000,http://www.opendefinition.org/licenses/cc-by-sa,Creative Commons Attribution Share-Alike - cc-by-sa -,0.0,-
+apertium-rdf-eu-en,Apertium RDF EU-EN,False,True,265466,10664488,-,Other (Open) - other-open -,0.10756556395169249,0.0
+clld-sails,CLLD-SAILS,False,False,564738,564738,http://creativecommons.org/licenses/by-nc/2.0/,Creative Commons Non-Commercial (Any) - cc-nc -,0.0008712004504743793,-
+omwn-hrv,Croatian WordNet (as part of Open Multilingual WordNet),False,False,289146,289146,https://creativecommons.org/licenses/by/3.0/,https://creativecommons.org/licenses/by/3.0/,0.1656602546810262,0.17
+omwn-slv,sloWNet WordNet (as part of Open Multilingual WordNet),False,False,414557,414557,https://creativecommons.org/licenses/by/3.0/,https://creativecommons.org/licenses/by/3.0/,0.1711393125673912,0.17
+geodomainwn,geodomainwn,False,False,0,False,http://www.opendefinition.org/licenses/odc-by,Open Data Commons Attribution License - odc-by -,-,-
+germlex,Linked Old Germanic Dictionaries,False,False,349021,349021,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.10199099767635758,-
+omwn-nld,Open WordNet (as part of Open Multilingual WordNet),False,False,399121,399121,http://compling.hss.ntu.edu.sg/omw/wns/nld/LICENSE,http://compling.hss.ntu.edu.sg/omw/wns/nld/LICENSE,0.15098178246697117,0.15
+clld-glottolog,CLLD-GLOTTOLOG,False,False,8322839,8322839,-,unsupported operand type(s) for +: 'bool' and 'str',0.0061036864944762235,-
+lemonwiktionary,LemonWiktionary,False,False,5000000,5000000,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.1,-
+english-wordnet,English WordNet,False,False,0,False,https://wordnet.princeton.edu/license-and-commercial-use,https://wordnet.princeton.edu/license-and-commercial-use,-,-
+masc-bn-nif,MASC-BN-NIF,False,False,5620229,5620229,-,Other (Public Domain) - other-pd -,0.05096162451743514,-
+language-authority-list, Language Name Authority List ,OK,True,423313,1064770457,http://www.opendefinition.org/licenses/cc-zero,http://www.opendefinition.org/licenses/cc-zero,0.000640188229513386,0.0
+apertium-rdf,Apertium RDF,False,False,8842516,,-,Other (Open) - other-open -,0.1094415887966728,-
+sentiws,SentimentWortschatz,False,False,30339,30339,http://creativecommons.org/licenses/by-nc/2.0/,Creative Commons Non-Commercial (Any) - cc-nc -,0.2536339365173539,0.25
+asjp,Automated Similarity Judgment Program lexical data,False,False,5000000,5000000,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.001,-
+panlex,PanLex,False,False,786205297,786205297,-,Other (Open) - other-open -,0.0032268009509480574,0.0
+apertium-rdf-es-ro,Apertium RDF ES-RO,False,True,400366,10664488,-,Other (Open) - other-open -,0.11004680717143814,0.0
+wordnet-rdf,WordNet-RDF,False,False,8903374,8903374,-,Other (Attribution) - other-at -,0.11913348804621708,-
+xlid-lexica,xLiD-Lexica,False,False,300000000,300000000,-,License not specified - notspecified -,0.0,-
+iwn,IWN,False,False,515816,515816,http://www.opendefinition.org/licenses/odc-by,Open Data Commons Attribution License - odc-by -,0.14464847930269709,-
+premon,PreMOn,False,True,32611819,32063834,http://www.opendefinition.org/licenses/cc-by-sa,Creative Commons Attribution Share-Alike - cc-by-sa -,0.007189142071468016,0.01
+saldo-rdf,SALDO-RDF,OK,False,0,,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,-,-
+apertium-rdf-eo-es,Apertium RDF EO-ES,False,True,380198,10664488,-,Other (Open) - other-open -,0.09635768731029622,0.0
+clld-apics,CLLD-APICS,False,False,463009,463009,http://www.opendefinition.org/licenses/cc-by-sa,Creative Commons Attribution Share-Alike - cc-by-sa -,0.000395240697265064,-
+omwn-mcr,Multilingual Central Repository (as part of Open Multilingual WordNet),False,False,198465,198465,http://compling.hss.ntu.edu.sg/omw/wns/glg/LICENSE,http://compling.hss.ntu.edu.sg/omw/wns/glg/LICENSE,0.136739475474265,0.14
+zhishi-me,Zhishi.me,False,False,125000000,,http://creativecommons.org/licenses/by-nc/2.0/,Creative Commons Non-Commercial (Any) - cc-nc -,0.001544,-
+ISSN: 0080-3626,Pierwszy polski podręcznik bibliotekarski,False,False,81800,False,http://www.opendefinition.org/licenses/odc-by,unsupported operand type(s) for +: 'bool' and 'str',0.0,-
+apertium-rdf-en-gl,Apertium RDF EN-GL,False,True,425117,10664488,-,Other (Open) - other-open -,0.09515498086409153,0.0
+clld-wold,CLLD-WOLD,False,False,1764648,1764648,http://www.opendefinition.org/licenses/cc-by-sa,Creative Commons Attribution Share-Alike - cc-by-sa -,0.00038591265793518027,-
+simple,SIMPLE,False,False,372294,372294,http://www.opendefinition.org/licenses/odc-by,Open Data Commons Attribution License - odc-by -,0.08447356121774727,-
+omwn-msa,Wordnet WordNet (as part of Open Multilingual WordNet),False,False,508860,508860,https://opensource.org/licenses/MIT,https://opensource.org/licenses/MIT,0.20639861651534802,0.21
+olia-discourse,OLiA Discourse,False,False,4175,4175,http://www.opendefinition.org/licenses/cc-by-sa,Creative Commons Attribution Share-Alike - cc-by-sa -,0.019401197604790418,-
+catalan-eurowordnet-lemon-lexicon-3-0,Catalan EuroWordNet-lemon lexicon (3.0),False,False,1841180,1841180,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.09079394735984532,-
+xwn,Open Multilingual Wordnet,False,False,10145232,10145232,-,Other (Open) - other-open -,0.16913206124808186,-
+olia,OLiA,False,False,43775,43775,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.016173615077098802,-
+dbpedia-spotlight-nif-ner-corpus,DBpedia Spotlight NIF NER Corpus,False,False,3425,3425,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.0948905109489051,-
+omwn-bul,BulTreeBank WordNet (as part of Open Multilingual WordNet),False,False,60494,60494,http://compling.hss.ntu.edu.sg/omw/wns/bul/LICENSE,http://compling.hss.ntu.edu.sg/omw/wns/bul/LICENSE,0.14771712897146824,0.15
+fiesta,FiESTA,False,False,245,245,http://www.opendefinition.org/licenses/cc-by-sa,Creative Commons Attribution Share-Alike - cc-by-sa -,0.06938775510204082,-
+mlsa,MLSA - A Multi-layered Reference Corpus for German Sentiment Analysis,False,False,21000,21000,http://www.opendefinition.org/licenses/cc-by-sa,Creative Commons Attribution Share-Alike - cc-by-sa -,0.4042857142857143,0.4
+dbpedia-abstract-corpus,DBpedia abstract corpus,False,False,743532157,743532157,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.11071309186160727,-
+basque-eurowordnet-lemon-lexicon-3-0,Basque EuroWordNet-lemon lexicon (3.0),False,False,1215583,1215583,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,0.08750615959584825,-
+apertium-rdf-ca-it,Apertium RDF CA-IT,False,True,180851,10664488,-,Other (Open) - other-open -,0.1592692326832586,0.0
+omwn-dan,DanNet WordNet (as part of Open Multilingual WordNet),False,False,40183,40183,https://wordnet.princeton.edu/license-and-commercial-use,https://wordnet.princeton.edu/license-and-commercial-use,0.1458079287260782,0.15
+clld-ewave,CLLD-EWAVE,False,False,320130,320130,http://www.opendefinition.org/licenses/cc-by-sa,Creative Commons Attribution Share-Alike - cc-by-sa -,0.0,-
+apertium-rdf-fr-es,Apertium RDF FR-ES,False,True,495614,10664488,-,Other (Open) - other-open -,0.1397559390977656,0.01
+lexinfo,lexinfo,False,False,4374,4374,-,Other (Public Domain) - other-pd -,0.08207590306355739,-
+pdev-lemon,PDEV-Lemon,False,False,233372,233372,-,License not specified - notspecified -,0.008904238726153951,-
+omwn-fra,WOLF WordNet (as part of Open Multilingual WordNet),False,False,606250,606250,http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html,http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html,0.16936577319587628,0.17
+clld-afbo,CLLD-afbo,False,False,12453,12453,http://www.opendefinition.org/licenses/cc-by-sa,Creative Commons Attribution Share-Alike - cc-by-sa -,0.03621617280976472,-
+omwn-nor,Norwegian WordNet (as part of Open Multilingual WordNet),False,False,31467,31467,https://wordnet.princeton.edu/license-and-commercial-use,https://wordnet.princeton.edu/license-and-commercial-use,0.1513331426573871,0.15
+polymath-virtual-library,Polymath Virtual Library (Authority data) - Fundación Ignacio Larramendi,False,False,0,False,http://www.opendefinition.org/licenses/cc-zero,Creative Commons CCZero - cc-zero -,-,-
+lingvoj,lingvoj ? Languages of the World (Multilingual RDF Descriptions),False,False,22442,22442,-,Other (Open) - other-open -,0.04135103823188664,-
+apertium-rdf-en-ca,Apertium RDF EN-CA,False,True,759601,10664488,-,Other (Open) - other-open -,0.12056592869151041,0.01
+de-gaap-ontology-lexicon,de-gaap-ontology-lexicon,False,False,246522,246522,-,Other (Public Domain) - other-pd -,0.17737565004340383,-
+omwn-pol,plWordNet WordNet (as part of Open Multilingual WordNet),False,False,384425,384425,https://wordnet.princeton.edu/license-and-commercial-use,https://wordnet.princeton.edu/license-and-commercial-use,0.136250243870716,0.14
+omwn-ron,Romanian WordNet (as part of Open Multilingual WordNet),False,False,516915,516915,https://creativecommons.org/licenses/by-sa/3.0/,https://creativecommons.org/licenses/by-sa/3.0/,0.16373678457773522,0.16
+apertium-rdf-en-es,Apertium RDF EN-ES,False,True,576322,10664488,-,Other (Open) - other-open -,0.1331529943330291,0.01
+http://rdf.naturallexicon.org/zh/ont/Cedict,CEDICT,False,False,2353589,False,https://creativecommons.org/licenses/by-sa/3.0/,unsupported operand type(s) for +: 'bool' and 'str',0.0,-
+saldom-rdf,SALDOM-RDF,OK,False,8349115,,http://www.opendefinition.org/licenses/cc-by,Creative Commons Attribution - cc-by -,8.264348975909423e-06,-
+LARK,Lark,False,False,145596,145596,http://www.opendefinition.org/licenses/cc-by,http://www.opendefinition.org/licenses/cc-by,0.15408390340393968,0.15
+omwn-fas,Persian WordNet (as part of Open Multilingual WordNet),False,False,182224,182224,https://creativecommons.org/publicdomain/zero/1.0/,https://creativecommons.org/publicdomain/zero/1.0/,0.16716239353762402,0.17
+apertium-rdf-oc-ca,Apertium RDF OC-CA,False,True,346346,10664488,-,Other (Open) - other-open -,0.08563401916003072,0.0
+phoible,Phonetics Information Base and Lexicon (PHOIBLE),False,False,133076,,-,Other (Open) - other-open -,0.025714629234422436,-
+apertium-rdf-es-gl,Apertium RDF ES-GL,False,True,206284,10664488,-,Other (Open) - other-open -,0.10188381066878673,0.0
+rkb-explorer-wordnet,WordNet (RKBExplorer),False,False,2727001,2727001,-,Other (Not Open) - other-closed -,6.930690527799587e-05,0.0
+racai-llod-romanian-treebank,Universal Dependencies Treebank Romanian,False,False,2198064,2198064,http://www.opendefinition.org/licenses/cc-by,http://www.opendefinition.org/licenses/cc-by,0.0,-
+racai-llod-corola-we,Romanian CoRoLa Word Embeddings,False,False,1254723,1254723,http://www.opendefinition.org/licenses/cc-by-sa,http://www.opendefinition.org/licenses/cc-by-sa,0.0,-
+racai-llod-romanian-wordnet-ttl,Turtle-RDF Romanian Wordnet,False,False,1370315,1370315,http://www.opendefinition.org/licenses/cc-by-sa,http://www.opendefinition.org/licenses/cc-by-sa,0.0,-
+racai-llod-romanian-wordnet-lmf,LMF Romanian Wordnet,False,False,0,False,http://www.opendefinition.org/licenses/cc-by-sa,http://www.opendefinition.org/licenses/cc-by-sa,-,-
+racai-llod-romanian-wordnet-json,JSON Romanian Wordnet,False,False,0,False,http://www.opendefinition.org/licenses/cc-by-sa,http://www.opendefinition.org/licenses/cc-by-sa,-,-
