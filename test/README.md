@@ -1,14 +1,21 @@
 # Test
-- [How the test was performed](#how-the-test-was-performed)
-- [How to reproduce the test](#how-to-reproduce-the-test)
-- [Test results](#test-results)
+1. [Comparative test with SPARQLES](#comparative-test-with-sparqles)
+2. [Comparative test with LUZZU](#comparative-test-with-luzzu)
 
 
-## How the test was performed
+
+
+## Comparative test with SPARQLES
+- [How the test was performed](#how-the-test-was-performed-sparqles)
+- [How to reproduce the test](#how-to-reproduce-the-test-sparqles)
+- [Test results](#test-results-sparqles)
+
+
+## How the test was performed (SPARQLES)
 Given the scarcity of working tools to be able to compare the result of our analyses, we used [SPARQLES](https://sparqles.demo.openlinksw.com) which is a tool used to verify the availability of the SPARQL endpoint and the VoID file. We found it particularly useful to use it as the quality of a KG is strongly influenced by the availability of the SPARQL endpoint and the VoID file, because almost all quality metrics are calculated by recovering data present in the KG and the related metadata, which are therefore accessible by executing appropriate SPARQL queries. The test was therefore performed by comparing the state of the SPARQL endpoint. The three output files that you can consult to verify the outcome of the test are [test_output.txt](./test_output.txt) (contains the total number of KGs for which the test for the SPARQL endpoint availability was passed and failed), [test_console_output.txt](./test_console_output.txt) (contains the test result obtained from KGHeartBeat and SPARQLES for every KG tested) and lastley [void_file_test_output](./void_file_test_output.txt) contains the total number of KGs for which the test for the VoID file availability was passed and failed.
 The test may take a few minutes to run as to check the availability of the SPARQL endpoint with the SPARQLES API we need the SPARQL endpoint link of the KG (also for the VoID file availability). When our tool analyzes all the KGs automatically discoverable, it recovers them by obtaining only the IDs and not directly the SPARQL endpoint link (this is done in another phase during the analysis), therefore an initial phase is necessary where for each ID we must execute a query on Datahub and LODCloud to obtain the corresponding link to the SPARQL endpoint, only at the end of this phase we can proceed with the test, therefore the time of the initial phase can be influenced by the rate limit imposed on GET requests on DataHub and LODCloud.
 
-## How to reproduce the test
+## How to reproduce the test (SPARQLES)
 To reproduce the test simply run the ```analyses_test.py``` script:
 ```
 python analyses_test.py > output.txt
@@ -16,7 +23,7 @@ python void_availability_test.py
 ```
 Saving the output to a file is useful for checking the result obtained for each tested KG.
 
-## Test results
+## Test results (SPARQLES)
 
 ### SPARQL endpoint availability
 
@@ -72,7 +79,7 @@ In the following table for **Total KGs manually checked** we mean only those tha
 
 As future work we will improve the tool to adjust the result on these 5 KGs and we will plan a new execution of the test to verify the result obtained.
 
-### VoID file availability
+### VoID file availability (SPARQLES)
 
 For the test only KG that are measured by both applications are considered.
 
@@ -90,3 +97,50 @@ For the 26 KGs for which the result was different, we analyzed the result in dep
 |False Negatives|False Positive|Total KGs manually checked |
 |---|---|---|
 |1|0|27|
+
+
+# Comparative test with LUZZU
+- [How the test was performed](#how-the-test-was-performed)
+- [How to reproduce the test](#how-to-reproduce-the-test)
+- [Test results](#test-results)
+
+## How the test was performed (LUZZU)
+To date, the LUZZ tool appears to be non-functional; however, by analyzing KGs pages related to the language sub-cloud on [https://lod-cloud.net](https://lod-cloud.net), it is possible to see some metrics calculated with LUZZU. Specifically these metrics are: *SPARQL availability*, *License*, *number of triples* and *Interlinking completeness*. The test output data are in the csv file [here](./kghb_vs_luzzu_llod.csv). For each metric both the value from LUZZU and KGHeartBeat is computed and saved, for every KGs in the linguistic linked open data.
+
+## How to reproduce the test (LUZZU)
+To reproduce the test, the KGHeartBeat API must be installed.
+```
+pip install kgheartbeat
+
+python3 kghb_luzzu_test.py
+```
+Upon completion of the script execution, a csv file will be created in the current directory containing the test result.
+
+## Test results (LUZZU)
+A brief summary table of the test result is given below
+
+### SPARQL endpoint
+|SPARQL Endpoint (same result)| SPARQL Endpoint (different result)|
+|----|----|
+|115|27|
+
+### License Machine-Redeable (MR)
+|MR License (same result)| MR License (different result)|
+|----|----|
+|41|101|
+
+⚠️ The result here is very unbalanced because the returned license format is different (LUZZU return a URL to the license, KGHeartBeat extracts the specific license attached at the predicate)
+
+### Number of triples
+|Number of triples (same result)| Number of triples (different result)|
+|----|----|
+|108|34|
+
+⚠️ KGHeartBeat, if present, returns the number of triples using a sparql query (if online endpoint, if offline uses the information in the metadata), for LUZZU it is not specified whether if the data comes from a query or from the metadata
+
+### Interlinking completeness
+| Interlinking completeness (same result) | Interlinking completeness|
+|-----|-----|
+| 8 | 134 |
+
+⚠️ This calculation includes the use of triples in the KG, which oftentimes for KGHeartbeat is higher (probably the number is more up-to-date), same thing happens for triples that are connected with other KGs (linked triples are used in the ratio to calculate the interlinking completeness, [see here for other details](https://isislab-unisa.github.io/KGHeartbeat/quality_dimensions/completeness)
