@@ -85,9 +85,9 @@ The test was performed by comparing KGHeartBeat with [SPARQLES](https://sparqles
 ## Performance
 At the end of the analysis execution, in the root directory of the project there will be a [performance.txt](./performance.txt) file, which will contain various information on the time taken for the analysis of each KG (with the time for the calculation of each metric) and the time of the analysis in total. The performance data that we illustrate below, and the file provided in the repository, refer to the analysis of all the KGs automatically discoverable carried out on 2023/12/24.
 
-|Total KGs analyzed|Total time (hours)| Average time for the analysis of one KGs (minutes)|
-|---|---|---|
-|1882|89.40 ~ 4 days|2.82
+|Total KGs analyzed|Total time (hours)| Average time for the analysis of one KGs (minutes)| Standard deviation (minutes) |
+|---|---|---|----|
+|1882|89.40 ~ 4 days|2.82|21.24|
 
 The KG that required the longest time for analysis was **B3Kat - Library Union Catalogues of Bavaria, Berlin and Brandenburg**, the total time was: ~6.77 hours. The quality metric that took the longest time to analyze was *Intrinsic Category -> Consistency -> Undefined classes*, with ~5 hours to complete the calculation, this is mainly due to the large amount of triples that are present in this KG (1.022.898.443 of triples).
 The box plot illustred below shows the times for calculating the quality for each KGs. ![Quality-Analysis-Time](./kgs_analysis_time.png)
