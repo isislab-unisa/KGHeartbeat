@@ -1,4 +1,7 @@
 import requests
+import os
+import json
+import utils
 
 def getMetadati(idKG):
     url = 'http://www.isislab.it:12280/kgsearchengine/brutalSearch?keyword=%s'%idKG
@@ -51,6 +54,7 @@ def getIdByName(keyword):
     try:
         response = requests.get(url)    
         if response.status_code == 200:
+            utils.update_local_kgs_spnapshot()
             print("Connection to API successful and data recovered")
             response = response.json()
             results = response.get('results')
@@ -62,8 +66,13 @@ def getIdByName(keyword):
                 kgfound.append((id,name))
             return kgfound
         else:
-            print("Connection failed")
-            return False
+            try: 
+                return utils.load_kgs_metadata_from_snap()
+            except:
+                return False 
     except:
-        print('Connection failed')
-        return False
+        try: 
+            return utils.load_kgs_metadata_from_snap()
+        except:
+            return False
+        

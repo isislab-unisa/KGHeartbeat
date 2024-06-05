@@ -24,6 +24,7 @@ import validators
 import shutil
 import urllib.request
 from urllib.parse import urlparse
+import json
 
 #PRINT THE METADATI OF A KG
 def printMetadatiKG(metadct):
@@ -1044,3 +1045,31 @@ def write_time(kg,time,metric,dimension,analysis_date):
     save_path = os.path.join(save_path, f"performance-{analysis_date}.txt")
     with open(save_path,'a') as file:
             file.write(f'{dimension} | {metric} for {kg} took {time}s\n')
+
+def update_local_kgs_spnapshot():
+    url = "http://www.isislab.it:12280/kgsearchengine/brutalsearch?"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        data = response.json()
+    
+    here = os.path.dirname(os.path.abspath(__file__))
+    save_path = os.path.join(here,'./API')
+    save_path = os.path.join(save_path,"kgs_metadata_snapshot.json")
+    with open(save_path, 'w') as json_file:
+        json.dump(data, json_file, indent=4)
+
+def load_kgs_metadata_from_snap():
+    here = os.path.dirname(os.path.abspath(__file__))
+    save_path = os.path.join(here,'./API')
+    save_path = os.path.join(save_path,"kgs_metadata_snapshot.json")
+    with open(save_path, 'r') as json_file:
+        kgs_metadata = json.load(json_file)
+        results = kgs_metadata.get('results')
+        kgfound = []
+        for i in range(len(results)):
+            d = results[i]
+            id = d.get('id')
+            name = d.get('title')
+            kgfound.append((id,name))
+        return kgfound
