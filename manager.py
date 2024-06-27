@@ -13,6 +13,7 @@ from score import Score
 import utils
 import gc
 import time
+import fromCSV_to_KG 
 
 useDB = False
 try : 
@@ -91,6 +92,7 @@ except FileNotFoundError:
 filename = date.today()
 filename = str(filename)
 OutputCSV.writeHeader(filename)
+OutputCSV.writeHeader(filename,include_dimensions=True)
 
 for i in range(len(toAnalyze)):
     start_analysis = time.time()
@@ -107,7 +109,9 @@ for i in range(len(toAnalyze)):
     end_analysis = time.time()
     utils.write_time(toAnalyze[i][1],end_analysis-start_analysis,'--- Analysis','INFO',filename)
     csv = OutputCSV(kg,toAnalyze)
+    csv_with_dim = OutputCSV(kg,toAnalyze)
     csv.writeRow(filename)
+    csv_with_dim.writeRow(filename,include_dimensions=True)
     print(f"KG score: {kg.extra.score}")
     if(useDB == True):
         mongo_interface = DBinterface()
@@ -121,3 +125,6 @@ end = time.time()
 with open('performance.txt','a') as file:
         file.write(f'\n--- Total time for analysis:{end-start}s ---')
         file.write(f'\n--- Total time for analysis:{end-start / 3600} hours ---')
+
+
+fromCSV_to_KG.convert_to_kg(filename + '_with_dimensions')
