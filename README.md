@@ -74,6 +74,10 @@ Below is a graph showing the quality dimensions covered by KGHeartbeat and the p
 
 ![Quality metrics covered by KGHeartbeat](quality_metrics.png)
 
+
+The following figure shows the percentage of sizes and categories covered by KGHeartBeat.
+![Quality category and quality dimensions covered by KGHeartbeat](./img/dimension_and_metrics_coverage.png)
+
 ## Examples
 1. [What are the best KGs for automatic consumption in the context of cultural heritage?](./examples/README.md#1-what-are-the-best-kgs-for-automatic-consumption-in-the-context-of-cultural-heritage)
 2. [What are the best 10 KGs in terms of Trust and Dataset dynamicity?](./examples/README.md#2-what-are-the-best-10-kgs-in-terms-of-trust-and-dataset-dynamicity)
