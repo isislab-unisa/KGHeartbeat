@@ -19,7 +19,7 @@ while True:
 def full_csv():
     here = os.path.dirname(os.path.abspath(__file__))
     p = Path(here)
-    files = list(p.glob('*.csv'))
+    files = [file for file in p.glob('*.csv') if '_with_dimensions.csv' not in file.name]
     for file in files:
         file_name = file.stem
         filename = str(file_name)
