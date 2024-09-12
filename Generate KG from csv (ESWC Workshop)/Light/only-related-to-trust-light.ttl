@@ -1,0 +1,59 @@
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix : <http://example.org/kg/> .
+
+:dbpediafr
+    a dcat:Dataset ;
+    dcterms:title "DBpedia in French"
+    .
+
+:dbpediafr
+    dqv:hasQualityMeasurement :dbpediafrPageRank, :dbpediafrCreationDate
+    .
+
+:dbpediafrPageRank
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :pageRankMetric ;
+    dqv:value "0.0009"^^xsd:float
+    .
+
+:dbpediafrCreationDate
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :creationDateMetric ;
+    dqv:value "2023-06-01"^^xsd:dateTime
+    .
+
+#definition of dimensions and metrics
+
+:reputation
+    a dqv:Dimension ;
+    skos:prefLabel "Reputation"@en ;
+    skos:definition "Reputation refers to  the reputation of the dataset."@en ; 
+    dqv:inCategory :trust
+    .
+
+:pageRankMetric 
+    a dqv:Metric ;
+    skos:definition "PageRank of the KG."@en ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :reputation 
+    .
+
+:currency
+    a dqv:Dimension ;
+    skos:prefLabel "Currency"@en ;
+    skos:definition "Currency refers to all the metric related to the time of the KG"@en ; 
+    dqv:inCategory :trust
+    .
+
+:creationDateMetric 
+    a dqv:Metric ;
+    skos:definition "KG creation date"@en ;
+    dqv:expectedDataType xsd:dateTime;
+    dqv:inDimension :currency 
+    .

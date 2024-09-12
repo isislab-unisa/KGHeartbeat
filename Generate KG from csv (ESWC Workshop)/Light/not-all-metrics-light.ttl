@@ -1,0 +1,121 @@
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix : <http://example.org/kg/> .
+
+:dbpediafr
+    a dcat:Dataset ;
+    dcterms:title "DBpedia in French"
+    .
+
+:dbpediafr
+    dqv:hasQualityMeasurement :dbpediafrSparqlEndpointAvailabiliy, :dbpediafrFPvalue, :dbpediafrNumBN, :dbedpiafrSign, :dbpediafrClustering
+    .
+
+:dbpediafrSparqlEndpointAvailabiliy
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :sparqlEndpointMetric ;
+    dqv:value "Available"^^xsd:string
+    .
+
+:dbpediafrFPvalue
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :FPvalueMetric ;
+    dqv:value "1.0"^^xsd:float
+    .
+
+:dbpediafrNumBN
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :numBlankNdMetric ;
+    dqv:value "165390"^^xsd:integer
+    .
+
+:dbedpiafrSign
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :signMetric ;
+    dqv:value "False"^^xsd:boolean 
+    .
+
+:dbpediafrClustering
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :clusteringMetric ;
+    dqv:value "0.533"^^xsd:float 
+    .
+
+#definition of dimensions and metrics
+:availability
+    a dqv:Dimension ;
+    skos:prefLabel "Availability"@en ;
+    skos:definition "Availability of a dataset is the extent to which data (or some portion of it) is present, obtainable and ready for use."@en ; 
+    dqv:inCategory :accessibility
+    .
+
+:interlinking
+    a dqv:Dimension ;
+    skos:prefLabel "Interlinking"@en ;
+    skos:definition "Interlinking refers to the degree of connection of the KG."@en ; 
+    dqv:inCategory :accessibility
+    .
+
+:interpretability
+    a dqv:Dimension ;
+    skos:prefLabel "Interpretability"@en ;
+    skos:definition "Interpretability of the KG."@en ; 
+    dqv:inCategory :representational
+    .
+
+:accuracy
+    a dqv:Dimension ;
+    skos:prefLabel "Accuracy"@en ;
+    skos:definition "Accuracy of the KG."@en ; 
+    dqv:inCategory :intrinsic
+    .
+
+:verifiability
+    a dqv:Dimension ;
+    skos:prefLabel "Verifiability"@en ;
+    skos:definition "Verifiability of the KG."@en ; 
+    dqv:inCategory :trust
+    .
+
+:sparqlEndpointMetric
+    a dqv:Metric ;
+    skos:definition "It checks if the SPARQL endpoint is online."@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :availability
+    .
+
+:FPvalueMetric
+    a dqv:Metric ;
+    skos:definition "It checks if the functional property is violated"@en ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :accuracy
+    .
+
+:numBlankNdMetric
+    a dqv:Metric ;
+    skos:definition "Count the number of the Blank nodes in the KG"@en ;
+    dqv:expectedDataType xsd:int ;
+    dqv:inDimension :interpretability
+    .
+
+:signMetric
+    a dqv:Metric ;
+    skos:definition "Check if the RDF graph is signed"@en ;
+    dqv:expectedDataType xsd:boolean ;
+    dqv:inDimension :verifiability
+    .
+
+:clusteringMetric
+    a dqv:Metric ;
+    skos:definition "Check the coefficient clustering of the KG"@en ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :interlinking
+    .
