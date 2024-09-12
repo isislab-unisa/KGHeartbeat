@@ -127,4 +127,4 @@ with open('performance.txt','a') as file:
         file.write(f'\n--- Total time for analysis:{end-start / 3600} hours ---')
 
 
-fromCSV_to_KG.convert_to_kg(filename + '_with_dimensions')
+fromCSV_to_KG.convert_to_kg_code_from_llm(filename + '_with_dimensions')
