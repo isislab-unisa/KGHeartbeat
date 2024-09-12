@@ -1,0 +1,305 @@
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix : <http://example.org/kg/> .
+
+:dbpediafr
+    a dcat:Dataset ;
+    dcterms:title "DBpedia in French"
+    .
+
+:dbpediafr
+    dqv:hasQualityMeasurement :dbpediafrPageRank, :dbpediafrTitle, :dbpediafrDescription, :dbpediafrURI, :dbpediafrReliableProvider, :dbpediafrTrustValue, :dbpediafrVocabularies, :dbpediafrAuthorQ, :dbpediafrAuthorM, :dbpediafrContributor, :dbpediafrPublisher, :dbpediafrSources, :dbpediafrSign, :dbpediafrCreationDate, :dbpediafrModificationDate, :dbpediafrPercentageUpData, :dbpediafrTimePassed, :dbpediafrFrequency
+    .
+
+:dbpediafrPageRank
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :pageRank ;
+    dqv:value "0.0009"^^xsd:float
+    .
+
+:dbpediafrTitle
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :title ;
+    dqv:value "DBpedia in French"^^xsd:string
+    .
+
+:dbpediafrDescription
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :description ;
+    dqv:value "DBpedia in French dataset. Part of the DBpedia internationalisation effort. Data are extracted here from French speaking pages of wikipedia."^^xsd:string
+    .
+
+:dbpediafrURI
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :uri ;
+    dqv:value "http://fr.dbpedia.org"^^xsd:string
+    .
+
+:dbpediafrReliableProvider
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :reliableProvider ;
+    dqv:value "True"^^xsd:boolean
+    .
+
+:dbpediafrTrustValue
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :trustValue ;
+    dqv:value "1.0"^^xsd:float
+    .  
+
+:dbpediafrVocabularies
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :vocabularies ;
+    dqv:value "12"^^xsd:integer
+    . 
+
+:dbpediafrAuthorQ
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :authorQ ;
+    dqv:value "4"^^xsd:integer
+    . 
+
+:dbpediafrAuthorM
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :authorM ;
+    dqv:value "false"^^xsd:string
+    . 
+
+:dbpediafrContributor
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :contributor ;
+    dqv:value "2"^^xsd:integer
+    .
+
+:dbpediafrPublisher
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :publisher ;
+    dqv:value "21"^^xsd:integer
+    .
+
+:dbpediafrSources
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :sources ;
+    dqv:value "Web:http://fr.dbpedia.org Name:julien_cojan Email:contact@dbpedia.fr"^^xsd:string
+    .
+
+:dbpediafrSign
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :sign ;
+    dqv:value "false"^^xsd:boolean
+    .
+
+:dbpediafrCreationDate
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :creationDate ;
+    dqv:value "434"^^xsd:integer
+    .
+
+:dbpediafrModificationDate
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :modificationDate ;
+    dqv:value "2022-12-08"^^xsd:dateTime
+    .
+
+:dbpediafrPercentageUpData
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :percentageUpData ;
+    dqv:value "8.346020931169507e-07%"^^xsd:string
+    .
+
+:dbpediafrTimePassed
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :timePassed ;
+    dqv:value "418"^^xsd:integer
+    .
+
+:dbpediafrFrequency
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :frequency ;
+    dqv:value "[]"^^xsd:string
+    .
+
+
+#definition of dimensions and metrics
+
+:reputation
+    a dqv:Dimension ;
+    skos:prefLabel "Reputation"@en ;
+    skos:definition "Reputation refers to  the reputation of the dataset."@en ; 
+    dqv:inCategory :trust
+    .
+
+:currency
+    a dqv:Dimension ;
+    skos:prefLabel "Currency"@en ;
+    skos:definition "Currency refers to all the metric related to the time of the KG"@en ; 
+    dqv:inCategory :trust
+    .
+
+:believability
+    a dqv:Dimension ;
+    skos:prefLabel "Believability"@en ;
+    skos:definition "Believability refers to all the metric related to the info about the provenance of the KG"@en ; 
+    dqv:inCategory :trust
+    .
+
+:verifiability
+    a dqv:Dimension ;
+    skos:prefLabel "Verifiability"@en ;
+    skos:definition "Verifiability refers to all the metric related to the author of the KG"@en ; 
+    dqv:inCategory :trust
+    .
+
+:volatility
+    a dqv:Dimension ;
+    skos:prefLabel "Volatility"@en ;
+    skos:definition "Volatility refers to all the metric related time of the KG"@en ; 
+    dqv:inCategory :trust
+    .  
+
+:pageRank
+    a dqv:Metric ;
+    skos:definition "PageRank of the KG."@en ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :reputation 
+    .
+
+:title
+    a dqv:Metric ;
+    skos:definition "KG title"@en ;
+    dqv:expectedDataType xsd:string;
+    dqv:inDimension :believability
+    .
+
+:description
+    a dqv:Metric ;
+    skos:definition "KG description"@en ;
+    dqv:expectedDataType xsd:string;
+    dqv:inDimension :believability
+    .
+
+:uri
+    a dqv:Metric ;
+    skos:definition "KG URI"@en ;
+    dqv:expectedDataType xsd:string;
+    dqv:inDimension :believability
+    .
+
+:reliableProvider
+    a dqv:Metric ;
+    skos:definition "Check if the KG is in a list of reliable provider"@en ;
+    dqv:expectedDataType xsd:boolean;
+    dqv:inDimension :believability
+    .
+
+:trustValue
+    a dqv:Metric ;
+    skos:definition "KG's trust value"@en ;
+    dqv:expectedDataType xsd:float;
+    dqv:inDimension :believability
+    .
+
+:vocabularies
+    a dqv:Metric ;
+    skos:definition "The vocabularies used by the KG"@en ;
+    dqv:expectedDataType xsd:integer;
+    dqv:inDimension :verifiability
+    .
+
+:authorQ
+    a dqv:Metric ;
+    skos:definition "KG authors (recovered from the SPARQL query)"@en ;
+    dqv:expectedDataType xsd:integer;
+    dqv:inDimension :verifiability
+    .
+
+:authorM
+    a dqv:Metric ;
+    skos:definition "KG authors (recovered from the KG metadata)"@en ;
+    dqv:expectedDataType xsd:string;
+    dqv:inDimension :verifiability
+    .
+
+:contributor
+    a dqv:Metric ;
+    skos:definition "KG contributors"@en ;
+    dqv:expectedDataType xsd:string;
+    dqv:inDimension :verifiability
+    .
+
+:publisher
+    a dqv:Metric ;
+    skos:definition "KG publishers"@en ;
+    dqv:expectedDataType xsd:integer;
+    dqv:inDimension :verifiability
+    .
+
+:sign
+    a dqv:Metric ;
+    skos:definition "Check if there is a Signature in the KG"@en ;
+    dqv:expectedDataType xsd:boolean;
+    dqv:inDimension :verifiability
+    .
+
+:sources
+    a dqv:Metric ;
+    skos:definition "Check the provenance informationt of the KG"@en ;
+    dqv:expectedDataType xsd:string;
+    dqv:inDimension :verifiability
+    .
+
+:creationDate 
+    a dqv:Metric ;
+    skos:definition "KG creation date"@en ;
+    dqv:expectedDataType xsd:integer;
+    dqv:inDimension :currency 
+    .
+
+:modificationDate
+    a dqv:Metric ;
+    skos:definition "KG modification date"@en ;
+    dqv:expectedDataType xsd:dateTime;
+    dqv:inDimension :currency 
+    .
+
+:percentageUpData
+    a dqv:Metric ;
+    skos:definition "Pecentage of updated data"@en ;
+    dqv:expectedDataType xsd:string;
+    dqv:inDimension :currency 
+    .
+
+:timePassed
+    a dqv:Metric ;
+    skos:definition "Time since the last modification to the KG"@en ;
+    dqv:expectedDataType xsd:integer;
+    dqv:inDimension :currency 
+    .
+
+:frequency
+    a dqv:Metric ;
+    skos:definition "KG update frequency"@en ;
+    dqv:expectedDataType xsd:boolean;
+    dqv:inDimension :volatility 
+    .

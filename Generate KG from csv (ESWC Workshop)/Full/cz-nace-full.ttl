@@ -1,0 +1,2099 @@
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix : <http://example.org/kg/> .
+
+:cz-nace
+    a dcat:Dataset ;
+    dcterms:date "2024-06-26"^^xsd:date ;
+    dcterms:identifier "cz-nace" ;
+    dcterms:title "Czech statistical classification of economic activities in the European Community CZ-NACE" .
+
+:cz-nace
+    dqv:hasQualityMeasurement   
+    :cz-naceSparql-endpoint, 
+    :cz-naceSPARQL-endpoint_URL, 
+    :cz-naceAvailability-of-RDF-dump-metadata, 
+    :cz-naceAvailability-of-RDF-dump-query, 
+    :cz-naceURL-for-download-the-dataset, 
+    :cz-naceInactive-links, 
+    :cz-naceAge-of-data, 
+    :cz-naceModification-date, 
+    :cz-nacePercentage-of-data-updated, 
+    :cz-naceTime-elapsed-since-last-modification, 
+    :cz-naceHistorical-updates, 
+    :cz-naceLanguages-query, 
+    :cz-naceLanguages-metadata, 
+    :cz-naceSerialization-formats, 
+    :cz-naceAvailability-for-download-query, 
+    :cz-naceAvailability-for-download-metadata, 
+    :cz-naceUse-HTTPS, 
+    :cz-naceRequires-authentication, 
+    :cz-naceAverage-length-of-URIs-subject, 
+    :cz-naceStandard-deviation-length-URIs-subject, 
+    :cz-naceMin-length-URIs-subject, 
+    :cz-nace25th-percentile-length-URIs-subject, 
+    :cz-naceMedian-length-URIs-subject, 
+    :cz-nace75th-percentile-length-URIs-subject, 
+    :cz-naceMax-length-URIs-subject, 
+    :cz-naceAverage-length-of-URIs-predicate, 
+    :cz-naceStandard-deviation-length-URIs-predicate, 
+    :cz-naceMin-length-URIs-predicate, 
+    :cz-nace25th-percentile-length-URIs-predicate, 
+    :cz-naceMedian-length-URIs-predicate, 
+    :cz-nace75th-percentile-length-URIs-predicate, 
+    :cz-naceMax-length-URIs-predicate, 
+    :cz-naceAverage-length-of-URIs-object, 
+    :cz-naceStandard-deviation-length-URIs-object, 
+    :cz-naceMin-length-URIs-object, 
+    :cz-nace25th-percentile-length-URIs-object, 
+    :cz-naceMedian-length-URIs-object, 
+    :cz-nace75th-percentile-length-URIs-object, 
+    :cz-naceMax-length-URIs-object, 
+    :cz-naceUse-RDF-structures, 
+    :cz-naceLicense-machine-redeable-metadata, 
+    :cz-naceLicense-machine-redeable-query, 
+    :cz-naceLicense-human-redeable, 
+    :cz-naceMinimum-latency, 
+    :cz-nace25th-percentile-latency, 
+    :cz-naceMedian-latency, 
+    :cz-nace75th-percentile-latency, 
+    :cz-naceMaximum-latency, 
+    :cz-naceAverage-latency, 
+    :cz-naceStandard-deviation-of-latency, 
+    :cz-naceMinimum-throughput, 
+    :cz-nace25th-percentile-throughput, 
+    :cz-naceMedian-throughput, 
+    :cz-nace75th-percentile-throughput, 
+    :cz-naceMaximum-throughput, 
+    :cz-naceAverage-throughput, 
+    :cz-naceStandard-deviation-of-throughput, 
+    :cz-naceNumber-of-triples-metadata, 
+    :cz-naceNumber-of-triples-query, 
+    :cz-naceNumber-of-entities, 
+    :cz-naceNumber-of-entities-counted-with-regex, 
+    :cz-naceNumber-of-property, 
+    :cz-naceDataset-update-frequency, 
+    :cz-naceDegree-of-connection, 
+    :cz-naceClustering-coefficient, 
+    :cz-naceCentrality, 
+    :cz-naceNumber-of-sameAs-chains, 
+    :cz-naceExternal-links, 
+    :cz-nacePageRank, 
+    :cz-naceDescription, 
+    :cz-naceDataset-URL, 
+    :cz-naceIs-on-a-trusted-provider-list, 
+    :cz-naceTrust-value, 
+    :cz-naceVocabularies, 
+    :cz-naceAuthor-query, 
+    :cz-naceAuthor-metadata, 
+    :cz-naceContributor, 
+    :cz-nacePublisher, 
+    :cz-naceSources, 
+    :cz-naceSigned, 
+    :cz-naceNumber-of-triples, 
+    :cz-naceNumber-of-triples-linked, 
+    :cz-naceInterlinking-completeness, 
+    :cz-naceNew-vocabularies-defined-in-the-dataset, 
+    :cz-naceNew-terms-defined-in-the-dataset, 
+    :cz-naceNumber-of-labels-comments-present-on-the-data, 
+    :cz-nacePercentage-of-triples-with-labels, 
+    :cz-naceRegex-uri, 
+    :cz-nacePresence-of-example, 
+    :cz-naceNumber-of-blank-nodes, 
+    :cz-naceUses-RDF-structures, 
+    :cz-naceDeprecated-classes-properties-used, 
+    :cz-naceEntities-as-member-of-disjoint-class, 
+    :cz-naceTriples-with-misplaced-property-problem, 
+    :cz-naceTriples-with-misplaced-class-problem, 
+    :cz-naceOntology-Hijacking-problem, 
+    :cz-naceUndefined-class-used-without-declaration, 
+    :cz-naceUndefined-properties-used-without-declaration, 
+    :cz-naceExtensional-conciseness, 
+    :cz-naceIntensional-conciseness, 
+    :cz-naceTriples-with-empty-annotation-problem, 
+    :cz-naceTriples-with-white-space-in-annotation-at-the-beginning-or-at-the-end, 
+    :cz-naceTriples-with-malformed-data-type-literals-problem, 
+    :cz-naceFunctional-properties-with-inconsistent-values, 
+    :cz-naceInvalid-usage-of-inverse-functional-properties, 
+    :cz-naceNumber-of-triples-updated, 
+    :cz-naceScore, 
+    :cz-naceNormalized-score, 
+    :cz-naceLimited, 
+    :cz-naceOffline-dumps, 
+    :cz-naceUrl-file-VoID, 
+    :cz-naceAvailability-VoID-file, 
+    :cz-naceMinTPNoOff, 
+    :cz-naceMeanTPNoOff, 
+    :cz-naceMaxTPNoOff, 
+    :cz-naceSdTPNoOff, 
+    :cz-naceURIs-Deferenceability, 
+    :cz-naceAvailability-score, 
+    :cz-naceLicensing-score, 
+    :cz-naceInterlinking-score, 
+    :cz-nacePerformance-score, 
+    :cz-naceAccuracy-score, 
+    :cz-naceConsistency-score, 
+    :cz-naceConciseness-score, 
+    :cz-naceVerifiability-score, 
+    :cz-naceReputation-score, 
+    :cz-naceBelievability-score, 
+    :cz-naceCurrency-score, 
+    :cz-naceVolatility-score, 
+    :cz-naceCompleteness-score, 
+    :cz-naceAmount-of-data-score, 
+    :cz-naceRepresentational-Consistency-score, 
+    :cz-naceRepresentational-Conciseness-score, 
+    :cz-naceUnderstandability-score, 
+    :cz-naceInterpretability-score, 
+    :cz-naceVersatility-score, 
+    :cz-naceSecurity-score, 
+    :cz-naceSKOS-mapping-properties
+    .
+
+# Quality measurements for the dataset
+:cz-naceSparql-endpoint 
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Sparql-endpoint ;
+    dqv:value "Available"^^xsd:string
+    .
+
+:cz-naceSPARQL-endpoint_URL
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :SPARQL-endpoint_URL ;
+    dqv:value "https://linked.opendata.cz/sparql"^^xsd:string
+    .
+
+:cz-naceAvailability-of-RDF-dump-metadata
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Availability-of-RDF-dump-metadata ;
+    dqv:value "-1"^^xsd:integer
+    .
+
+:cz-naceAvailability-of-RDF-dump-query
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Availability-of-RDF-dump-query ;
+    dqv:value "true"^^xsd:boolean
+    .
+
+:cz-naceURL-for-download-the-dataset
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Availability-of-RDF-dump-query ;
+    dqv:value "14"^^xsd:integer
+    .
+
+:cz-naceInactive-links
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Inactive-links ;
+    dqv:value "true"^^xsd:boolean
+    .
+
+:cz-naceAge-of-data
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Age-of-data ;
+    dqv:value "665740"^^xsd:integer
+    .
+
+:cz-naceModification-date
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Modification-date ;
+    dqv:value "21/06/24"^^xsd:string
+    .
+
+:cz-nacePercentage-of-data-updated
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Percentage-of-data-updated ;
+    dqv:value "605479946.3"^^xsd:float
+    .
+
+:cz-naceTime-elapsed-since-last-modification
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Time-elapsed-since-last-modification ;
+    dqv:value "10"^^xsd:integer
+    .
+
+:cz-naceHistorical-updates
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Historical-updates ;
+    dqv:value "1973"^^xsd:integer
+    .
+
+:cz-naceLanguages-query
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Languages-query ;
+    dqv:value "0"^^xsd:integer
+    .
+
+:cz-naceLanguages-metadata
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Languages-metadata ;
+    dqv:value "{}"^^xsd:string
+    .
+
+:cz-naceSerialization-formats
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Serialization-formats ;
+    dqv:value "3"^^xsd:integer
+    .
+
+:cz-naceAvailability-for-download-query
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Availability-for-download-query ;
+    dqv:value "true"^^xsd:string
+    .
+
+:cz-naceAvailability-for-download-metadata
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Availability-for-download-metadata ;
+    dqv:value "-1"^^xsd:integer
+    .
+
+:cz-naceUse-HTTPS
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Use-HTTPS ;
+    dqv:value "false"^^xsd:boolean
+    .
+
+:cz-naceRequires-authentication
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Requires-authentication ;
+    dqv:value "false"^^xsd:boolean
+    .
+
+:cz-naceAverage-length-of-URIs-subject
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Average-length-of-URIs-subject ;
+    dqv:value "88.064294"^^xsd:float
+    .
+
+:cz-naceStandard-deviation-length-URIs-subject
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Standard-deviation-length-URIs-subject ;
+    dqv:value "39.30239398"^^xsd:float
+    .
+
+:cz-naceMin-length-URIs-subject
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Min-length-URIs-subject ;
+    dqv:value "15"^^xsd:integer
+    .
+
+:cz-nace25th-percentile-length-URIs-subject
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :25th-percentile-length-URIs-subject ;
+    dqv:value "60"^^xsd:integer
+    .
+
+:cz-naceMedian-length-URIs-subject
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Median-length-URIs-subject ;
+    dqv:value "90"^^xsd:integer
+    .
+
+:cz-nace75th-percentile-length-URIs-subject
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :75th-percentile-length-URIs-subject ;
+    dqv:value "91"^^xsd:integer
+    .
+
+:cz-naceMax-length-URIs-subject
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Max-length-URIs-subject ;
+    dqv:value "216"^^xsd:integer
+    .
+
+:cz-naceAverage-length-of-URIs-predicate
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Average-length-of-URIs-predicate ;
+    dqv:value "55.650837988826815"^^xsd:float
+    .
+
+:cz-naceStandard-deviation-length-URIs-predicate
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Standard-deviation-length-URIs-predicate ;
+    dqv:value "14.87549396"^^xsd:float
+    .
+
+:cz-naceMin-length-URIs-predicate
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Min-length-URIs-predicate ;
+    dqv:value "21"^^xsd:integer
+    .
+
+:cz-nace25th-percentile-length-URIs-predicate
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :25th-percentile-length-URIs-predicate ;
+    dqv:value "45"^^xsd:integer
+    .
+
+:cz-naceMedian-length-URIs-predicate
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Median-length-URIs-predicate ;
+    dqv:value "56"^^xsd:integer
+    .
+
+:cz-nace75th-percentile-length-URIs-predicate
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :75th-percentile-length-URIs-predicate ;
+    dqv:value "67"^^xsd:integer
+    .
+
+:cz-naceMax-length-URIs-predicate
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Max-length-URIs-predicate ;
+    dqv:value "111"^^xsd:integer
+    .
+
+:cz-naceAverage-length-of-URIs-object
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Average-length-of-URIs-object ;
+    dqv:value "67.24015880895587"^^xsd:float
+    .
+
+:cz-naceStandard-deviation-length-URIs-object
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Standard-deviation-length-URIs-object ;
+    dqv:value "42.10802736"^^xsd:float
+    .
+
+:cz-naceMin-length-URIs-object
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Min-length-URIs-object ;
+    dqv:value "8"^^xsd:integer
+    .
+
+:cz-nace25th-percentile-length-URIs-object
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :25th-percentile-length-URIs-object ;
+    dqv:value "16"^^xsd:integer
+    .
+
+:cz-naceMedian-length-URIs-object
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Median-length-URIs-object ;
+    dqv:value "99"^^xsd:integer
+    .
+
+:cz-nace75th-percentile-length-URIs-object
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :75th-percentile-length-URIs-object ;
+    dqv:value "103"^^xsd:integer
+    .
+
+:cz-naceMax-length-URIs-object
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Max-length-URIs-object ;
+    dqv:value "254"^^xsd:integer
+    .
+
+:cz-naceUse-RDF-structures
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Use-RDF-structures ;
+    dqv:value "true"^^xsd:boolean
+    .
+
+:cz-naceLicense-machine-redeable-metadata
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :License-machine-redeable-metadata ;
+    dqv:value "Other Open - other-open -"^^xsd:string
+    .
+
+:cz-naceLicense-machine-redeable-query
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :License-machine-redeable-query ;
+    dqv:value "https://creativecommons.org/licenses/by/4.0/"^^xsd:string
+    .
+
+:cz-naceLicense-human-redeable
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :License-human-redeable ;
+    dqv:value "true"^^xsd:boolean
+    .
+
+:cz-naceMinimum-latency
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Minimum-latency ;
+    dqv:value "0.101"^^xsd:float
+    .
+
+:cz-nace25th-percentile-latency
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :25th-percentile-latency ;
+    dqv:value "0.128"^^xsd:float
+    .
+
+:cz-naceMedian-latency
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Median-latency ;
+    dqv:value "0.129"^^xsd:float
+    .
+
+:cz-nace75th-percentile-latency
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :75th-percentile-latency ;
+    dqv:value "0.14"^^xsd:float
+    .
+
+:cz-naceMaximum-latency
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Maximum-latency ;
+    dqv:value "0.143"^^xsd:float
+    .
+
+:cz-naceAverage-latency
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Average-latency ;
+    dqv:value "0.128"^^xsd:float
+    .
+
+:cz-naceStandard-deviation-of-latency
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Standard-deviation-of-latency ;
+    dqv:value "0.015"^^xsd:float
+    .
+
+:cz-naceMinimum-throughput
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Minimum-throughput ;
+    dqv:value "8"^^xsd:integer
+    .
+
+:cz-nace25th-percentile-throughput
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :25th-percentile-throughput ;
+    dqv:value "8"^^xsd:integer
+    .
+
+:cz-naceMedian-throughput
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Median-throughput ;
+    dqv:value "8"^^xsd:integer
+    .
+
+:cz-nace75th-percentile-throughput
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :75th-percentile-throughput ;
+    dqv:value "8.75"^^xsd:float
+    .
+
+:cz-naceMaximum-throughput
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Maximum-throughput ;
+    dqv:value "9"^^xsd:integer
+    .
+
+:cz-naceAverage-throughput
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Average-throughput ;
+    dqv:value "8.3"^^xsd:float
+    .
+
+:cz-naceStandard-deviation-of-throughput
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Standard-deviation-of-throughput ;
+    dqv:value "0.458257569"^^xsd:float
+    .
+
+:cz-naceNumber-of-triples-metadata
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Number-of-triples-metadata ;
+    dqv:value "7991"^^xsd:integer
+    .
+
+:cz-naceNumber-of-triples-query
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Number-of-triples-query ;
+    dqv:value "611085474"^^xsd:integer
+    .
+
+:cz-naceNumber-of-entities
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Number-of-entities ;
+    dqv:value "8376554"^^xsd:integer
+    .
+
+:cz-naceNumber-of-entities-counted-with-regex
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Number-of-entities-counted-with-regex ;
+    dqv:value "0"^^xsd:integer
+    .
+
+:cz-naceNumber-of-property
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Number-of-property ;
+    dqv:value "2169"^^xsd:integer
+    .
+
+:cz-naceDataset-update-frequency
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Dataset-update-frequency ;
+    dqv:value "12"^^xsd:integer
+    .
+
+:cz-naceDegree-of-connection
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Degree-of-connection ;
+    dqv:value "[]"^^xsd:string
+    .
+
+:cz-naceClustering-coefficient
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Clustering-coefficient ;
+    dqv:value "{}"^^xsd:string
+    .
+
+:cz-naceCentrality
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Centrality ;
+    dqv:value "5345991"^^xsd:integer
+    .
+
+:cz-naceNumber-of-sameAs-chains
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Number-of-sameAs-chains ;
+    dqv:value "[]"^^xsd:string
+    .
+
+:cz-naceExternal-links
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :External-links ;
+    dqv:value "None"^^xsd:string
+    .
+
+:cz-nacePageRank
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :PageRank ;
+    dqv:value "Czech statistical classification of economic activities in the European Community CZ-NACE"^^xsd:string
+    .
+
+:cz-naceDescription
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Description ;
+    dqv:value "https://linked.opendata.cz/zdroje/datové-sady/čsú/číselníky/cz-nace"^^xsd:string
+    .
+
+:cz-naceDataset-URL
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Dataset-URL ;
+    dqv:value "https://linked.opendata.cz/zdroje/datové-sady/čsú/číselníky/cz-nace"^^xsd:string
+    .
+
+:cz-naceIs-on-a-trusted-provider-list
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Is-on-a-trusted-provider-list ;
+    dqv:value "True"^^xsd:boolean
+    .
+
+:cz-naceTrust-value
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Trust-value ;
+    dqv:value "1"^^xsd:integer
+    .
+
+:cz-naceVocabularies
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Vocabularies ;
+    dqv:value "17"^^xsd:integer
+    .
+
+:cz-naceAuthor-query
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Author-query ;
+    dqv:value "820"^^xsd:string
+    .
+
+:cz-naceAuthor-metadata
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Author-metadata ;
+    dqv:value "Name: Jakub Klímek, Email:klimek@opendata.cz"^^xsd:string
+    .
+
+:cz-naceContributor
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Contributor ;
+    dqv:value "5"^^xsd:integer
+    .
+
+:cz-nacePublisher
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Publisher ;
+    dqv:value "507"^^xsd:string
+    .
+
+:cz-naceSources
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Sources ;
+    dqv:value "Web:https://linked.opendata.cz/zdroje/datové-sady/čsú/číselníky/cz-nace Name:Český statistický úřad Email:klimek@opendata.cz"^^xsd:string
+    .
+
+:cz-naceSigned
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Signed ;
+    dqv:value "False"^^xsd:boolean
+    .
+
+:cz-naceNumber-of-triples
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Number-of-triples ;
+    dqv:value "611085474"^^xsd:integer
+    .
+
+:cz-naceNumber-of-triples-linked
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Number-of-triples-linked ;
+    dqv:value "0"^^xsd:integer
+    .
+
+:cz-naceInterlinking-completeness
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Interlinking-completeness ;
+    dqv:value "0"^^xsd:integer
+    .
+
+:cz-naceNew-vocabularies-defined-in-the-dataset
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :New-vocabularies-defined-in-the-dataset ;
+    dqv:value "4"^^xsd:integer
+    .
+
+:cz-naceNew-terms-defined-in-the-dataset
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :New-terms-defined-in-the-dataset ;
+    dqv:value "307"^^xsd:float
+    .
+
+:cz-naceNumber-of-labels-comments-present-on-the-data
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Number-of-labels-comments-present-on-the-data ;
+    dqv:value "27446003"^^xsd:integer
+    .
+
+:cz-nacePercentage-of-triples-with-labels
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Percentage-of-triples-with-labels ;
+    dqv:value "0.49"^^xsd:float
+    .
+
+:cz-naceRegex-uri
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Regex-uri ;
+    dqv:value "3"^^xsd:integer
+    .
+
+:cz-nacePresence-of-example
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Presence-of-example ;
+    dqv:value "True"^^xsd:boolean
+    .
+
+:cz-naceNumber-of-blank-nodes
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Number-of-blank-nodes ;
+    dqv:value "5793872"^^xsd:float
+    .
+
+:cz-naceUses-RDF-structures
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Uses-RDF-structures ;
+    dqv:value "True"^^xsd:boolean
+    .
+
+:cz-naceDeprecated-classes-properties-used
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Deprecated-classes-properties-used ;
+    dqv:value "9.66E+14"^^xsd:float
+    .
+
+:cz-naceEntities-as-member-of-disjoint-class
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Entities-as-member-of-disjoint-class ;
+    dqv:value "23398643404"^^xsd:integer
+    .
+
+:cz-naceTriples-with-misplaced-property-problem
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Triples-with-misplaced-property-problem ;
+    dqv:value "1.0"^^xsd:float
+    .
+
+:cz-naceTriples-with-misplaced-class-problem
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Triples-with-misplaced-class-problem ;
+    dqv:value "1.0"^^xsd:float
+    .
+
+:cz-naceOntology-Hijacking-problem
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Ontology-Hijacking-problem ;
+    dqv:value "True"^^xsd:boolean
+    .
+
+:cz-naceUndefined-class-used-without-declaration
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Undefined-class-used-without-declaration ;
+    dqv:value "0.676509"^^xsd:float
+    .
+
+:cz-naceUndefined-properties-used-without-declaration
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Undefined-properties-used-without-declaration ;
+    dqv:value "0.9947289156626506"^^xsd:float
+    .
+
+:cz-naceExtensional-conciseness
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Extensional-conciseness ;
+    dqv:value "0.676509 out of 1000000 triples considered"^^xsd:string
+    .
+
+:cz-naceIntensional-conciseness
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Intensional-conciseness ;
+    dqv:value "0.9947289156626506 out of 1328 triples considered"^^xsd:string
+    .
+
+:cz-naceTriples-with-empty-annotation-problem
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Triples-with-empty-annotation-problem ;
+    dqv:value "1.0"^^xsd:float
+    .
+
+:cz-naceTriples-with-white-space-in-annotation-at-the-beginning-or-at-the-end
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Triples-with-white-space-in-annotation-at-the-beginning-or-at-the-end ;
+    dqv:value "9,95911E+15"^^xsd:string
+    .
+
+:cz-naceTriples-with-malformed-data-type-literals-problem
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Triples-with-malformed-data-type-literals-problem ;
+    dqv:value "370"^^xsd:integer
+    .
+
+:cz-naceFunctional-properties-with-inconsistent-values
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Functional-properties-with-inconsistent-values ;
+    dqv:value "1.0"^^xsd:float
+    .
+
+:cz-naceInvalid-usage-of-inverse-functional-properties
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Invalid-usage-of-inverse-functional-properties ;
+    dqv:value "1.0"^^xsd:float
+    .
+
+:cz-naceNumber-of-triples-updated
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Number-of-triples-updated ;
+    dqv:value "370"^^xsd:integer
+    .
+
+:cz-naceScore
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Score ;
+    dqv:value "0.58"^^xsd:float
+    .
+
+:cz-naceNormalized-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Normalized-score ;
+    dqv:value "50.0"^^xsd:float
+    .
+
+:cz-naceLimited
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Limited ;
+    dqv:value "True"^^xsd:boolean
+    .
+
+:cz-naceOffline-dumps
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Offline-dumps ;
+    dqv:value "107"^^xsd:integer
+    .
+
+:cz-naceUrl-file-VoID
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Url-file-VoID ;
+    dqv:value "https://linked.opendata.cz/sparql?query=DESCRIBE+%3Chttps%3A%2F%2Flinked.opendata.cz%2Fzdroje%2Fdatov%C3%A9-sady%2F%C4%8Ds%C3%BA%2F%C4%8D%C3%ADseln%C3%ADky%2Fcz-nace%2Fdistribution%3E&output=text%2Fturtle"^^xsd:string
+    .
+
+:cz-naceAvailability-VoID-file
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Availability-VoID-file ;
+    dqv:value "VoID file available"^^xsd:string
+    .
+
+:cz-naceMinTPNoOff
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :MinTPNoOff ;
+    dqv:value "8"^^xsd:float
+    .
+
+:cz-naceMeanTPNoOff
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :MeanTPNoOff ;
+    dqv:value "8.3"^^xsd:float
+    .
+
+:cz-naceMaxTPNoOff
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :MaxTPNoOff ;
+    dqv:value "9"^^xsd:integer
+    .
+
+:cz-naceSdTPNoOff
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :SdTPNoOff ;
+    dqv:value "0.45"^^xsd:float
+    .
+
+:cz-naceURIs-Deferenceability
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :URIs-Deferenceability ;
+    dqv:value "0.93"^^xsd:float
+    .
+
+:cz-naceAvailability-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Availability-score ;
+    dqv:value "0.52"^^xsd:float
+    .
+
+:cz-naceLicensing-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Licensing-score ;
+    dqv:value "1.0"^^xsd:float
+    .
+
+:cz-naceInterlinking-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Interlinking-score ;
+    dqv:value "1.749E+16"^^xsd:float
+    .
+
+:cz-nacePerformance-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Performance-score ;
+    dqv:value "1.0"^^xsd:float
+    .
+
+:cz-naceAccuracy-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Accuracy-score ;
+    dqv:value "0.4"^^xsd:float
+    .
+
+:cz-naceConsistency-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Consistency-score ;
+    dqv:value "0.5"^^xsd:float
+    .
+
+:cz-naceConciseness-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Conciseness-score ;
+    dqv:value "0.8"^^xsd:float
+    .
+
+:cz-naceVerifiability-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Verifiability-score ;
+    dqv:value "0.8"^^xsd:float
+    .
+
+:cz-naceReputation-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Reputation-score ;
+    dqv:value "0"^^xsd:float
+    .
+
+:cz-naceBelievability-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Believability-score ;
+    dqv:value "1.0"^^xsd:float
+    .
+
+:cz-naceCurrency-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Currency-score ;
+    dqv:value "0.5"^^xsd:float
+    .
+
+:cz-naceVolatility-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Volatility-score ;
+    dqv:value "1.0"^^xsd:float
+    .
+
+:cz-naceCompleteness-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Completeness-score ;
+    dqv:value "0"^^xsd:float
+    .
+
+:cz-naceAmount-of-data-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Amount-of-data-score ;
+    dqv:value "6.66667E+15"^^xsd:float
+    .
+
+:cz-naceRepresentational-Consistency-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Representational-Consistency-score ;
+    dqv:value "1.59645E+16"^^xsd:float
+    .
+
+:cz-naceRepresentational-Conciseness-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Representational-Conciseness-score ;
+    dqv:value "5.00512E+15"^^xsd:float
+    .
+
+:cz-naceUnderstandability-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Understandability-score ;
+    dqv:value "5.11228E+15"^^xsd:float
+    .
+
+:cz-naceInterpretability-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Interpretability-score ;
+    dqv:value "9.96151E+15"^^xsd:float
+    .
+
+:cz-naceVersatility-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Versatility-score ;
+    dqv:value "6.67E+15"^^xsd:float
+    .
+
+:cz-naceSecurity-score
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :Security-score ;
+    dqv:value "0.5"^^xsd:float
+    .
+
+:cz-naceSKOS-mapping-properties
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :cz-nace ;
+    dqv:isMeasurementOf :SKOS-mapping-properties ;
+    dqv:value "94"^^xsd:integer
+    .
+
+:licensing
+    a dqv:Dimension ;
+    skos:prefLabel "Licensing"@en ;
+    skos:definition "Metric related to the license of the dataset."@en ; 
+    dqv:inCategory :accessibility
+    .
+
+:interlinking
+    a dqv:Dimension ;
+    skos:prefLabel "Interlinking"@en ;
+    skos:definition "Metric related to the degree of connection of the KG"@en ; 
+    dqv:inCategory :accessibility
+    .
+
+:security
+    a dqv:Dimension ;
+    skos:prefLabel "Security"@en ;
+    skos:definition "Metric related to the security of the dataset."@en ; 
+    dqv:inCategory :accessibility
+    .
+
+:accuracy
+    a dqv:Dimension ;
+    skos:prefLabel "Accuracy"@en ;
+    skos:definition "Metric related to the KG's semantic accuracy"@en ; 
+    dqv:inCategory :intrinsic
+    .
+
+:believability
+    a dqv:Dimension ;
+    skos:prefLabel "Believability"@en ;
+    skos:definition "Metric related to the provenance of the KG"@en ; 
+    dqv:inCategory :accessibility
+    .
+
+:verifiability
+    a dqv:Dimension ;
+    skos:prefLabel "Verifiability"@en ;
+    skos:definition "Metric related to the autenticity of the dataset."@en ; 
+    dqv:inCategory :accessibility
+    .
+
+:representational-conciseness
+    a dqv:Dimension ;
+    skos:prefLabel "Presentational-conciseness"@en ;
+    skos:definition "Metric related to the conciseness of the dataset."@en ; 
+    dqv:inCategory :accessibility
+    .
+
+:interpretability
+    a dqv:Dimension ;
+    skos:prefLabel "Interpretability"@en ;
+    skos:definition "Metric related to the interpretability of the dataset."@en ; 
+    dqv:inCategory :accessibility
+    .
+
+:interoperability
+    a dqv:Dimension ;
+    skos:prefLabel "Interoperability"@en ;
+    skos:definition "Metrics related to the interoperability of the dataset."@en ;
+    dqv:inCategory :representational
+    .
+
+:conciseness
+    a dqv:Dimension ;
+    skos:prefLabel "Conciseness"@en ;
+    skos:definition "Metrics related to the conciseness of the dataset."@en ;
+    dqv:inCategory :intrinsic
+    .
+
+:reputation
+    a dqv:Dimension ;
+    skos:prefLabel "Reputation"@en ;
+    skos:definition "Metrics related to the reputation of the dataset."@en ;
+    dqv:inCategory :trust
+    .
+
+:volatility
+    a dqv:Dimension ;
+    skos:prefLabel "Volatility"@en ;
+    skos:definition "Metrics related to the volatility of the dataset."@en ;
+    dqv:inCategory :datasetDynamicity
+    .
+
+:performance 
+    a dqv:Dimension ;
+    skos:prefLabel "Performance"@en ;
+    skos:definition "Metrics related to the performance of the dataset."@en ;
+    dqv:inCategory :accessibility
+    .
+
+:consistency 
+    a dqv:Dimension ;
+    skos:prefLabel "Consistenct"@en ;
+    skos:definition "Metrics related to the consistency of the dataset."@en ;
+    dqv:inCategory :intrinsic
+    .
+
+:currency 
+    a dqv:Dimension ;
+    skos:prefLabel "Currency"@en ;
+    skos:definition "Metrics related to the currency of the dataset."@en ;
+    dqv:inCategory :datasetDynamicity
+    .
+
+:amout-of-data
+    a dqv:Dimension ;
+    skos:prefLabel "Amount of data"@en ;
+    skos:definition "Metrics related to the dimension of the dataset."@en ;
+    dqv:inCategory :contextual
+    .
+
+:security
+    a dqv:Dimension ;
+    skos:prefLabel "Security"@en ;
+    skos:definition "Metrics related to the security of the dataset."@en ;
+    dqv:inCategory :accessibility
+    .
+
+:completeness
+    a dqv:Dimension ;
+    skos:prefLabel "Completeness"@en ;
+    skos:definition "Metrics related to the completeness of the dataset."@en ;
+    dqv:inCategory :contextual
+    .
+
+:understandability
+    a dqv:Dimension ;
+    skos:prefLabel "Understandability"@en ;
+    skos:definition "Metrics related to the understandability of the dataset."@en ;
+    dqv:inCategory :representational
+    .
+
+:extra
+    a dqv:Dimension ;
+    skos:prefLabel "Extra"@en ;
+    skos:definition "Metrics related to some extra information about the dataset."@en ;
+    .
+
+:Sparql-endpoint
+    a dqv:Metric ;
+    skos:definition "It checks if the SPARQL endpoint is online."@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :availability
+    .
+
+:Availability-of-RDF-dump-metadata
+    a dqv:Metric ;
+    skos:definition "It checks if the RDF dump in the metadata is online."@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :availability
+    .
+
+:Availability-of-RDF-dump-query
+    a dqv:Metric ;
+    skos:definition "It checks if the RDF dump in the query is online."@en ;
+    dqv:expectedDataType xsd:boolean ;
+    dqv:inDimension :availability
+    .
+
+:Inactive-links
+    a dqv:Metric ;
+    skos:definition "It checks if in the meatada of the KG there are any inactive links."@en ;
+    dqv:expectedDataType xsd:boolean ;
+    dqv:inDimension :availability
+    .
+
+:URIs-Deferenceability
+    a dqv:Metric ;
+    skos:definition "Measure the URI's Derefereaceability."@en ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :availability
+    .
+
+:VoidAvailability
+    a dqv:Metric ;
+    skos:definition "Check the VoID file status"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :availability
+    .
+
+:License-machine-redeable-metadata
+    a dqv:Metric ;
+    skos:definition "Check the License in the metadata"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :licensing
+    .
+
+:License-machine-redeable-query
+    a dqv:Metric ;
+    skos:definition "Check the License in the query"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :licensing
+    .
+
+:License-human-redeable 
+    a dqv:Metric ;
+    dqv:inDimension :licensing ;
+    dqv:expectedDataType xsd:string ;
+    .
+
+:Degree-of-connection
+    a dqv:Metric ;
+    skos:definition "Check the degree of the connection"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :interlinking
+    .
+
+:Clustering-coefficient
+    a dqv:Metric ;
+    skos:definition "Check the clustering coefficient"@en ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :interlinking
+    .
+
+:Centrality
+    a dqv:Metric ;
+    skos:definition "Check KG centrality"@en ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :interlinking
+    .
+
+:Number-of-sameAs-chains
+    a dqv:Metric ;
+    skos:definition "Check the number of sameAs chain"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :interlinking
+    .
+
+:SKOS-mapping-properties
+    a dqv:Metric ;
+    skos:definition "Check the numbers of skos matching properties"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :interlinking
+    .
+
+::Use-HTTPS
+    a dqv:Metric ;
+    skos:definition "Check the use of HTTPS in the SPARQL endpoint"@en ;
+    dqv:expectedDataType xsd:boolean ;
+    dqv:inDimension :security
+    .
+
+:Requires-authentication
+    a dqv:Metric ;
+    skos:definition "Check the if any kind of authentication is required"@en ;
+    dqv:expectedDataType xsd:boolean ;
+    dqv:inDimension :security
+    .
+
+:Minimum-latency 
+    a dqv:Metric ;
+    dqv:inDimension :performance ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Maximum-latency 
+    a dqv:Metric ;
+    dqv:inDimension :performance ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Average-latency 
+    a dqv:Metric ;
+    dqv:inDimension :performance ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Standard-deviation-of-latency 
+    a dqv:Metric ;
+    dqv:inDimension :performance ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Minimum-throughput 
+    a dqv:Metric ;
+    dqv:inDimension :performance ;
+    dqv:expectedDataType xsd:integer 
+    .
+
+:Maximum-throughput
+    a dqv:Metric ;
+    dqv:inDimension :performance ;
+    dqv:expectedDataType xsd:string 
+    .
+
+:Average-throughput
+    a dqv:Metric ;
+    dqv:inDimension :performance ; 
+    dqv:expectedDataType xsd:float 
+    .
+
+:Standard-deviation-of-throughput
+    a dqv:Metric ;
+    dqv:inDimension :performance ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:25th-percentile-latency
+    a dqv:Metric ;
+    dqv:inDimension :performance ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:75th-percentile-latency 
+    a dqv:Metric ;
+    dqv:inDimension :performance ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Median-latency
+    a dqv:Metric ;
+    dqv:inDimension :performance ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:25th-percentile-throughput 
+    a dqv:Metric ;
+    dqv:inDimension :performance ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:75th-percentile-throughput
+    a dqv:Metric ;
+    dqv:inDimension :performance ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Median-throughput
+    a dqv:Metric ;
+    dqv:inDimension :performance ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Triples-with-empty-annotation-problem
+    a dqv:Metric ;
+    skos:definition "Check if there are any empty annotation on the triples"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :accuracy
+    .
+
+:Triples-with-white-space-in-annotation-at-the-beginning-or-at-the-end
+    a dqv:Metric ;
+    skos:definition "Check if there are any white space annotation on the triples"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :availability
+    .
+
+:Triples-with-malformed-data-type-literals-problem
+    a dqv:Metric ;
+    skos:definition "Check if there are any mismatch with datatypes triples"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :accuracy
+    .
+
+:Functional-properties-with-inconsistent-values
+    a dqv:Metric ;
+    skos:definition "Check if there are triples that violates Functional Property"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :accuracy
+    .
+
+:Invalid-usage-of-inverse-functional-properties
+    a dqv:Metric ;
+    skos:definition "Check if there are triples that violates Inverse Functional Property"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :accuracy
+    .
+
+:Deprecated-classes-properties-used
+    a dqv:Metric ;
+    dqv:inDimension :consistency ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Entities-as-member-of-disjoint-class 
+    a dqv:Metric ;
+    dqv:inDimension :consistency ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Triples-with-misplaced-property-problem
+    a dqv:Metric ;
+    dqv:inDimension :consistency ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Triples-with-misplaced-class-problem 
+    a dqv:Metric ;
+    dqv:inDimension :consistency ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Ontology-Hijacking-problem 
+    a dqv:Metric ;
+    dqv:inDimension :consistency ;
+    dqv:expectedDataType xsd:boolean
+    .
+
+:Undefined-class-used-without-declaration 
+    a dqv:Metric ;
+    dqv:inDimension :consistency ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Undefined-properties-used-without-declaration 
+    a dqv:Metric ;
+    dqv:inDimension :consistency ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Extensional-conciseness 
+    a dqv:Metric ;
+    dqv:inDimension :conciseness ;
+    dqv:expectedDataType xsd:string 
+    .
+
+:Intensional-conciseness 
+    a dqv:Metric ;
+    dqv:inDimension :conciseness ;
+    dqv:expectedDataType xsd:string
+    .
+
+:PageRank
+    a dqv:Metric ;
+    dqv:inDimension :reputation ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:title
+    a dqv:Metric ;
+    skos:definition "Get the KG title"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :believability
+    .
+
+:Description
+    a dqv:Metric ;
+    skos:definition "Get the KG description"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :believability
+    .
+
+:Dataset-URL
+    a dqv:Metric ;
+    skos:definition "Check the License in the metadata"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :believability
+    .
+
+:Is-on-a-trusted-provider-list
+    a dqv:Metric ;
+    skos:definition "Check the License in the metadata"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :believability
+    .
+
+:Trust-value
+    a dqv:Metric ;
+    skos:definition "Trust value of the KG"@en ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :believability
+    .
+
+:Vocabularies
+    a dqv:Metric ;
+    skos:definition "Check the vocabularies used by the KG"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :verifiability
+    .
+
+:Author-query
+    a dqv:Metric ;
+    skos:definition "Check the KG authors indicated in the KG"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :verifiability
+    .
+
+:authorM
+    a dqv:Metric ;
+    skos:definition "Check the KG authors indicated in the KG metadata"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :verifiability
+    .
+
+:Author-metadata
+    a dqv:Metric ;
+    skos:definition "Check the KG's contributors"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :verifiability
+    .
+
+:Contributor
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :verifiability
+    .
+
+:Publisher
+    a dqv:Metric ;
+    skos:definition "Check the KG's publishers"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :verifiability
+    .
+
+:Sources
+    a dqv:Metric ;
+    skos:definition "Check sources of the KG"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :verifiability
+    .
+
+:Signed
+    a dqv:Metric ;
+    skos:definition "Check if there is a sign in the KG"@en ;
+    dqv:expectedDataType xsd:boolean ;
+    dqv:inDimension :verifiability
+    .
+
+:Age-of-data 
+    a dqv:Metric ;
+    dqv:inDimension :currency ;
+    dqv:expectedDataType xsd:int 
+    .
+
+:Modification-date
+    a dqv:Metric ;
+    dqv:inDimension :currency ;
+    dqv:expectedDataType xsd:string 
+    .
+
+:Percentage-of-data-updated
+    a dqv:Metric ;
+    dqv:inDimension :currency ;
+    dqv:expectedDataType xsd:string
+    .
+
+:Number-of-triples-updated
+    a dqv:Metric ;
+    dqv:inDimension :currency ;
+    dqv:expectedDataType xsd:string
+    .
+
+:Time-elapsed-since-last-modification 
+    a dqv:Metric ;
+    dqv:inDimension :currency ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Historical-updates 
+    a dqv:Metric ;
+    dqv:inDimension :currency ;
+    dqv:expectedDataType xsd:integer 
+    .
+
+::Dataset-update-frequency 
+    a dqv:Metric ;
+    dqv:inDimension :volatility ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Number-of-triples 
+    a dqv:Metric ;
+    dqv:inDimension :completeness ;
+    dqv:expectedDataType xsd:integer 
+    .
+
+:Number-of-triples-linked 
+    a dqv:Metric ;
+    dqv:inDimension :completeness ;
+    dqv:expectedDataType xsd:integer 
+    .
+
+:New-vocabularies-defined-in-the-dataset
+    a dqv:Metric ;
+    dqv:inDimension :interoperability ;
+    dqv:expectedDataType xsd:integer 
+    .
+
+:New-terms-defined-in-the-dataset
+    a dqv:Metric ;
+    dqv:inDimension :interoperability ;
+    dqv:expectedDataType xsd:integer 
+    .
+
+:Interlinking-completeness 
+    a dqv:Metric ;
+    dqv:inDimension :completeness ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Standard-deviation-length-URIs-subject
+    a dqv:Metric ;
+    dqv:inDimension :representational-conciseness ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Average-length-of-URIs-subject
+    a dqv:Metric ;
+    skos:definition "Check URI's subject length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:Average-length-of-URIs-object
+    a dqv:Metric ;
+    skos:definition "Check average URI's object length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:Standard-deviation-length-URIs-object
+    a dqv:Metric ;
+    skos:definition "Check the standard deviation URI's object length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:Average-length-of-URIs-predicate
+    a dqv:Metric ;
+    skos:definition "Check the URI's predicate average length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:Standard-deviation-length-URIs-predicate
+    a dqv:Metric ;
+    skos:definition "Check the URI's predicate standard deviation length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:Min-length-URIs-subject
+    a dqv:Metric ;
+    skos:definition "Check the URI's minimum length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:25th-percentile-length-URIs-subject
+    a dqv:Metric ;
+    skos:definition "Check the subject URI's 25th percentile length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:Median-length-URIs-subject 
+    a dqv:Metric ;
+    skos:definition "Check subject URI's median length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:75th-percentile-length-URIs-subject
+    a dqv:Metric ;
+    skos:definition "Check the subject URI's 25th percentile length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:Max-length-URIs-subject
+    a dqv:Metric ;
+    skos:definition "Check the subject URI's max length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:Min-length-URIs-object
+    a dqv:Metric ;
+    skos:definition "Check the min object length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:25th-percentile-length-URIs-object
+    a dqv:Metric ;
+    skos:definition "Check the object URI's 25th percentile"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:Median-length-URIs-object
+    a dqv:Metric ;
+    skos:definition "Check the object URI's median length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:75th-percentile-length-URIs-object
+    a dqv:Metric ;
+    skos:definition "Check the object URI's 75th percentile"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:Max-length-URIs-object
+    a dqv:Metric ;
+    skos:definition "Chec object URI's max length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:Min-length-URIs-predicate
+    a dqv:Metric ;
+    skos:definition "Check URI's predicate min length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:25th-percentile-length-URIs-predicate
+    a dqv:Metric ;
+    skos:definition "Check URI's predicate 25th percentile "@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:Median-length-URIs-predicate
+    a dqv:Metric ;
+    skos:definition "Check URI's predicate median length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:75th-percentile-length-URIs-predicate
+    a dqv:Metric ;
+    skos:definition "Check the URI's predicate 75th percentile length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:Max-length-URIs-predicate
+    a dqv:Metric ;
+    skos:definition "Check the URI's predicate max length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:Number-of-triples-metadata
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :amout-of-data
+    .
+
+:Number-of-triples-query
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :amout-of-data
+    .
+
+:Number-of-entities
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :amout-of-data
+    .
+
+:Number-of-entities-counted-with-regex
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :amout-of-data
+    .
+
+:Number-of-property
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :amout-of-data
+    .
+
+:Number-of-labels-comments-present-on-the-data
+    a dqv:Metric ;
+    dqv:inDimension :understandability ;
+    dqv:expectedDataType xsd:integer 
+    .
+
+:Percentage-of-triples-with-labels 
+    a dqv:Metric ;
+    dqv:inDimension :understandability ;
+    dqv:expectedDataType xsd:string 
+    .
+
+:Regex-uri
+    a dqv:Metric ;
+    dqv:inDimension :understandability ;
+    dqv:expectedDataType xsd:integer 
+    .
+
+:vocabularies 
+    a dqv:Metric ;
+    dqv:inDimension :understandability ;
+    dqv:expectedDataType xsd:integer 
+    .
+
+:Presence-of-example 
+    a dqv:Metric ;
+    dqv:inDimension :understandability ;
+    dqv:expectedDataType xsd:boolean 
+    .
+
+:Use-RDF-structures
+    a dqv:Metric ;
+    skos:definition "Check the if the RDF structures are used"@en ;
+    dqv:expectedDataType xsd:boolean ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:Languages-query
+    a dqv:Metric ;
+    dqv:inDimension :versatility ;
+    dqv:expectedDataType xsd:integer 
+    .
+
+:Languages-metadata
+    a dqv:Metric ;
+    dqv:inDimension :versatility ;
+    dqv:expectedDataType xsd:integer
+    .
+
+:Serialization-formats 
+    a dqv:Metric ;
+    dqv:inDimension :versatility ;
+    dqv:expectedDataType xsd:integer 
+    .
+
+:Availability-for-download-query
+    a dqv:Metric ;
+    dqv:inDimension :versatility ;
+    dqv:expectedDataType xsd:string 
+    .
+
+:Availability-for-download-metadata
+    a dqv:Metric ;
+    dqv:inDimension :versatility ;
+    dqv:expectedDataType xsd:string 
+    .
+
+:Number-of-blank-nodes
+    a dqv:Metric ;
+    skos:definition "Count the number of blank nodes in the KG"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :interpretability
+    .
+
+:Uses-RDF-structures 
+    a dqv:Metric ;
+    skos:definition "Check if the RDF structures are used in the KG"@en ;
+    dqv:expectedDataType xsd:boolean ;
+    dqv:inDimension :interpretability
+    .
+
+:Score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Normalized-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float 
+    .
+
+:Availability-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :availability
+    .
+
+:Licensing-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :licensing
+    .
+
+:Interlinking-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :interlinking
+    .
+
+:Performance-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :performance
+    .
+
+:Accuracy-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :accuracy
+    .
+
+:Consistency-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :consistency
+    .
+
+:Conciseness-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :conciseness
+    .
+
+:Verifiability-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :verifiability
+    .
+
+:Reputation-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :reputation
+    .
+
+:Believability-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :believability
+    .
+
+:Currency-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :currency
+    .
+
+:Volatility-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :volatility
+    .
+
+:Completeness-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :completeness
+    .
+
+:Amount-of-data-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :amout-of-data
+    .
+
+:Representational-Consistency-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :amout-of-data
+    .
+
+:Representational-Conciseness-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :interoperability
+    .
+
+:Understandability-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :understandability
+    .
+
+:Interpretability-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :interpretability
+    .
+
+:Versatility-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :versatility
+    .
+
+:Security-score
+    a dqv:Metric ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :security
+    .

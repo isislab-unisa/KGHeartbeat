@@ -1,0 +1,38 @@
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix : <http://example.org/kg/> .
+
+:dbpediafr
+    a dcat:Dataset ;
+    dcterms:title "DBpedia in French"
+    .
+
+:dbpediafr
+    dqv:hasQualityMeasurement :dbpediafrSparqlEndpointAvailabiliy
+    .
+
+:dbpediafrSparqlEndpointAvailabiliy
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :sparqlEndpointMetric ;
+    dqv:value "Available"^^xsd:string
+    .
+
+#definition of dimensions and metrics
+:availability
+    a dqv:Dimension ;
+    skos:prefLabel "Availability"@en ;
+    skos:definition "Availability of a dataset is the extent to which data (or some portion of it) is present, obtainable and ready for use."@en ; 
+    dqv:inCategory :accessibility
+    .
+
+
+:sparqlEndpointMetric
+    a dqv:Metric ;
+    skos:definition "It checks if the SPARQL endpoint is online."@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :availability
+    .

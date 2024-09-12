@@ -1,0 +1,108 @@
+ @prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix : <http://example.org/kg/> .
+
+:dbpediafr
+    a dcat:Dataset ;
+    dcterms:title "DBpedia in French"
+    .
+
+:dbpediafr
+    dqv:hasQualityMeasurement :dbpediafrSparqlEndpointAvailabiliy, :dbpediafrRDFDumpM, :dbpediafrRDFDumpQ, :dbpediafrInactiveLinks, :dbpediafrUriDef, :dbpediafrVoidAvailability
+    .
+
+:dbpediafrSparqlEndpointAvailabiliy
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :sparqlEndpoint ;
+    dqv:value "Available"^^xsd:string
+    .
+
+:dbpediafrRDFDumpM
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :RDFDumpM ;
+    dqv:value "-1"^^xsd:integer
+    .
+
+:dbpediafrRDFDumpQ
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :RDFDumpQ ;
+    dqv:value "true"^^xsd:boolean 
+    . 
+
+:dbpediafrInactiveLinks
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :inactiveLinks ;
+    dqv:value "-1"^^xsd:integer
+    .
+
+:dbpediafrUriDef
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :uriDef ;
+    dqv:value "0.66"^^xsd:float
+    .
+
+:dbpediafrVoidAvailability
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :voidAvailability ;
+    dqv:value "VoID file available"^^xsd:string
+    .
+
+#definition of dimensions and metrics
+:availability
+    a dqv:Dimension ;
+    skos:prefLabel "Availability"@en ;
+    skos:definition "Availability of a dataset is the extent to which data (or some portion of it) is present, obtainable and ready for use."@en ; 
+    dqv:inCategory :accessibility
+    .
+
+
+:sparqlEndpoint
+    a dqv:Metric ;
+    skos:definition "It checks if the SPARQL endpoint is online."@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :availability
+    .
+
+:RDFDumpM
+    a dqv:Metric ;
+    skos:definition "It checks if the RDF dump in the metadata is online."@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :availability
+    .
+
+:RDFDumpQ
+    a dqv:Metric ;
+    skos:definition "It checks if the RDF dump in the query is online."@en ;
+    dqv:expectedDataType xsd:boolean ;
+    dqv:inDimension :availability
+    .
+
+:InactiveLinks
+    a dqv:Metric ;
+    skos:definition "It checks if in the meatada of the KG there are any inactive links."@en ;
+    dqv:expectedDataType xsd:boolean ;
+    dqv:inDimension :availability
+    .
+
+:UriDef
+    a dqv:Metric ;
+    skos:definition "Measure the URI's Derefereaceability."@en ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :availability
+    .
+
+:VoidAvailability
+    a dqv:Metric ;
+    skos:definition "Check the VoID file status"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :availability
+    .

@@ -1,0 +1,857 @@
+ @prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix : <http://example.org/kg/> .
+
+:dbpediafr
+    a dcat:Dataset ;
+    dcterms:title "DBpedia in French"
+    .
+
+:dbpediafr
+    dqv:hasQualityMeasurement :dbpediafrSparqlEndpointAvailabiliy, :dbpediafrRDFDumpM, :dbpediafrRDFDumpQ, :dbpediafrInactiveLinks, :dbpediafrUriDef, :dbpediafrVoidAvailability, :dbpediafrLicenseMetadata, :dbpediafrLicenseQuery, :dbpediafrLicenseHR, :dbpediafrDegreeConnection, :dbpediafrClustering, :dbpediafrCentrality, :dbpediafrSameAs, :dbpediafrSkosMapping, :dbpediafrUseHTTPS, :dbpediafrRequiresAuth, :dbpediafrEmptyAnn, :dbpediafrWsA, :dbpediafrMalformedDataType, :dbpediafrFPvalue, :dbpediafrIFPValue, :dbpediafrTitle, :dbpediafrDescription, :dbpediafrURI, :dbpediafrReliableProvider, :dbpediafrTrustValue, :dbpediafrVocabularies, :dbpediafrAuthorQ, :dbpediafrAuthorM, :dbpediafrContributor, :dbpediafrPublisher, :dbpediafrSources, :dbpediafrSign, :dbpediafrUrisLengthSA, :dbpediafrUrisLengthSSd, :dbpediafrUrisLengthOA, :dbpediafrUrisLengthOSd, :dbpediafrUrisLengthPA, :dbpediafrUrisLengthPSd, :dbpediafrMinLengthS, :dbpediafrPercentile25LengthS, :dbpediafrMedianLengthS, :dbpediafrPercentile75LengthS, :dbpediafrMaxLengthS, :dbpediafrMinLengthO, :dbpediafrPercentile25LengthO, :dbpediafrMedianLengthO, :dbpediafrPercentile75LengthO, :dbpediafrMaxLengthO, :dbpediafrMinLengthP, :dbpediafr:percentile25LengthP, :dbpediafrMedianLengthP, :dbpediafrPercentile75LengthP, :dbpediafrMaxLengthP, :dbpediafrRDFStructures, :dbpediafrNumBN, :dbpediafrRDFStructuresInt  
+    .
+
+:dbpediafrSparqlEndpointAvailabiliy
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :sparqlEndpoint ;
+    dqv:value "Available"^^xsd:string
+    .
+
+:dbpediafrRDFDumpM
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :RDFDumpM ;
+    dqv:value "-1"^^xsd:integer
+    .
+
+:dbpediafrRDFDumpQ
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :RDFDumpQ ;
+    dqv:value "true"^^xsd:boolean 
+    . 
+
+:dbpediafrInactiveLinks
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :inactiveLinks ;
+    dqv:value "-1"^^xsd:integer
+    .
+
+:dbpediafrUriDef
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :uriDef ;
+    dqv:value "0.66"^^xsd:float
+    .
+
+:dbpediafrVoidAvailability
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :voidAvailability ;
+    dqv:value "VoID file available"^^xsd:string
+    .
+
+:dbpediaLicenseMetadata
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :licenseMetadata ;
+    dqv:value "Creative Commons Attribution Share-Alike - cc-by-sa -"^^xsd:string
+    .
+
+:dbpediafrLicenseQuery
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :licenseQuery ;
+    dqv:value "http://creativecommons.org/licenses/by-sa/3.0/"^^xsd:string
+    .
+
+:dbpediafrLicenseHR
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :licenseHR ;
+    dqv:value "true"^^xsd:boolean
+    .
+
+:dbpediafrDegreeConnection
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :degreeConnection ;
+    dqv:value "6"^^xsd:integer
+    .
+
+:dbpediafrClustering
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :clustering ;
+    dqv:value "0.533"^^xsd:float
+    .
+
+:dbpediafrCentrality
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :centrality ;
+    dqv:value "0.003"^^xsd:float
+    .
+
+:dbpediafrSameAs
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :sameAs ;
+    dqv:value "35035799"^^xsd:integer
+    .
+
+:dbpediafrSkosMapping
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :skosMapping ;
+    dqv:value "0"^^xsd:integer
+    .
+
+:dbpediafrUseHTTPS
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :useHTTPS ;
+    dqv:value "true"^^xsd:boolean
+    .
+
+:dbpediafrRequiresAuth
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :requiresAuth ;
+    dqv:value "false"^^xsd:boolean
+    .
+
+:dbpediafrEmptyAnn
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :emptyAnn ;
+    dqv:value "1.0"^^xsd:float
+    .
+
+:dbpediafrWsA
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :wSA ;
+    dqv:value "0.999952"^^xsd:float
+    .
+
+:dbpediafrMalformedDataType
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :malformedDataType ;
+    dqv:value "1.0"^^xsd:float
+    .
+
+:dbpediafrFPvalue
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :FPvalue ;
+    dqv:value "1.0"^^xsd:float
+    .
+
+:dbpediafrIFPValue
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :IFPValue ;
+    dqv:value "1.0"^^xsd:float
+    .
+
+:dbpediafrTitle
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :title ;
+    dqv:value "DBpedia in French"^^xsd:string
+    .
+
+:dbpediafrDescription
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :description ;
+    dqv:value "DBpedia in French dataset. Part of the DBpedia internationalisation effort. Data are extracted here from French speaking pages of wikipedia."^^xsd:string
+    .
+
+:dbpediafrURI
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :uri ;
+    dqv:value "http://fr.dbpedia.org"^^xsd:string
+    .
+
+:dbpediafrReliableProvider
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :reliableProvider ;
+    dqv:value "True"^^xsd:boolean
+    .
+
+:dbpediafrTrustValue
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :trustValue ;
+    dqv:value "1.0"^^xsd:float
+    .  
+
+:dbpediafrVocabularies
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :vocabularies ;
+    dqv:value "12"^^xsd:integer
+    . 
+
+:dbpediafrAuthorQ
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :authorQ ;
+    dqv:value "4"^^xsd:integer
+    . 
+
+:dbpediafrAuthorM
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :authorM ;
+    dqv:value "false"^^xsd:string
+    . 
+
+:dbpediafrContributor
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :contributor ;
+    dqv:value "2"^^xsd:integer
+    .
+
+:dbpediafrPublisher
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :publisher ;
+    dqv:value "21"^^xsd:integer
+    .
+
+:dbpediafrSources
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :sources ;
+    dqv:value "Web:http://fr.dbpedia.org Name:julien_cojan Email:contact@dbpedia.fr"^^xsd:string
+    .
+
+:dbpediafrSign
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :sign ;
+    dqv:value "false"^^xsd:boolean
+    .
+
+:dbpediafrUrisLengthSA
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :urisLengthSA ;
+    dqv:value "87.44283944283944 (out of 1000000 triples considered)"^^xsd:string
+    .
+
+:dbpediafrUrisLengthSSd
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :urisLengthSSd ;
+    dqv:value "22.9537984503837"^^xsd:string
+    .
+
+:dbpediafrUrisLengthOA
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :urisLengthOA ;
+    dqv:value "43,670859538784065 (out of 999999 triples considered)"^^xsd:string
+    .
+
+:dbpediafrUrisLengthOSd
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :urisLengthOSd;
+    dqv:value "14,8682773295921"^^xsd:string
+    .
+
+:dbpediafrUrisLengthPA
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :urisLengthPA;
+    dqv:value "42,89920250537126 (out of 27461 triples considered)"^^xsd:string
+    .
+
+:dbpediafrUrisLengthPSd
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :urisLengthPSd;
+    dqv:value "6,45653094983312"^^xsd:string
+    .
+
+:dbpediafrMinLengthS
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :minLengthS;
+    dqv:value "29"^^xsd:string
+    .
+
+:dbpediafrPercentile25LengthS
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :percentile25LengthS;
+    dqv:value "75.0"^^xsd:string
+    .
+
+:dbpediafrMedianLengthS
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :medianLengthS;
+    dqv:value "29"^^xsd:string
+    .
+
+:dbpediafrPercentile75LengthS
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :percentile75LengthS;
+    dqv:value "97.0"^^xsd:string
+    .
+
+:dbpediafrMaxLengthS
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :maxLengthS;
+    dqv:value "503"^^xsd:string
+    .
+
+:dbpediafrMinLengthO
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :minLengthO;
+    dqv:value "10"^^xsd:string
+    .
+
+:dbpediafrPercentile25LengthO
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :percentile25LengthO;
+    dqv:value "35.0"^^xsd:string
+    .
+
+:dbpediafrMedianLengthO
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :medianLengthO;
+    dqv:value "38,0"^^xsd:string
+    .
+
+:dbpediafrPercentile75LengthO
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :percentile75LengthO;
+    dqv:value "47,0"^^xsd:string
+    .
+
+:dbpediafrMaxLengthO
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :maxLengthO;
+    dqv:value "101"^^xsd:string
+    .
+
+:dbpediafrMinLengthP
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :minLengthP;
+    dqv:value "22"^^xsd:string
+    .
+
+:dbpediafr:percentile25LengthP
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :percentile25LengthP;
+    dqv:value "39,0"^^xsd:string
+    .
+
+:dbpediafrMedianLengthP
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :medianLengthP;
+    dqv:value "42,0"^^xsd:string
+    .
+
+
+:dbpediafrPercentile75LengthP
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :percentile75LengthP;
+    dqv:value "46,0"^^xsd:string
+    .
+
+:dbpediafrMaxLengthP
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :maxLengthP;
+    dqv:value "273"^^xsd:string
+    .
+
+:dbpediafrRDFStructures
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :RDFStructures;
+    dqv:value "true"^^xsd:boolean
+    .
+
+:dbpediafrNumBN
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :numBN;
+    dqv:value "165390"^^xsd:integer
+    .
+
+:dbpediafrRDFStructuresInt 
+   a dqv:QualityMeasurement ;
+    dqv:computedOn :dbpediafr ;
+    dqv:isMeasurementOf :RDFStructuresInt;
+    dqv:value "true"^^xsd:boolean
+    .
+
+#definition of dimensions and metrics
+:availability
+    a dqv:Dimension ;
+    skos:prefLabel "Availability"@en ;
+    skos:definition "Availability of a dataset is the extent to which data (or some portion of it) is present, obtainable and ready for use."@en ; 
+    dqv:inCategory :accessibility
+    .
+
+:licensing
+    a dqv:Dimension ;
+    skos:prefLabel "Licensing"@en ;
+    skos:definition "Metric related to the license of the dataset."@en ; 
+    dqv:inCategory :accessibility
+    .
+
+:interlinking
+    a dqv:Dimension ;
+    skos:prefLabel "Interlinking"@en ;
+    skos:definition "Metric related to the degree of connection of the KG"@en ; 
+    dqv:inCategory :accessibility
+    .
+
+:security
+    a dqv:Dimension ;
+    skos:prefLabel "Security"@en ;
+    skos:definition "Metric related to the security of the dataset."@en ; 
+    dqv:inCategory :accessibility
+    .
+
+:accuracy
+    a dqv:Dimension ;
+    skos:prefLabel "Accuracy"@en ;
+    skos:definition "Metric related to the KG's semantic accuracy"@en ; 
+    dqv:inCategory :intrinsic
+    .
+
+:believability
+    a dqv:Dimension ;
+    skos:prefLabel "Believability"@en ;
+    skos:definition "Metric related to the provenance of the KG"@en ; 
+    dqv:inCategory :accessibility
+    .
+
+:verifiability
+    a dqv:Dimension ;
+    skos:prefLabel "Verifiability"@en ;
+    skos:definition "Metric related to the autenticity of the dataset."@en ; 
+    dqv:inCategory :accessibility
+    .
+
+:representational-conciseness
+    a dqv:Dimension ;
+    skos:prefLabel "Presentational-conciseness"@en ;
+    skos:definition "Metric related to the conciseness of the dataset."@en ; 
+    dqv:inCategory :accessibility
+    .
+
+:interpretability
+    a dqv:Dimension ;
+    skos:prefLabel "Interpretability"@en ;
+    skos:definition "Metric related to the interpretability of the dataset."@en ; 
+    dqv:inCategory :accessibility
+    .
+
+:sparqlEndpoint
+    a dqv:Metric ;
+    skos:definition "It checks if the SPARQL endpoint is online."@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :availability
+    .
+
+:RDFDumpM
+    a dqv:Metric ;
+    skos:definition "It checks if the RDF dump in the metadata is online."@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :availability
+    .
+
+:RDFDumpQ
+    a dqv:Metric ;
+    skos:definition "It checks if the RDF dump in the query is online."@en ;
+    dqv:expectedDataType xsd:boolean ;
+    dqv:inDimension :availability
+    .
+
+:InactiveLinks
+    a dqv:Metric ;
+    skos:definition "It checks if in the meatada of the KG there are any inactive links."@en ;
+    dqv:expectedDataType xsd:boolean ;
+    dqv:inDimension :availability
+    .
+
+:UriDef
+    a dqv:Metric ;
+    skos:definition "Measure the URI's Derefereaceability."@en ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :availability
+    .
+
+:VoidAvailability
+    a dqv:Metric ;
+    skos:definition "Check the VoID file status"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :availability
+    .
+
+:LicenseMetadata
+    a dqv:Metric ;
+    skos:definition "Check the License in the metadata"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :availability
+    .
+
+:degreeConnection
+    a dqv:Metric ;
+    skos:definition "Check the degree of the connection"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :interlinking
+    .
+
+:clustering
+    a dqv:Metric ;
+    skos:definition "Check the clustering coefficient"@en ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :interlinking
+    .
+
+:centrality
+    a dqv:Metric ;
+    skos:definition "Check KG centrality"@en ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :interlinking
+    .
+
+:sameAs
+    a dqv:Metric ;
+    skos:definition "Check the number of sameAs chain"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :interlinking
+    .
+
+:skosMapping
+    a dqv:Metric ;
+    skos:definition "Check the numbers of skos matching properties"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :interlinking
+    .
+
+:useHTTPS
+    a dqv:Metric ;
+    skos:definition "Check the use of HTTPS in the SPARQL endpoint"@en ;
+    dqv:expectedDataType xsd:boolean ;
+    dqv:inDimension :security
+    .
+
+:requiresAuth
+    a dqv:Metric ;
+    skos:definition "Check the if any kind of authentication is required"@en ;
+    dqv:expectedDataType xsd:boolean ;
+    dqv:inDimension :security
+    .
+
+:emptyAnn
+    a dqv:Metric ;
+    skos:definition "Check if there are any empty annotation on the triples"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :accuracy
+    .
+
+:wSA
+    a dqv:Metric ;
+    skos:definition "Check if there are any white space annotation on the triples"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :availability
+    .
+
+:malformedDataType
+    a dqv:Metric ;
+    skos:definition "Check if there are any mismatch with datatypes triples"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :accuracy
+    .
+
+:FPvalue
+    a dqv:Metric ;
+    skos:definition "Check if there are triples that violates Functional Property"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :accuracy
+    .
+
+:IFPValue
+    a dqv:Metric ;
+    skos:definition "Check if there are triples that violates Inverse Functional Property"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :accuracy
+    .
+
+:title
+    a dqv:Metric ;
+    skos:definition "Get the KG title"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :believability
+    .
+
+:description
+    a dqv:Metric ;
+    skos:definition "Get the KG description"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :believability
+    .
+
+:uri
+    a dqv:Metric ;
+    skos:definition "Check the License in the metadata"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :believability
+    .
+
+:reliableProvider
+    a dqv:Metric ;
+    skos:definition "Check the License in the metadata"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :believability
+    .
+
+:trustValue
+    a dqv:Metric ;
+    skos:definition "Trust value of the KG"@en ;
+    dqv:expectedDataType xsd:float ;
+    dqv:inDimension :believability
+    .
+
+:vocabularies
+    a dqv:Metric ;
+    skos:definition "Check the vocabularies used by the KG"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :verifiability
+    .
+
+:authorQ
+    a dqv:Metric ;
+    skos:definition "Check the KG authors indicated in the KG"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :verifiability
+    .
+
+:authorM
+    a dqv:Metric ;
+    skos:definition "Check the KG authors indicated in the KG metadata"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :verifiability
+    .
+
+:contributor
+    a dqv:Metric ;
+    skos:definition "Check the KG's contributors"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :verifiability
+    .
+
+:publisher
+    a dqv:Metric ;
+    skos:definition "Check the KG's publishers"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :verifiability
+    .
+
+:sources
+    a dqv:Metric ;
+    skos:definition "Check sources of the KG"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :verifiability
+    .
+
+:sign
+    a dqv:Metric ;
+    skos:definition "Check if there is a sign in the KG"@en ;
+    dqv:expectedDataType xsd:boolean ;
+    dqv:inDimension :verifiability
+    .
+
+:urisLengthSA
+    a dqv:Metric ;
+    skos:definition "Check URI's subject length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:urisLengthOA
+    a dqv:Metric ;
+    skos:definition "Check average URI's object length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:urisLengthOSd
+    a dqv:Metric ;
+    skos:definition "Check the standard deviation URI's object length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:urisLengthPA
+    a dqv:Metric ;
+    skos:definition "Check the URI's predicate average length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:urisLengthPSd
+    a dqv:Metric ;
+    skos:definition "Check the URI's predicate standard deviation length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:minLengthS
+    a dqv:Metric ;
+    skos:definition "Check the URI's minimum length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:percentile25LengthS
+    a dqv:Metric ;
+    skos:definition "Check the subject URI's 25th percentile length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:medianLengthS 
+    a dqv:Metric ;
+    skos:definition "Check subject URI's median length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:percentile75LengthS
+    a dqv:Metric ;
+    skos:definition "Check the subject URI's 25th percentile length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:maxLengthS
+    a dqv:Metric ;
+    skos:definition "Check the subject URI's max length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:minLengthO
+    a dqv:Metric ;
+    skos:definition "Check the min object length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:percentile25LengthO
+    a dqv:Metric ;
+    skos:definition "Check the object URI's 25th percentile"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:medianLengthO
+    a dqv:Metric ;
+    skos:definition "Check the object URI's median length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:percentile75LengthO
+    a dqv:Metric ;
+    skos:definition "Check the object URI's 75th percentile"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:maxLengthO
+    a dqv:Metric ;
+    skos:definition "Chec object URI's max length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:minLengthP
+    a dqv:Metric ;
+    skos:definition "Check URI's predicate min length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:percentile25LengthP
+    a dqv:Metric ;
+    skos:definition "Check URI's predicate 25th percentile "@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:medianLengthP
+    a dqv:Metric ;
+    skos:definition "Check URI's predicate median length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:percentile75LengthP
+    a dqv:Metric ;
+    skos:definition "Check the URI's predicate 75th percentile length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:maxLengthP
+    a dqv:Metric ;
+    skos:definition "Check the URI's predicate max length"@en ;
+    dqv:expectedDataType xsd:string ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:RDFStructures
+    a dqv:Metric ;
+    skos:definition "Check the if the RDF structures are used"@en ;
+    dqv:expectedDataType xsd:boolean ;
+    dqv:inDimension :representational-conciseness
+    .
+
+:numBN
+    a dqv:Metric ;
+    skos:definition "Count the number of blank nodes in the KG"@en ;
+    dqv:expectedDataType xsd:integer ;
+    dqv:inDimension :interpretability
+    .
+
+:RDFStructuresInt 
+    a dqv:Metric ;
+    skos:definition "Check if the RDF structures are used in the KG"@en ;
+    dqv:expectedDataType xsd:boolean ;
+    dqv:inDimension :interpretability
+    .
