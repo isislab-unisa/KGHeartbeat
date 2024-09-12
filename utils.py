@@ -1073,3 +1073,9 @@ def load_kgs_metadata_from_snap():
             name = d.get('title')
             kgfound.append((id,name))
         return kgfound
+
+def if_list_return_int(metric):
+    if(isinstance(metric,list)):
+        return len(metric)
+    else:
+        return metric
