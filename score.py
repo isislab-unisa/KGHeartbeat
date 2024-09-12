@@ -53,6 +53,12 @@ class Score:
         self.securityScoreValue = 0
         self.totalScore = 0
         self.normalizedScore = 0
+        self.labelValue = 0
+        self.misplacedValue = 0
+        self.undefValue = 0
+        self.uriValue = 0
+        self.rdfValue = 0
+        self.blankValue = 0
 
     def availabilityScore(self,weight):
         if self.kg.availability.sparqlEndpoint == 'Available':
@@ -284,7 +290,7 @@ class Score:
                 mispV = 0
         else:
             mispV = 0
-
+        
         deprecated = self.kg.extra.deprecated
         if isinstance(deprecated,list) and isinstance(classes,list) and isinstance(properties,list):
             if len(classes) + len(properties) > 0:
@@ -303,6 +309,8 @@ class Score:
         else:
             ohValue = 0
         
+        self.misplacedValue = mispV
+        self.undefValue = undefV
         return ((disjV + undefV + mispV + depValue +  ohValue) * weight) / CONSISTENCY_METRICS
         
     def verifiabilityScore(self,weight):
@@ -487,6 +495,9 @@ class Score:
         else:
             rdfV = 0
             uriV = 0
+        
+        self.uriValue = uriV
+        self.rdfValue = rdfV
         return ((uriV + rdfV) * weight) / REP_CONC_METRICS
     
     def repConsScore(self,weight):
@@ -560,6 +571,8 @@ class Score:
                 vocabsV = 0
         else:
             vocabsV = 0
+        
+        self.labelValue = labelV
         return ((labelV + regexV + exampleV + vocabsV)  * weight) / UNDERSTANDABILITY_METRICS
     
     def interpretabilityScore(self,weight):
@@ -588,7 +601,7 @@ class Score:
         else:
             bnValue = 0
             rdfV = 0
-        
+        self.blankValue = bnValue
         return ((bnValue + rdfV) * weight) /INTERPRETABILITY_METRICS
     
     def versatilityScore(self,weight):
