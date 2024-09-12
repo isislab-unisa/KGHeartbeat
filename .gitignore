@@ -176,3 +176,7 @@ node_modules
 .*
 yarn.lock
 parse_performance.py
+lodc_quality_evaluation/quality_data/*
+!.gitignore
+Analysis results/*
+!Analysis results/csv_to_json.py
