@@ -240,6 +240,8 @@ def analyses(idKG,analysis_date,nameKG):
 
     otResources = utils.toObjectResources(resourcesDH) #CREATING A LIST OF RESOURCES OBJECT
 
+    metadata_media_type = utils.extract_media_type(resourcesDH)
+    
     #CHECK THE AVAILABILITY OF VOID FILE
     start_analysis = time.time()
     urlV = utils.getUrlVoID(otResources)
@@ -1606,6 +1608,10 @@ def analyses(idKG,analysis_date,nameKG):
     
     end_analysis = time.time()
     utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of trust value', 'Believability',analysis_date)
+
+    #CHECK IF THE DUMP IS ALSO IN A STANDARD MEDIA-TYPE FOR A KG
+    if availableDownload == 1 or availableDump == True:
+        common_formats_availability = utils.check_common_acceppted_format(metadata_media_type)
     
     if available == True:
         availability = Availability(endpoint,availableDownload,availableDump,inactiveLink,defValue)
@@ -1850,14 +1856,14 @@ def analyses(idKG,analysis_date,nameKG):
                         value = s.get('value')
                         uriListS.append(value)
                 if isinstance(numTriplesUpdated,int):
-                    extra = Extra(idKG,accessUrl,downloadUrl,numTriplesUpdated,classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0,None) #EXTRA OBJ CONTAINS ALL INFORMATION FOR SCORE CALCULATION AND OTHER USEFUL INFORMATION
+                    extra = Extra(idKG,accessUrl,downloadUrl,numTriplesUpdated,classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0,None,metadata_media_type,common_formats_availability) #EXTRA OBJ CONTAINS ALL INFORMATION FOR SCORE CALCULATION AND OTHER USEFUL INFORMATION
                 else:
                     logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
-                    extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0,None)
+                    extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0,None,metadata_media_type,common_formats_availability)
             else:
                 uriListS = []
                 logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
-                extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0,None)
+                extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0,None,metadata_media_type,common_formats_availability)
     else:
         classes = []
         properties = []
@@ -1865,7 +1871,7 @@ def analyses(idKG,analysis_date,nameKG):
         triplesO = []
         uriListS = []
         logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
-        extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUriCount,triplesO,0,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,0,errorMessage,offlineDump,urlV,voidStatus,errorMessage,errorMessage,errorMessage,errorMessage,0,None)
+        extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUriCount,triplesO,0,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,0,errorMessage,offlineDump,urlV,voidStatus,errorMessage,errorMessage,errorMessage,errorMessage,0,None,metadata_media_type,common_formats_availability)
 
     KGQ = KnowledgeGraph(availability,currency,versatility,security,rConciseness,licensing,performance,amount,volatility,interlinking,consistency,reputation,believability,verifiability,completeness,rConsistency,understendability,interpretability,conciseness,accuracy,extra)
 
