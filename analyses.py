@@ -1373,7 +1373,7 @@ def analyses(idKG,analysis_date,nameKG):
                     if utils.validateURI(value):
                         uriCount = uriCount + 1
                         try:
-                            response = requests.get(value,headers={"Accept":"application/rdf+xml"},stream=True)
+                            response = requests.get(value,headers={"Accept":"application/rdf+xml"},stream=True,timeout=2)
                             if response.status_code == 200:
                                 defCount = defCount +1
                         except:
