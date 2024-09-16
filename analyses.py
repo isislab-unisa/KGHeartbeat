@@ -66,6 +66,7 @@ def analyses(idKG,analysis_date,nameKG):
     void = False
     internalError = False
     queryNotSupported = False
+    availableDump = '-'
 
     metadata = Aggregator.getDataPackage(idKG)
     if nameKG == '':
