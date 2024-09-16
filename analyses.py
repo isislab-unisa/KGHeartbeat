@@ -1613,6 +1613,8 @@ def analyses(idKG,analysis_date,nameKG):
     #CHECK IF THE DUMP IS ALSO IN A STANDARD MEDIA-TYPE FOR A KG
     if availableDownload == 1 or availableDump == True:
         common_formats_availability = utils.check_common_acceppted_format(metadata_media_type)
+    else:
+        common_formats_availability = 'No dump available'
     
     if available == True:
         availability = Availability(endpoint,availableDownload,availableDump,inactiveLink,defValue)
