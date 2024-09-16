@@ -7,22 +7,16 @@ import time
 import utils
 import warnings
 
+
 def log_in_out(func):
-    from time import perf_counter
+
     def decorated_func(*args, **kwargs):
-        start_time = perf_counter()
         print("Doing ", func.__name__)
         result = func(*args, **kwargs)
-        end_time = perf_counter()
-        execution_time = end_time - start_time
-        log_text = '{0} took {1:.8f}s to execute\n'.format(func.__name__, execution_time)
-        print(log_text)
-        with open('performance.txt','a') as file:
-            file.write(log_text)
+        print("Done ")
         return result
 
     return decorated_func
-
 @log_in_out
 def checkEndPoint(url): 
     sparql = SPARQLWrapper(url) 
@@ -507,7 +501,6 @@ def getCreator(url):
     PREFIX dc: <http://purl.org/dc/elements/1.1/>
     PREFIX dcterms: <http://purl.org/dc/terms/>
     PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-    PREFIX dct: <http://purl.org/dc/terms/>
     SELECT DISTINCT ?o 
     WHERE{ 
     {?s dc:creator ?o }
@@ -515,8 +508,6 @@ def getCreator(url):
     {?s dcterms:creator ?o}
     UNION
     {?s foaf:maker ?o}
-    UNION
-    {?s dct:creator ?o}
     }
     ''')
     sparql.setTimeout(300)
@@ -634,37 +625,6 @@ def getSameAsChains(url):
         return value
     else:
         return False
-    
-@log_in_out
-def getSkosMapping(url):
-    sparql = SPARQLWrapper(url)
-    sparql.setQuery('''
-    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-    SELECT (COUNT(?o) AS ?triples)
-    WHERE {
-        {?s skos:closeMatch ?o}
-        UNION   
-        {?s skos:exactMatch ?o}
-        UNION   
-        {?s skos:broadMatch ?o}
-        UNION   
-        {?s skos:narrowMatch ?o}
-        UNION   
-        {?s skos:relatedMatch ?o}
-    }
-    ''')
-    sparql.setTimeout(300)
-    sparql.setReturnFormat(JSON)
-    results = sparql.query().convert()
-    if isinstance(results,dict):
-        value = utils.getResultsFromJSONCountInt(results)
-        return value
-    elif isinstance(results,Document):
-        value = utils.getResultsFromXMLCount(results)
-        return value
-    else:
-        return False
-
 @log_in_out
 def getFrequency(url):
     sparql = SPARQLWrapper(url)
@@ -1083,6 +1043,66 @@ def getAllTypeO(url):
         return False
 
 @log_in_out
+def getSkosMapping(url):
+    sparql = SPARQLWrapper(url)
+    sparql.setQuery('''
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    SELECT (COUNT(?o) AS ?triples)
+    WHERE {
+        {?s skos:closeMatch ?o}
+        UNION   
+        {?s skos:exactMatch ?o}
+        UNION   
+        {?s skos:broadMatch ?o}
+        UNION   
+        {?s skos:narrowMatch ?o}
+        UNION   
+        {?s skos:relatedMatch ?o}
+    }
+    ''')
+    sparql.setTimeout(300)
+    sparql.setReturnFormat(JSON)
+    results = sparql.query().convert()
+    if isinstance(results,dict):
+        value = utils.getResultsFromJSONCountInt(results)
+        return value
+    elif isinstance(results,Document):
+        value = utils.getResultsFromXMLCount(results)
+        return value
+    else:
+        return False
+
+@log_in_out
+def getSkosMapping(url):
+    sparql = SPARQLWrapper(url)
+    sparql.setQuery('''
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    SELECT (COUNT(?o) AS ?triples)
+    WHERE {
+        {?s skos:closeMatch ?o}
+        UNION   
+        {?s skos:exactMatch ?o}
+        UNION   
+        {?s skos:broadMatch ?o}
+        UNION   
+        {?s skos:narrowMatch ?o}
+        UNION   
+        {?s skos:relatedMatch ?o}
+    }
+    ''')
+    sparql.setTimeout(300)
+    sparql.setReturnFormat(JSON)
+    results = sparql.query().convert()
+    if isinstance(results,dict):
+        value = utils.getResultsFromJSONCountInt(results)
+        return value
+    elif isinstance(results,Document):
+        value = utils.getResultsFromXMLCount(results)
+        return value
+    else:
+        return False
+
+@log_in_out
 def getAllPropertySP(url):
     sparql = SPARQLWrapper(url)
     sparql.setQuery('''
@@ -1122,7 +1142,7 @@ def getAllTriplesSPO(url):
     sparql.setQuery('''
     SELECT *
     WHERE{?s ?p ?o}
-    ''') 
+    ''')
     sparql.setTimeout(300) #10 minutes
     sparql.setReturnFormat(JSON)
     format = sparql.query()._get_responseFormat()
@@ -1130,7 +1150,7 @@ def getAllTriplesSPO(url):
         query = '''
                 SELECT *
                 WHERE{?s ?p ?o}
-                '''
+               '''
         results = queryWithSingleAcceptFromat(url,query) #TRY TO GET RESULTS IN JSON BY SETTING A SINGLE ACCEPT HEADER (SOME ENDPOINTS MAY BE NOT SUPPORT MULTIPLE ACCEPT FORMAT)
     else:
         results = sparql.query().convert()
@@ -1435,44 +1455,6 @@ def queryWithSingleAcceptFromat(url,query):
     sparql.addCustomHttpHeader('Accept','application/sparql-results+json') #SOME ENDPOINT DOESN'T SUPPORT MULTIPLE ACCEPT FORMAT
     return sparql.query().convert()
 
-@log_in_out
-def dcat_query(url,predicate):
-    sparql = SPARQLWrapper(url)
-    sparql.setQuery('''
-    PREFIX dcat: <http://www.w3.org/ns/dcat#>
-    PREFIX dct: <http://purl.org/dc/terms/>
-    SELECT ?title ?language ?contact ?modified ?issued ?pub ?per ?res ?key ?creator ?temp ?tempRes ?spatial ?dist
-    WHERE {
-        ?s dcat:dataset ?o .
-        ?o dct:title ?title .
-        OPTIONAL { ?o dct:language ?language . }
-        OPTIONAL { ?o dcat:contactPoint ?contact . }
-        OPTIONAL { ?o dct:modified ?modified .}
-        OPTIONAL { ?o dct:issued ?issued .}  
-        OPTIONAL { ?o dct:publisher ?pub .}
-        OPTIONAL { ?o dct:accrualPeriodicity ?per .}
-        OPTIONAL { ?o dcat:spatialResolutionInMeters ?res .}
-        OPTIONAL { ?o dcat:keyword ?key .}
-        OPTIONAL { ?o dct:creator ?creator .}
-        OPTIONAL { ?o dct:temporal ?temp .}
-        OPTIONAL { ?o dcat:temporalResolution ?tempRes .}
-        OPTIONAL { ?o dct:spatial ?spatial .}
-        OPTIONAL { ?o  dcat:distribution ?dist .}
-    }
-
-    ''')
-    sparql.setTimeout(300)
-    sparql.setReturnFormat(JSON)
-    results = sparql.query().convert()
-    if isinstance(results,dict):
-        result = utils.getResultsFromJSON(results)
-        return result
-    elif isinstance(results,Document):
-        result = utils.getResultsFromXML(results)
-        return result
-    else:
-        return False
-    
 @log_in_out
 def get_download_link(url):
     sparql = SPARQLWrapper(url)

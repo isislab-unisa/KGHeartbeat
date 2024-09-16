@@ -46,11 +46,6 @@ except  FileNotFoundError:
         print('Error')
         quit()
 
-try:
-    os.remove('performance.txt')
-except:
-    pass
-
 start = time.time()
 
 toAnalyze = []
@@ -122,9 +117,12 @@ for i in range(len(toAnalyze)):
     #print(kg.getQualityKG()) #PRINT THE KG QUALITY ON THE COMAND LINE
 
 end = time.time()
-with open('performance.txt','a') as file:
+here = os.path.dirname(os.path.abspath(__file__))
+save_path = os.path.join(here,'./Analysis results')
+save_path = os.path.join(save_path, f"performance-{filename}.txt")
+with open(save_path,'a') as file:
         file.write(f'\n--- Total time for analysis:{end-start}s ---')
-        file.write(f'\n--- Total time for analysis:{end-start / 3600} hours ---')
+        file.write(f'\n--- Total time for analysis:{(end-start) / 3600} hours ---')
 
 
 fromCSV_to_KG.convert_to_kg_code_from_llm(filename + '_with_dimensions')

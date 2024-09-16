@@ -241,6 +241,8 @@ def analyses(idKG,analysis_date,nameKG):
 
     otResources = utils.toObjectResources(resourcesDH) #CREATING A LIST OF RESOURCES OBJECT
 
+    metadata_media_type = utils.extract_media_type(resourcesDH)
+    
     #CHECK THE AVAILABILITY OF VOID FILE
     start_analysis = time.time()
     urlV = utils.getUrlVoID(otResources)
@@ -270,13 +272,20 @@ def analyses(idKG,analysis_date,nameKG):
                 voidFile = VoIDAnalyses.parseVoIDTtl(urlV)
                 void = True
                 voidStatus = 'VoID file available'
-                logger.info(f"VoID file link: {urlV}",extra=kg_info)
-            except:
+            except urllib.error.HTTPError as e:
+                if e.code == 404:
+                    voidStatus = 'VoID file absent'
+                else:
+                    void = False
+                    voidStatus = 'VoID file offline'
+            except urllib.error.URLError as e:
+                voidStatus = 'VoID file absent'
+            except Exception as e:
                 void = False
                 voidStatus = 'VoID file offline'
     if not isinstance(urlV,str):
         voidStatus = 'VoID file absent'
-    
+    logger.info(f"VoID file link: {urlV}",extra=kg_info)
     end_analysis = time.time()
     utils.write_time(nameKG,end_analysis-start_analysis,'VoID file availability check', 'Availability',analysis_date)
 
@@ -1371,7 +1380,7 @@ def analyses(idKG,analysis_date,nameKG):
                     if utils.validateURI(value):
                         uriCount = uriCount + 1
                         try:
-                            response = requests.get(value,headers={"Accept":"application/rdf+xml"},stream=True)
+                            response = requests.get(value,headers={"Accept":"application/rdf+xml"},stream=True,timeout=2)
                             if response.status_code == 200:
                                 defCount = defCount +1
                         except:
@@ -1607,6 +1616,12 @@ def analyses(idKG,analysis_date,nameKG):
     
     end_analysis = time.time()
     utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of trust value', 'Believability',analysis_date)
+
+    #CHECK IF THE DUMP IS ALSO IN A STANDARD MEDIA-TYPE FOR A KG
+    if availableDownload == 1 or availableDump == True:
+        common_formats_availability = utils.check_common_acceppted_format(metadata_media_type)
+    else:
+        common_formats_availability = 'No dump available'
     
     if available == True:
         availability = Availability(endpoint,availableDownload,availableDump,inactiveLink,defValue)
@@ -1851,14 +1866,14 @@ def analyses(idKG,analysis_date,nameKG):
                         value = s.get('value')
                         uriListS.append(value)
                 if isinstance(numTriplesUpdated,int):
-                    extra = Extra(idKG,accessUrl,downloadUrl,numTriplesUpdated,classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0,None) #EXTRA OBJ CONTAINS ALL INFORMATION FOR SCORE CALCULATION AND OTHER USEFUL INFORMATION
+                    extra = Extra(idKG,accessUrl,downloadUrl,numTriplesUpdated,classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0,None,metadata_media_type,common_formats_availability) #EXTRA OBJ CONTAINS ALL INFORMATION FOR SCORE CALCULATION AND OTHER USEFUL INFORMATION
                 else:
                     logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
-                    extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0,None)
+                    extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0,None,metadata_media_type,common_formats_availability)
             else:
                 uriListS = []
                 logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
-                extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0,None)
+                extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUri,triplesO,uriListS,undProperties,undClasses,misplacedClass,misplacedProperty,deprecated,0,limited,offlineDump,urlV,voidStatus,minThroughputNoOff,averageThroughputNoOff,maxThroughputNoOff,standardDeviationTNoOff,0,None,metadata_media_type,common_formats_availability)
     else:
         classes = []
         properties = []
@@ -1866,7 +1881,7 @@ def analyses(idKG,analysis_date,nameKG):
         triplesO = []
         uriListS = []
         logger.warning(f"Currency | Update history | Insufficient data to compute this metric",extra=kg_info)
-        extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUriCount,triplesO,0,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,0,errorMessage,offlineDump,urlV,voidStatus,errorMessage,errorMessage,errorMessage,errorMessage,0,None)
+        extra = Extra(idKG,accessUrl,downloadUrl,'-',classes,properties,allUriCount,triplesO,0,errorMessage,errorMessage,errorMessage,errorMessage,errorMessage,0,errorMessage,offlineDump,urlV,voidStatus,errorMessage,errorMessage,errorMessage,errorMessage,0,None,metadata_media_type,common_formats_availability)
 
     KGQ = KnowledgeGraph(availability,currency,versatility,security,rConciseness,licensing,performance,amount,volatility,interlinking,consistency,reputation,believability,verifiability,completeness,rConsistency,understendability,interpretability,conciseness,accuracy,extra)
 

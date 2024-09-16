@@ -53,6 +53,12 @@ class Score:
         self.securityScoreValue = 0
         self.totalScore = 0
         self.normalizedScore = 0
+        self.labelValue = 0
+        self.misplacedValue = 0
+        self.undefValue = 0
+        self.uriValue = 0
+        self.rdfValue = 0
+        self.blankValue = 0
 
     def availabilityScore(self,weight):
         if self.kg.availability.sparqlEndpoint == 'Available':
@@ -199,30 +205,18 @@ class Score:
     def accuracyScore(self,weight):
         try:
             voidLabel = float(self.kg.accuracy.emptyAnn)
-            if voidLabel > 0:
-                voidLabelV = 0
-            else:
-                voidLabelV = 1
         except ValueError:
-            voidLabelV = 0
+            voidLabel = 0
         
         try:
             whitespace = float(self.kg.accuracy.wSA)
-            if whitespace > 0:
-                wsV = 0
-            else:
-                wsV = 1
         except ValueError:
-            wsV = 0
+            whitespace = 0
         
         try:
             malformedDT = float(self.kg.accuracy.malformedDataType)
-            if malformedDT > 0:
-                malformedV = 0
-            else:
-                malformedV = 1
         except ValueError:
-            malformedV = 0
+            malformedDT = 0
         
         try:
             FPValue = float(self.kg.accuracy.FPvalue)
@@ -234,7 +228,7 @@ class Score:
         except ValueError:
             IFPValue = 0
 
-        return ((voidLabelV + wsV + malformedV + FPValue + IFPValue) * weight) / ACCURACY_METRICS
+        return ((voidLabel + whitespace + malformedDT + FPValue + IFPValue) * weight) / ACCURACY_METRICS
 
 
     def concisenessScore(self,weight):
@@ -284,7 +278,7 @@ class Score:
                 mispV = 0
         else:
             mispV = 0
-
+        
         deprecated = self.kg.extra.deprecated
         if isinstance(deprecated,list) and isinstance(classes,list) and isinstance(properties,list):
             if len(classes) + len(properties) > 0:
@@ -303,6 +297,8 @@ class Score:
         else:
             ohValue = 0
         
+        self.misplacedValue = mispV
+        self.undefValue = undefV
         return ((disjV + undefV + mispV + depValue +  ohValue) * weight) / CONSISTENCY_METRICS
         
     def verifiabilityScore(self,weight):
@@ -388,12 +384,12 @@ class Score:
 
     def currencyScore(self,weight):
         creation = self.kg.currency.creationDate
-        if isinstance(creation,date) or isinstance(creation,str):
+        if isinstance(creation,date) or (isinstance(creation,str) and creation != '-'):
                 cV = 1
         else:
             cV = 0
         modification = self.kg.currency.modificationDate
-        if isinstance(modification,date) or isinstance(modification,str):
+        if isinstance(modification,date) or (isinstance(modification,str)and modification != '-'):
                 mV = 1
         else:
             mV = 0
@@ -487,6 +483,9 @@ class Score:
         else:
             rdfV = 0
             uriV = 0
+        
+        self.uriValue = uriV
+        self.rdfValue = rdfV
         return ((uriV + rdfV) * weight) / REP_CONC_METRICS
     
     def repConsScore(self,weight):
@@ -560,6 +559,8 @@ class Score:
                 vocabsV = 0
         else:
             vocabsV = 0
+        
+        self.labelValue = labelV
         return ((labelV + regexV + exampleV + vocabsV)  * weight) / UNDERSTANDABILITY_METRICS
     
     def interpretabilityScore(self,weight):
@@ -588,7 +589,7 @@ class Score:
         else:
             bnValue = 0
             rdfV = 0
-        
+        self.blankValue = bnValue
         return ((bnValue + rdfV) * weight) /INTERPRETABILITY_METRICS
     
     def versatilityScore(self,weight):

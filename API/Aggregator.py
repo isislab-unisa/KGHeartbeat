@@ -5,60 +5,60 @@ import utils
 def getDataPackage(idKG):
     metadataDH = DataHubAPI.getDataPackage(idKG)
     metadataLODC = LODCloudAPI.getJSONMetadata(idKG)
-    if isinstance(metadataDH,dict):
-        return metadataDH
-    elif isinstance(metadataLODC,dict):
+    if isinstance(metadataLODC,dict):
         return metadataLODC
+    elif isinstance(metadataDH,dict):
+        return metadataDH
     else:
         return False
 
 def getNameKG(metadata):
     nameDH = DataHubAPI.getNameKG(metadata)
     nameLODC = LODCloudAPI.getNameKG(metadata)
-    if nameDH != False:
-        return nameDH
-    elif nameLODC != False:
+    if nameLODC != False:
         return nameLODC
+    elif nameDH != False:
+        return nameDH
     else:
         return False
 
 def getLicense(metadata):
     licenseDH = DataHubAPI.getLicense(metadata)
     licenseLODC = LODCloudAPI.getLicense(metadata)
-    if licenseDH != False:
-        return licenseDH
-    elif licenseLODC != False:
+    if licenseLODC != False:
         return licenseLODC
+    elif licenseDH != False:
+        return licenseDH
     else:
         return False
 
 def getAuthor(metadata):
     authorDH = DataHubAPI.getAuthor(metadata)
     authorLODC = LODCloudAPI.getAuthor(metadata)
-    if authorDH != False:
-        return authorDH
-    elif authorLODC != False:
+    if authorLODC != False:
         return authorLODC
+    elif authorDH != False:
+        return authorDH
     else:
         return False
 
 def getSource(metadata):
     sourcesDH = DataHubAPI.getSources(metadata)
     sourcesLODC = LODCloudAPI.getSourceDict(metadata)
-    if sourcesDH != False:
-        return sourcesDH
-    elif sourcesLODC != False:
+    if sourcesLODC != False:
         return sourcesLODC
+    elif sourcesDH != False:
+        return sourcesDH
     else:
         return False
 
 def getTriples(metadata):
     numTriplesDH = DataHubAPI.getTriples(metadata)
     numTriplesLODC = LODCloudAPI.getTriples(metadata)
-    if numTriplesDH != False:
-        return numTriplesDH
-    elif numTriplesLODC != False:
+    if numTriplesLODC != False:
         return numTriplesLODC
+    elif numTriplesDH != False:
+        return numTriplesDH
     else:
         return False
 
@@ -110,10 +110,10 @@ def getExternalLinks(idKG):
 def getDescription(metadata):
     descriptionDH = DataHubAPI.getDescription(metadata)
     descriptionLODC = LODCloudAPI.getDescription(metadata)
-    if descriptionDH != False and not isinstance(descriptionDH,dict):
-        return descriptionDH
-    elif descriptionLODC != False:
+    if descriptionLODC != False:
         return descriptionLODC
+    elif descriptionDH != False and not isinstance(descriptionDH,dict):
+        return descriptionDH
     else:
         return False
 

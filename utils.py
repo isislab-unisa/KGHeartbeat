@@ -376,58 +376,64 @@ def checkhttps(url):
         return query.checkEndPoint(url)
 
 def checkAvailabilityForDownload(resources):
-    availability = -1
-    for i in range(len(resources)):
-        d = resources[i]
-        type = d.get('type')
-        status = d.get('status')
-        format = d.get('format')
-        if isinstance(type,str):
-            if type == 'full_download' and status == 'active':  
-                availability = 1
-        if isinstance(format,str):
-            if 'ZIP' in format and status == 'active':
-                availability = 1
-            elif 'ZIP' in format and status == 'offline':
-                availability = 0
-            if 'zip' in format and status == 'active':
-                availability = 1
-            elif 'zip' in format and status == 'offline':
-                availability = 0
-            if format == 'application/rdf+xml' and status == 'active':
-                availability = 1
-            elif format == 'application/rdf+xml' and status == 'offline':
-                availability = 0
-            if format == 'text/turtle' and status == 'active':
-                availability = 1
-            elif format == 'text/turtle' and status == 'offline':
-                availability = 0
-            if format == 'application/x-ntriples' and status == 'active':
-                availability = 1
-            elif format == 'application/x-ntriples' and status == 'offline':
-                availability = 0
-            if format == 'application/x-nquads' and status == 'active':
-                availability = 1
-            elif format == 'application/x-nquads' and status == 'offline':
-                availability = 0
-            if format == 'text/n3' and status == 'active':
-                availability = 1
-            elif format == 'text/n3' and status == 'offline':
-                availability = 0
-            if format == 'rdf' and status == 'active':
-                availability = 1
-            elif format == 'rdf' and status == 'offline':
-                availability = 0
-            if format == 'text/rdf+n3' and status == 'active':
-                availability = 1
-            elif format == 'text/rdf+n3' and status == 'offline':
-                availability = 0
-            if format == 'rdf/turtle' and status == 'active':
-                availability = 1
-            elif format == 'rdf/turtle' and status == 'offline':
-                availability = 0
-            
-    return availability
+    availability = 0
+    if len(resources) == 0:
+        availability = -1
+
+        return availability
+    else: 
+        for i in range(len(resources)):
+            d = resources[i]
+            type = d.get('type')
+            status = d.get('status')
+            format = d.get('format')
+            if isinstance(type,str):
+                if type == 'full_download' and status == 'active':  
+                    availability = 1
+            if isinstance(format,str):
+                if status == 'active':
+                    availability = 1
+                '''
+                elif status == 'offline':
+                    availability = 0
+                if 'zip' in format and status == 'active':
+                    availability = 1
+                elif 'zip' in format and status == 'offline':
+                    availability = 0
+                if format == 'application/rdf+xml' and status == 'active':
+                    availability = 1
+                elif format == 'application/rdf+xml' and status == 'offline':
+                    availability = 0
+                if format == 'text/turtle' and status == 'active':
+                    availability = 1
+                elif format == 'text/turtle' and status == 'offline':
+                    availability = 0
+                if format == 'application/x-ntriples' and status == 'active':
+                    availability = 1
+                elif format == 'application/x-ntriples' and status == 'offline':
+                    availability = 0
+                if format == 'application/x-nquads' and status == 'active':
+                    availability = 1
+                elif format == 'application/x-nquads' and status == 'offline':
+                    availability = 0
+                if format == 'text/n3' and status == 'active':
+                    availability = 1
+                elif format == 'text/n3' and status == 'offline':
+                    availability = 0
+                if format == 'rdf' and status == 'active':
+                    availability = 1
+                elif format == 'rdf' and status == 'offline':
+                    availability = 0
+                if format == 'text/rdf+n3' and status == 'active':
+                    availability = 1
+                elif format == 'text/rdf+n3' and status == 'offline':
+                    availability = 0
+                if format == 'rdf/turtle' and status == 'active':
+                    availability = 1
+                elif format == 'rdf/turtle' and status == 'offline':
+                    availability = 0
+                '''
+        return availability
 
 def getLinkDownload(resources):
     urls = []
@@ -441,8 +447,9 @@ def getLinkDownload(resources):
             if type == 'full_download' and status == 'active':  
                 availability = True
                 urls.append(d.get('path'))
+        '''
         if isinstance(format,str):
-            if 'ZIP' in format and status == 'active':
+            if status == 'active':
                 availability = True
                 urls.append(d.get('path'))
             if 'zip' in format and status == 'active':
@@ -471,7 +478,8 @@ def getLinkDownload(resources):
                 urls.append(d.get('path'))
             if format == 'rdf/turtle' and status == 'active':
                 availability = True
-                urls.append(d.get('path'))     
+                urls.append(d.get('path'))    
+        ''' 
     return urls
 
 def getLinkOfflineDump(resources):
@@ -1079,3 +1087,24 @@ def if_list_return_int(metric):
         return len(metric)
     else:
         return metric
+
+def extract_media_type(resources_metadata):
+    media_type = []
+    for resource in resources_metadata:
+        if 'format' in resource:
+            if isinstance(resource['format'],str):
+                if 'example' not in resource['format']:
+                    media_type.append(resource['format'])
+    
+    return media_type
+
+
+def check_common_acceppted_format(media_types):
+    common_acceppted_format = ['application/rdf+xml','application/rdf+xml','text/turtle','application/x-ntriples','application/x-nquads', 'application/n-triples',
+                               'application/trig','text/n3','rdf','text/rdf+n3','rdf/turtle','plain/text','application/octet-stream','application/x-gzip','gzip:ntriples']
+    for media_type in media_types:
+        if isinstance(media_type,str):
+            if media_type.lower() in common_acceppted_format:
+                return True
+
+    return False 

@@ -1,0 +1,12 @@
+Availability | SPARQL endpoint availability check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.4518458843231201s
+Availability | VoID file availability check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.34552764892578125s
+Extra | Recovery of all triples for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 3.9254567623138428s
+Performance | Total latancy measurement for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 1.0513181686401367s
+Amount of data | Number of triples check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 2.0564563274383545s
+Interoperability | New terms check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 3.309454917907715s
+Versatility | Languages check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 130.28118419647217s
+Interpretability | Number of blank nodes check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 1.6725363731384277s
+Interpretability | RDF structures check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.32535886764526367s
+Versatility | Serialization formats check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.844139814376831s
+Availability | RDF dump link check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 2.5163497924804688s
+License | MR license check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 1.0140776634216309s
