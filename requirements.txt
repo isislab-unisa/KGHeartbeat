@@ -14,3 +14,8 @@ validators==0.18.2
 xmltodict==0.12.0
 scipy
 python-dotenv
+langchain
+langchain_community
+langchain_openai
+langchain_google_genai
+langchain_google_vertexai
