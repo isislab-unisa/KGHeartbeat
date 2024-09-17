@@ -272,13 +272,20 @@ def analyses(idKG,analysis_date,nameKG):
                 voidFile = VoIDAnalyses.parseVoIDTtl(urlV)
                 void = True
                 voidStatus = 'VoID file available'
-                logger.info(f"VoID file link: {urlV}",extra=kg_info)
-            except:
+            except urllib.error.HTTPError as e:
+                if e.code == 404:
+                    voidStatus = 'VoID file absent'
+                else:
+                    void = False
+                    voidStatus = 'VoID file offline'
+            except urllib.error.URLError as e:
+                voidStatus = 'VoID file absent'
+            except Exception as e:
                 void = False
                 voidStatus = 'VoID file offline'
     if not isinstance(urlV,str):
         voidStatus = 'VoID file absent'
-    
+    logger.info(f"VoID file link: {urlV}",extra=kg_info)
     end_analysis = time.time()
     utils.write_time(nameKG,end_analysis-start_analysis,'VoID file availability check', 'Availability',analysis_date)
 
