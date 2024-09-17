@@ -10,3 +10,10 @@ Interpretability | RDF structures check for TAXREF-LD: Knowledge Graph of the Fr
 Versatility | Serialization formats check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.844139814376831s
 Availability | RDF dump link check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 2.5163497924804688s
 License | MR license check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 1.0140776634216309s
+License | HR license check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 37.78505086898804s
+Amount of data | Number of property check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.2117166519165039s
+Understandability | Number of label check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 2.13899827003479s
+Understandability | URI regex check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.5019874572753906s
+Understandability | Vocabs check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.18725872039794922s
+Verifiability | Authors check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.27178239822387695s
+Verifiability | Publishers check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.21015596389770508s
