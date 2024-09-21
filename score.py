@@ -205,30 +205,18 @@ class Score:
     def accuracyScore(self,weight):
         try:
             voidLabel = float(self.kg.accuracy.emptyAnn)
-            if voidLabel > 0:
-                voidLabelV = 0
-            else:
-                voidLabelV = 1
         except ValueError:
-            voidLabelV = 0
+            voidLabel = 0
         
         try:
             whitespace = float(self.kg.accuracy.wSA)
-            if whitespace > 0:
-                wsV = 0
-            else:
-                wsV = 1
         except ValueError:
-            wsV = 0
+            whitespace = 0
         
         try:
             malformedDT = float(self.kg.accuracy.malformedDataType)
-            if malformedDT > 0:
-                malformedV = 0
-            else:
-                malformedV = 1
         except ValueError:
-            malformedV = 0
+            malformedDT = 0
         
         try:
             FPValue = float(self.kg.accuracy.FPvalue)
@@ -240,7 +228,7 @@ class Score:
         except ValueError:
             IFPValue = 0
 
-        return ((voidLabelV + wsV + malformedV + FPValue + IFPValue) * weight) / ACCURACY_METRICS
+        return ((voidLabel + whitespace + malformedDT + FPValue + IFPValue) * weight) / ACCURACY_METRICS
 
 
     def concisenessScore(self,weight):
