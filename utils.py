@@ -337,22 +337,23 @@ def getInactiveDumps(urlList):
         return url
     return url
 
-def mergeResources(resourcesDH,resourcesLODC):
-    if isinstance(resourcesDH,list) and len(resourcesDH) > 0: #MERGE THE TWO LISTS OF RESOURCES FROM DH E LODC AND DELETING DUPLICATE
+#TODO: launch a test before push to stable version
+def mergeResources(resourcesDH, resourcesLODC):
+    if isinstance(resourcesLODC, list) and len(resourcesLODC) > 0:  # MERGE THE TWO LISTS OF RESOURCES FROM LODC AND DH AND DELETE DUPLICATES
         found = False
-        for i in range(len(resourcesLODC)): 
-            urlLODC = resourcesLODC[i].get('path')
-            for j in range(len(resourcesDH)):    #COMPARE AN ITEM IN THE LIST OF RESOURCES FROM LOD CLOUD WITH EACH ITEM IN THE LIST OF RESOURCES FROM DATAHUB
-                urlDH = resourcesDH[j].get('path')
-                if urlLODC == urlDH:
-                    found = True        #IF THE LINK TO THE RESOURCES IS THE SAME, THEN WE DON'T ADD THE ITEM TO THE LIST
+        for i in range(len(resourcesDH)): 
+            urlDH = resourcesDH[i].get('path')
+            for j in range(len(resourcesLODC)):  # COMPARE AN ITEM IN THE LIST OF RESOURCES FROM DATAHUB WITH EACH ITEM IN THE LIST OF RESOURCES FROM LOD CLOUD
+                urlLODC = resourcesLODC[j].get('path')
+                if urlDH == urlLODC:
+                    found = True  # IF THE LINK TO THE RESOURCES IS THE SAME, THEN WE DON'T ADD THE ITEM TO THE LIST
             if found == False:
-                resourcesDH.append(resourcesLODC[i])
+                resourcesLODC.append(resourcesDH[i])
             else:
                 found = False
-        return resourcesDH
+        return resourcesLODC
     else:
-        return resourcesLODC    #IF IN DATAHUB THERE AREN'T RESOURCES, PRINT ONLY THE RESOURCES IN LOD CLOUD
+        return resourcesDH  # IF THERE ARE NO RESOURCES IN LODC, RETURN ONLY THE RESOURCES FROM DATAHUB
 
 #INPUT LIST OF RESOURCES
 #OUTPUT LIST OF RESOURCES WITH A FIELD STATUS. STATUS = ACTIVE IF URL IS ONLINE, STATUS = OFFLINE IF URL IS OFFLINE
@@ -391,7 +392,7 @@ def checkAvailabilityForDownload(resources):
                 if type == 'full_download' and status == 'active':  
                     availability = 1
             if isinstance(format,str):
-                if status == 'active':
+                if status == 'active' and 'void' not in format:
                     availability = 1
                 '''
                 elif status == 'offline':
@@ -1092,7 +1093,9 @@ def extract_media_type(resources_metadata):
     media_type = []
     for resource in resources_metadata:
         if 'format' in resource:
-            media_type.append(resource['format'])
+            if isinstance(resource['format'],str):
+                if 'example' not in resource['format']:
+                    media_type.append(resource['format'])
     
     return media_type
 
