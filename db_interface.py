@@ -63,6 +63,8 @@ class DBinterface():
                     self.collection.update_one({'kg_id' : kg_quality.extra.KGid, 'analysis_date' : most_recent_document['analysis_date']}, newvalues)
                 except KeyError:
                     pass
+                except Exception as e:
+                    pass
 
 
 
