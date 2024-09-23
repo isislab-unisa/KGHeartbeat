@@ -112,46 +112,43 @@ class QualityEvaluationOT:
                 data.append(evaluation)
 
             here = os.path.dirname(os.path.abspath(__file__))
-            save_path = os.path.join(here,f'./evaluation_results/over_time/{metric}.csv')
+            save_path = os.path.join(here,f'{self.output_file}/{metric}.csv')
             with open(save_path, mode='w', newline='') as file:
                 writer = csv.writer(file)
                 writer.writerows(data)
     
-    def convert_to_category(self,only_sparql_up = True):
-        '''
-            Creates a quality score divided by category of dimension, taking the average score obtained from the dimension for each measurement.
-
-            _param results_path: path to the folder in which there are all the CSV file that containing the quality evaluation data.
-        '''
-        evaluation_results = []
-        category = {
-            "Intrinsic" : {
+    def add_category_score(self):
+        """
+            Add a the category score in the original CSV returned by KGHeartBeat, the value is calculated as the sum of the scores for that category, divided by the number of dimensions for that category.
+        """
+        categories = {
+            "Intrinsic score" : {
                 "Accuracy score" : 0,
                 "Interlinking score" : 0,
                 "Consistency score" : 0,
                 "Conciseness score" : 0,
             },
-            "Datasey dynamicity" : {
+            "Dataset dynamicity score" : {
                 "Currency score" : 0,
                 "Volatility score" : 0,
             },
-            "Trust" : {
+            "Trust score" : {
                 "Verifiability score" : 0,
                 "Reputation score" : 0,
                 "Believability score" : 0,
             },
-            "Contextual" : {
+            "Contextual score" : {
                 "Completeness score" : 0,
                 "Amount of data score" : 0,
             },
-            "Representational" : {
+            "Representational score" : {
                 "Representational-Consistency score": 0,
                 "Representational-Conciseness score" : 0,
                 "Understandability score" : 0,
                 "Interpretability score" : 0,
                 "Versatility score" : 0
             },
-            "Accessibility": {
+            "Accessibility score": {
                 "Availability score" : 0,
                 "Licensing score" : 0,
                 "Security score" : 0,
@@ -159,36 +156,14 @@ class QualityEvaluationOT:
             }
         }
 
-        for key in category:
-            print(f"Evaluating the {key} category")
-            data = []
-            data.append(['Analysis date', 'Mean score'])
-            for file_path in self.analysis_results_files:
-                df = pd.read_csv(file_path)
-                for dimension in category[key]:
-
-                    if(only_sparql_up == True):
-                        df = df[(df["Sparql endpoint"] == "Available")]
-
-                    df[dimension] = pd.to_numeric(df[dimension], errors='coerce')
-                    mean_value = df[dimension].mean()
-
-                    category[key][dimension] = mean_value
-
-                values_in_category = []
-                for dimension in category[key]:
-                    mean_score = category[key][dimension]
-                    values_in_category.append(mean_score)
-                    category_score = sum(values_in_category) / len(values_in_category) 
-                
-                evaluation = [os.path.basename(file_path).split('.')[0], category_score]
-                data.append(evaluation)
-
-            here = os.path.dirname(os.path.abspath(__file__))
-            save_path = os.path.join(here,f'./evaluation_results/over_time/by_category/{key}.csv')
-            with open(save_path, mode='w', newline='') as file:
-                writer = csv.writer(file)
-                writer.writerows(data)
+        for file_path in self.analysis_results_files:
+            df = pd.read_csv(file_path)
+            for key in categories:
+                category = categories[key]
+                dimensions_in_cat = category.keys()
+                df[key] = df[dimensions_in_cat].sum(axis=1) / len(dimensions_in_cat)
+            
+            df.to_csv(file_path,index=False)
                 
     def evaluate_provenance_info(self):
         '''
@@ -285,8 +260,6 @@ class QualityEvaluationOT:
             writer = csv.writer(file)
             writer.writerows(data)
 
-q = QualityEvaluationOT('./quality_data','quality_evaluation_over_time')
-#q.stats_over_time(['Availability score','Licensing score','Interlinking score','Performance score','Accuracy score','Consistency score','Conciseness score',
-#                   'Verifiability score','Reputation score','Believability score','Currency score','Volatility score','Completeness score','Amount of data score','Representational-Consistency score','Representational-Conciseness score',
-#                   'Understandability score','Interpretability score','Versatility score','Security score'])
-q.convert_to_category()
+q = QualityEvaluationOT('./quality_data','./evaluation_results/over_time/by_category')
+q.add_category_score()
+q.stats_over_time(['Accessibility score','Representational score','Intrinsic score','Dataset dynamicity score','Trust score','Contextual score'])
