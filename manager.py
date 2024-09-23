@@ -102,7 +102,7 @@ for i in range(len(toAnalyze)):
     kg.extra.normalizedScore = normalizedScore
     kg.extra.scoreObj = score
     end_analysis = time.time()
-    utils.write_time(toAnalyze[i][1],end_analysis-start_analysis,'--- Analysis','INFO',filename)
+    utils.write_time(toAnalyze[i][0],end_analysis-start_analysis,'--- Analysis','INFO',filename)
     csv = OutputCSV(kg,toAnalyze)
     csv_with_dim = OutputCSV(kg,toAnalyze)
     csv.writeRow(filename)
@@ -117,11 +117,10 @@ for i in range(len(toAnalyze)):
     #print(kg.getQualityKG()) #PRINT THE KG QUALITY ON THE COMAND LINE
 
 end = time.time()
-here = os.path.dirname(os.path.abspath(__file__))
 save_path = os.path.join(here,'./Analysis results')
-save_path = os.path.join(save_path, f"performance-{filename}.txt")
-with open(save_path,'a') as file:
+with open(f'{save_path}/performance-{filename}.txt','a') as file:
         file.write(f'\n--- Total time for analysis:{end-start}s ---')
+        file.write(f'\n--- Total time for analysis:{(end-start) / 3600} hours ---')
         file.write(f'\n--- Total time for analysis:{(end-start) / 3600} hours ---')
 
 

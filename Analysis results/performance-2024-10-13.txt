@@ -17,3 +17,11 @@ Understandability | URI regex check for TAXREF-LD: Knowledge Graph of the French
 Understandability | Vocabs check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.18725872039794922s
 Verifiability | Authors check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.27178239822387695s
 Verifiability | Publishers check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.21015596389770508s
+Performance | Throughput check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 10.787839651107788s
+Verifiability | Contribs. check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.22477030754089355s
+Interlinking | sameAs chians check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.2217273712158203s
+Interlinking | skos check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.25814056396484375s
+Interlinking | skos check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.3957529067993164s
+Timeliness | dataset update frequency check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.5364508628845215s
+Currency | Creation date check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 1.1239192485809326s
+Currency | Modification date check for TAXREF-LD: Knowledge Graph of the French taxonomic registery took 0.24711894989013672s
