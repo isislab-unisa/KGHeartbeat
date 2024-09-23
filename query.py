@@ -17,8 +17,7 @@ def log_in_out(func):
         execution_time = end_time - start_time
         log_text = '{0} took {1:.8f}s to execute\n'.format(func.__name__, execution_time)
         print(log_text)
-        with open('performance.txt','a') as file:
-            file.write(log_text)
+
         return result
 
     return decorated_func
