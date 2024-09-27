@@ -3,6 +3,7 @@ import os
 import requests
 import csv
 import ast
+from collections import Counter
 
 class QualityEvaluationOT:
     def __init__(self,analysis_results_path,output_file='evaluation-over-time'):
@@ -51,12 +52,13 @@ class QualityEvaluationOT:
 
                 identifiers_in_csv = set(df['KG id'].unique())
                 missing_identifiers = set(identifiers) - identifiers_in_csv
-                print("Missing KGs from KGHeartBeat analysis: ", missing_identifiers)
+                print("Missing KGs from KGHeartBeat analysis: ", len(missing_identifiers))
+                print(file_path)
 
                 df['KG id'] = df['KG id'].astype(str).str.strip()
                 df_filtered = df[df['KG id'].isin(identifiers)]
 
-                df_filtered.to_csv(f"filtered/{filename}.csv",index=False)
+                df_filtered.to_csv(f"filtered/{filename}",index=False)
 
     def extract_only_lodc_single_file(self,analysis_results_path):
         '''
@@ -164,7 +166,7 @@ class QualityEvaluationOT:
                 df[key] = df[dimensions_in_cat].sum(axis=1) / len(dimensions_in_cat)
             
             df.to_csv(file_path,index=False)
-                
+    
     def evaluate_provenance_info(self):
         '''
             Evaluate the provenance metrics by checking if an author or a publisher is indicated in the KG.
@@ -188,8 +190,8 @@ class QualityEvaluationOT:
             data.append(evaluation)
 
         here = os.path.dirname(os.path.abspath(__file__))
-        save_path = os.path.join(here,f'./evaluation_results/{self.output_file}.csv')
-        with open(save_path, mode='a', newline='') as file:
+        save_path = os.path.join(here,f'{self.output_file}/P1.csv')
+        with open(save_path, mode='w', newline='') as file:
             writer = csv.writer(file)
             writer.writerows(data)
     
@@ -201,7 +203,6 @@ class QualityEvaluationOT:
             :param new_column_name the column name in which insert the number of elements in the measured meatric.
         '''
         data = []
-        data.append([metric])
         data.append(['Analysis date', 'Min', 'Q1', 'Median', 'Q3', 'Max', 'Mean'])
         for file_path in self.analysis_results_files:
             df = pd.read_csv(file_path)
@@ -225,7 +226,7 @@ class QualityEvaluationOT:
             data.append(evaluation)
         
         here = os.path.dirname(os.path.abspath(__file__))
-        save_path = os.path.join(here,f'./evaluation_results/{self.output_file}.csv')
+        save_path = os.path.join(here,f'{self.output_file}/{metric}.csv')
         with open(save_path, mode='a', newline='') as file:
             writer = csv.writer(file)
             writer.writerows(data)
@@ -235,7 +236,6 @@ class QualityEvaluationOT:
             Evaluate the extensional conciseness metric.
         '''
         data = []
-        data.append(['Extensional conciseness'])
         data.append(['Analysis date', 'Min', 'Q1', 'Median', 'Q3', 'Max', 'Mean'])
         for file_path in self.analysis_results_files:
             df = pd.read_csv(file_path)
@@ -255,11 +255,99 @@ class QualityEvaluationOT:
             data.append(evaluation)
         
         here = os.path.dirname(os.path.abspath(__file__))
-        save_path = os.path.join(here,f'./evaluation_results/{self.output_file}.csv')
-        with open(save_path, mode='a', newline='') as file:
+        save_path = os.path.join(here,f'{self.output_file}/extensional_conciseness.csv')
+        with open(save_path, mode='w', newline='') as file:
             writer = csv.writer(file)
             writer.writerows(data)
+    
+    def classify_sparql_endpoint_availability(self,column_name='Sparql endpoint'):
+        '''
+            Analyze the SPARQL endpoint availabilty over time, Classifying the behavior into:
+                - Always online
+                - Always not specified
+                - Always offline
+                - Swinging
 
-q = QualityEvaluationOT('./quality_data','./evaluation_results/over_time/by_category')
-q.add_category_score()
-q.stats_over_time(['Accessibility score','Representational score','Intrinsic score','Dataset dynamicity score','Trust score','Contextual score'])
+            :param column_name: string that is the column name which contains the SPARQL endpoint status.
+        '''
+        # Load CSV into one dataframe
+        
+        df_list = [pd.read_csv(file, usecols=['KG id', 'Sparql endpoint','SPARQL endpoint URL']) for file in self.analysis_results_files]
+        df = pd.concat(df_list, ignore_index=True)
+
+        df[column_name] = df[column_name].str.strip()
+
+        # Classify the status of every KG kg_id
+        def classify_kg_status(sub_df):
+            unique_statuses = sub_df[column_name].unique()
+            if len(unique_statuses) == 1:
+                return unique_statuses[0]
+            else:
+                return 'Alternating'
+
+        # group by kg_id and use the classification function
+        status_df = df.groupby('KG id').apply(classify_kg_status).reset_index(name='Status')
+
+        # Count how many available, offline and laternating
+        status_counts = status_df['Status'].value_counts().reset_index()
+        status_counts.columns = ['Status', 'Count']
+
+        status_counts.to_csv('./evaluation_results/over_time/availability_over_time.csv',index=False)
+
+        return status_df, status_counts, df
+    
+    def calculate_percentage_of_availability_swinging_sparql(self,df, status_df, column_name='Sparql endpoint'):
+        '''
+            Calculate the percentage of SPARQL endpoint availability for every KGs analyzed.
+
+            :param df: the dataframe with all the data quality calculated over time aggregated togheter.
+            :param status_df: dataframe with the "Status" column, which contains the SPARQL endpoint status for every KGs analyzed over time
+        '''
+        # Filter for alternating KG ids
+        alternating_kg_ids = status_df[status_df['Status'] == 'Alternating']['KG id']
+        
+        # Calculate the availability percentage for each alternating KG id
+        availability_percentages = []
+        availability_percentage_by_kgid = {}
+        for kg_id in alternating_kg_ids:
+            kg_df = df[df['KG id'] == kg_id]
+            total_count = len(kg_df)
+            available_count = len(kg_df[kg_df[column_name] == 'Available'])
+            availability_percentage = (available_count / total_count) * 100
+            availability_percentages.append(availability_percentage)
+            availability_percentage_by_kgid[kg_id] = availability_percentage
+
+        # Calculate the overall average availability percentage for all alternating KG ids
+        overall_average_availability_percentage = df[df['KG id'].isin(alternating_kg_ids) & (df[column_name] == 'Available')].shape[0] / df[df['KG id'].isin(alternating_kg_ids)].shape[0] * 100
+
+        stats = {
+            'min': min(availability_percentages) if availability_percentages else 0,
+            'max': max(availability_percentages) if availability_percentages else 0,
+            'median': pd.Series(availability_percentages).median() if availability_percentages else 0,
+            'q1': pd.Series(availability_percentages).quantile(0.25) if availability_percentages else 0,
+            'q3': pd.Series(availability_percentages).quantile(0.75) if availability_percentages else 0,
+            'std': pd.Series(availability_percentages).std() if availability_percentages else 0,
+            'mean': pd.Series(availability_percentages).mean() if availability_percentages else 0,
+            'overall_average': overall_average_availability_percentage
+        }
+
+        return stats,availability_percentage_by_kgid
+    
+    def group_by_availability_percentage(self,availability_percentage_by_kgid):
+        '''
+            Groub by percentage of SPARQL endpoint availability
+
+            :param availability_percentage_by_kgid: dict with the percentace of SPARQL endpoint availability for every KG analyzed.
+        '''
+        grouped_counts = Counter(availability_percentage_by_kgid.values())
+
+        df = pd.DataFrame(grouped_counts.items(), columns=['Percentage of availability', 'Number of KGs'])
+
+        df.to_csv('./evaluation_results/over_time/percentage_of_availability.csv', index=False)
+
+
+q = QualityEvaluationOT('./filtered/','./evaluation_results/filtered/')
+
+status_df, status_counts, combined_df  = q.analyze_kg_status()
+stats, availability_percentage_by_kgid = q.calculate_alternating_availability(combined_df,status_df)
+q.group_by_availability_percentage(availability_percentage_by_kgid)
