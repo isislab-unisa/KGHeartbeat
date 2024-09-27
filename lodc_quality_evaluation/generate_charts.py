@@ -73,11 +73,12 @@ class GenerateCharts:
         plt.ylabel('Values')
         plt.savefig('test')
 
-    def generate_combined_boxplot_over_time(self, time_period_range, dimensions_to_exclude):
+    def generate_combined_boxplot_over_time(self, time_period_range, plot_title, dimensions_to_exclude = []):
         """
             Creates a boxplot where on the x-axis is time and and for each measurement, a box for each metric.
 
             :param time_period_range: Time data selection interval, e.g., monthly(M), quarterly(Q), all (A).
+            :param plot_title: String to use as title for the boxplot
             :param dimensions_to_exclude: Array pf strings that contains the name of the metrics to exclude from the boxplot.
         
         """
@@ -95,6 +96,12 @@ class GenerateCharts:
                 dimension_name = 'Rep.-Conc.'
             if dimension_name == 'Understandability':
                 dimension_name = 'Underst.'
+            if dimension_name == 'Volatility':
+                dimension_name = 'Timeliness'
+            if dimension_name == 'Amount':
+                dimension_name == 'Amount of data'
+            if dimension_name == 'Dataset':
+                dimension_name = 'Dataset dynamicity'
 
             df["Dimension"] = dimension_name
 
@@ -129,6 +136,16 @@ class GenerateCharts:
         
         plt.savefig(f'{self.output_file}/dimensions_over_time')
     
-charts = GenerateCharts('./evaluation_results/over_time/')
-charts.generate_combined_boxplot_over_time('M',['Accuracy'])
+    def swinging_sparql_bubble_chart(self,filename):
+        df = pd.read_csv(filename)
+
+        plt.figure(figsize=(8,6))
+        minsize = min(df['Number of KGs'])*4
+        maxsize = max(df['Number of KGs'])*4
+        sns.scatterplot(x="Percentage of availability",y="Number of KGs",data=df, sizes=(minsize, maxsize), size='Number of KGs')
+        plt.savefig(f'{self.output_file}/availability_over_time')
+
     
+charts = GenerateCharts('./evaluation_results/over_time/by_category')
+#charts.generate_combined_boxplot_over_time('Q','Quality evaluation for each quality category')
+charts.swinging_sparql_bubble_chart('./evaluation_results/over_time/percentage_of_availability.csv')   
