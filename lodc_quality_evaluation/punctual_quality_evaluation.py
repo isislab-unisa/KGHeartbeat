@@ -28,7 +28,7 @@ class PunctualQualityEvaluation:
     
     def count_elements_by_type(self,metric):
         '''
-            Counts the occourences of the differents type of values for a specific metric 
+            Counts the occourences of the differents type of values for a specific metric .
 
             :param metric: The metric for which you want to count the different types of value
         '''
@@ -94,7 +94,8 @@ class PunctualQualityEvaluation:
 
     def compare_column(self,column_to_compare,sparql_av=False):
         '''
-            Extract the value of n columns to compare the values
+            Extract the value of n columns to compare the values.
+
             :param column_to_compare: array of strings, each string corresponds to the name of the column you want to extract from the dataframe.
             :param sparql_av: if set to true, only KGs with active sparql endpoint will be considered in the comparison
         '''
@@ -174,6 +175,14 @@ class PunctualQualityEvaluation:
                     print(f"Errore durante la richiesta con header {headers}: {e}")
     
     def generate_stats(self,metrics,output_filename,only_sparql_up=True):
+        '''
+            Calculate the minimum, maximum, q1, median, q3 and mean for the given metrics.
+
+            :param metrics: array of string with the column name of the metrics to evaluate.
+            :param output_filename: name of the csv file in which write the output.
+            :param only_sparql_up: boolean that if True, evalute the metrics given only on KGs with SPARQL endpoint online.
+        
+        '''
         data = []
         data.append(['Dimension', 'Min', 'Q1', 'Median', 'Q3', 'Max', 'Mean'])  
         for metric in metrics:
