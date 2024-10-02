@@ -60,28 +60,6 @@ class QualityEvaluationOT:
 
                 df_filtered.to_csv(f"filtered/{filename}",index=False)
 
-    def extract_only_lodc_single_file(self,analysis_results_path):
-        '''
-            Extract only KGs from LODCloud from the csv output from KGHeartBeat.
-
-            :param analysis_results_path: path to csv where to discard the KGs.
-        '''
-        response = requests.get("https://lod-cloud.net/versions/latest/lod-data.json")
-        kgs = response.json()
-        print("Number of KG from LODCloud:", len(kgs))
-        identifiers = [data['identifier'] for key, data in kgs.items()]
-        if '.csv' in analysis_results_path:
-            df = pd.read_csv(analysis_results_path)
-
-            identifiers_in_csv = set(df['KG id'].unique())
-            missing_identifiers = set(identifiers) - identifiers_in_csv
-            print("Missing KGs from KGHeartBeat analysis: ", missing_identifiers)
-
-            df['KG id'] = df['KG id'].astype(str).str.strip()
-            df_filtered = df[df['KG id'].isin(identifiers)]
-
-            df_filtered.to_csv(f"filtered/{analysis_results_path}.csv",index=False)
-
     def stats_over_time(self, metrics,only_sparql_up=True):   
         '''
             For every analysis, calculate the min, max, median, mean, q1, q3 for the specified metrics by considering all KGs in the file.

@@ -17,7 +17,7 @@ class PunctualQualityEvaluation:
 
     def group_by_value(self,metric):
         '''
-            Counts the differents license type from the metadata.
+            Group by values in a column.
 
             :param metric: The metric for which you want to group by the measured value
         '''
@@ -28,7 +28,7 @@ class PunctualQualityEvaluation:
     
     def count_elements_by_type(self,metric):
         '''
-            Counts the occourences of the differents type of values for a specific metric .
+            Counts the occourences of the differents type of values for a specific metric if the values is a list.
 
             :param metric: The metric for which you want to count the different types of value
         '''
@@ -42,8 +42,7 @@ class PunctualQualityEvaluation:
                             values[el] += 1
                         else:
                             values[el] = 1
-            except Exception as error:
-                #print(error)
+            except Exception:
                 continue
         df = pd.DataFrame(values.items())
         self.write_data_on_csv('serial',df,False)
@@ -77,9 +76,14 @@ class PunctualQualityEvaluation:
             "SPARQL or Dump online" : sparql_or_dump_UP
         }
 
-        print(result)
-
-        return result
+        with open('./punctual/availability_stats.csv', mode='w', newline='') as file:
+            writer = csv.writer(file)
+            
+            # Write key as column
+            writer.writerow(result.keys())
+            
+            # Write value as row
+            writer.writerow(result.values())
 
     def write_data_on_csv(self, metric, pandas_df,index=True):
         '''
