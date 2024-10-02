@@ -8,7 +8,7 @@ title: Accessibility category
 
 The values calculated in this case are latency and throughput. Since they are highly variable tests, they are repeated several times and the mean, standard deviation, maximum and minimum are calculated. In fact, the values could vary due to the difference in performance of our network over time or the load of the server where the SPARQL endpoint is located (as well as the performance of the server network itself).
 
-#### **Low latency **
+#### **Low latency**
 The test is repeated 5 times and involves the execution of one
 simple query that retrieves a generic triple of the dataset and comes
 measured the time between the request for the triple and when
