@@ -7,8 +7,10 @@ from API import Aggregator
 import utils
 from networkx.readwrite import json_graph
 import re
+import pickle
 
 def buildGraph():
+    print('Bulding graph with all the KGs...')
     allKg = AGAPI.getAllKg()
     idList = []
     G = nx.Graph()
@@ -19,7 +21,7 @@ def buildGraph():
     for j in range(len(idList)):
         externalLinks = Aggregator.getExternalLinks(idList[j])
         exLinksObj = utils.toObjectExternalLinks(externalLinks)
-        print(idList[j])
+        print(f'Bulding the neighbors of {idList[j]}')
         if isinstance(exLinksObj,list) and len(exLinksObj) > 0:
             for k in range(len(exLinksObj)):
                 link = exLinksObj[k]
@@ -29,9 +31,12 @@ def buildGraph():
                     value = 0
                 value = int(value)
                 G.add_edge(idList[j],link.nameKG,weight=value)
-    #pos = nx.spring_layout(G, k=0.8)
-    #nx.draw(G,pos,with_labels=True,width=0.4,node_size=400)
-    #plt.show()
+    here = os.path.dirname(os.path.abspath(__file__))
+    gFile = os.path.join(here,'GraphOfKG.gpickle') #GET PATH OF CURRENT WORKING DIRECTORY
+    outfile = open(gFile,'wb')
+    pickle.dump(G,outfile) #STORE IT ON DISK
+    outfile.close()
+
     return G
 
 def getPageRank(graph,idKg):
@@ -78,3 +83,26 @@ def storeEdges(graph,nodelist):
         with open(completeName,'w',encoding="utf-8") as f:
             f.write(e)
 
+def check_for_the_KGs_graph():
+    try:
+        here = os.path.dirname(os.path.abspath(__file__))
+        gFile = os.path.join(here,'GraphOfKG.gpickle') #GET PATH OF CURRENT WORKING DIRECTORY
+        infile = open(gFile,'rb')
+        graph = pickle.load(infile)
+        infile.close()
+        
+        return graph
+    except FileNotFoundError: 
+        return False
+
+def cheks_for_changes_in_graph(graph):
+    '''
+        Checks whether new KGs have been added since the last analysis by comparing the number of KGs retrieved 
+        from LOD Cloud and DataHub, with the number of vertices in the Graph of KGs already built.
+    '''
+    num_nodes = graph.number_of_nodes()
+    kg_found = AGAPI.getIdByName('')
+    if len(kg_found) > num_nodes:
+        return True
+    else: 
+        return False

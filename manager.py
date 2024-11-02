@@ -69,19 +69,13 @@ if (len(id) == 0) and (len(name) == 0): #SPECIAL INPUT, WE ANALYZE ALL KG DISCOV
 toAnalyze = toAnalyze + tuple_id
 toAnalyze = list(dict.fromkeys(toAnalyze)) #CLEAN THE LIST FROM DUPLICATES
 
-try: #CHECK IF THE FILE WITH THE GRAPH OF KNOWLEDGE GRAPH IS PRESENT
-    here = os.path.dirname(os.path.abspath(__file__))
-    gFile = os.path.join(here,'GraphOfKG.gpickle') #GET PATH OF CURRENT WORKING DIRECTORY
-    infile = open(gFile,'rb')
-    graph = pickle.load(infile)
-    infile.close()
-except FileNotFoundError:   
-    graph = Graph.buildGraph() #CREATION OF THE GRAPH OF KNOWLEDGE GRAPH
-    here = os.path.dirname(os.path.abspath(__file__))
-    gFile = os.path.join(here,'GraphOfKG.gpickle') #GET PATH OF CURRENT WORKING DIRECTORY
-    outfile = open(gFile,'wb')
-    pickle.dump(graph,outfile) #STORE IT ON DISK
-    outfile.close()
+graph = Graph.check_for_the_KGs_graph()
+if graph:
+    need_to_update = Graph.cheks_for_changes_in_graph(graph)
+    if need_to_update:
+        graph = Graph.buildGraph()
+else:
+    graph = Graph.buildGraph()
 
 #PREPARING THE CSV FILE IN OUTPUT
 filename = date.today()
