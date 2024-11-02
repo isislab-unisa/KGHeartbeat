@@ -3,6 +3,8 @@ from urllib import response
 import requests
 import utils
 import itertools
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def getJSONMetadata(idKG):
     url = 'https://lod-cloud.net/json/%s'%idKG

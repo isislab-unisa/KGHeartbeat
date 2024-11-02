@@ -6,7 +6,7 @@ import utils
 def getMetadati(idKG):
     url = 'http://www.isislab.it:12280/kgsearchengine/brutalSearch?keyword=%s'%idKG
     try:
-        response = requests.get(url)    
+        response = requests.get(url,verify=False)    
         if response.status_code == 200:
             response = response.json()
             results = response.get('results')
@@ -21,7 +21,7 @@ def getMetadati(idKG):
 def getAllKg():
     url = 'http://www.isislab.it:12280/kgsearchengine/brutalSearch?keyword='
     try:
-        response = requests.get(url)    
+        response = requests.get(url,verify=False)    
         if response.status_code == 200:
             print("Connection to API successful and data recovered")
             response = response.json()
@@ -52,7 +52,7 @@ def getNameKG(metadata):
 def getIdByName(keyword):
     url = 'http://www.isislab.it:12280/kgsearchengine/brutalSearch?keyword=%s'%keyword
     try:
-        response = requests.get(url)    
+        response = requests.get(url,verify=False)    
         if response.status_code == 200:
             utils.update_local_kgs_spnapshot()
             print("Connection to API successful and data recovered")

@@ -2,6 +2,8 @@ from importlib import resources
 import json
 import requests
 import utils
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 #INPUT: DATASET ID TO LOOK FOR
 #OUTPUT: FILE JSON WITH METADATA OF THE DATASET
