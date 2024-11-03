@@ -1,11 +1,8 @@
 from datetime import date
 import json
 import os
-import pickle
 import Configuration
-import networkx as nx
 from API import AGAPI
-import Graph
 import analyses
 from JsonValidator import JsonValidator
 from OutputCSV import OutputCSV
@@ -69,13 +66,13 @@ if (len(id) == 0) and (len(name) == 0): #SPECIAL INPUT, WE ANALYZE ALL KG DISCOV
 toAnalyze = toAnalyze + tuple_id
 toAnalyze = list(dict.fromkeys(toAnalyze)) #CLEAN THE LIST FROM DUPLICATES
 
-graph = Graph.check_for_the_KGs_graph()
-if graph:
-    need_to_update = Graph.cheks_for_changes_in_graph(graph)
-    if need_to_update:
-        graph = Graph.buildGraph()
-else:
-    graph = Graph.buildGraph()
+# graph = Graph.check_for_the_KGs_graph()
+# if graph:
+#     need_to_update = Graph.cheks_for_changes_in_graph(graph)
+#     if need_to_update:
+#         graph = Graph.buildGraph()
+# else:
+#     graph = Graph.buildGraph()
 
 #PREPARING THE CSV FILE IN OUTPUT
 filename = date.today()
