@@ -31,6 +31,8 @@ def buildGraph():
                     value = 0
                 value = int(value)
                 G.add_edge(idList[j],link.nameKG,weight=value)
+        else:
+            G.add_node(idList[j])
     here = os.path.dirname(os.path.abspath(__file__))
     gFile = os.path.join(here,'GraphOfKG.gpickle') #GET PATH OF CURRENT WORKING DIRECTORY
     outfile = open(gFile,'wb')
@@ -102,6 +104,8 @@ def cheks_for_changes_in_graph(graph):
     '''
     num_nodes = graph.number_of_nodes()
     kg_found = AGAPI.getIdByName('')
+    print(num_nodes)
+    print(len(kg_found))
     if len(kg_found) > num_nodes:
         return True
     else: 
