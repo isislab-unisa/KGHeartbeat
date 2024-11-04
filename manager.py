@@ -11,6 +11,7 @@ import utils
 import gc
 import time
 import fromCSV_to_KG 
+import Graph
 
 useDB = False
 try : 
@@ -66,13 +67,13 @@ if (len(id) == 0) and (len(name) == 0): #SPECIAL INPUT, WE ANALYZE ALL KG DISCOV
 toAnalyze = toAnalyze + tuple_id
 toAnalyze = list(dict.fromkeys(toAnalyze)) #CLEAN THE LIST FROM DUPLICATES
 
-# graph = Graph.check_for_the_KGs_graph()
-# if graph:
-#     need_to_update = Graph.cheks_for_changes_in_graph(graph)
-#     if need_to_update:
-#         graph = Graph.buildGraph()
-# else:
-#     graph = Graph.buildGraph()
+graph = Graph.check_for_the_KGs_graph()
+if graph:
+    need_to_update = Graph.cheks_for_changes_in_graph()
+    if need_to_update:
+        graph = Graph.buildGraph()
+else:
+    graph = Graph.buildGraph()
 
 #PREPARING THE CSV FILE IN OUTPUT
 filename = date.today()

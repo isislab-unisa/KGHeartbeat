@@ -8,6 +8,7 @@ import utils
 from networkx.readwrite import json_graph
 import re
 import pickle
+import datetime
 
 def buildGraph():
     print('Bulding graph with all the KGs...')
@@ -37,7 +38,6 @@ def buildGraph():
     gFile = os.path.join(here,'GraphOfKG.gpickle') #GET PATH OF CURRENT WORKING DIRECTORY
     outfile = open(gFile,'wb')
     pickle.dump(G,outfile) #STORE IT ON DISK
-    outfile.close()
 
     return G
 
@@ -97,16 +97,16 @@ def check_for_the_KGs_graph():
     except FileNotFoundError: 
         return False
 
-def cheks_for_changes_in_graph(graph):
+def cheks_for_changes_in_graph():
     '''
-        Checks whether new KGs have been added since the last analysis by comparing the number of KGs retrieved 
-        from LOD Cloud and DataHub, with the number of vertices in the Graph of KGs already built.
+        Check if the file was written more than a month ago, if yes update it.
     '''
-    num_nodes = graph.number_of_nodes()
-    kg_found = AGAPI.getIdByName('')
-    print(num_nodes)
-    print(len(kg_found))
-    if len(kg_found) > num_nodes:
+    here = os.path.dirname(os.path.abspath(__file__))
+    gFile = os.path.join(here,'GraphOfKG.gpickle')
+    modification_time = os.path.getmtime(gFile)
+    modification_date = datetime.datetime.fromtimestamp(modification_time)
+    current_date = datetime.datetime.now()
+    if (current_date - modification_date).days > 30:
         return True
-    else: 
+    else:
         return False
