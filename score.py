@@ -59,6 +59,9 @@ class Score:
         self.uriValue = 0
         self.rdfValue = 0
         self.blankValue = 0
+        self.vocabsValue = 0
+        self.tpValue = 0
+        self.latencyValue = 0
 
     def availabilityScore(self,weight):
         if self.kg.availability.sparqlEndpoint == 'Available':
@@ -197,7 +200,8 @@ class Score:
                     latencyV = 1000 / meanLatency
             except:
                 latencyV = 0.0
-            
+            self.tpValue = tp
+            self.latencyValue = latencyV
             return ((tp + latencyV) * weight) / PERFORMANCE_METRICS
         else:
             return 0
@@ -561,6 +565,7 @@ class Score:
             vocabsV = 0
         
         self.labelValue = labelV
+        self.vocabsValue = vocabsV
         return ((labelV + regexV + exampleV + vocabsV)  * weight) / UNDERSTANDABILITY_METRICS
     
     def interpretabilityScore(self,weight):
