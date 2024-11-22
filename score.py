@@ -388,7 +388,7 @@ class Score:
 
     def currencyScore(self,weight):
         creation = self.kg.currency.creationDate
-        if isinstance(creation,date) or (isinstance(creation,str) and creation != '-'):
+        if isinstance(creation,date) or (isinstance(creation,str) and creation != '-') or isinstance(creation,int):
                 cV = 1
         else:
             cV = 0
@@ -407,6 +407,8 @@ class Score:
                 freqV = 1
             else:
                 freqV = 0
+        elif isinstance(frequency,str) and frequency in ['http:','https:']:
+            freqV = 1
         else:
             freqV = 0
         
@@ -435,15 +437,16 @@ class Score:
         except (ValueError,TypeError):
             triplesV = 0
         try:
-            numE = int(self.kg.amountOfData.numEntities)
-            entitiesV = 1
-        except (ValueError,TypeError):
-            entitiesV = 0
-        try:
             numERe = int(self.kg.amountOfData.entitiesRe)
             entitiesV = 1
         except (ValueError,TypeError):
             entitiesV = 0
+        if entitiesV == 0:
+            try:
+                numE = int(self.kg.amountOfData.numEntities)
+                entitiesV = 1
+            except (ValueError,TypeError):
+                entitiesV = 0
         try:
             numProp = int(self.kg.amountOfData.numProperty)
             numPropV = 1
