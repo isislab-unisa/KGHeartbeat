@@ -84,6 +84,7 @@ def convert_to_kg_with_llms(filename,block_dimension):
 
 def convert_to_kg_code_from_llm(filename):
     here = os.path.dirname(os.path.abspath(__file__))
+    save_path = os.path.join(here,'./Analysis results')
 
     # Define namespaces
     DQV = Namespace("http://www.w3.org/ns/dqv#")
@@ -92,7 +93,7 @@ def convert_to_kg_code_from_llm(filename):
     SDMX_CODE = Namespace("http://purl.org/linked-data/sdmx/2009/code#")
 
     # Read the CSV file
-    df = pd.read_csv(f"./Analysis results/{filename}.csv")
+    df = pd.read_csv(f"{save_path}/{filename}.csv")
 
     analysis_date = filename.split('_')[0]
 
@@ -201,7 +202,6 @@ def convert_to_kg_code_from_llm(filename):
                     g.add((score_observation_uri, DQV.value, Literal(score_value, datatype=XSD.string)))
 
     # Serialize the graph to a file
-    save_path = os.path.join(here,'./Analysis results')
     g.serialize(destination=f"{save_path}/{filename.split('_')[0]}.ttl", format="turtle")
     os.remove(f'{save_path}/{filename}.csv')
     os.chmod(f"{save_path}/{filename.split('_')[0]}.ttl", 0o644)
