@@ -6,6 +6,7 @@ title: Dataset dynamicity category
 1. [Age of data](#age-of-data)
 2. [Specification of the modification date of statements](#specification-of-the-modification-date-of-statements)
 3. [Time since last modification](#time-since-last-modification)
+4. [History of changes made](#history-of-changes-made)
 
 #### **Age of data**
 The value regarding the KG creation date can be obtained from the VoID file or by executing a query on the SPARQL endpoint. In the VoID file we look for a triple having $dcterms:created$ as predicate. Instead the query for the endpoint should be of the type:
