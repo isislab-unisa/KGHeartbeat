@@ -25,13 +25,7 @@
     - [Look directly the quality](#look-directly-the-quality)
 - [How include a new quality metric?](#how-include-a-new-quality-metric)
 - [How to cite our work](#how-to-cite-our-work)
-- [How to cite our work](#how-to-cite-our-work)
 - [Generate RDF graph from csv (ESWC Workshop)](./Generate%20KG%20from%20csv%20(ESWC%20Workshop)/)
-- [Roadmap](#roadmap-)
-
-
-- [Roadmap](#roadmap-)
-
 - [Roadmap](#roadmap-)
 
 ## Repository structure
@@ -183,14 +177,6 @@ Link to the paper: [https://link.springer.com/chapter/10.1007/978-3-031-77847-6_
   organization={Springer}
 }
 ```
-
-## Roadmap 🚀
-- [ ] Better filtering of inactive KGs from the Web-App, not just based on SPARQL endpoint (possible cue from YummyData).
-- [ ] Increase the number of KGs monitored by the tool, including through the use of scraping in GitHub/Git Lab repositories (as suggested in the [#1 issue](https://github.com/isislab-unisa/KGHeartbeat/issues/1) by @vemonet).
-- [ ] Grouping KGs with the same SPARQL endpoint, but referring to a different sub-graph.
-
-
-
 
 ## Roadmap 🚀
 - [ ] Better filtering of inactive KGs from the Web-App, not just based on SPARQL endpoint (possible cue from YummyData).
