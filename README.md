@@ -11,13 +11,12 @@
 ---
 
 # Table of contents
-- [KGHeartbeat](#kgheartbeat)
-    - [Repository structure](#repository-structure)
-    - [Quality metrics covered](#quality-metrics-covered)
-    - [Examples](#examples)
-    - [Test](#test)
-    - [Performance](#performance)
-    - [License](#license)
+- [Repository structure](#repository-structure)
+- [Quality metrics covered](#quality-metrics-covered)
+- [Examples](#examples)
+- [Test](#test)
+- [Performance](#performance)
+- [License](#license)
 
 - [How To Use KGHeartbeat?](#how-to-use-kgheartbeat)
     - [Dependencies](#dependencies)
