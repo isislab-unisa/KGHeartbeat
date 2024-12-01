@@ -28,8 +28,6 @@
 - [Generate RDF graph from csv (ESWC Workshop)](./Generate%20KG%20from%20csv%20(ESWC%20Workshop)/)
 - [Roadmap](#roadmap-)
 
-- [Roadmap](#roadmap-)
-
 ## Repository structure
 ```
 KG-HeartBeat
