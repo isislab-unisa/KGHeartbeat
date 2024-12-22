@@ -1164,3 +1164,12 @@ def clean_dqv_values(input_file, output_file, target_metric="<http://example.org
                 continue
             
             outfile.write(line)
+
+def is_valid_void_url(url):
+    try:
+        response = requests.head(url, timeout=30, allow_redirects=True)
+        if 'text/html' in response.headers.get('Content-Type', ''):
+            return False
+        return True
+    except Exception as e:
+        return False
