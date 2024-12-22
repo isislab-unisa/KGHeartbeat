@@ -268,21 +268,21 @@ def checkAvailabilityResource(url):
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36'}
     try:
         #url = checkRedirect(url) #BEFORE CHECK IF THE URL IS REDIRECTED
-        response = requests.head(url,timeout=180,allow_redirects=True) #3 MINUTES
+        response = requests.head(url,timeout=180,allow_redirects=True, verify=False) #3 MINUTES
         if response.status_code < 400:   #IF FAILS WITH A HEAD REQUEST, WE TEST WITH A GET (HEAD MAY NOT BE SUPPORTED)
             return True
         else:
-            response = requests.get(url,timeout=180,allow_redirects=True)
+            response = requests.get(url,timeout=180,allow_redirects=True, verify=False)
             if response.status_code < 400:
                 return True
             else:
                 newUrl = response.url
                 if newUrl != url:
-                    response = requests.head(newUrl,timeout=180,allow_redirects=True)
+                    response = requests.head(newUrl,timeout=180,allow_redirects=True, verify=False)
                     if response.status_code < 400:
                         return True
                     else:
-                         response = requests.get(newUrl,timeout=180,allow_redirects=True)
+                         response = requests.get(newUrl,timeout=180,allow_redirects=True, verify=False)
                          if response.status_code < 400:
                              return True
                          else:
