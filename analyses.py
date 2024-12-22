@@ -247,43 +247,47 @@ def analyses(idKG,analysis_date,nameKG):
     start_analysis = time.time()
     urlV = utils.getUrlVoID(otResources)
     voidStatus = ''
-    if isinstance(urlV,str):
-        try:
-            voidFile = VoIDAnalyses.parseVoID(urlV)
-            void = True
-            voidStatus = 'VoID file available'
-        except:
+    void = False
+    if utils.is_valid_void_url(urlV):
+        if isinstance(urlV,str):
             try:
-                voidFile = VoIDAnalyses.parseVoIDTtl(urlV)
+                voidFile = VoIDAnalyses.parseVoID(urlV)
                 void = True
                 voidStatus = 'VoID file available'
             except:
-                void = False 
-                voidStatus = 'VoID file offline'
-    if void == False and not isinstance(urlV,str) and sourcesC.web != 'absent' and sourcesC.web != 'Absent':
-        urlV = sourcesC.web + '/.well-known/void'
-        try:
-            voidFile = VoIDAnalyses.parseVoID(urlV)
-            void = True
-            voidStatus = 'VoID file available'
-            logger.info(f"VoID file link: {urlV}",extra=kg_info)
-        except:
+                try:
+                    voidFile = VoIDAnalyses.parseVoIDTtl(urlV)
+                    void = True
+                    voidStatus = 'VoID file available'
+                except:
+                    void = False 
+                    voidStatus = 'VoID file offline'
+        if void == False and not isinstance(urlV,str) and sourcesC.web != 'absent' and sourcesC.web != 'Absent':
+            urlV = sourcesC.web + '/.well-known/void'
             try:
-                voidFile = VoIDAnalyses.parseVoIDTtl(urlV)
+                voidFile = VoIDAnalyses.parseVoID(urlV)
                 void = True
                 voidStatus = 'VoID file available'
-            except urllib.error.HTTPError as e:
-                if e.code == 404:
+                logger.info(f"VoID file link: {urlV}",extra=kg_info)
+            except:
+                try:
+                    voidFile = VoIDAnalyses.parseVoIDTtl(urlV)
+                    void = True
+                    voidStatus = 'VoID file available'
+                except urllib.error.HTTPError as e:
+                    if e.code == 404:
+                        voidStatus = 'VoID file absent'
+                    else:
+                        void = False
+                        voidStatus = 'VoID file offline'
+                except urllib.error.URLError as e:
                     voidStatus = 'VoID file absent'
-                else:
+                except Exception as e:
                     void = False
                     voidStatus = 'VoID file offline'
-            except urllib.error.URLError as e:
-                voidStatus = 'VoID file absent'
-            except Exception as e:
-                void = False
-                voidStatus = 'VoID file offline'
-    if not isinstance(urlV,str):
+        if not isinstance(urlV,str):
+            voidStatus = 'VoID file absent'
+    else:
         voidStatus = 'VoID file absent'
     logger.info(f"VoID file link: {urlV}",extra=kg_info)
     end_analysis = time.time()

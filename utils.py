@@ -1111,3 +1111,12 @@ def check_common_acceppted_format(media_types):
                 return True
 
     return False 
+
+def is_valid_void_url(url):
+    try:
+        response = requests.head(url, timeout=30, allow_redirects=True)
+        if 'text/html' in response.headers.get('Content-Type', ''):
+            return False
+        return True
+    except Exception as e:
+        return False
