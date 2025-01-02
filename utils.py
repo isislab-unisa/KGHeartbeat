@@ -25,6 +25,8 @@ import shutil
 import urllib.request
 from urllib.parse import urlparse
 import json
+import ssl
+
 
 #PRINT THE METADATI OF A KG
 def printMetadatiKG(metadct):
@@ -266,6 +268,7 @@ def getSource(metadata):
 
 def checkAvailabilityResource(url):
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36'}
+    ssl.match_hostname = lambda cert, hostname: True
     try:
         #url = checkRedirect(url) #BEFORE CHECK IF THE URL IS REDIRECTED
         response = requests.head(url,timeout=180,allow_redirects=True, verify=False) #3 MINUTES
