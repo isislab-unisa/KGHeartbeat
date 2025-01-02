@@ -290,7 +290,7 @@ def checkAvailabilityResource(url):
     except Exception as e:
         return False
     except requests.exceptions.SSLError as e:
-        print("SSL Error: {e}")
+        print(f"SSL Error: {e}")
         return False
 
 def checkAvailabilityResourceHead(url):
