@@ -156,7 +156,7 @@ layout: home
         <tr>
             <td rowspan="8">Degree of connection</td>
             <td rowspan="8"><a href="https://bit.ly/4a4xRA6" target="_blank">bit.ly/4a4xRA6</a></td>
-            <td colspan="4"><i>d(i) detection of (a) interlinking degree, (b) clustering coefficient, (c) centrality, (d) open sameAs chains and (e) description
+            <td colspan="4"><i>detection of (a) interlinking degree, (b) clustering coefficient, (c) centrality, (d) open sameAs chains and (e) description
 richness through sameAs by using network measures</i></td>
         </tr>
         <tr>
@@ -918,7 +918,7 @@ richness through sameAs by using network measures</i></td>
         <tr>
             <td rowspan="8">Level of detail</td>
             <td rowspan="8"><a href="https://bit.ly/3RtIeWV" target="_blank">bit.ly/3RtIeWV</a></td>
-            <td colspan="4"><i>Number of triples</i></td>
+            <td colspan="4"><i>Number of properties</i></td>
         </tr>
         <tr>
             <td>Input</td>
