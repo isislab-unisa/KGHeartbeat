@@ -494,6 +494,7 @@ def analyses(idKG,analysis_date,nameKG):
         dcat_links = []
         try:
             other_download_links = query.get_download_link(accessUrl)
+            print(other_download_links)
             for link in other_download_links:
                 status = utils.checkAvailabilityResource(link)
                 if status == True:
