@@ -1,4 +1,4 @@
-verifying authenticity of the dataset---
+---
 title: Trust category
 ---
 
@@ -15,7 +15,7 @@ PREFIX void: <http://rdfs.org/ns/void#>
 SELECT DISTINCT ?o
 WHERE{?s void:vocabulary ?o }
 ```
-To quantize this metric we need to recover all terms used in the KG. We use the query illustred [here](./representational_consistency.md#reuse-of-terms), then we determine the vocabulary from which each term comes and we put the number into the $namespaces$ variable. Lastly, to quantize the metric we use the following formula, where $vocabs$ is the output of the first query:
+To quantize this metric we need to recover all terms used in the KG. We use the query illustred [here](./interoperability.md#reuse-of-terms), then we determine the vocabulary from which each term comes and we put the number into the $namespaces$ variable. Lastly, to quantize the metric we use the following formula, where $vocabs$ is the output of the first query:
 
 $$
 m_{vocabs} = \frac{vocabs}{namespace}
