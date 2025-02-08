@@ -6,7 +6,9 @@ import csv
 from itertools import islice    
 from langchain_core.prompts import PromptTemplate
 from from_kg_to_csv.prompt_llms  import PromptLLMS
-from   from_kg_to_csv.evaluate_answer import EvaluateKG
+from from_kg_to_csv.evaluate_answer import EvaluateKG
+from datetime import datetime
+from pathlib import Path
 
 
 ontology_path = './Generate KG from csv (ESWC Workshop)/dqv.ttl'
@@ -91,11 +93,15 @@ def convert_to_kg_code_from_llm(filename):
     DCAT = Namespace("http://www.w3.org/ns/dcat#")
     SDMX = Namespace("http://purl.org/linked-data/sdmx/2009/attribute#")
     SDMX_CODE = Namespace("http://purl.org/linked-data/sdmx/2009/code#")
+    PROV = Namespace("http://www.w3.org/ns/prov#")
 
     # Read the CSV file
     df = pd.read_csv(f"{save_path}/{filename}.csv")
 
     analysis_date = filename.split('_')[0]
+    date_obj = datetime.strptime(analysis_date, "%Y-%m-%d")
+    # Format as ISO 8601 with time set to 00:00:00Z
+    iso_date = date_obj.strftime("%Y-%m-%dT%H:%M:%SZ")
 
     # Initialize graph
     g = Graph()
@@ -107,6 +113,7 @@ def convert_to_kg_code_from_llm(filename):
     g.bind("sdmx-code", SDMX_CODE)
     g.bind("dcterms", DCTERMS)
     g.bind("foaf", FOAF)
+    g.bind("prov", PROV)
 
     # Define some common URIs
     vocabulary_uri = URIRef("http://www.w3.org/ns/dqv")
@@ -117,6 +124,12 @@ def convert_to_kg_code_from_llm(filename):
     g.add((vocabulary_uri, DCTERMS.modified, Literal("2016-08-26", datatype=XSD.date)))
     g.add((vocabulary_uri, DCTERMS.publisher, URIRef("http://www.w3.org/data#W3C")))
     g.add((vocabulary_uri, DCTERMS.type, URIRef("http://purl.org/adms/assettype/Ontology")))
+
+    # Generate info about the Quality assessment tool
+    kgheartbeat_uri = URIRef("http://example.org/assessment-tool/KGHeartBeat")
+
+    g.add((kgheartbeat_uri, RDF.type, PROV.SoftwareAgent))
+    g.add((kgheartbeat_uri, RDFS.label, Literal('A KG quality assessment tool',lang="en")))
 
     # Process each row in the dataframe
     for _, row in df.iterrows():
@@ -131,7 +144,7 @@ def convert_to_kg_code_from_llm(filename):
         g.add((dataset_uri, RDF.type, DCAT.Dataset))
         g.add((dataset_uri, DCTERMS.title, Literal(kg_name)))
         g.add((dataset_uri, DCTERMS.identifier, Literal(kg_id)))
-        g.add((dataset_uri, DCTERMS.date, Literal(analysis_date, datatype=XSD.date)))
+        #g.add((dataset_uri, DCTERMS.date, Literal(analysis_date, datatype=XSD.date)))
 
         # Iterate over columns to generate quality measurements
         for column in df.columns:
@@ -142,8 +155,7 @@ def convert_to_kg_code_from_llm(filename):
                 dimension, metric = column.split('_', 1)
                 dimension_uri = URIRef(f"http://example.org/dimension/{dimension}")
                 metric_uri = URIRef(f"http://example.org/metric/{metric}")
-                observation_uri = URIRef(f"http://example.org/observation/{kg_id}/{column}")
-
+                observation_uri = URIRef(f"http://example.org/observation/{kg_id}/{column}_{analysis_date}")
                 
                 # Add dimension and metric to graph
                 g.add((dimension_uri, RDF.type, DQV.Dimension))
@@ -156,6 +168,8 @@ def convert_to_kg_code_from_llm(filename):
                 g.add((observation_uri, RDF.type, DQV.QualityMeasurement))
                 g.add((observation_uri, DQV.isMeasurementOf, metric_uri))
                 g.add((observation_uri, DQV.computedOn, dataset_uri))
+                g.add((observation_uri, PROV.generatedAtTime, Literal(iso_date, datatype=XSD.dateTime)))
+                g.add((observation_uri, PROV.wasAttributedTo, kgheartbeat_uri))
 
                 value = row[column]
                 if isinstance(value, str):
@@ -176,7 +190,7 @@ def convert_to_kg_code_from_llm(filename):
             # Process score columns
             else:
                 score_uri = URIRef(f"http://example.org/score/{column}")
-                score_observation_uri = URIRef(f"http://example.org/observation/{kg_id}/{column}")
+                score_observation_uri = URIRef(f"http://example.org/observation/{kg_id}/{column}_{analysis_date}")
 
                 g.add((score_uri, RDF.type, DQV.Metric))
                 g.add((score_uri, RDFS.label, Literal(column, lang="en")))
@@ -184,6 +198,8 @@ def convert_to_kg_code_from_llm(filename):
                 g.add((score_observation_uri, RDF.type, DQV.QualityMeasurement))
                 g.add((score_observation_uri, DQV.isMeasurementOf, score_uri))
                 g.add((score_observation_uri, DQV.computedOn, dataset_uri))
+                g.add((score_observation_uri, PROV.generatedAtTime, Literal(iso_date, datatype=XSD.dateTime)))
+                g.add((score_observation_uri, PROV.wasAttributedTo, kgheartbeat_uri))
 
                 score_value = row[column]
                 if isinstance(score_value, str):
@@ -205,3 +221,51 @@ def convert_to_kg_code_from_llm(filename):
     g.serialize(destination=f"{save_path}/{filename.split('_')[0]}.ttl", format="turtle")
     os.remove(f'{save_path}/{filename}.csv')
     os.chmod(f"{save_path}/{filename.split('_')[0]}.ttl", 0o644)
+
+def merge_kgs_to_single_kg(output_file = False):
+    """
+    Merge RDF files containing observations into a single file, keeping prefixes only once.
+    
+    Args:
+        output_file (str): Path to the output merged file
+    """
+    here = os.path.dirname(os.path.abspath(__file__))
+    save_path = os.path.join(here,'./Analysis results')
+    if not output_file:
+        output_file = os.path.join(save_path,'KGHeartBeat_KG.ttl')
+
+    merged_graph = Graph()
+
+    observation_pattern = URIRef("http://example.org/observation/")
+
+    # Flag to track if we've processed the first file
+    first_file_processed = False
+
+    # We start with the last analysis in chronological order, because the first file copies it in its entirety,
+    # and it could be that in the last analysis we have new KGs that were not there before, and so if we used the first analysis, 
+    # then we would miss the dataset statement, and we get only have the observations 
+    files = list(Path(save_path).glob('*.ttl'))
+    files.sort(reverse=True)
+
+    for file_path in files: 
+        current_graph = Graph()
+        current_graph.parse(file_path, format='turtle')
+        
+        # If this is the first file, copy all prefixes
+        if not first_file_processed:
+            # Copy prefix
+            for prefix, namespace in current_graph.namespaces():
+                merged_graph.bind(prefix, namespace)
+            
+            # Copy all from the first file
+            for s, p, o in current_graph:
+                merged_graph.add((s, p, o))
+
+            first_file_processed = True
+        else:
+            # From subsequent files, only copy observation
+            for s, p, o in current_graph:
+                if isinstance(s, URIRef) and str(s).startswith(str(observation_pattern)):
+                    merged_graph.add((s, p, o))
+    
+    merged_graph.serialize(destination=output_file, format='turtle')
