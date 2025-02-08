@@ -116,3 +116,4 @@ with open(f'{save_path}/performance-{filename}.txt','a') as file:
 
 
 fromCSV_to_KG.convert_to_kg_code_from_llm(filename + '_with_dimensions')
+fromCSV_to_KG.merge_kgs_to_single_kg()
