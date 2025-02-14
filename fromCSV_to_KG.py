@@ -10,7 +10,6 @@ from from_kg_to_csv.evaluate_answer import EvaluateKG
 from datetime import datetime
 from pathlib import Path
 
-
 ontology_path = './Generate KG from csv (ESWC Workshop)/dqv.ttl'
 kg_as_example_path = './Generate KG from csv (ESWC Workshop)/Full/cz-nace-full.ttl'
 
@@ -222,50 +221,50 @@ def convert_to_kg_code_from_llm(filename):
     os.remove(f'{save_path}/{filename}.csv')
     os.chmod(f"{save_path}/{filename.split('_')[0]}.ttl", 0o644)
 
-def merge_kgs_to_single_kg(output_file = False):
+def merge_kgs_to_single_kg(output_file=False):
     """
     Merge RDF files containing observations into a single file, keeping prefixes only once.
+    Writes output line by line to reduce memory consumption.
     
     Args:
         output_file (str): Path to the output merged file
     """
     here = os.path.dirname(os.path.abspath(__file__))
-    save_path = os.path.join(here,'./Analysis results')
+    save_path = os.path.join(here, './Analysis results')
+
+    if os.path.exists(f'{save_path}/KGHeartBeat_KG.ttl'):
+        os.remove(f'{save_path}/KGHeartBeat_KG.ttl')
+
     if not output_file:
-        output_file = os.path.join(save_path,'KGHeartBeat_KG.ttl')
-
-    merged_graph = Graph()
-
-    observation_pattern = URIRef("http://example.org/observation/")
-
-    # Flag to track if we've processed the first file
-    first_file_processed = False
-
-    # We start with the last analysis in chronological order, because the first file copies it in its entirety,
-    # and it could be that in the last analysis we have new KGs that were not there before, and so if we used the first analysis, 
-    # then we would miss the dataset statement, and we get only have the observations 
-    files = list(Path(save_path).glob('*.ttl'))
-    files.sort(reverse=True)
-
-    for file_path in files: 
-        current_graph = Graph()
-        current_graph.parse(file_path, format='turtle')
-        
-        # If this is the first file, copy all prefixes
-        if not first_file_processed:
-            # Copy prefix
-            for prefix, namespace in current_graph.namespaces():
-                merged_graph.bind(prefix, namespace)
-            
-            # Copy all from the first file
-            for s, p, o in current_graph:
-                merged_graph.add((s, p, o))
-
-            first_file_processed = True
-        else:
-            # From subsequent files, only copy observation
-            for s, p, o in current_graph:
-                if isinstance(s, URIRef) and str(s).startswith(str(observation_pattern)):
-                    merged_graph.add((s, p, o))
+        output_file = os.path.join(save_path, 'KGHeartBeat_KG.ttl')
     
-    merged_graph.serialize(destination=output_file, format='turtle')
+    observation_pattern = "<http://example.org/observation/"
+    files = sorted(Path(save_path).glob('*.ttl'), reverse=True)
+    
+    if not files:
+        return
+    
+    # Copy the most recent file as the base
+    most_recent_file = files[0]
+    
+    with open(most_recent_file, "rb") as f_in, open(output_file, "wb") as f_out:
+        f_out.write(f_in.read())
+    
+    # Append only observations from older files
+    with open(output_file, "ab") as f_out:
+        for file_path in files[1:]:
+            print(f"Processing {file_path}...")
+            with open(file_path, "r", encoding="utf-8") as f_in:
+                buffer = []
+                inside_observation = False
+                for line in f_in:
+                    stripped_line = line.strip()
+                    if stripped_line.startswith(observation_pattern):
+                        inside_observation = True
+                        buffer = [stripped_line]
+                    elif inside_observation:
+                        buffer.append(stripped_line)
+                        if stripped_line.endswith("."):
+                            f_out.write("\n".join(buffer).encode("utf-8") + b"\n")
+                            f_out.write(b"\n")
+                            inside_observation = False
