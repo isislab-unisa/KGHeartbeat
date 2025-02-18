@@ -1123,3 +1123,44 @@ def is_valid_void_url(url):
         return True
     except Exception as e:
         return False
+
+def clean_dqv_values(input_file, output_file, target_metric="<http://example.org/metric/Description>"):
+    here = os.path.dirname(os.path.abspath(__file__))
+    input_file = os.path.join(here,input_file)
+    output_file = os.path.join(here,output_file)
+
+    def clean_value(value):
+        value = re.sub(r'\s+', ' ', value).strip()  # Normalize spaces
+        value = value.replace("'", " ").replace('"', '')
+        return value
+    
+    with open(input_file, "r", encoding="utf-8") as infile, open(output_file, "w", encoding="utf-8") as outfile:
+        inside_target_block, multiline = False, False
+        new_value_buffer = None
+        
+        for line in infile:
+            stripped = line.strip()
+            
+            if stripped.startswith("dqv:isMeasurementOf") and target_metric in stripped:
+                inside_target_block = True
+            
+            if inside_target_block and stripped.startswith("dqv:value"):
+                multiline = not stripped.endswith('^^xsd:string ;')
+                new_value_buffer = stripped.split('dqv:value', 1)[1].strip().strip('"')
+                continue
+            
+            if multiline:
+                if stripped.endswith('^^xsd:string ;'):
+                    new_value_buffer += ' ' + stripped.strip().strip('"')
+                    multiline = False
+                else:
+                    new_value_buffer += ' ' + stripped.strip().strip('"')
+                continue
+            
+            if new_value_buffer is not None:
+                cleaned_value = clean_value(new_value_buffer)
+                outfile.write(f'    dqv:value "{cleaned_value}"^^xsd:string ;\n')
+                new_value_buffer, inside_target_block = None, False
+                continue
+            
+            outfile.write(line)
