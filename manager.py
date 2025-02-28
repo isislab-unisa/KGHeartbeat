@@ -59,7 +59,7 @@ for i in range(len(name)): #IF NAME IS INDICATED WE RECOVER THE ID OF ALL KG FOU
     print(f"Number of KG found with keyword {name[i]}:{len(kgFound)}")
     toAnalyze = toAnalyze + kgFound
 
-if (len(id) == 0) and (len(name) == 0): #SPECIAL INPUT, WE ANALYZE ALL KG DISCOVERABLE
+if (len(id) == 0) and (len(name) == 0) and len(input.get('sparql_url')) == 0: #SPECIAL INPUT, WE ANALYZE ALL KG DISCOVERABLE
     kgFound = AGAPI.getIdByName('')
     print(f"Number of KG found: {len(kgFound)}")
     toAnalyze = toAnalyze + kgFound
@@ -67,13 +67,13 @@ if (len(id) == 0) and (len(name) == 0): #SPECIAL INPUT, WE ANALYZE ALL KG DISCOV
 toAnalyze = toAnalyze + tuple_id
 toAnalyze = list(dict.fromkeys(toAnalyze)) #CLEAN THE LIST FROM DUPLICATES
 
-graph = Graph.check_for_the_KGs_graph()
-if graph:
-    need_to_update = Graph.cheks_for_changes_in_graph()
-    if need_to_update:
-        graph = Graph.buildGraph()
-else:
-    graph = Graph.buildGraph()
+# graph = Graph.check_for_the_KGs_graph()
+# if graph:
+#     need_to_update = Graph.cheks_for_changes_in_graph()
+#     if need_to_update:
+#         graph = Graph.buildGraph()
+# else:
+#     graph = Graph.buildGraph()
 
 #PREPARING THE CSV FILE IN OUTPUT
 filename = date.today()
@@ -83,7 +83,7 @@ OutputCSV.writeHeader(filename,include_dimensions=True)
 
 for i in range(len(toAnalyze)):
     start_analysis = time.time()
-    kg = analyses.analyses(toAnalyze[i][0],filename,toAnalyze[i][1])
+    kg = analyses.analyses(idKG=toAnalyze[i][0],analysis_date=filename,nameKG=toAnalyze[i][1])
     score = Score(kg,20)
     totalScore,normalizedScore = score.getWeightedDimensionScore(1)
     totalScore = "%.3f"%totalScore
@@ -107,6 +107,34 @@ for i in range(len(toAnalyze)):
     del kg
     gc.collect()
     #print(kg.getQualityKG()) #PRINT THE KG QUALITY ON THE COMAND LINE
+
+if len(input.get('sparql_url')) > 0:
+    sparql_urls = input.get('sparql_url')
+    for sparql_url in sparql_urls:
+        start_analysis = time.time()
+        kg = analyses.analyses(filename,sparql_endpoint=sparql_url)
+        score = Score(kg,20)
+        totalScore,normalizedScore = score.getWeightedDimensionScore(1)
+        totalScore = "%.3f"%totalScore
+        normalizedScore = "%.3f"%normalizedScore
+        totalScore = float(totalScore)
+        normalizedScore = float(normalizedScore)
+        kg.extra.score = totalScore
+        kg.extra.normalizedScore = normalizedScore
+        kg.extra.scoreObj = score
+        end_analysis = time.time()
+        utils.write_time(sparql_url,end_analysis-start_analysis,'--- Analysis','INFO',filename)
+        csv = OutputCSV(kg,sparql_urls)
+        csv_with_dim = OutputCSV(kg,sparql_urls)
+        csv.writeRow(filename)
+        csv_with_dim.writeRow(filename,include_dimensions=True)
+        print(f"KG score: {kg.extra.score}")
+        if(useDB == True):
+            mongo_interface = DBinterface()
+            mongo_interface.insert_quality_data(kg,score)
+        del csv
+        del kg
+        gc.collect()
 
 end = time.time()
 save_path = os.path.join(here,'./Analysis results')

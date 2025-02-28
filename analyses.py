@@ -56,7 +56,7 @@ import os
 import logging
 
 
-def analyses(idKG,analysis_date,nameKG):
+def analyses(analysis_date,idKG = None,nameKG = None, sparql_endpoint = None):
     
     utils.skipCheckSSL() #IGNORE THE ERROR  [SSL: CERTIFICATE_VERIFY_FAILED] 
     available = False
@@ -68,10 +68,21 @@ def analyses(idKG,analysis_date,nameKG):
     queryNotSupported = False
     availableDump = '-'
 
-    metadata = Aggregator.getDataPackage(idKG)
+    if (idKG):
+        metadata = Aggregator.getDataPackage(idKG)
+        if nameKG == '':
+            nameKG = Aggregator.getNameKG(metadata)
+        accessUrl = Aggregator.getSPARQLEndpoint(idKG)
+    elif sparql_endpoint:
+        accessUrl = sparql_endpoint
+        nameKG = query.get_kg_name(accessUrl)
+        idKG = query.get_kg_url(accessUrl)
+        metadata = None
+    
+    if idKG == '':
+        idKG = sparql_endpoint
     if nameKG == '':
-        nameKG = Aggregator.getNameKG(metadata)
-    accessUrl = Aggregator.getSPARQLEndpoint(idKG)
+        nameKG = sparql_endpoint
 
     #Set log format
     formatter = logging.Formatter('%(asctime)s | %(levelname)s | %(kg_id)s | %(kg_name)s | %(message)s')
@@ -186,7 +197,10 @@ def analyses(idKG,analysis_date,nameKG):
         sourcesC = Sources('absent','absent','absent')
     else:
         sourcesC = Sources(sources.get('web','Absent'),sources.get('name','Absent'),sources.get('email','Absent'))
-    
+    if sourcesC.web == 'Absent':
+        kg_uri = query.get_kg_url(accessUrl)
+        if kg_uri:
+            sourcesC.web = kg_uri
     if available == False and absent == False and sourcesC.web != 'absent': #TRY TO ACCESS AT THE SPARQL ENDPOINT ADDING \sparql AT THE END OF THE DATASET URL
         try:
             newUrl = sourcesC.web + '/sparql'
@@ -1456,45 +1470,51 @@ def analyses(idKG,analysis_date,nameKG):
     end_analysis = time.time()
     utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of interlinking completeness', 'Completeness',analysis_date)
     
-    #READIUNG THE GRAPH OF KG 
-    here = os.path.dirname(os.path.abspath(__file__))
-    gFile = os.path.join(here,'GraphOfKG.gpickle')
-    graph = nx.read_gpickle(gFile)
+    if sparql_endpoint is None:
+        #READIUNG THE GRAPH OF KG 
+        here = os.path.dirname(os.path.abspath(__file__))
+        gFile = os.path.join(here,'GraphOfKG.gpickle')
+        graph = nx.read_gpickle(gFile)
 
-    #PAGERANK CALCULATION
-    start_analysis = time.time()
-    pageRank = Graph.getPageRank(graph,idKG)
-    pageRank = str(pageRank)
-    pageRank = pageRank.replace('.',',')
-    end_analysis = time.time()
-    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of the PageRank', 'Reputation',analysis_date)
+        #PAGERANK CALCULATION
+        start_analysis = time.time()
+        pageRank = Graph.getPageRank(graph,idKG)
+        pageRank = str(pageRank)
+        pageRank = pageRank.replace('.',',')
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of the PageRank', 'Reputation',analysis_date)
 
+        #CALCULATION OF THE DEGREE OF CONNECTION
+        start_analysis = time.time()
+        degree = Graph.getDegreeOfConnection(graph,idKG)
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of Degree of Connection', 'Interlinking',analysis_date)
+        
+        #CALCULATION OF THE CENTRALITY
+        start_analysis = time.time()
+        centrality = Graph.getCentrality(graph,idKG)
+        if isinstance(centrality,float):
+            centrality = "%.3f"%centrality
+            centrality = str(centrality)
+            centrality = centrality.replace('.',',')
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of Centrality', 'Interlinking',analysis_date)
 
-    #CALCULATION OF THE DEGREE OF CONNECTION
-    start_analysis = time.time()
-    degree = Graph.getDegreeOfConnection(graph,idKG)
-    end_analysis = time.time()
-    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of Degree of Connection', 'Interlinking',analysis_date)
-    
-    #CALCULATION OF THE CENTRALITY
-    start_analysis = time.time()
-    centrality = Graph.getCentrality(graph,idKG)
-    if isinstance(centrality,float):
-        centrality = "%.3f"%centrality
-        centrality = str(centrality)
-        centrality = centrality.replace('.',',')
-    end_analysis = time.time()
-    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of Centrality', 'Interlinking',analysis_date)
+        #CALCULATION OF CLUSTERING COEFFICIENT
+        start_analysis = time.time()
+        clusteringCoefficient = Graph.getClusteringCoefficient(graph,idKG)
+        if isinstance(clusteringCoefficient,float):
+            clusteringCoefficient = "%.3f"%clusteringCoefficient
+            clusteringCoefficient = str(clusteringCoefficient)
+            clusteringCoefficient = clusteringCoefficient.replace('.',',')
+        end_analysis = time.time()
+        utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of Clustering coefficient', 'Interlinking',analysis_date)
+    else:
+        pageRank = '-'
+        degree = '-'
+        centrality = '-'
+        clusteringCoefficient = '-'
 
-    #CALCULATION OF CLUSTERING COEFFICIENT
-    start_analysis = time.time()
-    clusteringCoefficient = Graph.getClusteringCoefficient(graph,idKG)
-    if isinstance(clusteringCoefficient,float):
-        clusteringCoefficient = "%.3f"%clusteringCoefficient
-        clusteringCoefficient = str(clusteringCoefficient)
-        clusteringCoefficient = clusteringCoefficient.replace('.',',')
-    end_analysis = time.time()
-    utils.write_time(nameKG,end_analysis-start_analysis,'Calculation of Clustering coefficient', 'Interlinking',analysis_date)
 
     #GET THE DESCRIPTION OF THE CONTENT OF KG
     description = Aggregator.getDescription(metadata)    

@@ -6,7 +6,7 @@ from xml.dom.minidom import Document
 import time
 import utils
 import warnings
-
+import xml.etree.ElementTree as ET
 
 def log_in_out(func):
 
@@ -1474,3 +1474,76 @@ def get_download_link(url):
         return urls
     else:
         return False
+    
+def get_kg_name(url):
+    sparql = SPARQLWrapper(url)
+    query = """
+    SELECT DISTINCT ?name
+    WHERE {
+      {
+        ?dataset a <http://www.w3.org/ns/dcat#Dataset> ;
+                 <http://purl.org/dc/terms/title> ?name .
+      }
+      UNION
+      {
+        ?dataset a <http://rdfs.org/ns/void#Dataset> ;
+                 <http://purl.org/dc/terms/title> ?name .
+      }
+    }
+    LIMIT 1
+    """
+    sparql.setQuery(query)
+    sparql.setReturnFormat(JSON)
+    try:
+        results = sparql.query().convert()
+        if results["results"]["bindings"]:
+            return results["results"]["bindings"][0]["name"]["value"]
+    except Exception:
+        pass 
+    sparql.setReturnFormat(XML)
+    try:
+        results = sparql.query().convert()
+        root = ET.fromstring(results.toxml())  # Convert response to XML tree
+        for result in root.findall(".//{http://www.w3.org/2005/sparql-results#}binding[@name='name']"):
+            return result.find("{http://www.w3.org/2005/sparql-results#}literal").text
+    except Exception as e:
+        return f"Query failed: {e}"
+    
+    return False  
+
+
+def get_kg_url(endpoint_url):
+    sparql = SPARQLWrapper(endpoint_url)
+    query = """
+    SELECT DISTINCT ?dataset ?homepage
+    WHERE {
+      {
+        ?dataset a <http://rdfs.org/ns/void#Dataset> ;
+                 <http://xmlns.com/foaf/0.1/homepage> ?homepage .
+      }
+      UNION
+      {
+        ?dataset a <http://www.w3.org/ns/dcat#Dataset> ;
+                 <http://www.w3.org/ns/dcat#accessURL> ?homepage .
+      }
+    }
+    LIMIT 1
+    """
+    sparql.setQuery(query)
+    sparql.setReturnFormat(JSON)
+    try:
+        results = sparql.query().convert()
+        if results["results"]["bindings"]:
+            return results["results"]["bindings"][0]["homepage"]["value"]
+    except Exception:
+        pass 
+    sparql.setReturnFormat(XML)
+    try:
+        results = sparql.query().convert()
+        root = ET.fromstring(results.toxml())  # Convert response to XML tree
+        for result in root.findall(".//{http://www.w3.org/2005/sparql-results#}binding[@name='homepage']"):
+            return result.find("{http://www.w3.org/2005/sparql-results#}literal").text
+    except Exception as e:
+        return f"Query failed: {e}"
+    
+    return False  # No results found

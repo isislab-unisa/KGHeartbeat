@@ -6,7 +6,9 @@ def createConfiguration():
         data = {}
         name = []
         id = []
+        sparql_url = []
         #name.append('museum')
         data["name"] = name
         data["id"] = id
+        data["sparql_url"] = sparql_url
         json.dump(data,f)
