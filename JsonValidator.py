@@ -29,11 +29,20 @@ class JsonValidator(InputValidator):
               "type": ["string","null"]
             }
           ]
+        },
+        "sparql_url": {
+          "type": "array",
+          "items": [
+            {
+              "type": ["string","null"]
+            }
+          ]
         }
       },
       "required": [
         "name",
-        "id"
+        "id",
+        "sparql_url"
       ]
         }
         try:
