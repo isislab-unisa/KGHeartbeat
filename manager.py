@@ -50,16 +50,18 @@ toAnalyze = []
 id = input.get('id')
 tuple_id = []
 
-for input_id in id:
-    tuple_id.append((input_id,''))
+if 'all' not in id:
+    for input_id in id:
+        tuple_id.append((input_id,''))
 
 name = input.get('name')
-for i in range(len(name)): #IF NAME IS INDICATED WE RECOVER THE ID OF ALL KG FOUND
-    kgFound = AGAPI.getIdByName(name[i])
-    print(f"Number of KG found with keyword {name[i]}:{len(kgFound)}")
-    toAnalyze = toAnalyze + kgFound
+if 'all' not in name:
+    for i in range(len(name)): #IF NAME IS INDICATED WE RECOVER THE ID OF ALL KG FOUND
+        kgFound = AGAPI.getIdByName(name[i])
+        print(f"Number of KG found with keyword {name[i]}:{len(kgFound)}")
+        toAnalyze = toAnalyze + kgFound
 
-if (len(id) == 0) and (len(name) == 0) and len(input.get('sparql_url')) == 0: #SPECIAL INPUT, WE ANALYZE ALL KG DISCOVERABLE
+if (len(id) == 1 and 'all' in id) and (len(name) == 1 and 'all' in name): #SPECIAL INPUT, WE ANALYZE ALL KG DISCOVERABLE
     kgFound = AGAPI.getIdByName('')
     print(f"Number of KG found: {len(kgFound)}")
     toAnalyze = toAnalyze + kgFound
