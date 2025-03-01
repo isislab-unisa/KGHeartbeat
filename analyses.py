@@ -76,12 +76,14 @@ def analyses(analysis_date,idKG = None,nameKG = None, sparql_endpoint = None):
     elif sparql_endpoint:
         accessUrl = sparql_endpoint
         nameKG = query.get_kg_name(accessUrl)
-        idKG = query.get_kg_url(accessUrl)
+        idKG = query.get_kg_id(accessUrl)
         metadata = None
-    
-    if idKG == '':
+        if not idKG:
+            idKG = query.get_kg_url(accessUrl)
+
+    if idKG == '' or idKG == False:
         idKG = sparql_endpoint
-    if nameKG == '':
+    if nameKG == '' or nameKG == False:
         nameKG = sparql_endpoint
 
     #Set log format

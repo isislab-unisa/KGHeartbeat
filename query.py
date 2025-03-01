@@ -1478,72 +1478,96 @@ def get_download_link(url):
 def get_kg_name(url):
     sparql = SPARQLWrapper(url)
     query = """
+    PREFIX dcat: <http://www.w3.org/ns/dcat#>
+    PREFIX void: <http://rdfs.org/ns/void#>
+    PREFIX dct: <http://purl.org/dc/terms/>
+
     SELECT DISTINCT ?name
     WHERE {
-      {
-        ?dataset a <http://www.w3.org/ns/dcat#Dataset> ;
-                 <http://purl.org/dc/terms/title> ?name .
-      }
-      UNION
-      {
-        ?dataset a <http://rdfs.org/ns/void#Dataset> ;
-                 <http://purl.org/dc/terms/title> ?name .
-      }
+    {
+        ?dataset a dcat:Dataset ;
+                dct:title ?name .
+    }
+    UNION
+    {
+        ?dataset a void:Dataset ;
+                dct:title ?name .
+    }
     }
     LIMIT 1
     """
     sparql.setQuery(query)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
-    try:
-        results = sparql.query().convert()
-        if results["results"]["bindings"]:
-            return results["results"]["bindings"][0]["name"]["value"]
-    except Exception:
-        pass 
-    sparql.setReturnFormat(XML)
-    try:
-        results = sparql.query().convert()
-        root = ET.fromstring(results.toxml())  # Convert response to XML tree
-        for result in root.findall(".//{http://www.w3.org/2005/sparql-results#}binding[@name='name']"):
-            return result.find("{http://www.w3.org/2005/sparql-results#}literal").text
-    except Exception as e:
-        return f"Query failed: {e}"
-    
-    return False  
+    results = sparql.query().convert()
+    if isinstance(results,dict):
+        urls = utils.getResultsFromJSON(results)
+        return urls
+    elif isinstance(results,Document):
+        urls = utils.getResultsFromXML(results)
+        return urls
+    else:
+        return False  
 
 
 def get_kg_url(endpoint_url):
     sparql = SPARQLWrapper(endpoint_url)
     query = """
-    SELECT DISTINCT ?dataset ?homepage
+    PREFIX void: <http://rdfs.org/ns/void#>
+    PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+    PREFIX dcat: <http://www.w3.org/ns/dcat#>
+
+    SELECT DISTINCT ?homepage
     WHERE {
-      {
-        ?dataset a <http://rdfs.org/ns/void#Dataset> ;
-                 <http://xmlns.com/foaf/0.1/homepage> ?homepage .
-      }
-      UNION
-      {
-        ?dataset a <http://www.w3.org/ns/dcat#Dataset> ;
-                 <http://www.w3.org/ns/dcat#accessURL> ?homepage .
-      }
+    {
+        ?dataset a void:Dataset ;
+                foaf:homepage ?homepage .
+    }
+    UNION
+    {
+        ?dataset a dcat:Dataset ;
+                dcat:accessURL ?homepage .
+    }
     }
     LIMIT 1
     """
     sparql.setQuery(query)
+    sparql.setTimeout(300)
     sparql.setReturnFormat(JSON)
-    try:
-        results = sparql.query().convert()
-        if results["results"]["bindings"]:
-            return results["results"]["bindings"][0]["homepage"]["value"]
-    except Exception:
-        pass 
-    sparql.setReturnFormat(XML)
-    try:
-        results = sparql.query().convert()
-        root = ET.fromstring(results.toxml())  # Convert response to XML tree
-        for result in root.findall(".//{http://www.w3.org/2005/sparql-results#}binding[@name='homepage']"):
-            return result.find("{http://www.w3.org/2005/sparql-results#}literal").text
-    except Exception as e:
-        return f"Query failed: {e}"
-    
-    return False  # No results found
+    results = sparql.query().convert()
+    if isinstance(results,dict):
+        urls = utils.getResultsFromJSON(results)
+        return urls
+    elif isinstance(results,Document):
+        urls = utils.getResultsFromXML(results)
+        return urls
+    else:
+        return False
+
+def get_kg_id(endpoint_url):
+    sparql = SPARQLWrapper(endpoint_url)
+    query = """
+    PREFIX dcat: <http://www.w3.org/ns/dcat#>
+    PREFIX void: <http://rdfs.org/ns/void#>
+    PREFIX dct: <http://purl.org/dc/terms/>
+
+    SELECT DISTINCT ?identifier
+    WHERE {
+    ?dataset a ?type ;
+            dct:identifier ?identifier .
+    FILTER (?type IN (dcat:Dataset, void:Dataset))
+    }
+    LIMIT 1
+    """
+    sparql.setQuery(query)
+    sparql.setTimeout(300)
+    sparql.setReturnFormat(JSON)
+    results = sparql.query().convert()
+    if isinstance(results,dict):
+        urls = utils.getResultsFromJSON(results)
+        return urls
+    elif isinstance(results,Document):
+        urls = utils.getResultsFromXML(results)
+        return urls
+    else:
+        return False
