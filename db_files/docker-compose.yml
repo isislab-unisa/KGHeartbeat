@@ -9,6 +9,10 @@ services:
     volumes:
       - ./data:/data/db
       - ./docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    deploy:
+        resources:
+          limits:
+            memory: 4G  # Limit MongoDB to 4GB RAM
 
     ports:
      - '27017-27019:27017-27019'
