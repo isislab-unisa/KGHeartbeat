@@ -7,6 +7,7 @@ import time
 import utils
 import warnings
 import xml.etree.ElementTree as ET
+import rdflib
 
 def log_in_out(func):
 
@@ -1502,9 +1503,13 @@ def get_kg_name(url):
     results = sparql.query().convert()
     if isinstance(results,dict):
         urls = utils.getResultsFromJSON(results)
+        if isinstance(urls,list):
+            return str(urls[0])
         return urls
     elif isinstance(results,Document):
         urls = utils.getResultsFromXML(results)
+        if isinstance(urls,list):
+            return urls[0]
         return urls
     else:
         return False  
@@ -1537,9 +1542,13 @@ def get_kg_url(endpoint_url):
     results = sparql.query().convert()
     if isinstance(results,dict):
         urls = utils.getResultsFromJSON(results)
+        if isinstance(urls,list):
+            return urls[0]
         return urls
     elif isinstance(results,Document):
         urls = utils.getResultsFromXML(results)
+        if isinstance(urls,list):
+            return str(urls[0])
         return urls
     else:
         return False
@@ -1565,9 +1574,77 @@ def get_kg_id(endpoint_url):
     results = sparql.query().convert()
     if isinstance(results,dict):
         urls = utils.getResultsFromJSON(results)
+        if isinstance(urls,list):
+            return str(urls[0])
         return urls
     elif isinstance(results,Document):
         urls = utils.getResultsFromXML(results)
         return urls
     else:
         return False
+
+def get_kg_void(endpoint_url):
+    sparql = SPARQLWrapper(endpoint_url)
+    sparql.setQuery("""
+    SELECT ?s ?p ?o
+    WHERE {
+    ?s a <http://rdfs.org/ns/void#Dataset> .
+    ?s ?p ?o .
+    }
+    """)
+    formats = [JSON, XML]
+    results = None
+    response_format = None
+
+    for fmt in formats:
+        sparql.setReturnFormat(fmt)
+        try:
+            results = sparql.query().convert()
+            response_format = fmt
+            break
+        except Exception as e:
+            return False
+
+    if results is None:
+        return False
+
+    g = rdflib.Graph()
+
+    if response_format == JSON:
+        for result in results["results"]["bindings"]:
+            s = rdflib.URIRef(result["s"]["value"])
+            p = rdflib.URIRef(result["p"]["value"])
+            o_value = result["o"]["value"]
+            
+            if result["o"]["type"] == "uri":
+                o = rdflib.URIRef(o_value)
+            else:
+                o = rdflib.Literal(o_value)
+            
+            g.add((s, p, o))
+
+    elif response_format == XML:
+        for result in results.getElementsByTagName("result"):
+            s = None
+            p = None
+            o = None
+            
+            for binding in result.getElementsByTagName("binding"):
+                name = binding.getAttribute("name")
+                value_node = binding.getElementsByTagName("uri")
+                if not value_node:
+                    value_node = binding.getElementsByTagName("literal")
+
+                if value_node:
+                    value = value_node[0].firstChild.nodeValue
+                    if name == "s":
+                        s = rdflib.URIRef(value)
+                    elif name == "p":
+                        p = rdflib.URIRef(value)
+                    elif name == "o":
+                        o = rdflib.URIRef(value) if binding.getElementsByTagName("uri") else rdflib.Literal(value)
+
+            if s and p and o:
+                g.add((s, p, o))
+    
+    return g

@@ -3,7 +3,7 @@ import json
 import os
 import Configuration
 from API import AGAPI
-import analyses
+import analyses as analyses
 from JsonValidator import JsonValidator
 from OutputCSV import OutputCSV
 from score import Score
@@ -14,12 +14,12 @@ import fromCSV_to_KG
 import Graph
 
 useDB = False
-try : 
-    import pymongo
-    from db_interface import DBinterface
-    useDB = True
-except: 
-    useDB = False
+# try : 
+#     import pymongo
+#     from db_interface import DBinterface
+#     useDB = True
+# except: 
+#     useDB = False
 
 try: #GET THE CONFIGURATION FILE AND CHEK IF IT IS VALID
     here = os.path.dirname(os.path.abspath(__file__))
@@ -139,7 +139,7 @@ if len(input.get('sparql_url')) > 0:
         gc.collect()
 
 end = time.time()
-save_path = os.path.join(here,'./Analysis results')
+save_path = os.path.join(here,'../Analysis results')
 with open(f'{save_path}/performance-{filename}.txt','a') as file:
         file.write(f'\n--- Total time for analysis:{end-start}s ---')
         file.write(f'\n--- Total time for analysis:{(end-start) / 3600} hours ---')

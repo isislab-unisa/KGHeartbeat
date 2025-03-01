@@ -15,7 +15,7 @@ kg_as_example_path = './Generate KG from csv (ESWC Workshop)/Full/cz-nace-full.t
 
 #Function to split in block the CSV file
 def read_csv_in_blocks(filename, block_dimension = 10):
-    with open(f'./Analysis results/{filename}.csv', mode='r', newline='', encoding='utf-8') as file:
+    with open(f'../Analysis results/{filename}.csv', mode='r', newline='', encoding='utf-8') as file:
         reader = csv.reader(file)
         header = next(reader)
         while True:
@@ -80,12 +80,12 @@ def convert_to_kg_with_llms(filename,block_dimension):
     print(final_kg)
     g = Graph()
     g.parse(data=final_kg, format="turtle")
-    g.serialize(destination=f"./Analysis results/{filename.split('_')[0]}.ttl", format="turtle")
+    g.serialize(destination=f"../Analysis results/{filename.split('_')[0]}.ttl", format="turtle")
 
 
 def convert_to_kg_code_from_llm(filename):
     here = os.path.dirname(os.path.abspath(__file__))
-    save_path = os.path.join(here,'./Analysis results')
+    save_path = os.path.join(here,'../Analysis results')
 
     # Define namespaces
     DQV = Namespace("http://www.w3.org/ns/dqv#")
@@ -234,7 +234,7 @@ def merge_kgs_to_single_kg(output_file=False):
         output_file (str): Path to the output merged file
     """
     here = os.path.dirname(os.path.abspath(__file__))
-    save_path = os.path.join(here, './Analysis results')
+    save_path = os.path.join(here, '../Analysis results')
 
     if os.path.exists(f'{save_path}/KGHeartBeat_KG.ttl'):
         os.remove(f'{save_path}/KGHeartBeat_KG.ttl')
