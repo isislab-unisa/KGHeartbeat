@@ -1055,7 +1055,7 @@ def normalize_score(score):
 
 def write_time(kg,time,metric,dimension,analysis_date):
     here = os.path.dirname(os.path.abspath(__file__))
-    save_path = os.path.join(here,'./Analysis results')
+    save_path = os.path.join(here,'../Analysis results')
     save_path = os.path.join(save_path, f"performance-{analysis_date}.txt")
     with open(save_path,'a') as file:
             file.write(f'{dimension} | {metric} for {kg} took {time}s\n')

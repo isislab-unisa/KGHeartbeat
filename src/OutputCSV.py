@@ -55,7 +55,7 @@ class OutputCSV(MetricsOutput):
                      'Currency-score','Volatility-score','Completeness-score','Amount-of-data-score','Representational-Consistency-score','Representational-Conciseness-score','Understandability-score','Interpretability-score','Versatility-score','Security-score','Interlinking_SKOS-mapping-properties', 'Extra_U1-value','Extra_CS2-value','Extra_IN3-value','Extra_RC1-value','Extra_RC2-value','Extra_IN4-value','Extra_metadata-media-type','Extra_Availability-of-a-common-accepted-Media-Type','Extra_U5-value','Extra_PE2-value','Extra_PE3-value']
 
         here = os.path.dirname(os.path.abspath(__file__))
-        save_path = os.path.join(here,'./Analysis results')
+        save_path = os.path.join(here,'../Analysis results')
         if include_dimensions == False:
             save_path = os.path.join(save_path, filename+".csv")
         else:
@@ -66,7 +66,7 @@ class OutputCSV(MetricsOutput):
 
     def writeRow(self,filename,include_dimensions = False):
         here = os.path.dirname(os.path.abspath(__file__))
-        save_path = os.path.join(here,'./Analysis results')
+        save_path = os.path.join(here,'../Analysis results')
         if include_dimensions == False:
             save_path = os.path.join(save_path, filename+".csv")
         else:

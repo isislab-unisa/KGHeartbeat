@@ -75,11 +75,20 @@ def analyses(analysis_date,idKG = None,nameKG = None, sparql_endpoint = None):
         accessUrl = Aggregator.getSPARQLEndpoint(idKG)
     elif sparql_endpoint:
         accessUrl = sparql_endpoint
-        nameKG = query.get_kg_name(accessUrl)
-        idKG = query.get_kg_id(accessUrl)
+        try:
+            nameKG = query.get_kg_name(accessUrl)
+        except:
+            nameKG = ''
+        try:
+            idKG = query.get_kg_id(accessUrl)
+        except:
+            idKG = ''
         metadata = None
-        if not idKG:
-            idKG = query.get_kg_url(accessUrl)
+        if idKG == '':
+            try:
+                idKG = query.get_kg_url(accessUrl)
+            except:
+                idKG = ''
 
     if idKG == '' or idKG == False:
         idKG = sparql_endpoint
@@ -100,7 +109,7 @@ def analyses(analysis_date,idKG = None,nameKG = None, sparql_endpoint = None):
     
     #Handler to write log on file
     here = os.path.dirname(os.path.abspath(__file__))
-    save_path = os.path.join(here,'./Analysis results')
+    save_path = os.path.join(here,'../Analysis results')
     save_path = os.path.join(save_path, analysis_date+".log")
     file_handler = logging.FileHandler(save_path)
     file_handler.setLevel(logging.DEBUG)
