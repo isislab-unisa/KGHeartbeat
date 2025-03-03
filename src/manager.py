@@ -61,7 +61,7 @@ if 'all' not in name:
         print(f"Number of KG found with keyword {name[i]}:{len(kgFound)}")
         toAnalyze = toAnalyze + kgFound
 
-if (len(id) == 1 and 'all' in id) and (len(name) == 1 and 'all' in name): #SPECIAL INPUT, WE ANALYZE ALL KG DISCOVERABLE
+if (len(id) == 1 and 'all' in id) or (len(name) == 1 and 'all' in name): #SPECIAL INPUT, WE ANALYZE ALL KG DISCOVERABLE
     kgFound = AGAPI.getIdByName('')
     print(f"Number of KG found: {len(kgFound)}")
     toAnalyze = toAnalyze + kgFound
@@ -146,4 +146,4 @@ with open(f'{save_path}/performance-{filename}.txt','a') as file:
 
 
 fromCSV_to_KG.convert_to_kg_code_from_llm(filename + '_with_dimensions')
-fromCSV_to_KG.merge_kgs_to_single_kg()
+#fromCSV_to_KG.merge_kgs_to_single_kg()
