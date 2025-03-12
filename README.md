@@ -120,7 +120,7 @@ At the end of the analysis execution, in the root directory of the project there
 |1882|89.40 ~ 4 days|2.82|21.24|
 
 The KG that required the longest time for analysis was **B3Kat - Library Union Catalogues of Bavaria, Berlin and Brandenburg**, the total time was: ~6.77 hours. The quality metric that took the longest time to analyze was *Intrinsic Category -> Consistency -> Undefined classes*, with ~5 hours to complete the calculation, this is mainly due to the large amount of triples that are present in this KG (1.022.898.443 of triples).
-The box plot illustred below shows the times for calculating the quality for each KGs. ![Quality-Analysis-Time](./kgs_analysis_time.png)
+The box plot illustred below shows the times for calculating the quality for each KGs. ![Quality-Analysis-Time](./img/kgs_analysis_time.png)
 
 ## License
 KGHeartbeat is licensed under the [MIT License](https://opensource.org/license/mit/).
