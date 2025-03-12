@@ -35,6 +35,9 @@
   </ol>
 </details>
 
+## 🚀 What's New?  
+- **SPARQL endpoint as input** – It is now possible to analyze the quality of any desired Knowledge Graph by indicating its SPARQL endpoint in the input configuration of KGHeartBeat and without it is necessarily registered in LOD Cloud or Datahub. See the section [Input configuration](#input-configuration) for more info.
+
 ## Repository structure
 ```
 KG-HeartBeat
@@ -147,18 +150,22 @@ First of all, install all dependencies from the project root:
 pip install -r requirements.txt
 ```
 ## Input configuration
-From the [KG-quality-analysis/configuration.json](configuration.json) file, you can choose the Knowledge Graph to analyze. You can analyze it by using a list of keywords or ids. In the example below, all the Knowledge Graphs that have the keywords *"museum"* will be analyzed.
+From the [KG-quality-analysis/configuration.json](configuration.json) file, you can choose the Knowledge Graph to analyze. You can analyze it by using a list of keywords, ids (indicated in LOD cloud or DataHUB) or by explicitly indicating the SPARQL endpoint (also a combination of these methods is possible). In the example below, all the Knowledge Graphs that have the keywords *"museum"* will be analyzed.
 ```
-{"name": ["museum"], "id": []}
+{"name": ["museum"], "id": [], "sparql_url" : []}
 ```
 Or, by a list of ids like this:
 ```
-{"name": [], "id": ["dbpedia","taxref-ld"]}
+{"name": [], "id": ["dbpedia","taxref-ld"], "sparql_url" : []}
 ```
-If instead, you want to analyze all the Knowledge Graphs automatically discoverable from [LODCloud](https://lod-cloud.net/) and [DataHub](https://old.datahub.io/):
+Or, by indicating the SPARQL endpoint:
+```
+{"name": ["museum], "id": [], "sparql_url" : ["https://dbpedia.org/sparql"]}
+```
+If instead, you want to analyze all the Knowledge Graphs automatically discoverable from [LODCloud](https://lod-cloud.net/) and [DataHub](https://old.datahub.io/), insert the "all" value in the list (you can indcate it in the ```name```, ```id``` or ```sparql_url``` key):
 <a name="all-kgs-conf"></a>
 ```
-{"name": [], "id": []}
+{"name": ["all"], "id": [], "sparql_url" : []}
 ```
 After the input configuration, to execute the analysis simply launch form the main directory of the project:
 ```
