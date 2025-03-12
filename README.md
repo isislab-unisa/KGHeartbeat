@@ -10,7 +10,6 @@
 
 ---
 
-# Table of contents
 <details>
   <summary>Table of Contents</summary>
   <ol>
