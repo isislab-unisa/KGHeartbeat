@@ -160,7 +160,7 @@ Or, by a list of ids like this:
 ```
 Or, by indicating the SPARQL endpoint:
 ```
-{"name": ["museum], "id": [], "sparql_url" : ["https://dbpedia.org/sparql"]}
+{"name": [], "id": [], "sparql_url" : ["https://dbpedia.org/sparql"]}
 ```
 If instead, you want to analyze all the Knowledge Graphs automatically discoverable from [LODCloud](https://lod-cloud.net/) and [DataHub](https://old.datahub.io/), insert the "all" value in the list (you can indicate it in the ```name``` or ```id``` key):
 <a name="all-kgs-conf"></a>
