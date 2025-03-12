@@ -11,24 +11,30 @@
 ---
 
 # Table of contents
-- [Repository structure](#repository-structure)
-- [Quality metrics covered](#quality-metrics-covered)
-- [Examples](#examples)
-- [Test](#test)
-- [Performance](#performance)
-- [License](#license)
-
-- [How To Use KGHeartbeat?](#how-to-use-kgheartbeat)
-    - [Dependencies](#dependencies)
-    - [Input configuration](#input-configuration)
-    - [Results](#results)
-    - [Look directly the quality](#look-directly-the-quality)
-- [How include a new quality metric?](#how-include-a-new-quality-metric)
-- [How to cite our work](#how-to-cite-our-work)
-- [Generate RDF graph from csv (ESWC Workshop)](./Generate%20KG%20from%20csv%20(ESWC%20Workshop)/)
-
-- [Roadmap](#roadmap-)
-
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#repository-structure">Repository structure</a></li>
+    <li><a href="#quality-metrics-covered">Quality metrics covered</a></li>
+    <li><a href="#test">Test</a></li>
+    <li><a href="#performance">Performance</a></li>
+    <li><a href="#license">License</a></li>
+    <li>
+        <a href="#how-to-use-kgheartbeat">How To Use KGHeartbeat?</a>
+        <ul>
+            <li><a href="#dependencies">Dependencies</a></li>
+            <li><a href="#input-configuration">Input configuration</a></li>
+            <li><a href="#results">Results</a></li>
+            <li><a href="#look-directly-the-quality">Look directly the quality</a></li>
+        </ul>
+    </li>
+    <li><a href="#how-include-a-new-quality-metric">How include a new quality metric?</a></li>
+    <li><a href="#how-to-cite-our-work">How to cite our work</a></li>
+    <li><a href="#how-include-a-new-quality-metric">How include a new quality metric?</a></li>
+    <li><a href="./Generate%20KG%20from%20csv%20(ESWC%20Workshop)/">Generate RDF graph from csv (ESWC Workshop)</a></li>
+    <li><a href="#roadmap-">Roadmap</a></li>
+  </ol>
+</details>
 
 ## Repository structure
 ```
@@ -79,14 +85,16 @@ KG-HeartBeat
     | - VoIDAnalyses.py         Module used for parsing and extracting all useful information from the VoID file
 
 ```
-![architecture](/architecture.png)
+
+# Architecture
+![architecture](./img/architecture.png)
 
 
 
 ## Quality metrics covered
 Below is a graph showing the quality dimensions covered by KGHeartbeat and the percentage of metrics measured in each of them.
 
-![Quality metrics covered by KGHeartbeat](quality_metrics.png)
+![Quality metrics covered by KGHeartbeat](./img/quality_metrics.png)
 
 
 The following figure shows the percentage of sizes and categories covered by KGHeartBeat.
