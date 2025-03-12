@@ -39,49 +39,54 @@
 ```
 KG-HeartBeat
     | - Analysis results/       Directory with KGs data quality obtained from measurement.
-        |- YYYY-MM-DD.csv     
-    | - API/                   
-        |- AGAPI                Interface to KnowledgeGraph search engine.
-        |- Aggregator.py        Brings together all the metadata for the KG from the various services used.
-        |- DataHubAPI.py        Module to retrieve KGs metadata from DataHub.
-        |- LODCloudAPI.py       Module to retrieve KGs metadata from LODCloud.
-        |- LOVAPI.py            Module used to retrieve standard vocabularies and terms from LOV.
-    | - db_files/
-        |- docker-compose.yml   File to create a MongoDB container to contain the analysis data (useful only for the Web-App)     
-        |- docker-entrypoint-initdb.d
-           |- init-mongo.js     Script to create DB and collection.
-    | - docs/                   Contains file related to the documentation.
-    | - examples/               Contains example on how to use KGHeartBeat
-    | - QualityDimensions       All classes representing the measured quality dimensions.
-        |- AmountOfData.py
-        |- Availability.py
-        |- Believability.py
-        ...
-        ...
-        ...
-    | - test/                   Folder containing files and scripts relating to the test
-        |- analyses_test.py     Script to run the test 
-        |- SPARQLES_APIS.py     Module used as interface to the SPARQLES API.
-        |- test_output.txt      File containing the result of the test performed.
+        |- YYYY-MM-DD.csv  
+    | - db_files                Contains data and docker compose to create the MongoDB instance
+    | - docs                    Directory with the data related to the GitHub page with the documentation
+    | - examples                Directory with some examples on how use KGHeartBeat and the Web-App
+    | - img                     Directory that contains the images used in the README
     | - WebApp/                 Directory that contains all the files needed to boot locally KGHeartBeat Web-App.
-    | - analyses.py             Module that calculates all quality metrics.
-    | - bloomfilter.py          Class used to istantiate the Bloom-Filter structure.
-    | - Configuration.py        Module used to create the configration.json file if isn't available.
-    | - db_interface.py         Allows you to insert new quality data into the DB.
-    | - ExternalLink.py         Class used to model the external links of a KG.
-    | - Graph.py  Module        Used to build the graph with all the KGs and to calculate all the interlinking dimension metric.
-    | - InputValidator.py       Abstract class to validate the input.
-    | - JsonValidator.py        Class that implements the validation of JSON files in input.
-    | - KnowledgeGraph.py       Class that contains the quality data of for the KG.
-    | - manager.py              Module responsible for orchestrating the application and calling the various modules for analysis.
-    | - MetricsOutput.py        Abstract class to return output from the application.
-    | - OutputCSV.py            Class used to shape the output in CSV format.
-    | - query.py                Contains all the queries needed to calculate quality metrics.
-    | - Resources.py            Class used to aggregate all resources available for the analyzed KG.
-    | - score.py                Class that calculates the score for each quality dimension analyzed and the total score
-    | - Sources.py              Class with all info related to the KG sources.
-    | - utils.py                Aggregates all useful functions for calculating quality metrics.
-    | - VoIDAnalyses.py         Module used for parsing and extracting all useful information from the VoID file
+    | - src                     Directory with all the application code
+      | - API/                   
+          |- AGAPI                Interface to KnowledgeGraph search engine.
+          |- Aggregator.py        Brings together all the metadata for the KG from the various services used.
+          |- DataHubAPI.py        Module to retrieve KGs metadata from DataHub.
+          |- LODCloudAPI.py       Module to retrieve KGs metadata from LODCloud.
+          |- LOVAPI.py            Module used to retrieve standard vocabularies and terms from LOV.
+      | - db_files/
+          |- docker-compose.yml   File to create a MongoDB container to contain the analysis data (useful only for the Web-App)     
+          |- docker-entrypoint-initdb.d
+            |- init-mongo.js     Script to create DB and collection.
+      | - docs/                   Contains file related to the documentation.
+      | - examples/               Contains example on how to use KGHeartBeat
+      | - QualityDimensions       All classes representing the measured quality dimensions.
+          |- AmountOfData.py
+          |- Availability.py
+          |- Believability.py
+          ...
+          ...
+          ...
+      | - test/                   Folder containing files and scripts relating to the test
+          |- analyses_test.py     Script to run the test 
+          |- SPARQLES_APIS.py     Module used as interface to the SPARQLES API.
+          |- test_output.txt      File containing the result of the test performed.
+      | - analyses.py             Module that calculates all quality metrics.
+      | - bloomfilter.py          Class used to istantiate the Bloom-Filter structure.
+      | - Configuration.py        Module used to create the configration.json file if isn't available.
+      | - db_interface.py         Allows you to insert new quality data into the DB.
+      | - ExternalLink.py         Class used to model the external links of a KG.
+      | - Graph.py  Module        Used to build the graph with all the KGs and to calculate all the interlinking dimension metric.
+      | - InputValidator.py       Abstract class to validate the input.
+      | - JsonValidator.py        Class that implements the validation of JSON files in input.
+      | - KnowledgeGraph.py       Class that contains the quality data of for the KG.
+      | - manager.py              Module responsible for orchestrating the application and calling the various modules for analysis.
+      | - MetricsOutput.py        Abstract class to return output from the application.
+      | - OutputCSV.py            Class used to shape the output in CSV format.
+      | - query.py                Contains all the queries needed to calculate quality metrics.
+      | - Resources.py            Class used to aggregate all resources available for the analyzed KG.
+      | - score.py                Class that calculates the score for each quality dimension analyzed and the total score
+      | - Sources.py              Class with all info related to the KG sources.
+      | - utils.py                Aggregates all useful functions for calculating quality metrics.
+      | - VoIDAnalyses.py         Module used for parsing and extracting all useful information from the VoID file
 
 ```
 
