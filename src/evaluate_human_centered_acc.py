@@ -156,6 +156,8 @@ class EvaluateHumanCenteredAcc:
             opens_license = self.accessibility4all.open_license(licenseMetadata)
         elif licenseQuery:
             opens_license = self.accessibility4all.open_license(licenseQuery)
+        else:
+            opens_license = (0, "No license specified")
 
         alternative_access_point = self.accessibility4all.alternative_access_point(self.kg_quality.extra.urlVoid, self.kg_quality.extra.endpointUrl, self.kg_quality.extra.KGid)
 
