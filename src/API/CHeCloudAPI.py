@@ -1,6 +1,8 @@
 import requests
 import json
 import os
+from copy import deepcopy
+from functools import lru_cache
 abs_path = os.path.dirname(os.path.abspath(__file__))
 
 def getAllDatasetIDs(snapshot_path=f'{abs_path}/CHeCLOUD.json'):
@@ -18,12 +20,12 @@ def getAllDatasetIDs(snapshot_path=f'{abs_path}/CHeCLOUD.json'):
                 json.dump(data, f, ensure_ascii=False, indent=2)
             return dataset_ids
         else:
-            print(f"LOD Cloud responded with status {response.status_code}, loading local snapshot if available.")
+            print(f"CHeCloud responded with status {response.status_code}, loading local snapshot if available.")
     except Exception as e:
-        print(f"LOD Cloud Connection failed: {e}")
+        print(f"CHeCloud connection failed: {e}")
 
     if os.path.exists(snapshot_path):
-        print("Loading LOD Cloud data from local snapshot...")
+        print("Loading CHeCloud data from local snapshot...")
         with open(snapshot_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
             dataset_ids = [(el.get('identifier'), el.get('title')) for el in data]
@@ -32,23 +34,53 @@ def getAllDatasetIDs(snapshot_path=f'{abs_path}/CHeCLOUD.json'):
         print("No local snapshot available.")
         return []
 
-def getDatasetMetadata(idKG, snapshot=f'{abs_path}/CHeCLOUD.json'):
+@lru_cache(maxsize=1024)
+def _get_dataset_metadata(idKG, snapshot):
+    """Fetch each CHeCloud dataset at most once per process."""
     url = f'https://checloud.di.unisa.it/checloud-api/CHe_cloud_data/dataset_metadata/{str(idKG)}'
     try:
-        response = requests.get(url,verify=False)    
+        response = requests.get(url, verify=False, timeout=10)
         if response.status_code == 200:
             print("Connection to API successful and data recovered")
             response = response.json()
             return response
         else:
-            print("Connection failed")
-            print(f"LOD Cloud responded with status {response.status_code}, loading local snapshot if available.")
+            print(
+                f"CHeCloud responded with status {response.status_code}, "
+                "loading local snapshot if available."
+            )
             with open(snapshot, 'r', encoding='utf-8') as f:
                 data = json.load(f)
-                return data.get(str(idKG), False)
+            if not isinstance(data, list):
+                print("CHeCloud snapshot is not a dataset list.")
+                return False
+
+            dataset_id = str(idKG)
+            return next(
+                (
+                    dataset for dataset in data
+                    if isinstance(dataset, dict)
+                    and dataset_id in {
+                        str(dataset.get('identifier', '')),
+                        str(dataset.get('_id', '')),
+                    }
+                ),
+                False,
+            )
     except Exception as e:
-        print('Connection failed')
+        print(f'CHeCloud connection failed: {e}')
         return False
+
+
+def clear_metadata_cache():
+    """Force CHeCloud metadata to be refreshed on the next lookup."""
+    _get_dataset_metadata.cache_clear()
+
+
+def getDatasetMetadata(idKG, snapshot=f'{abs_path}/CHeCLOUD.json'):
+    """Return a mutable copy while retaining one cached network response."""
+    metadata = _get_dataset_metadata(str(idKG), os.path.abspath(snapshot))
+    return deepcopy(metadata) if isinstance(metadata, dict) else metadata
 
 def getSPARQLEndpoint(idKG):
     metadata = getDatasetMetadata(idKG)

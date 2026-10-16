@@ -2,6 +2,7 @@ from datetime import date
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import os
+import traceback
 import Configuration
 from API import AGAPI
 from API import Aggregator
@@ -76,14 +77,26 @@ def analyse_batch(targets, output_ids, analysis_date, analysis_options, max_para
         return
     print(f"Analysing {len(targets)} KG(s) with {max_parallel_kgs} worker(s)")
     with ThreadPoolExecutor(max_workers=max_parallel_kgs) as executor:
-        futures = [
-            executor.submit(analyse_target, analysis_date, source, target_options, analysis_options)
+        futures = {
+            executor.submit(analyse_target, analysis_date, source, target_options, analysis_options): source
             for source, target_options in targets
-        ]
-        # Write a result as soon as its worker finishes; CSV row order therefore
-        # reflects completion order rather than input order.
+        }
         for future in as_completed(futures):
-            write_analysis_result(future.result(), output_ids, analysis_date)
+            source = futures[future]
+            try:
+                result = future.result()
+            except Exception:
+                print(f"\nERROR: analysis failed for {source}", flush=True)
+                traceback.print_exc()
+                continue
+            try:
+                write_analysis_result(result, output_ids, analysis_date)
+            except Exception:
+                # A malformed result must not abandon the remaining futures:
+                # ThreadPoolExecutor otherwise continues consuming the queue
+                # while the coordinator no longer writes CSV rows.
+                print(f"\nERROR: could not export result for {source}", flush=True)
+                traceback.print_exc()
 
 try: #GET THE CONFIGURATION FILE AND CHEK IF IT IS VALID
     here = os.path.dirname(os.path.abspath(__file__))

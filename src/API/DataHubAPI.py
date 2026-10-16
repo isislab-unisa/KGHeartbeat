@@ -1,13 +1,20 @@
 from importlib import resources
+from copy import deepcopy
+from functools import lru_cache
 import json
 import requests
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 import os
 
-#INPUT: DATASET ID TO LOOK FOR
-#OUTPUT: FILE JSON WITH METADATA OF THE DATASET
-def getDataPackage(idDataset, pages=12, rows=1000, snapshot='./datahub.json'):
+def _snapshot_path(snapshot):
+    """Return a stable absolute path so the in-process cache is reusable."""
+    return os.path.abspath(snapshot)
+
+
+@lru_cache(maxsize=4)
+def _load_catalogue(pages, rows, snapshot):
+    """Fetch the DataHub catalogue once, with a local snapshot fallback."""
     datasets = []
     start = 0
     base_url = "https://old.datahub.io/api/3/action/package_search"
@@ -30,17 +37,35 @@ def getDataPackage(idDataset, pages=12, rows=1000, snapshot='./datahub.json'):
         start += rows
 
     if os.path.exists(snapshot) and len(datasets) == 0:
-        print(f"Loading metadata for '{idDataset}' from local snapshot...")
+        print("Loading DataHub metadata from local snapshot...")
         with open(snapshot, 'r', encoding='utf-8') as f:
             datasets = json.load(f)
     elif len(datasets) > 0:
         with open(snapshot, 'w', encoding='utf-8') as f:
             json.dump(datasets, f, ensure_ascii=False, indent=2)
 
-    # Search for dataset with matching field
+    return datasets
+
+
+def clear_metadata_cache():
+    """Force DataHub metadata to be refreshed on the next lookup."""
+    _load_catalogue.cache_clear()
+
+
+# INPUT: DATASET ID TO LOOK FOR
+# OUTPUT: DATASET METADATA
+def getDataPackage(idDataset, pages=12, rows=1000, snapshot='./datahub.json'):
+    """Return a private copy of metadata from the cached DataHub catalogue.
+
+    A number of existing consumers normalize resources by mutating the returned
+    dictionary.  Returning a deep copy keeps those transformations from
+    changing the catalogue shared by subsequent requests.
+    """
+    datasets = _load_catalogue(pages, rows, _snapshot_path(snapshot))
+
     for ds in datasets:
         if ds.get('name') == idDataset:
-            return ds
+            return deepcopy(ds)
     return False
 
 def getNameKG(metadata):
@@ -107,9 +132,9 @@ def getSPARQLEndpoint(jsonFile):
         if isinstance(resources,list):
             for i in range(len(resources)):
                 d = resources[i]
-                format = d.get('format','')
-                name = d.get('name','')
-                if format == 'api/sparql' or 'sparql' in name:
+                format = d.get('format') or ''
+                name = d.get('name') or ''
+                if format == 'api/sparql' or (isinstance(name, str) and 'sparql' in name.lower()):
                     url = d.get('path',False)
                     return url
             return False
