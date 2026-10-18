@@ -18,7 +18,7 @@ class EvaluateHumanCenteredAcc:
         self.accessibility4visuallyimpaired = Accessibility4VisuallyImpaired()
         self.deaf_hearing_accessibility = DeafHearingAccessibility()
         self.search_engine_metadata = self.recover_search_engine_metadata(kg_quality.extra.KGid)
-        self.total_resources_in_kg = utils.run_with_timeout(query.fetch_subjects,args=(self.query_endpoint,), timeout=1800)
+        self.total_resources_in_kg = utils.run_with_timeout(query.count_res,args=(self.query_endpoint,), timeout=1800)
 
 
     def recover_search_engine_metadata(self, kg_identifier):
@@ -89,15 +89,11 @@ class EvaluateHumanCenteredAcc:
         metadata_lang = self.accessibility4all.metadata_lang(self.query_endpoint, self.kg_quality.extra.urlVoid)
 
         if self.data_available:
-            labels = self.kg_quality.understendability.numLabel
-            if isinstance(labels, int) and labels > 0 and isinstance(self.total_resources_in_kg, int) and self.total_resources_in_kg > 0:
-                human_readable_labels_score = ((labels / self.total_resources_in_kg), f"Number of human-readable labels: {labels}")
-            elif isinstance(labels, int) and labels == 0:
-                human_readable_labels_score = (0, "No human-readable labels found")
-            elif isinstance(labels, int):
-                human_readable_labels_score = (0, f"Number of human-readable labels: {labels}")
-            else:
-                human_readable_labels_score = (0, "Error fetching human-readable labels")
+            # numLabel counts annotation statements, so several labels on one
+            # resource must not be divided by a count of distinct resources.
+            human_readable_labels_score = self.accessibility4all.human_redeable_labels(
+                sparql_endpoint, total_resources=self.total_resources_in_kg
+            )
         else:
             human_readable_labels_score = (0, "No SPARQL endpoint available")
         

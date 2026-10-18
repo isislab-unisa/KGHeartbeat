@@ -1597,8 +1597,8 @@ def parse_score_details(text):
         return {'score': '', 'details': ''}
     
     # Extract score and details using regex
-    score_match = re.search(r'score:\s*(-?\d+)', text)
-    details_match = re.search(r'details:\s*(.+?)$', text)
+    score_match = re.search(r'score:\s*([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)\s*(?:\||$)', text)
+    details_match = re.search(r'details:\s*([\s\S]*)$', text)
     
     return {
         'score': score_match.group(1) if score_match else '',

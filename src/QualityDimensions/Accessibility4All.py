@@ -381,14 +381,16 @@ class Accessibility4All:
         else:
             return (0, "No SPARQL endpoint provided")
     
-    def human_redeable_labels(self, sparql_endpoint):
+    def human_redeable_labels(self, sparql_endpoint, total_resources=None):
         if utils.is_url(sparql_endpoint):
             num_labels = query.count_res_with_label(sparql_endpoint)
-            num_res = query.count_res(sparql_endpoint)
-            if isinstance(num_res, int) and num_res > 0:
+            num_res = query.count_res(sparql_endpoint) if total_resources is None else total_resources
+            if type(num_res) is int and num_res > 0 and type(num_labels) is int and 0 <= num_labels <= num_res:
                 ratio = num_labels / num_res
-                return (ratio, f"Number of resources in the KG:{num_res}")
-            return (0, "No resources found")
+                return (ratio, f"Resources with human-readable labels: {num_labels}/{num_res}")
+            if type(num_res) is int and num_res == 0:
+                return (0, "No resources found")
+            return (0, "Unable to measure label coverage: failed or inconsistent resource counts")
         return (0, "SPARQL endpoint not available")
 
     def robots_txt(self, resources, sparql_endpoint, website_url):

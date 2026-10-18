@@ -2124,7 +2124,7 @@ def fetch_subjects(endpoint_url, limit=1000, condition = ()):
         query = f"""
         SELECT DISTINCT ?s
         WHERE {{
-            ?s ?p ?s .
+            ?s ?p ?o .
             FILTER(isIRI(?s))
         }}
         ORDER BY ?s
