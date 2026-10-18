@@ -1,5 +1,3 @@
-import re
-
 from API import Aggregator
 from QualityDimensions.base import decimal
 
@@ -17,11 +15,7 @@ class Believability:
 
 
 def description_from_metadata(metadata):
-    description = Aggregator.getDescription(metadata)
-    if isinstance(description, str):
-        description = description.strip()
-        description = re.sub(r'\n+', '\n', description)
-    return description
+    return Aggregator.getDescription(metadata)
 
 
 def reliable_provider(context, kg_id):

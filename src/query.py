@@ -1990,9 +1990,12 @@ def getImagesTriples(endpoint_url):
         return False
 
 @log_in_out
-def getImageIri(endpoint_url):
+def getImageIri(endpoint_url, limit=None):
+    """Retrieve image IRIs, optionally bounded by the analysis triple limit."""
+    if limit is not None and (type(limit) is not int or limit <= 0):
+        raise ValueError('limit must be a positive integer or None')
     sparql = SPARQLWrapper(endpoint_url)
-    sparql.setQuery('''
+    query_text = '''
     PREFIX foaf: <http://xmlns.com/foaf/0.1/>
     PREFIX schema: <http://schema.org/>
     PREFIX dbo: <http://dbpedia.org/ontology/>
@@ -2010,7 +2013,10 @@ def getImageIri(endpoint_url):
         dbo:thumbnail dbo:image sioc:avatar wdt:P18 <http://example.org/hasImage> exif:image dcmitype:Image
     }
     ?resource ?prop ?o .
-    }''')
+    }'''
+    if limit is not None:
+        query_text += f' LIMIT {limit}'
+    sparql.setQuery(query_text)
     try:
         sparql.setTimeout(300)
         sparql.setReturnFormat(JSON)

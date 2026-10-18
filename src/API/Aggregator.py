@@ -3,6 +3,7 @@ import logging
 from urllib.parse import urlsplit, urlunsplit
 
 from rdf_formats import rdf_media_type
+from description_text import clean_description
 from API import DataHubAPI
 from API import LODCloudAPI
 from API.monitoring_requests import MonitoringRequests
@@ -415,13 +416,13 @@ def getDescription(metadata):
     descriptionKGCatalog = KGCatalogAPI.getDescription(metadata)
     descriptionWikidata = WikidataAPI.getDescription(metadata)
     if descriptionLODC != False:
-        return descriptionLODC
+        return clean_description(descriptionLODC)
     elif descriptionDH != False and not isinstance(descriptionDH,dict):
-        return descriptionDH
+        return clean_description(descriptionDH)
     elif descriptionKGCatalog != False and not isinstance(descriptionKGCatalog,dict):
-        return descriptionKGCatalog
+        return clean_description(descriptionKGCatalog)
     elif descriptionWikidata != False and not isinstance(descriptionWikidata,dict):
-        return descriptionWikidata
+        return clean_description(descriptionWikidata)
     else:
         return False
 

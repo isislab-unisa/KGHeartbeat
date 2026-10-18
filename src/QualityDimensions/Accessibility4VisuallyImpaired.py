@@ -10,11 +10,11 @@ class Accessibility4VisuallyImpaired:
     def __init__(self):
         pass
 
-    def alt_image(self,sparql_endpoint):
+    def alt_image(self,sparql_endpoint, limit=None):
         if not utils.is_url(sparql_endpoint):
             return (0, "No SPARQL endpoint provided")
         else:
-            images = query.getImageIri(sparql_endpoint)
+            images = query.getImageIri(sparql_endpoint, limit=limit)
             if isinstance(images, list) and len(images) > 0:
                 count_with_alt = 0
                 for i, img in enumerate(images, 1):

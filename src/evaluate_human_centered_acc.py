@@ -9,6 +9,7 @@ class EvaluateHumanCenteredAcc:
     
     def __init__(self, kg_quality):
         self.kg_quality = kg_quality
+        self.triple_limit = getattr(kg_quality.extra, 'tripleRetrieval', {}).get('limit', 10000)
         self.query_endpoint = getattr(kg_quality.extra, 'queryEndpointUrl', kg_quality.extra.endpointUrl)
         self.data_available = (kg_quality.availability.sparqlEndpoint == 'Available'
                                or (getattr(kg_quality.extra, 'analysisSource', None) == 'rdf_dump'
@@ -35,7 +36,7 @@ class EvaluateHumanCenteredAcc:
 
         image_metadata = self.deaf_hearing_accessibility.image_metadata(sparql_endpoint,void_file_url,resourcesDH)
         
-        image = self.accessibility4all.image(sparql_endpoint,self.total_resources_in_kg)
+        image = self.accessibility4all.image(sparql_endpoint,self.total_resources_in_kg, limit=self.triple_limit)
         
         audio_metadata = self.accessibility4visuallyimpaired.audio_meta(sparql_endpoint,void_file_url,resourcesDH)
         
@@ -213,7 +214,7 @@ class EvaluateHumanCenteredAcc:
     def evaluate_access_4_visually_impaired(self):
         sparql_endpoint = self.query_endpoint
 
-        alt_image = self.accessibility4visuallyimpaired.alt_image(sparql_endpoint)
+        alt_image = self.accessibility4visuallyimpaired.alt_image(sparql_endpoint, limit=self.triple_limit)
         audio_descriptions = self.deaf_hearing_accessibility.check_audio_description_subtitles(sparql_endpoint)['description_ratio']
 
         acc_4_4_visually_impaired_score = (alt_image[0] + audio_descriptions[0]) / 2
