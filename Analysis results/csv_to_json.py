@@ -150,6 +150,7 @@ def full_csv(results_dir=RESULTS_DIR):
                             'human_acc_score_no_special' : rows.get('Human-centered accessibility overall score (no special needs)', ''),
                             'human_acc_score_with_special' : rows.get('Human-centered accessibility overall score (with special needs)', ''),
                             'human_acc_score_only_special' : rows.get('Human-centered accessibility overall score (only special needs)', ''),
+                            'overall_score_accessibility' : rows.get('Overall accessibility score', ''),
                         }
                     }
                 else:
@@ -245,6 +246,7 @@ def full_csv(results_dir=RESULTS_DIR):
                             'human_acc_score_no_special' : rows.get('Human-centered accessibility overall score (no special needs)', ''),
                             'human_acc_score_with_special' : rows.get('Human-centered accessibility overall score (with special needs)', ''),
                             'human_acc_score_only_special' : rows.get('Human-centered accessibility overall score (only special needs)', ''),
+                            'overall_score_accessibility' : rows.get('Overall accessibility score', ''),
                         }
                     }
 
