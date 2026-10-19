@@ -230,7 +230,6 @@ def analyze_dataset(dataset_id, metadata):
         "data_lang": data_language,
         "image": accessibility.image(endpoint, total_resources),
         "human_redeable_labels": accessibility.human_redeable_labels(endpoint),
-        "robots_txt": accessibility.robots_txt(resource_objects, endpoint, website),
         "example": accessibility.examples(void_url, endpoint, metadata),
         "description_readability": _description_readability(
             accessibility, endpoint, void_url, metadata
